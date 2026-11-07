@@ -23,10 +23,12 @@ We train a default model and a loan-amount model on Kenyan loans, test how well 
 
 | Notebook | Purpose | Owner | Status |
 | --- | --- | --- | --- |
-| `01_eda.ipynb` | Explore and clean the data; build features and fold splits | Person 1 | ⬜ Not started |
-| `02_classification.ipynb` | Default model: validation study, calibration, cost threshold, CIs | Person 2 | ⬜ Not started |
-| `03_regression.ipynb` | Loan-amount model, residuals, scoring service | Person 3 | ⬜ Not started |
-| `04_transfer_and_fairness.ipynb` | Kenya → Ghana shift, fairness, Model Card, regulation | Person 4 | ⬜ Not started |
+| `01_eda.ipynb` | Explore and clean the data; build features and fold splits | Perfect (P1) | ⬜ Not started |
+| `02_classification.ipynb` | Default model: validation study, calibration, cost threshold, CIs | Henry (P2) | 🟨 Early EDA on `explore/henry-eda`, not merged |
+| `03_regression.ipynb` | Loan-amount model, residuals, scoring service | _Unassigned (P3)_ | ⬜ Not started |
+| `04_transfer_and_fairness.ipynb` | Kenya → Ghana shift, fairness, Model Card, regulation | _Unassigned (P4)_ | ⬜ Not started |
+
+Detailed tracking: see [Project tracking](#project-tracking) below.
 
 Status key: ⬜ Not started · 🟨 In progress · ✅ Done
 
@@ -50,10 +52,24 @@ Filter issues by role: [P1](https://github.com/ASU-MICS-2028/mle-group-2-prosit-
 
 | Role | Name | Focus |
 | --- | --- | --- |
-| P1 · Data and features | _TBD_ | Prepares the data everyone else uses |
-| P2 · Classification and evaluation | _TBD_ | Builds the shared training and testing tools; sets the approve/decline rule |
+| P1 · Data and features | Perfect ([@peaElorm](https://github.com/peaElorm)) | Prepares the data everyone else uses |
+| P2 · Classification and evaluation | Henry ([@henryhkb](https://github.com/henryhkb)) | Builds the shared training and testing tools; sets the approve/decline rule |
 | P3 · Regression and deployment | _TBD_ | Predicts how much to lend; builds the scorer |
 | P4 · Transfer and fairness | _TBD_ | Checks the model works for Ghana and treats every group fairly |
+
+## Project tracking
+
+Until P3 and P4 are filled, Perfect and Henry review each other's pull requests.
+
+| Page | What it answers |
+| --- | --- |
+| [docs/PROGRESS.md](docs/PROGRESS.md) | What's done, what's left, who has it, and the blockers |
+| [docs/WORKLOG.md](docs/WORKLOG.md) | Handoff notes: what each person did, found and wants next (newest first) |
+| [docs/DECISIONS.md](docs/DECISIONS.md) | Every data and modelling decision, with the reason |
+| [docs/LEARNING_OUTCOMES.md](docs/LEARNING_OUTCOMES.md) | The six learning outcomes: work that earns each, evidence, self-check questions |
+| [docs/DELIVERABLES.md](docs/DELIVERABLES.md) | Rubric-mapped checklist, and gaps in this README versus the brief |
+| [docs/P1_PERFECT_PLAN.md](docs/P1_PERFECT_PLAN.md), [docs/P2_HENRY_PLAN.md](docs/P2_HENRY_PLAN.md) | Step-by-step plan per person |
+| [docs/AI_USE_LOG.md](docs/AI_USE_LOG.md) | AI use, needed for the report's declaration |
 
 ## Getting started
 
