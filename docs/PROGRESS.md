@@ -1,0 +1,63 @@
+# Progress dashboard
+
+**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-07.
+
+Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
+
+## At a glance
+
+| Part | What | Owner | Status |
+| --- | --- | --- | --- |
+| Setup | README, data guide, roadmap | Bernard | ✅ (2026-10-21) |
+| Setup | Roles, docs, tracking | Perfect | 🟨 not yet pushed |
+| A | Explore Train/Test structure | Perfect | ⬜ |
+| A | Explore the target | Henry | 🟨 first EDA on `explore/henry-eda`, not merged |
+| A | Explore amounts/durations (P3 slice), Ghana/context (P4 slice) | _unowned_ | ⬜ |
+| A | Timeline, label, feature audit table | Perfect + Henry | ⬜ |
+| A | Two tasks + cost matrix in cedis/shillings | Henry (draft) | ⬜ |
+| B | Shared feature file and fold splits | Perfect | ⬜ blocks most work |
+| B | Shared train/evaluate scripts, Lightning DataModule | Henry | ⬜ |
+| B | Models, validation study, calibration, CIs | per [model table](../README.md#5-models-and-who-owns-them) | ⬜ |
+| C | Kenya → Ghana transfer study | _unowned (P4)_ | ⬜ |
+| D | Model Card, Datasheet, fairness, regulation, Findex | _unowned (P4)_ | ⬜ |
+| E | Scoring service, reason codes | _unowned (P3)_ | ⬜ |
+| Final | Report, audit, slides, reflections, AI declaration | all | ⬜ |
+
+Per-issue progress is on GitHub (Roadmap issue #1). I could not read the issues from here (no `gh` CLI), so check their state there.
+
+## Done so far
+
+| When | Who | What | Where |
+| --- | --- | --- | --- |
+| 2026-10-21 | Bernard | README: data profiling, framework, pipeline design, roles, rules | `main` |
+| 2026-11-01 | Henry | EDA: default rate, leak check, new vs repeat, rate by year | branch `explore/henry-eda`, `01_eda.ipynb` |
+| 2026-11-07 | Perfect | Roles assigned; this docs system | this folder |
+
+Findings so far: default rate by year is 1.3% (2022, 64,405 loans), 11.5% (2023), 8.7% (2024), so random splits will mislead. The two repayment columns look like leaks (AUC 0.98 each, per README).
+
+## What's left, in order
+
+1. Push the setup via PR.
+2. Part A session (Perfect + Henry): settle [DECISIONS](DECISIONS.md) D-2 to D-7.
+3. Perfect builds the shared feature file and folds; Henry builds train/evaluate scripts on a rough file meanwhile.
+4. Each trains their models; Henry runs the validation study, calibration and CIs.
+5. Cover the unowned P3/P4 work (see blockers).
+6. Report, audit, slides, reflections, AI-use declaration.
+
+## Blockers and risks
+
+| # | Severity | Item | Next step |
+| --- | --- | --- | --- |
+| 1 | 🟥 | **Deadline.** The brief lists the debrief and portfolio for Nov 2–6; today is Nov 7 | Confirm the real due date with the instructor; record it here |
+| 2 | 🟥 | **Only 2 of 4 roles filled.** P3 and P4 own Task 1, Parts C/D/E and 4 of 9 models, about half the grade | Decide D-9: recruit the other members, or split P3/P4 between you |
+| 3 | 🟧 | Review rotation needs four people | Interim: Perfect and Henry review each other |
+| 4 | 🟧 | Henry's notebook is at repo root and reads `datasets/`; plan uses `notebooks/` and `data/raw/` | Move before merging (D-12) |
+| 5 | 🟧 | Raw data is git-ignored; each person downloads the zips | See Getting started |
+| 6 | 🟨 | Brief says key `TransactionId`; file uses `ID` | Use `ID`; note in report |
+| 7 | 🟨 | README plan omits graded items: Datasheet, proxy analysis, a mitigation, AI declaration | See [DELIVERABLES](DELIVERABLES.md#gaps-in-the-readme-plan) |
+
+## Session log (newest first)
+
+| Date | Who | Did | Next |
+| --- | --- | --- | --- |
+| 2026-11-07 | Perfect | Roles, docs | Push; Part A session |
