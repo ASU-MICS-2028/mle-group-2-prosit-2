@@ -1,6 +1,8 @@
 data/raw/
 data/processed/
+datasets/
 *.zip
+*.csv
 *.parquet
 artifacts/*
 !artifacts/.gitkeep

@@ -11,7 +11,7 @@ Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 | Setup | README, data guide, roadmap | Bernard | ✅ (2026-10-21) |
 | Setup | Roles, docs, tracking | Perfect | 🟨 not yet pushed |
 | A | Explore Train/Test structure | Perfect | ⬜ |
-| A | Explore the target | Henry | 🟨 first EDA on `explore/henry-eda`, not merged |
+| A | Explore the target | Henry | 🟨 first EDA merged to `main` (`notebooks/explore_target_henry.ipynb`) |
 | A | Explore amounts/durations (P3 slice), Ghana/context (P4 slice) | _unowned_ | ⬜ |
 | A | Timeline, label, feature audit table | Perfect + Henry | ⬜ |
 | A | Two tasks + cost matrix in cedis/shillings | Henry (draft) | ⬜ |
@@ -51,7 +51,6 @@ Findings so far: default rate by year is 1.3% (2022, 64,405 loans), 11.5% (2023)
 | 1 | 🟥 | **Deadline.** The brief lists the debrief and portfolio for Nov 2–6; today is Nov 7 | Confirm the real due date with the instructor; record it here |
 | 2 | 🟥 | **Only 2 of 4 roles filled.** P3 and P4 own Task 1, Parts C/D/E and 4 of 9 models, about half the grade | Decide D-9: recruit the other members, or split P3/P4 between you |
 | 3 | 🟧 | Review rotation needs four people | Interim: Perfect and Henry review each other |
-| 4 | 🟧 | Henry's notebook is at repo root and reads `datasets/`; plan uses `notebooks/` and `data/raw/` | Move before merging (D-12) |
 | 5 | 🟧 | Raw data is git-ignored; each person downloads the zips | See Getting started |
 | 6 | 🟨 | Brief says key `TransactionId`; file uses `ID` | Use `ID`; note in report |
 | 7 | 🟨 | README plan omits graded items: Datasheet, proxy analysis, a mitigation, AI declaration | See [DELIVERABLES](DELIVERABLES.md#gaps-in-the-readme-plan) |

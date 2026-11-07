@@ -19,7 +19,7 @@ Add an entry at the **top** at the end of each session, 5–10 lines. Link to no
 **Did:** `01_eda.ipynb` at repo root: shapes, default rate, missing values, repayment markup by outcome, new vs repeat, default rate by year.
 **Found:** Rate by year: 2021 53.8% (39 loans), 2022 1.3% (64,405), 2023 11.5% (1,240), 2024 8.7% (2,970). Only this output is saved.
 **Next:** Rate by month, lender, loan type; compare random vs customer vs time splits.
-**Watch out:** Reads `datasets/`; plan uses `data/raw/`. Not merged (D-12).
+**Watch out:** Merged 2026-11-07 by Perfect; moved to `notebooks/explore_target_henry.ipynb` and path changed to `data/raw/`. Not yet rerun after the path change, and only the by-year output is saved.
 
 ## 2026-10-21 · Bernard Adjei · `main`
 **Did:** README: data guide for all three zips, framework, pipeline, roles, rules, roadmap issues #1–#37.

@@ -24,7 +24,7 @@ We train a default model and a loan-amount model on Kenyan loans, test how well 
 | Notebook | Purpose | Owner | Status |
 | --- | --- | --- | --- |
 | `01_eda.ipynb` | Explore and clean the data; build features and fold splits | Perfect (P1) | ⬜ Not started |
-| `02_classification.ipynb` | Default model: validation study, calibration, cost threshold, CIs | Henry (P2) | 🟨 Early EDA on `explore/henry-eda`, not merged |
+| `02_classification.ipynb` | Default model: validation study, calibration, cost threshold, CIs | Henry (P2) | 🟨 Early target EDA in `notebooks/explore_target_henry.ipynb` |
 | `03_regression.ipynb` | Loan-amount model, residuals, scoring service | _Unassigned (P3)_ | ⬜ Not started |
 | `04_transfer_and_fairness.ipynb` | Kenya → Ghana shift, fairness, Model Card, regulation | _Unassigned (P4)_ | ⬜ Not started |
 

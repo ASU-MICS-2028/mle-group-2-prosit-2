@@ -15,4 +15,4 @@ Models are only comparable if everyone made the same data decisions. Record each
 | D-9 | Who covers P3/P4 work? | open | (a) recruit others, (b) Perfect takes P3 and Henry P4, (c) split by model | About half the grade | Perfect + Henry |
 | D-10 | Interim PR review | decided | Perfect and Henry review each other | Rotation needs four | Perfect, 2026-11-07 |
 | D-11 | Seed and paths | decided | Seed 42; paths via `src/config.py` | Reproducibility | Bernard |
-| D-12 | Henry's `01_eda.ipynb` | open | Move to `notebooks/explore_target_henry.ipynb`; read `data/raw/` | `01_eda` is P1's; avoids a clash | Henry |
+| D-12 | Henry's `01_eda.ipynb` | decided | Merged to `main`, moved to `notebooks/explore_target_henry.ipynb`, reads `data/raw/` | `01_eda` is P1's; avoids a clash | Henry |
