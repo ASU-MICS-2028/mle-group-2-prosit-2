@@ -9,8 +9,8 @@ Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 | Part | What | Owner | Status |
 | --- | --- | --- | --- |
 | Setup | README, data guide, roadmap | Bernard | ✅ (2026-10-21) |
-| Setup | Roles, docs, tracking | Perfect | 🟨 not yet pushed |
-| A | Explore Train/Test structure | Perfect | ⬜ |
+| Setup | Roles, docs, tracking | Perfect | ✅ pushed 2026-11-07 |
+| A | Explore Train/Test structure | Perfect | ✅ `notebooks/01_eda.ipynb` §1-4, in PR |
 | A | Explore the target | Henry | 🟨 first EDA merged to `main` (`notebooks/explore_target_henry.ipynb`) |
 | A | Explore amounts/durations (P3 slice), Ghana/context (P4 slice) | _unowned_ | ⬜ |
 | A | Timeline, label, feature audit table | Perfect + Henry | ⬜ |
@@ -59,4 +59,5 @@ Findings so far: default rate by year is 1.3% (2022, 64,405 loans), 11.5% (2023)
 
 | Date | Who | Did | Next |
 | --- | --- | --- | --- |
+| 2026-11-09 | Perfect | Train/Test structure EDA | Part A session; rough feature file |
 | 2026-11-07 | Perfect | Roles, docs | Push; Part A session |
