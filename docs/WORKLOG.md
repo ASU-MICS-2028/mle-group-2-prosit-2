@@ -9,6 +9,12 @@ Add an entry at the **top** at the end of each session, 5–10 lines. Link to no
 
 ---
 
+## 2026-11-09 · Perfect (P1) · `p1/explore-train-test-structure`
+**Did:** `notebooks/01_eda.ipynb` section on Train/Test structure; filled evidence into D-3, D-4, D-5.
+**Found:** (1) Two-lender loans = same borrower, amount, date, labels agree 2,132/2,134, default 8.3% vs 1.4%. (2) The 920 "shared loans" are the other lender's row of a two-lender loan: 100% same customer/amount/date, 0% same lender, so Train labels leak Test labels. (3) Ghana: 0% customers seen, 97% rows with unseen lender, 87% with unseen loan type. (4) Kenyan Test spans 2021-2024 like Train, so it is not temporal. (5) 57 loans over 1M include 27 defaults.
+**Next:** Part A session with Henry (D-2 to D-7); then rough feature file and the feature audit table.
+**Watch out:** Data is symlinked into `data/raw/` from the folder above the repo (git-ignored). The Findex and inclusion files are not yet used.
+
 ## 2026-11-07 · Perfect (P1) · setup, not yet pushed
 **Did:** Assigned P1/P2; created `docs/`, README tracking section. Reviewed Henry's branch.
 **Found:** The brief's debrief window was Nov 2–6. README plan misses Datasheet, proxy analysis, a mitigation and the AI declaration.
