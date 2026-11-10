@@ -1,0 +1,39 @@
+name: Docs freshness
+
+# Fails a pull request that changes code or notebooks without updating the tracking docs.
+# To skip (e.g. a typo fix), add the label "no-docs-needed" to the PR.
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+
+jobs:
+  docs-updated:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Require WORKLOG and PROGRESS updates when code changes
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+          LABELS: ${{ join(github.event.pull_request.labels.*.name, ',') }}
+        run: |
+          changed=$(git diff --name-only "$BASE"...HEAD)
+          echo "Changed files:"; echo "$changed"
+          if echo ",$LABELS," | grep -q ",no-docs-needed,"; then
+            echo "Label no-docs-needed present: skipping."; exit 0
+          fi
+          if ! echo "$changed" | grep -Eq '^(src/|notebooks/|requirements\.txt)'; then
+            echo "No code or notebook changes: nothing to check."; exit 0
+          fi
+          missing=""
+          for f in docs/WORKLOG.md docs/PROGRESS.md; do
+            echo "$changed" | grep -qx "$f" || missing="$missing $f"
+          done
+          if [ -n "$missing" ]; then
+            echo "::error::Code or notebooks changed but these docs were not updated:$missing. See README, 'Keeping the docs current'."
+            exit 1
+          fi
+          echo "Docs updated."
