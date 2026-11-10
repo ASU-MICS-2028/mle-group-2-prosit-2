@@ -10,8 +10,8 @@ This note explains what the logistic regression baseline does, why each step is 
 | --- | --- |
 | Data loading (Step 1) | ✅ In the notebook |
 | scikit-learn baseline (Steps 2–6) | ✅ In the notebook; results below |
-| Switch to Perfect's shared features and folds (PR #39) | ⬜ Next |
-| PyTorch Lightning version | ⬜ After that |
+| Switch to Perfect's shared features and folds (PR #39) | ✅ In the notebook; see Section 7 |
+| PyTorch Lightning version | ✅ In the notebook; matches scikit-learn (see Section 8) |
 
 ---
 
@@ -130,18 +130,95 @@ Compare PR-AUC with the default rate, not with 0.5. **Ours is 0.19 vs 0.018 for 
 
 **Why we treat PR-AUC as the main score:** defaults are rare, so ROC-AUC can look flattering. For example, wrongly flagging 5% of ~67,000 good borrowers sounds small but is about 3,350 people. PR-AUC focuses on the rare defaulters, so it's the more honest score here.
 
-## 7. Why this baseline matters to the team
+## 7. Switching to the shared features
 
-- **It's the number to beat.** Every other model (SVM, trees, LightGBM, MLP) should beat PR-AUC 0.19 under the same splits, or it isn't worth the extra complexity.
+### What "shared features" means
+Perfect built one official version of the data for the whole team (`src/features.py` → `data/processed/features.parquet`). It's **the same 68,654 loans from `Train.csv` with the same answers, plus extra clues** worked out from the data:
+
+| New clues | Plain meaning |
+| --- | --- |
+| `n_past_loans`, `n_past_defaults`, `past_default_rate`, `days_since_last_loan`, `days_since_last_default` | The borrower's history: how many loans before, how often they failed to repay, how recently |
+| `disb_month`, `disb_dow`, `disb_dom` | Month, weekday and day of month the loan was given |
+| `macro_inflation`, `macro_fx`, `macro_deposit_rate`, `macro_unemployment` | The country's economy last year |
+| `log_amount_usd` | Loan amount in US dollars, so shillings and cedis compare |
+
+It also contains the **test groups (folds) already decided for every loan**, so every teammate hides the same loans when testing. That's what makes our scores comparable: everyone sits the same exam.
+
+Borrower history only counts past loans whose outcome was **already known** on the day of the new loan, so the model never peeks into the future.
+
+### What changed in the notebook
+- Loaded `features.parquet` instead of `Train.csv` (Train rows only).
+- Used the shared columns. `country_id` is left out because Train is all Kenya, so there's nothing to learn from it.
+- Used Perfect's `fold_group` column instead of making our own folds.
+- Added a **blank-filler** (`SimpleImputer`). First-time borrowers have no history, so some columns are empty. Blanks are filled with a typical value, plus a "this was blank" column, because having no history is itself a clue.
+- **The model itself didn't change**: still logistic regression with `class_weight="balanced"`.
+
+### Before vs after
+
+| Clues the model sees | ROC-AUC | PR-AUC |
+| --- | --- | --- |
+| Original 7 columns | 0.79 | 0.19 |
+| + borrower history | **0.84** | 0.19 |
+| + history + calendar | 0.85 | 0.18 |
+| **All shared features** (official result) | **0.85** | **0.17** |
+
+(Middle rows are from a side test that adds feature groups one at a time on the same folds.)
+
+### What we learned
+- **Borrower history helps.** The model got much better at ranking loans overall (ROC-AUC 0.79 → 0.84).
+- **But it didn't help at the very top of the risk list**, which is what PR-AUC measures. History mostly helps separate "fairly safe" from "very safe" loans.
+- **Calendar and economy columns slightly hurt PR-AUC.** Logistic regression gives every column a weight, so columns with little real signal add noise. The economy columns barely vary because Train is all Kenya.
+- **More columns doesn't automatically mean a better model.** Models that can ignore weak columns (trees, LightGBM) may do better here.
+
+## 8. The same model, built by hand in PyTorch Lightning
+
+### Why build it twice?
+scikit-learn's `LogisticRegression()` hides everything in one line. In PyTorch Lightning we write each piece ourselves. That shows we understand how it works, proves our training loop is correct (both versions should agree), and gives us the setup the **MLP** will reuse (an MLP is this model with extra layers).
+
+### The pieces
+
+| Piece | What it does | In plain words |
+| --- | --- | --- |
+| `nn.Linear` | One weight per column, plus a starting value (bias) | The "points system" |
+| sigmoid | Turns the score into a probability | The S-curve |
+| `BCEWithLogitsLoss` | Measures how wrong the guesses are | "Compare with the real answer" |
+| `pos_weight ≈ 54` | Each default counts about 54× more (non-defaults ÷ defaults) | Same job as `class_weight="balanced"` |
+| Adam optimizer | Nudges the weights to be less wrong | "Adjust the points" |
+| `weight_decay` | Small penalty that keeps weights from growing huge | Like scikit-learn's default regularization |
+| Batch (1,024 loans) | The model learns from a small group of loans at a time | Faster, and shuffling stops it learning the order |
+| Epoch | One full pass through the training loans | One round of guessing and adjusting |
+| Early stopping | Stop when the score on held-out loans stops improving (patience 5 epochs) | Prevents over-studying (overfitting) |
+
+### One careful detail
+Early stopping needs its own held-out loans to watch. We take **10% of the training customers** for that, not the test fold. If it watched the test fold, the test fold would influence training and the score would be slightly too optimistic.
+
+### Results (shared features, same 5 folds)
+
+| | ROC-AUC | PR-AUC |
+| --- | --- | --- |
+| scikit-learn | 0.845 | 0.170 |
+| **Lightning** | **0.845** | **0.170** |
+
+Training stopped after 8–17 epochs per fold, and all 5 folds take about 15 seconds.
+
+**The two versions agree**, so the hand-built training loop is correct. In a side check on the same rows, their predictions were 97% correlated. Their individual weights were only about 80% similar. That's expected: some columns carry the same information (for example `log_amount_usd` and `log_amount_local`), so the two versions can split the credit between them differently and still make the same predictions. Early stopping also halts training before it fully settles.
+
+### Practical notes for teammates
+- Run the notebook with the project's **`.venv`** kernel. Other environments may be missing Lightning.
+- On a Mac, use `accelerator="cpu"` and `float32` numbers. The Mac GPU (MPS) doesn't support 64-bit numbers, and this data is small enough that the CPU is fast.
+- Warnings about `num_workers` are speed tips, not errors.
+
+## 9. Why this baseline matters to the team
+
+- **It's the number to beat.** Every other model (SVM, trees, LightGBM, MLP) should beat **ROC-AUC 0.85 / PR-AUC 0.17** on the shared features and folds, or it isn't worth the extra complexity.
 - **It proves the pipeline works** end to end: load, clean, train, test fairly, score.
 - **It shows the leak is real.** Adding `Total_Amount_to_Repay` back makes the score jump to nearly perfect, which is a clear example for the report.
 
-## 8. Next steps
+## 10. Next steps
 
-1. Switch to Perfect's shared feature file and fold splits (PR #39) so results are comparable with everyone else's.
-2. Save predictions (ID, fold, true answer, predicted probability) to `preds/` so `src/evaluate.py` can score every model the same way.
-3. Build the same model in PyTorch Lightning and check its weights match scikit-learn's.
-4. Later: calibration, the cost-based approve/decline cutoff, and confidence intervals.
+1. Save predictions (ID, fold, true answer, predicted probability) to `preds/` so `src/evaluate.py` can score every model the same way.
+2. Build the MLP by adding hidden layers to the Lightning model, and compare it with logistic regression.
+3. Later: calibration, the cost-based approve/decline cutoff, and confidence intervals.
 
 ## Glossary
 
@@ -157,3 +234,10 @@ Compare PR-AUC with the default rate, not with 0.5. **Ours is 0.19 vs 0.018 for 
 | Cross-validation | Testing on parts of the data the model didn't train on, in rotation |
 | GroupKFold | Cross-validation that keeps each customer's loans together |
 | Class imbalance | One outcome is rare (defaults: 1.83%) |
+| Shared features | The team's one official data file: same loans, more clues, same folds for everyone |
+| Imputation | Filling blank values (e.g. no history for first-time borrowers) |
+| Loss | A number measuring how wrong the model's guesses are; training tries to make it small |
+| Batch | A small group of loans the model learns from at one time |
+| Epoch | One full pass through all the training loans |
+| Early stopping | Stop training when the score on held-out loans stops improving |
+| Overfitting | Memorising the training loans instead of learning patterns that carry over to new ones |

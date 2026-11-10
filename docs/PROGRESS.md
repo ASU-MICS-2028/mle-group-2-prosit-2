@@ -1,6 +1,6 @@
 # Progress dashboard
 
-**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-07.
+**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-10.
 
 Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 
@@ -18,6 +18,8 @@ Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 | A | Two tasks + cost matrix in cedis/shillings | Henry (draft) | ⬜ |
 | B | Shared feature file and fold splits | Perfect | 🟨 built and checked (`src/features.py`); awaiting review |
 | B | Shared train/evaluate scripts, Lightning DataModule | Henry | ⬜ |
+| B | Logistic regression (scikit-learn + Lightning) | Henry | ✅ ROC-AUC 0.845, PR-AUC 0.170 on shared features (`02_classification`, PR #41) |
+| B | MLP | Henry | ⬜ next |
 | B | Models, validation study, calibration, CIs | per [model table](../README.md#5-models-and-who-owns-them) | ⬜ |
 | C | Kenya → Ghana transfer study | Eugene | ⬜ |
 | D | Model Card, Datasheet, fairness, regulation, Findex | Eugene | ⬜ |
@@ -33,6 +35,7 @@ Per-issue progress is on GitHub (Roadmap issue #1). I could not read the issues 
 | 2026-10-21 | Bernard | README: data profiling, framework, pipeline design, roles, rules | `main` |
 | 2026-11-01 | Henry | EDA: default rate, leak check, new vs repeat, rate by year | branch `explore/henry-eda`, `01_eda.ipynb` |
 | 2026-11-07 | Perfect | Roles assigned; this docs system | this folder |
+| 2026-11-10 | Henry | Logistic regression baseline (raw columns), then on shared features + Lightning version; plain-language explainer | `notebooks/02_classification.ipynb`, `docs/learning/`, PRs #40, #41 |
 
 Findings so far: default rate by year is 1.3% (2022, 64,405 loans), 11.5% (2023), 8.7% (2024), so random splits will mislead. The two repayment columns look like leaks (AUC 0.98 each, per README).
 
@@ -60,5 +63,6 @@ Findings so far: default rate by year is 1.3% (2022, 64,405 loans), 11.5% (2023)
 
 | Date | Who | Did | Next |
 | --- | --- | --- | --- |
+| 2026-11-10 | Henry | Logistic regression: scikit-learn + Lightning on shared features (0.845 / 0.170) | MLP; train/evaluate scripts; validation study |
 | 2026-11-09 | Perfect | Train/Test structure EDA | Part A session; rough feature file |
 | 2026-11-07 | Perfect | Roles, docs | Push; Part A session |
