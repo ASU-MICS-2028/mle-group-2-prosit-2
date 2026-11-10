@@ -47,11 +47,11 @@ Status key: ⬜ Not started · 🟨 In progress · ✅ Done
 | Person | Done | In progress | Total |
 | --- | --- | --- | --- |
 | [Perfect (P1)](#perfect-p1--data-and-features) | 3 | 0 | 4 |
-| [Henry (P2)](#henry-p2--classification-and-evaluation) | 1 | 2 | 8 |
+| [Henry (P2)](#henry-p2--classification-and-evaluation) | 1 | 3 | 8 |
 | [Bernard (P3)](#bernard-p3--regression-and-deployment) | 0 | 1 | 6 |
 | [Eugene (P4)](#eugene-p4--transfer-and-fairness) | 0 | 1 | 10 |
 | [Whole team](#whole-team) | 2 | 3 | 9 |
-| **All** | **6** | **7** | **37** |
+| **All** | **6** | **8** | **37** |
 
 The letter after each issue number is its part: **A** frame the problem, **B** build and evaluate, **C** cross-market transfer, **D** ethical and regulatory audit, **E** make it deployable, **S** setup, **Del** deliverable.
 
@@ -72,7 +72,10 @@ The letter after each issue number is its part: **A** frame the problem, **B** b
   - [ ] `src/train.py` (writes ID, split, fold, model, y_true, y_pred to `preds/`)
   - [ ] `src/evaluate.py` (PR-AUC, ROC-AUC, P/R/F1 sweep, confusion matrix, calibration, bootstrap CIs)
   - [ ] `src/datamodule.py`
-- [ ] [#14](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/14) **B** Validation study: stratified vs GroupKFold vs temporal; decide D-7 · folds ready in the feature file
+- [ ] [#14](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/14) **B** Validation study: stratified vs GroupKFold vs temporal; decide D-7
+  - [x] Study run for logistic regression and MLP: random ≈ by customer (0.85 / 0.87 ROC-AUC), but by time collapses (LogReg 0.62, MLP 0.48) because 2023+ loans are a different population · `02_classification.ipynb`, [`docs/learning/P2_learning_report.md`](docs/learning/P2_learning_report.md) §10
+  - [ ] Conclusions written in the notebook
+  - [ ] D-7 agreed with the team and recorded in DECISIONS
 - [x] [#16](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/16) **B** Models: logistic regression and MLP
   - [x] Logistic regression, scikit-learn, shared features and `fold_group`: ROC-AUC 0.845, PR-AUC 0.170 · `02_classification.ipynb` (PRs #40, #41)
   - [x] Logistic regression, Lightning, `pos_weight≈54`, early stopping: matches scikit-learn · `02_classification.ipynb` (PR #41)
