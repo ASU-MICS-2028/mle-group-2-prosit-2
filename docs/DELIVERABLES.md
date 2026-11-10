@@ -28,9 +28,9 @@ Individual: one-page reflection each.
 
 | Gap | Brief says | Fix |
 | --- | --- | --- |
-| No Datasheet | LO5 | `docs/audit/datasheet.md` (P4) |
-| No proxy analysis | LO5, rubric D | In `04_transfer_and_fairness` (P4) |
-| No explicit mitigation | Rubric D | e.g. group-aware threshold, with before/after (P4) |
+| No Datasheet | LO5 | `docs/audit/datasheet.md` (Eugene) |
+| No proxy analysis | LO5, rubric D | In `04_transfer_and_fairness` (Eugene) |
+| No explicit mitigation | Rubric D | e.g. group-aware threshold, with before/after (Eugene) |
 | No AI-use declaration | Required in the report | [AI_USE_LOG](AI_USE_LOG.md) |
 | PR-AUC CI not named | CIs on F1 and PR-AUC | Added to LO4 |
 | Cost sensitivity not named | Appendix A: ≥ 2 alternatives | Added to LO1 |
