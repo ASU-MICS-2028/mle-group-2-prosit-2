@@ -23,12 +23,12 @@ We train a default model and a loan-amount model on Kenyan loans, test how well 
 
 | Notebook | Purpose | Owner | Status |
 | --- | --- | --- | --- |
-| `01_eda.ipynb` | Explore and clean the data; build features and fold splits | Perfect (P1) | ⬜ Not started |
-| `02_classification.ipynb` | Default model: validation study, calibration, cost threshold, CIs | Henry (P2) | 🟨 Early target EDA in `notebooks/explore_target_henry.ipynb` |
+| `01_eda.ipynb` | Explore and clean the data; build features and fold splits | Perfect (P1) | 🟨 Structure EDA and shared feature file merged (#38, #39); missing values, skew and cardinality still to do |
+| `02_classification.ipynb` | Default model: validation study, calibration, cost threshold, CIs | Henry (P2) | 🟨 Logistic regression (scikit-learn and Lightning) on the shared features merged (#40, #41); MLP, validation study, calibration, cost threshold and CIs still to do |
 | `03_regression.ipynb` | Loan-amount model, residuals, scoring service | Bernard (P3) | ⬜ Not started |
 | `04_transfer_and_fairness.ipynb` | Kenya → Ghana shift, fairness, Model Card, regulation | Eugene (P4) | ⬜ Not started |
 
-Detailed tracking: see [Project tracking](#project-tracking) below.
+Detailed tracking: see [Project tracking](#project-tracking) below. This table is updated in the same PR as the work (see [Keeping the docs current](#keeping-the-docs-current)).
 
 Status key: ⬜ Not started · 🟨 In progress · ✅ Done
 
@@ -421,6 +421,23 @@ The application sends customer_id, country, lender, loan type, requested amount,
 - Commit code and small outputs; never raw data or large model files.
 - One other member reruns every pull request from scratch before merging.
 - Everyone can explain every section, including ones they didn't write.
+
+### Keeping the docs current
+
+**A pull request that changes code is not finished until the docs say so.** Outdated docs cost everyone time and say the wrong thing about the project's state.
+
+| If your PR… | Update, in the same PR |
+| --- | --- |
+| changes `src/`, a notebook or results | [docs/WORKLOG.md](docs/WORKLOG.md) (new entry at the top) and [docs/PROGRESS.md](docs/PROGRESS.md) |
+| changes how far a notebook has got | the Status table at the top of this README |
+| makes or changes a data or modelling choice | [docs/DECISIONS.md](docs/DECISIONS.md) |
+| completes learning-outcome or deliverable work | tick it in [LEARNING_OUTCOMES](docs/LEARNING_OUTCOMES.md) and [DELIVERABLES](docs/DELIVERABLES.md) |
+| completes a step of someone's plan | tick it in `docs/P*_PLAN.md` |
+| uses AI substantially | [docs/AI_USE_LOG.md](docs/AI_USE_LOG.md) |
+
+Write state as of the PR, never "uncommitted" or "not yet pushed". Name the PR number instead.
+
+**It is enforced.** The GitHub Action *Docs freshness* fails a PR that changes `src/`, `notebooks/` or `requirements.txt` without touching `docs/WORKLOG.md` and `docs/PROGRESS.md`. For a change that truly needs no doc update (a typo), add the label `no-docs-needed`. The reviewer also checks the rest of the table above. If you use Claude Code, [CLAUDE.md](CLAUDE.md) tells it the same rule.
 
 ### How we work on GitHub
 

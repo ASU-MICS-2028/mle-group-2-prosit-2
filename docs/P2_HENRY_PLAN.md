@@ -6,7 +6,7 @@
 ## Steps
 
 **0 · Tidy**
-- [ ] Move `01_eda.ipynb` to `notebooks/explore_target_henry.ipynb`, read from `data/raw/` (D-12), rerun so outputs save, open a PR.
+- [x] Move `01_eda.ipynb` to `notebooks/explore_target_henry.ipynb`, read from `data/raw/` (D-12), rerun so outputs save, open a PR.
 
 **1 · Explore the target (Day 1)**
 - [ ] Default rate by month, lender, loan type, tenure (you have year).
@@ -19,10 +19,11 @@
 - [ ] Threshold = C_FP / (C_FP + C_FN); show it under two other recovery assumptions.
 
 **3 · Shared tools on the rough file**
-- [ ] `src/config.py` (seed 42, paths), `src/datamodule.py` (Lightning DataModule).
+- [x] `src/config.py` (seed 42, paths; written by Perfect)
+- [ ] `src/datamodule.py` (Lightning DataModule; for now the Lightning model is defined inside `02_classification.ipynb`).
 - [ ] `src/train.py`: any model over every fold of all schemes; writes ID, split, fold, model, y_true, y_pred.
 - [ ] `src/evaluate.py`: PR-AUC, ROC-AUC, P/R/F1 sweep, confusion matrix, calibration, bootstrap CIs.
-- [ ] Logistic regression in Lightning (`BCEWithLogitsLoss(pos_weight≈53.6)`, Adam, early stopping); cross-check coefficients against scikit-learn.
+- [x] Logistic regression in Lightning (`BCEWithLogitsLoss(pos_weight≈53.6)`, Adam, early stopping); cross-check against scikit-learn (done: both give ROC-AUC 0.845, PR-AUC 0.170; coefficients not compared).
 
 **4 · Validation study** (after Perfect's folds): stratified vs GroupKFold vs temporal; quantify inflation; decide D-7.
 

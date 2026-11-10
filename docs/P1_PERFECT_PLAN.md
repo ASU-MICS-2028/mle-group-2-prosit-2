@@ -6,26 +6,26 @@
 ## Steps
 
 **0 · Setup**
-- [ ] Put the three zips in `data/raw/` (git-ignored); create a venv; install `requirements.txt`.
-- [ ] Pull Henry's branch and read his notebook.
+- [x] Put the three zips in `data/raw/` (git-ignored); create a venv; install `requirements.txt`.
+- [x] Pull Henry's branch and read his notebook.
 
 **1 · Explore Train/Test structure (Day 1)**
-- [ ] Two-lender loans (2,134 repeated `tbl_loan_id`): decide D-3.
-- [ ] Customer and loan overlap with Test: decide D-4.
-- [ ] Duplicates, outliers (`Total_Amount` max 23M). Bring 3–5 findings and a chart each.
+- [x] Two-lender loans (2,134 repeated `tbl_loan_id`): decide D-3.
+- [x] Customer and loan overlap with Test: decide D-4.
+- [x] Duplicates, outliers (`Total_Amount` max 23M). Bring 3–5 findings and a chart each.
 
-**2 · Rough feature file (Day 1)**: safe raw columns only, so Henry isn't blocked.
+**2 · Rough feature file (Day 1)**: skipped; the full shared file (step 4) was built instead.
 
 **3 · Part A session with Henry**
 - [ ] Settle D-2 to D-7. Write the feature audit table and the loan timeline.
 
 **4 · Shared features (Days 2–3)**
-- [ ] Clean, de-duplicate, drop leaks.
-- [ ] Borrower history via backward `merge_asof` (past loans, past default rate, days since last loan).
-- [ ] Calendar features; previous-year macro join; USD conversion.
-- [ ] Folds: 5-fold GroupKFold by `customer_id`, one temporal cutoff, one stratified set for comparison. Seed 42.
-- [ ] Assertions: no customer in both sides of a GroupKFold split; history uses only earlier dates.
-- [ ] Log it in WORKLOG and tell Henry.
+- [x] Clean, de-duplicate, drop leaks.
+- [x] Borrower history via backward `merge_asof` (past loans, past default rate, days since last loan).
+- [x] Calendar features; previous-year macro join; USD conversion.
+- [x] Folds: 5-fold GroupKFold by `customer_id`, one temporal cutoff, one stratified set for comparison. Seed 42.
+- [x] Assertions: no customer in both sides of a GroupKFold split; history uses only earlier dates.
+- [x] Log it in WORKLOG and tell Henry. (Merged as #39; Henry already uses the file.)
 
 **5 · Your models**: baselines (majority, mean), kNN, SVM RBF on a subsample, through Henry's scripts.
 
