@@ -9,6 +9,12 @@ Add an entry at the **top** at the end of each session, 5–10 lines. Link to no
 
 ---
 
+## 2026-11-10 · Henry (P2) · `p2/logreg-baseline`, PRs #40 and #41
+**Did:** Logistic regression in `notebooks/02_classification.ipynb`. First on 7 raw columns from `Train.csv` (merged in #40), then rerun on `features.parquet` with `fold_group`, then rebuilt in PyTorch Lightning (#41). Plain-language explainer in `docs/learning/P2_logistic_regression_baseline.md`.
+**Found:** (1) Shared features: ROC-AUC 0.845, PR-AUC 0.170; scikit-learn and Lightning agree exactly, so the Lightning loop is verified. (2) Borrower history lifts ROC-AUC 0.79 → 0.84 but not PR-AUC (0.19 → 0.19). (3) Calendar and macro columns slightly lower PR-AUC (all features: 0.17). Logistic regression weights every column, so weak ones add noise; macro barely varies because Train is all Kenya.
+**Next:** MLP (rest of #16); `src/train.py` and `src/evaluate.py` (#13); validation study with `fold_strat` and `temporal` (#14).
+**Watch out:** #40 was merged before the shared-features and Lightning commits were pushed, so they're in #41. Run the notebook with the `.venv` kernel (others may lack Lightning). On a Mac, Lightning needs `accelerator="cpu"` and float32. `src/config.py` expects the CSVs in `data/raw/african-credit-scoring-challenge/`.
+
 ## 2026-11-10 · Perfect (P1) · roles
 **Did:** P3 = Bernard (`adjeibernardmarfo`), P4 = Eugene (`eugene-sew`); updated README, PROGRESS, DECISIONS (D-1, D-9, D-10), LEARNING_OUTCOMES, DELIVERABLES.
 **Next:** Brief Bernard and Eugene; they read README §7 and `docs/feature_audit.md`.
