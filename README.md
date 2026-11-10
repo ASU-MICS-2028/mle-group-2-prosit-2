@@ -26,7 +26,7 @@ We train a default model and a loan-amount model on Kenyan loans, test how well 
 | Notebook / code | Purpose | Owner | Status |
 | --- | --- | --- | --- |
 | `01_eda.ipynb` + `src/features.py` | Explore and clean the data; build features and fold splits | Perfect (P1) | ✅ EDA §1–5 and the shared feature file with 3 fold schemes are on `main` |
-| `02_classification.ipynb` | Default model: validation study, calibration, cost threshold, CIs | Henry (P2) | 🟨 Logistic regression done (scikit-learn + Lightning, ROC-AUC 0.845, PR-AUC 0.170); MLP, validation study, calibration, threshold and CIs to do |
+| `02_classification.ipynb` | Default model: validation study, calibration, cost threshold, CIs | Henry (P2) | 🟨 Models done: logistic regression (scikit-learn + Lightning, ROC-AUC 0.845, PR-AUC 0.170) and MLP (ROC-AUC 0.865, PR-AUC 0.215); validation study, calibration, threshold and CIs to do |
 | `03_regression.ipynb` | Loan-amount model, residuals, scoring service | Bernard (P3) | ⬜ Not started |
 | `04_transfer_and_fairness.ipynb` | Kenya → Ghana shift, fairness, Model Card, regulation | Eugene (P4) | ⬜ Not started |
 
@@ -47,11 +47,11 @@ Status key: ⬜ Not started · 🟨 In progress · ✅ Done
 | Person | Done | In progress | Total |
 | --- | --- | --- | --- |
 | [Perfect (P1)](#perfect-p1--data-and-features) | 3 | 0 | 4 |
-| [Henry (P2)](#henry-p2--classification-and-evaluation) | 0 | 3 | 8 |
+| [Henry (P2)](#henry-p2--classification-and-evaluation) | 1 | 2 | 8 |
 | [Bernard (P3)](#bernard-p3--regression-and-deployment) | 0 | 1 | 6 |
 | [Eugene (P4)](#eugene-p4--transfer-and-fairness) | 0 | 1 | 10 |
 | [Whole team](#whole-team) | 2 | 3 | 9 |
-| **All** | **5** | **8** | **37** |
+| **All** | **6** | **7** | **37** |
 
 The letter after each issue number is its part: **A** frame the problem, **B** build and evaluate, **C** cross-market transfer, **D** ethical and regulatory audit, **E** make it deployable, **S** setup, **Del** deliverable.
 
@@ -73,11 +73,11 @@ The letter after each issue number is its part: **A** frame the problem, **B** b
   - [ ] `src/evaluate.py` (PR-AUC, ROC-AUC, P/R/F1 sweep, confusion matrix, calibration, bootstrap CIs)
   - [ ] `src/datamodule.py`
 - [ ] [#14](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/14) **B** Validation study: stratified vs GroupKFold vs temporal; decide D-7 · folds ready in the feature file
-- [ ] [#16](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/16) **B** Models: logistic regression and MLP
+- [x] [#16](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/16) **B** Models: logistic regression and MLP
   - [x] Logistic regression, scikit-learn, shared features and `fold_group`: ROC-AUC 0.845, PR-AUC 0.170 · `02_classification.ipynb` (PRs #40, #41)
   - [x] Logistic regression, Lightning, `pos_weight≈54`, early stopping: matches scikit-learn · `02_classification.ipynb` (PR #41)
   - [x] Plain-language explainer · [`docs/learning/P2_logistic_regression_baseline.md`](docs/learning/P2_logistic_regression_baseline.md)
-  - [ ] MLP, compared with logistic regression
+  - [x] MLP (Lightning, 64 → 32 neurons, ReLU, 20% dropout): ROC-AUC 0.865, PR-AUC 0.215, ahead of logistic regression in all 5 folds; to be confirmed with CIs (#20) · `02_classification.ipynb`
 - [ ] [#19](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/19) **B** Calibration, threshold sweep, cost-based operating point
 - [ ] [#20](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/20) **B** Bootstrap 95% CIs on F1 and PR-AUC; noise floor
 
