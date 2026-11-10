@@ -25,8 +25,8 @@ We train a default model and a loan-amount model on Kenyan loans, test how well 
 | --- | --- | --- | --- |
 | `01_eda.ipynb` | Explore and clean the data; build features and fold splits | Perfect (P1) | ⬜ Not started |
 | `02_classification.ipynb` | Default model: validation study, calibration, cost threshold, CIs | Henry (P2) | 🟨 Early target EDA in `notebooks/explore_target_henry.ipynb` |
-| `03_regression.ipynb` | Loan-amount model, residuals, scoring service | _Unassigned (P3)_ | ⬜ Not started |
-| `04_transfer_and_fairness.ipynb` | Kenya → Ghana shift, fairness, Model Card, regulation | _Unassigned (P4)_ | ⬜ Not started |
+| `03_regression.ipynb` | Loan-amount model, residuals, scoring service | Bernard (P3) | ⬜ Not started |
+| `04_transfer_and_fairness.ipynb` | Kenya → Ghana shift, fairness, Model Card, regulation | Eugene (P4) | ⬜ Not started |
 
 Detailed tracking: see [Project tracking](#project-tracking) below.
 
@@ -54,12 +54,12 @@ Filter issues by role: [P1](https://github.com/ASU-MICS-2028/mle-group-2-prosit-
 | --- | --- | --- |
 | P1 · Data and features | Perfect ([@peaElorm](https://github.com/peaElorm)) | Prepares the data everyone else uses |
 | P2 · Classification and evaluation | Henry ([@henryhkb](https://github.com/henryhkb)) | Builds the shared training and testing tools; sets the approve/decline rule |
-| P3 · Regression and deployment | _TBD_ | Predicts how much to lend; builds the scorer |
-| P4 · Transfer and fairness | _TBD_ | Checks the model works for Ghana and treats every group fairly |
+| P3 · Regression and deployment | Bernard ([@adjeibernardmarfo](https://github.com/adjeibernardmarfo)) | Predicts how much to lend; builds the scorer |
+| P4 · Transfer and fairness | Eugene ([@eugene-sew](https://github.com/eugene-sew)) | Checks the model works for Ghana and treats every group fairly |
 
 ## Project tracking
 
-Until P3 and P4 are filled, Perfect and Henry review each other's pull requests.
+Reviews follow the rotation in [section 8](#how-we-work-on-github): Perfect reviews Henry, Henry reviews Bernard, Bernard reviews Eugene, Eugene reviews Perfect.
 
 | Page | What it answers |
 | --- | --- |
@@ -73,12 +73,13 @@ Until P3 and P4 are filled, Perfect and Henry review each other's pull requests.
 
 ## Getting started
 
-1. Clone the repo and create the environment (requirements to be added by P1).
+1. Clone the repo and create the environment: `python -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt`.
 2. Download the three zips and unzip them into `data/raw/` (never commit data):
    - `african-credit-scoring-challenge` from [Zindi](https://zindi.africa/competitions/african-credit-scoring-challenge)
    - `GHA_2021_FINDEX_v02_M_csv` from the [World Bank Microdata Library](https://microdata.worldbank.org/index.php/catalog/4646)
    - `financial-inclusion-in-africa` from Zindi (optional)
-3. Run the notebooks in order, `01` to `04`.
+3. Build the shared feature file and folds: `python -m src.features` (writes `data/processed/features.parquet`, about 5 seconds, fails if anything leaks).
+4. Run the notebooks in order, `01` to `04`.
 
 Planned layout:
 
