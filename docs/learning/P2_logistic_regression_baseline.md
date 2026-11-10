@@ -9,7 +9,7 @@ This note explains what the logistic regression baseline does, why each step is 
 | Part | State |
 | --- | --- |
 | Data loading (Step 1) | ✅ In the notebook |
-| scikit-learn baseline (Steps 2–6) | 🟨 Code written and test-run (results below); being added to the notebook |
+| scikit-learn baseline (Steps 2–6) | ✅ In the notebook; results below |
 | Switch to Perfect's shared features and folds (PR #39) | ⬜ Next |
 | PyTorch Lightning version | ⬜ After that |
 
@@ -19,7 +19,9 @@ This note explains what the logistic regression baseline does, why each step is 
 
 A lender receives a loan application and must decide: **will this person pay us back?**
 
-We want a model that looks at a loan's details and gives a **probability of default**, for example "this loan has a 12% chance of default". This is called **classification**: putting each loan into one of two groups, *defaults* (1) or *repays* (0).
+A **default** means the borrower **didn't pay the loan back**. In the data, `target = 1` means defaulted and `target = 0` means repaid. About 1 in 55 loans defaulted.
+
+We want a model that looks at a loan's details and gives a **probability of default**: how likely it is that the money won't come back. For example, "this loan has a 12% chance of default". This is called **classification**: putting each loan into one of two groups, *defaults* (1) or *repays* (0).
 
 Checking how trustworthy those predictions are is called **evaluation**. Both are P2's job.
 
@@ -103,7 +105,7 @@ We use **`GroupKFold` by `customer_id`**: all of one customer's loans stay in th
 ### Step 6 · Score it
 We report two scores (explained in Section 5).
 
-## 5. Results (test run, rough features)
+## 5. Results (rough features, from `02_classification.ipynb`)
 
 | Metric | Average over 5 folds | Random guessing would score |
 | --- | --- | --- |
@@ -136,16 +138,16 @@ Compare PR-AUC with the default rate, not with 0.5. **Ours is 0.19 vs 0.018 for 
 
 ## 8. Next steps
 
-1. Finish Steps 2–6 in the notebook and save the outputs.
-2. Switch to Perfect's shared feature file and fold splits (PR #39) so results are comparable with everyone else's.
-3. Save predictions (ID, fold, true answer, predicted probability) to `preds/` so `src/evaluate.py` can score every model the same way.
-4. Build the same model in PyTorch Lightning and check its weights match scikit-learn's.
-5. Later: calibration, the cost-based approve/decline cutoff, and confidence intervals.
+1. Switch to Perfect's shared feature file and fold splits (PR #39) so results are comparable with everyone else's.
+2. Save predictions (ID, fold, true answer, predicted probability) to `preds/` so `src/evaluate.py` can score every model the same way.
+3. Build the same model in PyTorch Lightning and check its weights match scikit-learn's.
+4. Later: calibration, the cost-based approve/decline cutoff, and confidence intervals.
 
 ## Glossary
 
 | Word | Meaning |
 | --- | --- |
+| Default | The borrower didn't pay the loan back (`target = 1`). About 1 in 55 loans in our data. |
 | Feature | A clue the model uses (loan amount, lender…) |
 | Label / target | The answer we predict (defaulted or not) |
 | Weight | The "points" the model learns for each feature |
