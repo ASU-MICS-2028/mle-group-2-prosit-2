@@ -44,68 +44,73 @@ Status key: ⬜ Not started · 🟨 In progress · ✅ Done
 
 > **Issues to close on GitHub.** #3, #4, #5 and #12 are done on `main` but still open, because their PRs didn't say `Closes #…`. Their owners can close them by hand.
 
-#### Setup
-- [x] [#2](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/2) Profile the three datasets and document every column · all · README §1
-- [x] [#3](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/3) Agree roles; names in the Team table · all · [Team](#team), DECISIONS D-1, D-9
-- [x] [#4](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/4) Repo skeleton, `.gitignore`, shared config · P1 Perfect · `src/config.py`, folder skeleton
+| Person | Done | In progress | Total |
+| --- | --- | --- | --- |
+| [Perfect (P1)](#perfect-p1--data-and-features) | 3 | 0 | 4 |
+| [Henry (P2)](#henry-p2--classification-and-evaluation) | 0 | 3 | 8 |
+| [Bernard (P3)](#bernard-p3--regression-and-deployment) | 0 | 1 | 6 |
+| [Eugene (P4)](#eugene-p4--transfer-and-fairness) | 0 | 1 | 10 |
+| [Whole team](#whole-team) | 2 | 3 | 9 |
+| **All** | **5** | **8** | **37** |
 
-#### Part A: Frame the problem
-- [x] [#5](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/5) Explore Train/Test structure: two-lender loans, overlapping customers · P1 Perfect · `01_eda.ipynb` §1–4 (PR #38)
-- [ ] [#6](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/6) Explore the target: default rate by month, lender, loan type, tenure · P2 Henry
+The letter after each issue number is its part: **A** frame the problem, **B** build and evaluate, **C** cross-market transfer, **D** ethical and regulatory audit, **E** make it deployable, **S** setup, **Del** deliverable.
+
+#### Perfect (P1) · Data and features
+- [x] [#4](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/4) **S** Repo skeleton, `.gitignore`, shared config · `src/config.py`, folder skeleton
+- [x] [#5](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/5) **A** Explore Train/Test structure: two-lender loans, overlapping customers · `01_eda.ipynb` §1–4 (PR #38)
+- [x] [#12](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/12) **B** Shared feature file and fold splits · `src/features.py` → `data/processed/features.parquet` (PR #39)
+- [ ] [#15](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/15) **B** Models: baselines, kNN, SVM
+
+#### Henry (P2) · Classification and evaluation
+- [ ] [#6](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/6) **A** Explore the target: default rate by month, lender, loan type, tenure
   - [x] Default rate overall and by year; new vs repeat; leak check · `explore_target_henry.ipynb`
   - [ ] By month, lender, loan type; 2023 jump: new population or new lender mix?; `extra_pct` plot; rerun so outputs save
-- [ ] [#7](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/7) Explore amounts, durations and the two leak suspects · P3 Bernard · 🟨 leak suspects already covered in `01_eda.ipynb` §5 and `docs/feature_audit.md`
-- [ ] [#8](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/8) Explore Ghana vs Kenya and the macro, Findex and inclusion files · P4 Eugene · 🟨 Ghana in Test covered in `01_eda.ipynb` §3
-- [ ] [#9](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/9) Part A session: timeline, label, feature audit, leakage rulings · all · 🟨 feature audit drafted (`docs/feature_audit.md`); D-2 to D-7 still draft
-- [ ] [#10](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/10) Define Task 1, Task 2 and the business goal · P2 Henry
-- [ ] [#11](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/11) Cost matrix in cedis/shillings; threshold under 3 recovery assumptions · P2 Henry
-
-#### Part B: Build and evaluate
-- [x] [#12](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/12) Shared feature file and fold splits · P1 Perfect · `src/features.py` → `data/processed/features.parquet` (PR #39)
-- [ ] [#13](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/13) Shared `train` / `evaluate` scripts and Lightning DataModule · P2 Henry
+- [ ] [#10](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/10) **A** Define Task 1, Task 2 and the business goal
+- [ ] [#11](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/11) **A** Cost matrix in cedis/shillings; threshold under 3 recovery assumptions
+- [ ] [#13](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/13) **B** Shared `train` / `evaluate` scripts and Lightning DataModule
   - [x] Lightning training loop written and verified against scikit-learn · `02_classification.ipynb`
   - [ ] `src/train.py` (writes ID, split, fold, model, y_true, y_pred to `preds/`)
   - [ ] `src/evaluate.py` (PR-AUC, ROC-AUC, P/R/F1 sweep, confusion matrix, calibration, bootstrap CIs)
   - [ ] `src/datamodule.py`
-- [ ] [#14](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/14) Validation study: stratified vs GroupKFold vs temporal; decide D-7 · P2 Henry · folds ready in the feature file
-- [ ] [#15](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/15) Models: baselines, kNN, SVM · P1 Perfect
-- [ ] [#16](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/16) Models: logistic regression and MLP · P2 Henry
+- [ ] [#14](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/14) **B** Validation study: stratified vs GroupKFold vs temporal; decide D-7 · folds ready in the feature file
+- [ ] [#16](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/16) **B** Models: logistic regression and MLP
   - [x] Logistic regression, scikit-learn, shared features and `fold_group`: ROC-AUC 0.845, PR-AUC 0.170 · `02_classification.ipynb` (PRs #40, #41)
   - [x] Logistic regression, Lightning, `pos_weight≈54`, early stopping: matches scikit-learn · `02_classification.ipynb` (PR #41)
   - [x] Plain-language explainer · [`docs/learning/P2_logistic_regression_baseline.md`](docs/learning/P2_logistic_regression_baseline.md)
   - [ ] MLP, compared with logistic regression
-- [ ] [#17](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/17) Models: OLS, Ridge, Lasso, decision tree · P3 Bernard
-- [ ] [#18](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/18) Models: Random Forest, LightGBM · P4 Eugene
-- [ ] [#19](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/19) Calibration, threshold sweep, cost-based operating point · P2 Henry
-- [ ] [#20](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/20) Bootstrap 95% CIs on F1 and PR-AUC; noise floor · P2 Henry
-- [ ] [#21](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/21) Regression metrics on log and original scales; residual plot · P3 Bernard
-- [ ] [#22](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/22) Interpretation: coefficients, importances or SHAP · P3 Bernard
+- [ ] [#19](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/19) **B** Calibration, threshold sweep, cost-based operating point
+- [ ] [#20](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/20) **B** Bootstrap 95% CIs on F1 and PR-AUC; noise floor
 
-#### Part C: Cross-market transfer
-- [ ] [#23](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/23) Compare Kenya and Ghana; domain classifier or importance weighting · P4 Eugene
-- [ ] [#24](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/24) Evidence NkwaPay would need to trust the model in Ghana · P4 Eugene
+#### Bernard (P3) · Regression and deployment
+- [ ] [#7](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/7) **A** Explore amounts, durations and the two leak suspects · 🟨 leak suspects already covered in `01_eda.ipynb` §5 and `docs/feature_audit.md`
+- [ ] [#17](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/17) **B** Models: OLS, Ridge, Lasso, decision tree
+- [ ] [#21](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/21) **B** Regression metrics on log and original scales; residual plot
+- [ ] [#22](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/22) **B** Interpretation: coefficients, importances or SHAP
+- [ ] [#30](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/30) **E** Scoring service: probability, decision, limit, top 3 reasons
+- [ ] [#31](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/31) **E** Latency figures and input specification
 
-#### Part D: Ethical and regulatory audit
-- [ ] [#25](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/25) Model Card · P4 Eugene
-- [ ] [#26](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/26) Fairness by country, loan type, lender, tenure, loan size; proxy analysis · P4 Eugene
-- [ ] [#27](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/27) Regulatory mapping: BoG Digital Credit Directive, Act 843, Act 726 · P4 Eugene
-- [ ] [#28](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/28) Findex: who in Ghana cannot access credit · P4 Eugene
-- [ ] [#29](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/29) Plain-language explanation for a declined borrower · P4 Eugene
+#### Eugene (P4) · Transfer and fairness
+- [ ] [#8](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/8) **A** Explore Ghana vs Kenya and the macro, Findex and inclusion files · 🟨 Ghana in Test covered in `01_eda.ipynb` §3
+- [ ] [#18](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/18) **B** Models: Random Forest, LightGBM
+- [ ] [#23](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/23) **C** Compare Kenya and Ghana; domain classifier or importance weighting
+- [ ] [#24](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/24) **C** Evidence NkwaPay would need to trust the model in Ghana
+- [ ] [#25](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/25) **D** Model Card
+- [ ] [#26](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/26) **D** Fairness by country, loan type, lender, tenure, loan size; proxy analysis
+- [ ] [#27](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/27) **D** Regulatory mapping: BoG Digital Credit Directive, Act 843, Act 726
+- [ ] [#28](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/28) **D** Findex: who in Ghana cannot access credit
+- [ ] [#29](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/29) **D** Plain-language explanation for a declined borrower
+- [ ] [#35](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/35) **Del** Ethical and regulatory audit document
 
-#### Part E: Make it deployable
-- [ ] [#30](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/30) Scoring service: probability, decision, limit, top 3 reasons · P3 Bernard
-- [ ] [#31](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/31) Latency figures and input specification · P3 Bernard
-
-#### Deliverables
-- [ ] [#32](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/32) Derivations: SVM (P1), logistic regression (P2), linear regression (P3), gradient boosting (P4) · all · `docs/derivations/` is empty
-- [ ] [#33](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/33) All four notebooks run end to end from a clean clone · all · 🟨 `02_classification` runs top to bottom on `.venv`
-- [ ] [#34](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/34) Technical report (6–10 pages) · all
-- [ ] [#35](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/35) Ethical and regulatory audit document · P4 Eugene
-- [ ] [#36](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/36) Debrief slides and mock Q&A · all
-- [ ] [#37](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/37) Individual reflections · all
-- [ ] AI-use declaration · all · 🟨 entries logged in [`docs/AI_USE_LOG.md`](docs/AI_USE_LOG.md)
-
-**Totals:** 5 of 37 tasks done · P2 Henry: 0 of 8 issues fully done, 3 in progress (#6, #13, #16).
+#### Whole team
+- [x] [#2](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/2) **S** Profile the three datasets and document every column · README §1
+- [x] [#3](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/3) **S** Agree roles; names in the Team table · [Team](#team), DECISIONS D-1, D-9
+- [ ] [#9](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/9) **A** Part A session: timeline, label, feature audit, leakage rulings · 🟨 feature audit drafted (`docs/feature_audit.md`); D-2 to D-7 still draft
+- [ ] [#32](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/32) **Del** Derivations: SVM (Perfect), logistic regression (Henry), linear regression (Bernard), gradient boosting (Eugene) · `docs/derivations/` is empty
+- [ ] [#33](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/33) **Del** All four notebooks run end to end from a clean clone · 🟨 `02_classification` runs top to bottom on `.venv`
+- [ ] [#34](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/34) **Del** Technical report (6–10 pages)
+- [ ] [#36](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/36) **Del** Debrief slides and mock Q&A
+- [ ] [#37](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/37) **Del** Individual reflections
+- [ ] **Del** AI-use declaration · 🟨 entries logged in [`docs/AI_USE_LOG.md`](docs/AI_USE_LOG.md)
 
 Filter issues by role: [P1](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3AP1) · [P2](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3AP2) · [P3](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3AP3) · [P4](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3AP4) · [whole team](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3Aall)
 
