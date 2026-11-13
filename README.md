@@ -21,30 +21,97 @@ We train a default model and a loan-amount model on Kenyan loans, test how well 
 
 ## Status
 
-| Notebook | Purpose | Owner | Status |
+| Notebook / code | Purpose | Owner | Status |
 | --- | --- | --- | --- |
-| `01_eda.ipynb` | Explore and clean the data; build features and fold splits | Perfect (P1) | 🟨 Structure EDA and shared feature file merged (#38, #39); missing values, skew and cardinality still to do |
-| `02_classification.ipynb` | Default model: validation study, calibration, cost threshold, CIs | Henry (P2) | 🟨 Logistic regression (scikit-learn and Lightning) on the shared features merged (#40, #41); MLP, validation study, calibration, cost threshold and CIs still to do |
+| `01_eda.ipynb` + `src/features.py` | Explore and clean the data; build features and fold splits | Perfect (P1) | ✅ EDA §1–5 and the shared feature file with 3 fold schemes are on `main` |
+| `02_classification.ipynb` | Default model: validation study, calibration, cost threshold, CIs | Henry (P2) | 🟨 Models done: logistic regression (scikit-learn + Lightning, ROC-AUC 0.845, PR-AUC 0.170) and MLP (ROC-AUC 0.865, PR-AUC 0.215); validation study, calibration, threshold and CIs to do |
 | `03_regression.ipynb` | Loan-amount model, residuals, scoring service | Bernard (P3) | ⬜ Not started |
 | `04_transfer_and_fairness.ipynb` | Kenya → Ghana shift, fairness, Model Card, regulation | Eugene (P4) | ⬜ Not started |
 
-Detailed tracking: see [Project tracking](#project-tracking) below. This table is updated in the same PR as the work (see [Keeping the docs current](#keeping-the-docs-current)).
+Detailed tracking: see the [checklist](#roadmap) below and [Project tracking](#project-tracking). This table is updated in the same PR as the work (see [Keeping the docs current](#keeping-the-docs-current)).
 
 Status key: ⬜ Not started · 🟨 In progress · ✅ Done
 
 ## Roadmap
 
-**Live progress: [Roadmap issue #1](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/1).** Every task is an issue; its progress bar updates on its own as issues close. To close a task, open a pull request whose description says `Closes #<issue number>`.
+**Live progress: [Roadmap issue #1](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/1).** Every task is an issue. To close a task, open a pull request whose description says `Closes #<issue number>`.
 
-Tick a phase below when all its issues are closed. `P1`–`P4` are the roles in [section 7](#7-who-does-what).
+### Task checklist
 
-- [ ] **Setup** · [#2](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/2) ✅ datasets profiled, [#3](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/3) roles, [#4](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/4) repo skeleton
-- [ ] **Part A: Frame the problem** · parallel exploration (#5–#8), Part A session (#9), tasks and goal (#10), cost matrix (#11)
-- [ ] **Part B: Build and evaluate** · shared features and scripts (#12–#13), validation study (#14), models (#15–#18), calibration and CIs (#19–#20), regression metrics (#21), interpretation (#22)
-- [ ] **Part C: Cross-market transfer** · Kenya vs Ghana shift (#23), trust evidence (#24)
-- [ ] **Part D: Ethical and regulatory audit** · Model Card (#25), fairness (#26), regulation (#27), Findex (#28), decline explanation (#29)
-- [ ] **Part E: Make it deployable** · scoring service (#30), latency and inputs (#31)
-- [ ] **Deliverables** · derivations (#32), clean-clone reruns (#33), report (#34), audit (#35), slides and Q&A (#36), reflections (#37)
+**How to use it.** A box is ticked when the work is **on `main`**, with the evidence named next to it. A 🟨 note means started but not finished. Update your own lines in the same PR as the work. Last checked: **2026-11-10**.
+
+> **Issues to close on GitHub.** #3, #4, #5 and #12 are done on `main` but still open, because their PRs didn't say `Closes #…`. Their owners can close them by hand.
+
+| Person | Done | In progress | Total |
+| --- | --- | --- | --- |
+| [Perfect (P1)](#perfect-p1--data-and-features) | 3 | 0 | 4 |
+| [Henry (P2)](#henry-p2--classification-and-evaluation) | 1 | 3 | 8 |
+| [Bernard (P3)](#bernard-p3--regression-and-deployment) | 0 | 1 | 6 |
+| [Eugene (P4)](#eugene-p4--transfer-and-fairness) | 0 | 1 | 10 |
+| [Whole team](#whole-team) | 2 | 3 | 9 |
+| **All** | **6** | **8** | **37** |
+
+The letter after each issue number is its part: **A** frame the problem, **B** build and evaluate, **C** cross-market transfer, **D** ethical and regulatory audit, **E** make it deployable, **S** setup, **Del** deliverable.
+
+#### Perfect (P1) · Data and features
+- [x] [#4](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/4) **S** Repo skeleton, `.gitignore`, shared config · `src/config.py`, folder skeleton
+- [x] [#5](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/5) **A** Explore Train/Test structure: two-lender loans, overlapping customers · `01_eda.ipynb` §1–4 (PR #38)
+- [x] [#12](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/12) **B** Shared feature file and fold splits · `src/features.py` → `data/processed/features.parquet` (PR #39)
+- [ ] [#15](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/15) **B** Models: baselines, kNN, SVM
+
+#### Henry (P2) · Classification and evaluation
+- [ ] [#6](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/6) **A** Explore the target: default rate by month, lender, loan type, tenure
+  - [x] Default rate overall and by year; new vs repeat; leak check · `explore_target_henry.ipynb`
+  - [ ] By month, lender, loan type; 2023 jump: new population or new lender mix?; `extra_pct` plot; rerun so outputs save
+- [ ] [#10](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/10) **A** Define Task 1, Task 2 and the business goal
+- [ ] [#11](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/11) **A** Cost matrix in cedis/shillings; threshold under 3 recovery assumptions
+- [ ] [#13](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/13) **B** Shared `train` / `evaluate` scripts and Lightning DataModule
+  - [x] Lightning training loop written and verified against scikit-learn · `02_classification.ipynb`
+  - [ ] `src/train.py` (writes ID, split, fold, model, y_true, y_pred to `preds/`)
+  - [ ] `src/evaluate.py` (PR-AUC, ROC-AUC, P/R/F1 sweep, confusion matrix, calibration, bootstrap CIs)
+  - [ ] `src/datamodule.py`
+- [ ] [#14](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/14) **B** Validation study: stratified vs GroupKFold vs temporal; decide D-7
+  - [x] Study run for logistic regression and MLP: random ≈ by customer (0.85 / 0.87 ROC-AUC), but by time collapses (LogReg 0.62, MLP 0.48) because 2023+ loans are a different population · `02_classification.ipynb`, [`docs/learning/P2_learning_report.md`](docs/learning/P2_learning_report.md) §10
+  - [ ] Conclusions written in the notebook
+  - [ ] D-7 agreed with the team and recorded in DECISIONS
+- [x] [#16](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/16) **B** Models: logistic regression and MLP
+  - [x] Logistic regression, scikit-learn, shared features and `fold_group`: ROC-AUC 0.845, PR-AUC 0.170 · `02_classification.ipynb` (PRs #40, #41)
+  - [x] Logistic regression, Lightning, `pos_weight≈54`, early stopping: matches scikit-learn · `02_classification.ipynb` (PR #41)
+  - [x] Plain-language explainer · [`docs/learning/P2_logistic_regression_baseline.md`](docs/learning/P2_logistic_regression_baseline.md)
+  - [x] MLP (Lightning, 64 → 32 neurons, ReLU, 20% dropout): ROC-AUC 0.865, PR-AUC 0.215, ahead of logistic regression in all 5 folds; to be confirmed with CIs (#20) · `02_classification.ipynb`
+- [ ] [#19](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/19) **B** Calibration, threshold sweep, cost-based operating point
+- [ ] [#20](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/20) **B** Bootstrap 95% CIs on F1 and PR-AUC; noise floor
+
+#### Bernard (P3) · Regression and deployment
+- [ ] [#7](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/7) **A** Explore amounts, durations and the two leak suspects · 🟨 leak suspects already covered in `01_eda.ipynb` §5 and `docs/feature_audit.md`
+- [ ] [#17](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/17) **B** Models: OLS, Ridge, Lasso, decision tree
+- [ ] [#21](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/21) **B** Regression metrics on log and original scales; residual plot
+- [ ] [#22](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/22) **B** Interpretation: coefficients, importances or SHAP
+- [ ] [#30](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/30) **E** Scoring service: probability, decision, limit, top 3 reasons
+- [ ] [#31](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/31) **E** Latency figures and input specification
+
+#### Eugene (P4) · Transfer and fairness
+- [ ] [#8](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/8) **A** Explore Ghana vs Kenya and the macro, Findex and inclusion files · 🟨 Ghana in Test covered in `01_eda.ipynb` §3
+- [ ] [#18](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/18) **B** Models: Random Forest, LightGBM
+- [ ] [#23](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/23) **C** Compare Kenya and Ghana; domain classifier or importance weighting
+- [ ] [#24](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/24) **C** Evidence NkwaPay would need to trust the model in Ghana
+- [ ] [#25](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/25) **D** Model Card
+- [ ] [#26](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/26) **D** Fairness by country, loan type, lender, tenure, loan size; proxy analysis
+- [ ] [#27](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/27) **D** Regulatory mapping: BoG Digital Credit Directive, Act 843, Act 726
+- [ ] [#28](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/28) **D** Findex: who in Ghana cannot access credit
+- [ ] [#29](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/29) **D** Plain-language explanation for a declined borrower
+- [ ] [#35](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/35) **Del** Ethical and regulatory audit document
+
+#### Whole team
+- [x] [#2](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/2) **S** Profile the three datasets and document every column · README §1
+- [x] [#3](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/3) **S** Agree roles; names in the Team table · [Team](#team), DECISIONS D-1, D-9
+- [ ] [#9](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/9) **A** Part A session: timeline, label, feature audit, leakage rulings · 🟨 feature audit drafted (`docs/feature_audit.md`); D-2 to D-7 still draft
+- [ ] [#32](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/32) **Del** Derivations: SVM (Perfect), logistic regression (Henry), linear regression (Bernard), gradient boosting (Eugene) · `docs/derivations/` is empty
+- [ ] [#33](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/33) **Del** All four notebooks run end to end from a clean clone · 🟨 `02_classification` runs top to bottom on `.venv`
+- [ ] [#34](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/34) **Del** Technical report (6–10 pages)
+- [ ] [#36](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/36) **Del** Debrief slides and mock Q&A
+- [ ] [#37](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/37) **Del** Individual reflections
+- [ ] **Del** AI-use declaration · 🟨 entries logged in [`docs/AI_USE_LOG.md`](docs/AI_USE_LOG.md)
 
 Filter issues by role: [P1](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3AP1) · [P2](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3AP2) · [P3](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3AP3) · [P4](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3AP4) · [whole team](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3Aall)
 
