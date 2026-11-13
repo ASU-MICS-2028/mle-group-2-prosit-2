@@ -8,7 +8,7 @@ At the debrief you must "explain, defend and reproduce your work without AI". If
 | --- | --- | --- | --- |
 | ☐ | Loan timeline; mark the decision moment and closest column (`disbursement_date`) | Report Part A | P1 |
 | ☐ | Label definition and time window | Report Part A | P2 |
-| ☐ | Feature audit table for all 16 Train columns | `docs/feature_audit.md` | P1 |
+| 🟨 | Feature audit table for all 16 Train columns (draft; confirm in Part A session) | `docs/feature_audit.md` | P1 |
 | ☐ | Task 1 (amount) and Task 2 (default), business goal with threshold and approval floor | Report Part A | P2 |
 | ☐ | Cost matrix in money, with sensitivity at 2 other recovery rates | Report Part A | P2 |
 
@@ -18,8 +18,8 @@ At the debrief you must "explain, defend and reproduce your work without AI". If
 
 | ☐ | Work | Evidence | Owner |
 | --- | --- | --- | --- |
-| ☐ | One shared feature file and folds, seed 42 | `src/features.py` | P1 |
-| ☐ | Preprocessor fitted on training rows only | `src/preprocess.py` | P1/P2 |
+| ✅ | One shared feature file and folds, seed 42 (merged #39) | `src/features.py` | P1 |
+| 🟨 | Preprocessor fitted on training rows only (inside each fold in Henry's pipeline; shared `src/preprocess.py` still to write) | `src/preprocess.py` | P1/P2 |
 | ☐ | One train script and one evaluate script for all models | `src/train.py`, `src/evaluate.py` | P2 |
 | ☐ | A teammate reproduces results from a fresh clone | PR reviews | all |
 | ☐ | Scorer: probability, decision, limit, top-3 reasons, latency | `src/score.py` | Bernard |
@@ -42,7 +42,7 @@ At the debrief you must "explain, defend and reproduce your work without AI". If
 | ☐ | Work | Evidence | Owner |
 | --- | --- | --- | --- |
 | ☐ | Stratified vs GroupKFold vs temporal; how inflated the naive score was; which we trust | `02_classification` | Henry |
-| ☐ | ≥ 5 models incl. majority baseline | `preds/`, results table | all |
+| 🟨 | ≥ 5 models incl. majority baseline (1 of 5+ done: logistic regression, ROC-AUC 0.845, PR-AUC 0.170) | `preds/`, results table | all |
 | ☐ | Threshold sweep, confusion matrix, cost-based operating point | `02_classification` | Henry |
 | ☐ | Calibration before/after | `02_classification` | Henry |
 | ☐ | Bootstrap 95% CIs on F1 and PR-AUC vs the ±0.0263 noise floor | `02_classification` | Henry |
