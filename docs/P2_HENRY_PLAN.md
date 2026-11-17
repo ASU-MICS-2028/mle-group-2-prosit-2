@@ -6,12 +6,12 @@
 ## Steps
 
 **0 · Tidy**
-- [x] Move `01_eda.ipynb` to `notebooks/explore_target_henry.ipynb`, read from `data/raw/` (D-12), rerun so outputs save, open a PR.
+- [x] Converted `notebooks/explore_target_henry.ipynb` into reproducible script `src/eda_target.py` (D-17) so `notebooks/` keeps only the 4 deliverable notebooks.
 
 **1 · Explore the target (Day 1)**
-- [ ] Default rate by month, lender, loan type, tenure (you have year).
-- [ ] Is 2023's jump a different population or a different lender mix?
-- [ ] Finish the leak check with a plot of `extra_pct` by outcome.
+- [x] Default rate by month, lender, loan type, tenure (`src/eda_target.py`).
+- [x] Is 2023's jump a different population or a different lender mix? (`shift_2023_summary` + `shift_2023_by_lender` in `src/eda_target.py`: both!).
+- [x] Finish the leak check (`extra_pct` median & IQR by outcome in `src/eda_target.py`).
 
 **2 · Part A: label, tasks, cost matrix**
 - [ ] Define label and window; write Task 1 (amount) and Task 2 (default).
@@ -20,9 +20,10 @@
 
 **3 · Shared tools on the rough file**
 - [x] `src/config.py` (seed 42, paths; written by Perfect)
-- [ ] `src/datamodule.py` (Lightning DataModule; for now the Lightning model is defined inside `02_classification.ipynb`).
-- [ ] `src/train.py`: any model over every fold of all schemes; writes ID, split, fold, model, y_true, y_pred.
-- [ ] `src/evaluate.py`: PR-AUC, ROC-AUC, P/R/F1 sweep, confusion matrix, calibration, bootstrap CIs.
+- [x] `src/config.py` (seed 42, paths; written by Perfect, schema constants extended on `p3/13-30-senior-scaffolding`)
+- [x] `src/datamodule.py` (scaffolded on `p3/13-30-senior-scaffolding`: `LoanDataModule`, `LitLogReg`, `LitMLP`, `LitLinearReg`)
+- [x] `src/train.py` (scaffolded on `p3/13-30-senior-scaffolding`: writes standardized `C.PRED_COLUMNS` parquet files to `preds/`)
+- [x] `src/evaluate.py` (scaffolded on `p3/13-30-senior-scaffolding`: PR-AUC, ROC-AUC, P/R/F1 sweep, confusion matrix, calibration, cost threshold, bootstrap CIs)
 - [x] Logistic regression in Lightning (`BCEWithLogitsLoss(pos_weight≈53.6)`, Adam, early stopping); cross-check against scikit-learn (done: both give ROC-AUC 0.845, PR-AUC 0.170; coefficients not compared).
 
 **4 · Validation study** (after Perfect's folds): stratified vs GroupKFold vs temporal; quantify inflation; decide D-7.

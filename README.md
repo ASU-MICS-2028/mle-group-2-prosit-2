@@ -2,531 +2,202 @@
 
 ICS553 Machine Learning Essentials · Group 2
 
-We train a default model and a loan-amount model on Kenyan loans, test how well they transfer to Ghana, audit them for fairness and regulation, and ship a small scoring service. Everyone works from **one shared pipeline, one preprocessed dataset and one evaluation script**, so every result is comparable.
+We train a default-risk classifier (**Task 2**) and a loan-limit regressor (**Task 1**) on Kenyan digital loans, evaluate Kenya → Ghana cross-market transfer, conduct an ethical and regulatory audit (BoG Digital Credit Directive, Act 843, Act 726), and ship a low-latency scoring service with plain-language reason codes. Everyone builds against **one shared feature table (`src/features.py`), one preprocessing/training/evaluation pipeline (`src/`), and automated CI guardrails (`tests/`)**.
 
-## Contents
+> **Detailed Data Dictionary, Leakage Proof & Glossary:** moved to [docs/DATA_AND_PIPELINE_GUIDE.md](docs/DATA_AND_PIPELINE_GUIDE.md) so this README stays crisp and actionable.
 
-- [Status](#status)
-- [Roadmap](#roadmap)
-- [Team](#team)
-- [Getting started](#getting-started)
-- [1. Understand the data](#1-understand-the-data)
-- [2. Framework](#2-framework-pytorch-lightning-plus-scikit-learn)
-- [3. Keywords](#3-keywords)
-- [4. The shared pipeline](#4-the-shared-pipeline)
-- [5. Models and who owns them](#5-models-and-who-owns-them)
-- [6. Training, evaluation and inference](#6-training-evaluation-and-inference)
-- [7. Who does what](#7-who-does-what)
-- [8. Team rules](#8-team-rules)
+---
 
 ## Status
 
 | Notebook / code | Purpose | Owner | Status |
 | --- | --- | --- | --- |
-| `01_eda.ipynb` + `src/features.py` | Explore and clean the data; build features and fold splits | Perfect (P1) | ✅ EDA §1–5 and the shared feature file with 3 fold schemes are on `main` |
-| `02_classification.ipynb` | Default model: validation study, calibration, cost threshold, CIs | Henry (P2) | 🟨 Models done: logistic regression (scikit-learn + Lightning, ROC-AUC 0.845, PR-AUC 0.170) and MLP (ROC-AUC 0.865, PR-AUC 0.215); validation study, calibration, threshold and CIs to do |
-| `03_regression.ipynb` | Loan-amount model, residuals, scoring service | Bernard (P3) | ⬜ Not started |
-| `04_transfer_and_fairness.ipynb` | Kenya → Ghana shift, fairness, Model Card, regulation | Eugene (P4) | ⬜ Not started |
-
-Detailed tracking: see the [checklist](#roadmap) below and [Project tracking](#project-tracking). This table is updated in the same PR as the work (see [Keeping the docs current](#keeping-the-docs-current)).
+| `01_eda.ipynb` + `src/features.py` + `src/eda_target.py` | Explore & clean data; target/shift EDA; build time-safe features & 3 fold schemes | Perfect (P1) + Henry (P2) | ✅ EDA §1–5, `features.parquet`, and `src/eda_target.py` ready |
+| `src/` shared ML pipeline + `tests/` | Shared `preprocess`, `datamodule`, `train`, `evaluate`, `fairness`, `score` + CI guardrails | Bernard (P3) | 🟨 Built on `p3/13-30-senior-scaffolding` (PR ready for review) |
+| `02_classification.ipynb` | Thin script-backed driver: LogReg/MLP, 3-scheme CV, calibration, cost threshold, bootstrap CIs | Henry (P2) | ✅ Refactored to import 100% from `src/` on `p3/13-30-senior-scaffolding` |
+| `03_regression.ipynb` | Thin script-backed driver: Task 1 limits, residual diagnostics, Part E scorer + latency | Bernard (P3) | ✅ Thin script-backed deliverable notebook ready on `p3/13-30-senior-scaffolding` |
+| `04_transfer_and_fairness.ipynb` | Thin script-backed driver: RF/LightGBM, Kenya → Ghana shift, fairness + mitigation, Findex | Eugene (P4) | 🟨 Script-backed notebook scaffolded; `docs/audit/` & boosting derivation next |
 
 Status key: ⬜ Not started · 🟨 In progress · ✅ Done
 
-## Roadmap
+---
 
-**Live progress: [Roadmap issue #1](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/1).** Every task is an issue. To close a task, open a pull request whose description says `Closes #<issue number>`.
+## Team & Ownership
 
-### Task checklist
-
-**How to use it.** A box is ticked when the work is **on `main`**, with the evidence named next to it. A 🟨 note means started but not finished. Update your own lines in the same PR as the work. Last checked: **2026-11-10**.
-
-> **Issues to close on GitHub.** #3, #4, #5 and #12 are done on `main` but still open, because their PRs didn't say `Closes #…`. Their owners can close them by hand.
-
-| Person | Done | In progress | Total |
+| Role | Name | Focus & Owned Deliverables | Plan |
 | --- | --- | --- | --- |
-| [Perfect (P1)](#perfect-p1--data-and-features) | 3 | 0 | 4 |
-| [Henry (P2)](#henry-p2--classification-and-evaluation) | 1 | 3 | 8 |
-| [Bernard (P3)](#bernard-p3--regression-and-deployment) | 0 | 1 | 6 |
-| [Eugene (P4)](#eugene-p4--transfer-and-fairness) | 0 | 1 | 10 |
-| [Whole team](#whole-team) | 2 | 3 | 9 |
-| **All** | **6** | **8** | **37** |
+| **P1 · Data & Features** | Perfect ([@peaElorm](https://github.com/peaElorm)) | `src/features.py`, `01_eda.ipynb`, baselines/kNN/SVM, SVM derivation | [P1_PERFECT_PLAN.md](docs/P1_PERFECT_PLAN.md) |
+| **P2 · Classification & Evaluation** | Henry ([@henryhkb](https://github.com/henryhkb)) | `02_classification.ipynb`, LogReg & MLP, validation study, calibration, cost matrix, CIs, LogReg derivation | [P2_HENRY_PLAN.md](docs/P2_HENRY_PLAN.md) |
+| **P3 · Regression, Infra & Deployment** | Bernard ([@adjeibernardmarfo](https://github.com/adjeibernardmarfo)) | `03_regression.ipynb`, OLS/Ridge/Lasso/Tree, `src/score.py`, CI & `tests/`, Linear Reg derivation | [P3_BERNARD_PLAN.md](docs/P3_BERNARD_PLAN.md) |
+| **P4 · Transfer & Fairness** | Eugene ([@eugene-sew](https://github.com/eugene-sew)) | `04_transfer_and_fairness.ipynb`, RF & LightGBM, Kenya→Ghana shift, Model Card/Datasheet/BoG audit, Boosting derivation | [P4_EUGENE_PLAN.md](docs/P4_EUGENE_PLAN.md) |
 
-The letter after each issue number is its part: **A** frame the problem, **B** build and evaluate, **C** cross-market transfer, **D** ethical and regulatory audit, **E** make it deployable, **S** setup, **Del** deliverable.
+**Review rotation:** Perfect → Henry → Bernard → Eugene → Perfect.
 
-#### Perfect (P1) · Data and features
-- [x] [#4](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/4) **S** Repo skeleton, `.gitignore`, shared config · `src/config.py`, folder skeleton
-- [x] [#5](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/5) **A** Explore Train/Test structure: two-lender loans, overlapping customers · `01_eda.ipynb` §1–4 (PR #38)
-- [x] [#12](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/12) **B** Shared feature file and fold splits · `src/features.py` → `data/processed/features.parquet` (PR #39)
-- [ ] [#15](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/15) **B** Models: baselines, kNN, SVM
+---
 
-#### Henry (P2) · Classification and evaluation
-- [ ] [#6](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/6) **A** Explore the target: default rate by month, lender, loan type, tenure
-  - [x] Default rate overall and by year; new vs repeat; leak check · `explore_target_henry.ipynb`
-  - [ ] By month, lender, loan type; 2023 jump: new population or new lender mix?; `extra_pct` plot; rerun so outputs save
-- [ ] [#10](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/10) **A** Define Task 1, Task 2 and the business goal
-- [ ] [#11](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/11) **A** Cost matrix in cedis/shillings; threshold under 3 recovery assumptions
-- [ ] [#13](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/13) **B** Shared `train` / `evaluate` scripts and Lightning DataModule
-  - [x] Lightning training loop written and verified against scikit-learn · `02_classification.ipynb`
-  - [ ] `src/train.py` (writes ID, split, fold, model, y_true, y_pred to `preds/`)
-  - [ ] `src/evaluate.py` (PR-AUC, ROC-AUC, P/R/F1 sweep, confusion matrix, calibration, bootstrap CIs)
-  - [ ] `src/datamodule.py`
-- [ ] [#14](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/14) **B** Validation study: stratified vs GroupKFold vs temporal; decide D-7
-  - [x] Study run for logistic regression and MLP: random ≈ by customer (0.85 / 0.87 ROC-AUC), but by time collapses (LogReg 0.62, MLP 0.48) because 2023+ loans are a different population · `02_classification.ipynb`, [`docs/learning/P2_learning_report.md`](docs/learning/P2_learning_report.md) §10
-  - [ ] Conclusions written in the notebook
-  - [ ] D-7 agreed with the team and recorded in DECISIONS
-- [x] [#16](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/16) **B** Models: logistic regression and MLP
-  - [x] Logistic regression, scikit-learn, shared features and `fold_group`: ROC-AUC 0.845, PR-AUC 0.170 · `02_classification.ipynb` (PRs #40, #41)
-  - [x] Logistic regression, Lightning, `pos_weight≈54`, early stopping: matches scikit-learn · `02_classification.ipynb` (PR #41)
-  - [x] Plain-language explainer · [`docs/learning/P2_logistic_regression_baseline.md`](docs/learning/P2_logistic_regression_baseline.md)
-  - [x] MLP (Lightning, 64 → 32 neurons, ReLU, 20% dropout): ROC-AUC 0.865, PR-AUC 0.215, ahead of logistic regression in all 5 folds; to be confirmed with CIs (#20) · `02_classification.ipynb`
-- [ ] [#19](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/19) **B** Calibration, threshold sweep, cost-based operating point
-- [ ] [#20](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/20) **B** Bootstrap 95% CIs on F1 and PR-AUC; noise floor
+## Getting Started & End-to-End Reproduction
 
-#### Bernard (P3) · Regression and deployment
-- [ ] [#7](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/7) **A** Explore amounts, durations and the two leak suspects · 🟨 leak suspects already covered in `01_eda.ipynb` §5 and `docs/feature_audit.md`
-- [ ] [#17](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/17) **B** Models: OLS, Ridge, Lasso, decision tree
-- [ ] [#21](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/21) **B** Regression metrics on log and original scales; residual plot
-- [ ] [#22](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/22) **B** Interpretation: coefficients, importances or SHAP
-- [ ] [#30](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/30) **E** Scoring service: probability, decision, limit, top 3 reasons
-- [ ] [#31](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/31) **E** Latency figures and input specification
+### 1. Environment Setup
+```bash
+python -m venv .venv
+# Linux/macOS: source .venv/bin/activate
+# Windows PowerShell: .venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+```
 
-#### Eugene (P4) · Transfer and fairness
-- [ ] [#8](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/8) **A** Explore Ghana vs Kenya and the macro, Findex and inclusion files · 🟨 Ghana in Test covered in `01_eda.ipynb` §3
-- [ ] [#18](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/18) **B** Models: Random Forest, LightGBM
-- [ ] [#23](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/23) **C** Compare Kenya and Ghana; domain classifier or importance weighting
-- [ ] [#24](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/24) **C** Evidence NkwaPay would need to trust the model in Ghana
-- [ ] [#25](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/25) **D** Model Card
-- [ ] [#26](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/26) **D** Fairness by country, loan type, lender, tenure, loan size; proxy analysis
-- [ ] [#27](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/27) **D** Regulatory mapping: BoG Digital Credit Directive, Act 843, Act 726
-- [ ] [#28](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/28) **D** Findex: who in Ghana cannot access credit
-- [ ] [#29](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/29) **D** Plain-language explanation for a declined borrower
-- [ ] [#35](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/35) **Del** Ethical and regulatory audit document
+### 2. Download Raw Data (Never Commit Data)
+Unzip into `data/raw/`:
+- `african-credit-scoring-challenge/` from [Zindi](https://zindi.africa/competitions/african-credit-scoring-challenge)
+- `GHA_2021_FINDEX_v02_M_csv/` from [World Bank Microdata Library](https://microdata.worldbank.org/index.php/catalog/4646)
+- `financial-inclusion-in-africa/` from Zindi (optional)
 
-#### Whole team
-- [x] [#2](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/2) **S** Profile the three datasets and document every column · README §1
-- [x] [#3](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/3) **S** Agree roles; names in the Team table · [Team](#team), DECISIONS D-1, D-9
-- [ ] [#9](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/9) **A** Part A session: timeline, label, feature audit, leakage rulings · 🟨 feature audit drafted (`docs/feature_audit.md`); D-2 to D-7 still draft
-- [ ] [#32](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/32) **Del** Derivations: SVM (Perfect), logistic regression (Henry), linear regression (Bernard), gradient boosting (Eugene) · `docs/derivations/` is empty
-- [ ] [#33](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/33) **Del** All four notebooks run end to end from a clean clone · 🟨 `02_classification` runs top to bottom on `.venv`
-- [ ] [#34](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/34) **Del** Technical report (6–10 pages)
-- [ ] [#36](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/36) **Del** Debrief slides and mock Q&A
-- [ ] [#37](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/37) **Del** Individual reflections
-- [ ] **Del** AI-use declaration · 🟨 entries logged in [`docs/AI_USE_LOG.md`](docs/AI_USE_LOG.md)
+### 3. Run the Reproducible Pipeline
+Using `Makefile` (or run `python -m ...` directly):
 
-Filter issues by role: [P1](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3AP1) · [P2](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3AP2) · [P3](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3AP3) · [P4](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3AP4) · [whole team](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3Aall)
+```bash
+make features   # python -m src.features -> builds data/processed/features.parquet (~4s) with leakage assertions
+make eda-target # python -m src.eda_target -> reproducible target, leakage & 2023+ shift tables
+make train      # runs Task 2 & Task 1 models across fold_group, fold_strat, temporal -> writes preds/ & artifacts/
+make eval       # python -m src.evaluate -> aggregates all predictions in preds/
+make score      # python -m src.score -> scores sample Ghana application + runs 1,000-call latency benchmark
+make test       # pytest tests/ -v && ruff check src/ tests/
+```
 
-## Team
-
-| Role | Name | Focus |
-| --- | --- | --- |
-| P1 · Data and features | Perfect ([@peaElorm](https://github.com/peaElorm)) | Prepares the data everyone else uses |
-| P2 · Classification and evaluation | Henry ([@henryhkb](https://github.com/henryhkb)) | Builds the shared training and testing tools; sets the approve/decline rule |
-| P3 · Regression and deployment | Bernard ([@adjeibernardmarfo](https://github.com/adjeibernardmarfo)) | Predicts how much to lend; builds the scorer |
-| P4 · Transfer and fairness | Eugene ([@eugene-sew](https://github.com/eugene-sew)) | Checks the model works for Ghana and treats every group fairly |
-
-## Project tracking
-
-Reviews follow the rotation in [section 8](#how-we-work-on-github): Perfect reviews Henry, Henry reviews Bernard, Bernard reviews Eugene, Eugene reviews Perfect.
-
-| Page | What it answers |
-| --- | --- |
-| [docs/PROGRESS.md](docs/PROGRESS.md) | What's done, what's left, who has it, and the blockers |
-| [docs/WORKLOG.md](docs/WORKLOG.md) | Handoff notes: what each person did, found and wants next (newest first) |
-| [docs/DECISIONS.md](docs/DECISIONS.md) | Every data and modelling decision, with the reason |
-| [docs/LEARNING_OUTCOMES.md](docs/LEARNING_OUTCOMES.md) | The six learning outcomes: work that earns each, evidence, self-check questions |
-| [docs/DELIVERABLES.md](docs/DELIVERABLES.md) | Rubric-mapped checklist, and gaps in this README versus the brief |
-| [docs/P1_PERFECT_PLAN.md](docs/P1_PERFECT_PLAN.md), [docs/P2_HENRY_PLAN.md](docs/P2_HENRY_PLAN.md) | Step-by-step plan per person |
-| [docs/AI_USE_LOG.md](docs/AI_USE_LOG.md) | AI use, needed for the report's declaration |
-
-## Getting started
-
-1. Clone the repo and create the environment: `python -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt`.
-2. Download the three zips and unzip them into `data/raw/` (never commit data):
-   - `african-credit-scoring-challenge` from [Zindi](https://zindi.africa/competitions/african-credit-scoring-challenge)
-   - `GHA_2021_FINDEX_v02_M_csv` from the [World Bank Microdata Library](https://microdata.worldbank.org/index.php/catalog/4646)
-   - `financial-inclusion-in-africa` from Zindi (optional)
-3. Build the shared feature file and folds: `python -m src.features` (writes `data/processed/features.parquet`, about 5 seconds, fails if anything leaks).
-4. Run the notebooks in order, `01` to `04`.
-
-Planned layout:
-
-```text
-data/raw/          the unzipped datasets (git-ignored)
-data/processed/    shared features file and fold splits, built once by P1
-artifacts/         fitted preprocessor, models, calibrators
-preds/             one predictions file per model per fold
-src/               shared code: loading, features, splits, preprocessing, DataModule, train, evaluate, score
-notebooks/         01_eda, 02_classification, 03_regression, 04_transfer_and_fairness
+Or run individual models directly:
+```bash
+python -m src.train --task task2 --models majority logreg lightgbm --schemes fold_group temporal --predict-test
+python -m src.train --task task1 --models mean ols ridge lasso --schemes fold_group temporal --save-artifacts
 ```
 
 ---
 
-## 1. Understand the data
+## Repository & Shared Pipeline Architecture
 
-**Only the credit-scoring zip is used to train models. The two survey zips describe who has access to finance, and feed the fairness work.** All figures below were measured on the downloaded files.
-
-### The three zips
-
-| Zip | Files inside | Role for us |
-| --- | --- | --- |
-| african-credit-scoring-challenge | Train.csv (68,654 × 16), Test.csv (18,594 × 15), economic_indicators.csv (27 × 25), SampleSubmission.csv, VariableDefinitions.txt, starter notebook, manifest (ignore) | Everything we model |
-| GHA_2021_FINDEX_v02_M_csv | micro_gha.csv (1,000 × 120) | Part D: who in Ghana lacks credit; gender and urban/rural, which the loan data lacks |
-| financial-inclusion-in-africa | Train.csv (23,524 × 13), Test.csv (10,086 × 12), VariableDefinitions.csv, SampleSubmission.csv, starter notebook | The brief's fallback inclusion data; East Africa only, optional |
-
-### Train.csv and Test.csv: one row = one lender's share of one loan
-
-**Train** is all Kenya, October 2021 to November 2024: 6,540 customers with a median of 6 loans each (max 208), and 1,258 defaults (1.83%). **Test** has 15,069 Kenyan and 3,525 Ghanaian rows; Ghana's run only from November 2021 to March 2023. Neither file has missing values. Test has every column except `target`.
-
-| Column | Meaning | What the data shows | Use |
-| --- | --- | --- | --- |
-| ID | customer + loan + lender ids | Unique | Submission key |
-| customer_id | Borrower | 4,306 also in Test | Group key, history |
-| country_id | Kenya / Ghana | Train all Kenya | Fairness slice |
-| tbl_loan_id | Loan | 2,134 two-lender loans appear twice; 920 in Test | De-duplicate; drop |
-| lender_id | Funding lender | 4 in Train (one has 94%); 4 new in Test | Feature + "unseen"; slice |
-| loan_type | Product | 22 types, Type_1 = 90%; Type_3 and Type_8 only in Test | Feature + "unseen"; slice |
-| Total_Amount | Principal, local currency | Median 5,249 (Ghana 3,002); max 23M | **Task 1 target**; feature |
-| Total_Amount_to_Repay | Principal + interest + fees | Markup 0.8% repaid vs 22% defaulted | **Leak suspect: drop** |
-| disbursement_date | Money sent | 94% in 2022 | Time anchor; splits |
-| due_date | Repayment due | = disbursement + duration | Redundant; drop |
-| duration | Term, days | 7 days for 95% | Feature |
-| New_versus_Repeat | First or repeat loan | 99.2% repeat; default 21% new vs 1.7% | Feature; slice |
-| Amount_Funded_By_Lender | Lender's amount | = Total_Amount × portion | Redundant |
-| Lender_portion_Funded | Lender's share, 0–1 | Median 0.30 | Feature |
-| Lender_portion_to_be_repaid | Lender's share owed | Owed ÷ funded: 1.01 repaid vs 1.28 defaulted | **Leak suspect: drop** |
-| target | 1 defaulted, 0 repaid | 1,258 defaults (1.83%) | **Task 2 label** |
-
-Default rate ranges from 1.2% to 41% across lenders and from 0.8% (Type_1) to 72% (Type_14) across loan types.
-
-**The leak, from first principles.** Rank loans by one column alone and measure how well that ranking separates defaulters (AUC: 0.5 = no signal, 1.0 = perfect). The two repayment columns score **0.98** each; the loan amount scores 0.62. A single column that nearly predicts the label is almost always recording the outcome, here most likely late penalties added after a default. Unless the data owner confirms these amounts are fixed at issuance, drop both.
-
-**Two more warnings.** Default rates drift sharply by year (1.3% in 2022, 11.5% in 2023, 8.7% in 2024), so random splits will mislead and the temporal split matters. Kenyan amounts are in shillings and Ghanaian in cedis, so convert to USD with the exchange rate below before comparing countries.
-
-### economic_indicators.csv: one row = one indicator for one country
-
-27 rows (Ghana, Côte d'Ivoire, Kenya × 9 indicators), one column per year from YR2001 to YR2023. The indicators: inflation, official exchange rate (local currency per USD), real interest rate, deposit rate, lending rate, interest rate spread, unemployment, precipitation and fossil-fuel use.
-
-- **Gaps:** Ghana has no lending rate, real interest rate or spread; precipitation stops at 2021; fossil-fuel use is empty for both countries.
-- **Signal:** Ghana's inflation was 31% in 2022 and 38% in 2023, against Kenya's 7.7%, a major source of shift.
-- **Use:** reshape to one row per country-year, join each loan to the **previous** year's values (annual figures are published after year-end), and use the exchange rate to convert amounts to USD.
-
-### SampleSubmission.csv
-
-The Zindi format: ID plus a 0/1 target for each of the 18,594 Test rows. It requires a hard decision, which is why the competition scores F1. The brief calls the key TransactionId; the file uses ID.
-
-### micro_gha.csv (Findex Ghana 2021): one row = one surveyed adult
-
-1,000 adults and 120 columns. Use the weight column **wgt** for any population figure. Most `fin*` columns are survey questions with skip logic, so blanks mean "not asked"; check the Findex codebook before using them. Yes/no questions are coded 1 = yes, 2 = no, 3–4 = don't know or refused.
-
-| Column | Meaning |
-| --- | --- |
-| female | 1 = female, 2 = male |
-| age, educ | Age; education (1 primary or less, 2 secondary, 3 tertiary) |
-| inc_q, emp_in | Income quintile (1 poorest to 5 richest); in the workforce (1 = yes) |
-| urbanicity_f2f | 1 = rural, 2 = urban |
-| account, account_fin, account_mob | Has any account / a financial-institution account / a mobile money account (1 = yes) |
-| borrowed, fin22a | Borrowed from any source / from a formal financial institution in the past year |
-| saved, mobileowner, internetaccess, anydigpayment | Saving, phone ownership, internet access, digital payments |
-
-What it already says (weighted):
-
-| Group | Has an account | Mobile money account | Borrowed formally |
-| --- | --- | --- | --- |
-| All adults | 68% | 60% | 7.2% |
-| Women / men | 63% / 74% | 55% / 65% | 5.6% / 9.0% |
-| Rural / urban | 57% / 76% | 48% / 68% | 6.6% / 7.7% |
-| Poorest 40% / richest 60% | 55% / 77% | 46% / 69% | 4.9% / 8.8% |
-
-Only 7% of Ghanaian adults borrow formally, and women, rural and poorer adults have less access. Our model learns only from people who already borrow digitally, so it says nothing about the excluded.
-
-### Financial Inclusion in Africa: one row = one surveyed adult
-
-23,524 adults in Train (Rwanda 8,735, Tanzania 6,620, Kenya 6,068, Uganda 2,101; 2016–2018). The target `bank_account` is "Yes" for 14.1% (25% in Kenya). Its 13 columns: country, year, uniqueid, bank_account, location_type, cellphone_access, household_size, age_of_respondent, gender_of_respondent, relationship_with_head, marital_status, education_level, job_type. It has no Ghana and no loan outcomes, so treat it as optional Kenya-side context.
-
-### How we explore: in parallel, then decide together
-
-**Everyone explores one slice of the data, the group decides together, and P1 turns the decisions into the one shared file.** Everyone ends up understanding the whole dataset, and there is still only one cleaned version.
-
-| Who | Explores | Questions to answer |
-| --- | --- | --- |
-| P1 | Train/Test structure | How to merge the 2,134 two-lender loans? How to treat the 4,306 customers and 920 loans in both files? Any duplicates or odd values? |
-| P2 | The target | How does the default rate move by month, lender, loan type and tenure? How much does random vs customer vs time splitting change it? |
-| P3 | Amounts and durations | How skewed are amounts? Are the two leak suspects fixed at issuance or recorded after default? |
-| P4 | Ghana and the context files | How do Ghana's lenders, loan types, amounts (in USD) and durations differ from Kenya's? What do the macro, Findex and inclusion files add? |
-
-1. **Days 1–2: explore.** Each person works on their slice and brings 3–5 findings with one chart each.
-2. **Part A session: decide.** Each person presents their slice in about 10 minutes. The group then agrees on the leakage rulings, the columns to drop, how overlapping customers are handled, and how unseen lenders and loan types are scored.
-3. **Days 2–3: implement.** P1 builds the shared feature file and fold splits from those decisions. Until then, everyone models on the rough file from the safe columns.
-
-## 2. Framework: PyTorch Lightning plus scikit-learn
-
-**Decision: PyTorch Lightning for the neural models, scikit-learn and LightGBM for the rest, all fed by the same preprocessed arrays.** Lightning cannot train decision trees, kNN, SVMs or gradient boosting, and the brief requires at least five syllabus models including those.
-
-With about 68,654 rows by 30 columns (around 16 MB), everything fits on a laptop, so Lightning's speed and memory benefits barely matter. Its value here is **structure**: every neural model shares one training loop, logging and checkpointing, so four people can swap models freely. On tabular data gradient boosting usually beats neural nets, and the committee prefers simple models, so expect logistic regression or LightGBM to win, with the MLP as a comparison.
-
-| Tool | Use it for |
-| --- | --- |
-| pandas | Loading, cleaning, borrower history |
-| scikit-learn | Preprocessing, splits, kNN, SVM, trees, Random Forest, metrics, calibration |
-| LightGBM | Gradient boosting, Task 1 and 2 |
-| PyTorch Lightning | Logistic regression, linear regression, MLP |
-| shap, joblib | Reason codes; saving the preprocessor and models |
-
-### Lightning in four pieces
-
-| Piece | What it does |
-| --- | --- |
-| DataModule | Owns the data: hands batches of a fold's arrays to the model |
-| LightningModule | Owns the model: layers, loss, one training step, optimizer |
-| Trainer | Runs the loop: epochs, devices, logging |
-| Callbacks | Plug-ins such as early stopping and checkpointing |
-
-## 3. Keywords
-
-### Data
-
-| Term | Meaning | Term | Meaning |
-| --- | --- | --- | --- |
-| Sample / row | One example; here, one loan | Feature | An input the model sees |
-| Label / target | The answer to predict | Class imbalance | One class is rare (defaults: 1.83%) |
-| Leakage | Using information not available at decision time | Cardinality | Number of distinct values in a column |
-| Imputation | Filling missing values | One-hot encoding | A category turned into 0/1 columns |
-| Log transform | log(1 + x); tames long money tails | Normalization | (x − mean) / std, using training data only |
-| Denormalization | Converting a model output back to cedis | Domain shift | Ghana's population differs from Kenya's |
-
-### Splitting and training
-
-| Term | Meaning | Term | Meaning |
-| --- | --- | --- | --- |
-| Train / val / test | Learn, tune, report once | Cross-validation | Rotate the validation slice k times, average |
-| Stratified k-fold | Each fold keeps the default rate | GroupKFold | A customer's loans stay in one fold |
-| Temporal split | Train on older, validate on newer | Hyperparameter | A setting chosen before training |
-| Batch | Rows used for one weight update | Epoch | One full pass over the training data |
-| Loss | How wrong predictions are; minimised | Logit | Raw output before sigmoid; the log-odds |
-| Sigmoid | Turns a logit into a probability | BCE loss | The classification loss on logits |
-| pos_weight | Makes each default count more | MSE | Mean squared error; regression loss |
-| Optimizer (Adam) | Rule that updates the weights | Learning rate | Size of each update |
-| Overfitting | Memorising rows, not patterns | Regularization | Penalising complexity (L1, L2, dropout) |
-| Early stopping | Stop when validation stops improving | Checkpoint | Saved weights of the best epoch |
-
-### Evaluation and use
-
-| Term | Meaning | Term | Meaning |
-| --- | --- | --- | --- |
-| Threshold | Probability above which we decline | Confusion matrix | TP, FP, TN, FN counts at a threshold |
-| Precision | Share of flagged loans that defaulted | Recall | Share of defaults we flagged |
-| F1 | Balance of precision and recall | PR-AUC | Precision-recall summary; honest for rare defaults |
-| ROC-AUC | How well defaulters rank above payers | Calibration | A predicted 10% really defaults 10% of the time |
-| RMSE / MAE | Typical regression error | Bootstrap CI | 95% range from resampling predictions |
-| Noise floor | Gaps smaller than this aren't real | SHAP | Each feature's push on one prediction |
-| Reason codes | Plain-language top reasons for a decision | Inference | Scoring a new application |
-
-## 4. The shared pipeline
-
-**P1 builds the features and splits once; everyone else only loads them.** Nobody preprocesses data on their own, so no two people ever train on different inputs.
-
-```mermaid
-flowchart LR
-    A[Raw CSVs<br/>Train, Test, macro, Findex] --> B[Clean and engineer<br/>drop leaky columns;<br/>history, calendar, macro]
-    B --> C[(Shared files, built once<br/>features + fold splits)]
-    C --> D[Fit preprocessor per fold<br/>training rows only]
-    D --> E[float32 arrays<br/>same numbers for every model]
-    E --> F[scikit-learn + LightGBM<br/>baselines, kNN, SVM, trees,<br/>RF, LightGBM, OLS, Ridge]
-    E --> G[PyTorch Lightning<br/>LogReg, linear reg, MLP]
-    F --> H[preds/<br/>one file per model per fold]
-    G --> H
-    H --> I[evaluate<br/>metrics, CIs, calibration,<br/>fairness slices]
-    I -- winning model --> J[score<br/>one application in:<br/>p, decision, limit, reasons]
-    D -. same fitted preprocessor .-> J
+```text
+├── .github/
+│   ├── pull_request_template.md
+│   └── workflows/
+│       ├── ci.yml                  # Runs ruff lint + pytest guardrails on every PR
+│       ├── docs-freshness.yml      # Enforces WORKLOG.md & PROGRESS.md updates when code changes
+│       └── pr-issue-check.yml      # Enforces real issue linking ("Closes #13" / "Refs #13")
+├── .pre-commit-config.yaml         # Blocks accidental large-file commits + runs ruff locally
+├── Makefile                        # One-command reproduction (features, train, eval, score, test)
+├── pyproject.toml                  # Ruff & Pytest configuration
+├── data/                           # Gitignored raw CSVs & processed features.parquet
+├── artifacts/                      # Gitignored fitted joblib deployment bundles (task2_clf.joblib, task1_reg.joblib)
+├── preds/                          # Gitignored standardized prediction parquet files
+├── src/
+│   ├── config.py                   # Seed (42), paths, feature/drop schemas, cost constants
+│   ├── features.py                 # Time-safe merge_asof borrower history, macro join, 3 fold schemes (P1)
+│   ├── eda_target.py               # Reproducible target, leakage & 2023+ shift EDA script (converted from explore_target_henry)
+│   ├── preprocess.py               # ColumnTransformer (D-5 unseen category handling) & TargetLogScaler
+│   ├── transforms.py               # Alias re-exporting src.preprocess
+│   ├── datamodule.py               # Shared PyTorch Lightning DataModule, LitLogReg, LitMLP, LitLinearReg
+│   ├── train.py                    # Unified CV runner writing standardized preds/ & joblib artifacts/
+│   ├── evaluate.py                 # PR-AUC, ROC-AUC, cost threshold, calibration, bootstrap CIs, RMSE/MAE
+│   ├── fairness.py                 # Disaggregated group metrics, loan-size bands, Kenya->Ghana domain classifier
+│   └── score.py                    # Part E scoring service (probability, decision, limit, 3 plain reasons, latency)
+├── tests/
+│   ├── test_leakage_and_splits.py  # Automated assertions against leaky cols, split integrity, and 4-notebook rule
+│   └── test_pipeline_and_scorer.py # Preprocessor unseen-category, TargetLogScaler, metric & scorer contract tests
+├── notebooks/                      # ONLY the 4 required Prosit deliverable notebooks (thin script-backed drivers)
+│   ├── 01_eda.ipynb                # P1
+│   ├── 02_classification.ipynb     # P2 (imports from src/)
+│   ├── 03_regression.ipynb         # P3 (imports from src/)
+│   └── 04_transfer_and_fairness.ipynb # P4 (imports from src/)
+└── docs/                           # Tracking, decisions, derivations, audit artifacts, reflections
 ```
 
-### Preprocessing, step by step
+### Model & Prediction Contract (`preds/`)
+Every model—whether scikit-learn, LightGBM, or PyTorch Lightning—runs through `src/train.py` and writes identical parquet columns:
+`ID, customer_id, country_id, lender_id, loan_type, is_new_borrower, split, scheme, fold, model, y_true, y_pred`.
+Because all models share this contract, `src/evaluate.py` and `04_transfer_and_fairness.ipynb` evaluate every model identically without custom glue code.
 
-1. **Clean.** Parse dates, remove duplicate loans, drop every column the audit marked leaky.
-2. **Engineer features.** Borrower history (past loans, past default rate, days since last loan) with a backward `merge_asof`; calendar features from `disbursement_date`; previous-year macro values; ratios such as fee rate.
-3. **Split once.** Save fold numbers per row: 5-fold GroupKFold by `customer_id`, plus one temporal cutoff.
-4. **Fit the preprocessor on training rows only**, inside each fold. Numbers: median imputation, log1p for money, then standardize. Categories: fill "missing", then one-hot encode, ignoring unseen values so new Ghana lenders don't crash scoring.
-5. **Transform** to float32 arrays. The same arrays feed scikit-learn, LightGBM and Lightning.
+---
 
-Step 4 is the one people get wrong: if the scaler sees validation rows, their mean and spread leak into training.
+## Live Roadmap & GitHub Issue Tracking
 
-### Normalization and denormalization
+**Master tracker: [Roadmap Issue #1](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/1).**
+Filter open issues by owner: [P1](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3AP1) · [P2](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3AP2) · [P3](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3AP3) · [P4](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3AP4) · [Whole team](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3Aall).
 
-Features are standardized and never converted back. The **Task 1 target** (loan amount) is transformed for training, and every prediction is converted back to currency:
+> **Why GitHub Issue #1 is the live checklist:** Markdown checkboxes inside `README.md` do not auto-tick when PRs merge, whereas GitHub **automatically ticks** tasklist items inside an Issue when the referenced issue closes via `Closes #<num>`. Use the collapsible list below inside Issue #1 to keep progress 100% automatic.
 
-- **Forward:** z = (log(1 + y) − μ) ÷ σ
-- **Back:** ŷ = exp(ẑ × σ + μ) − 1
+<details>
+<summary>Copy-paste tasklist for GitHub Issue #1 (auto-ticks when issues close)</summary>
 
-μ and σ come from log(1 + y) on the training fold. Report RMSE and MAE on both scales. Undoing a log gives roughly the median loan, so original-scale predictions run slightly low. The Task 2 label (0 or 1) is never normalized.
+```markdown
+### P1 · Data & Features
+- [x] #4 Repo skeleton, `.gitignore`, shared config
+- [x] #5 Explore Train/Test structure (`01_eda.ipynb`)
+- [x] #12 Shared feature file & fold splits (`src/features.py`)
+- [ ] #15 Models: baselines, kNN, SVM
 
-### What the Lightning DataModule does
+### P2 · Classification & Evaluation
+- [ ] #6 Explore target by month, lender, loan type, tenure
+- [ ] #10 Define Task 1, Task 2, and business goal
+- [ ] #11 Cost matrix in cedis/shillings + sensitivity checks
+- [ ] #13 Shared `train` / `evaluate` / `datamodule` scripts
+- [ ] #14 Validation study (stratified vs GroupKFold vs temporal; D-7)
+- [x] #16 Models: logistic regression and MLP
+- [ ] #19 Calibration, threshold sweep, cost operating point
+- [ ] #20 Bootstrap 95% CIs on F1 and PR-AUC vs noise floor
 
-A model learns from small groups of rows at a time, called batches, not the whole table at once. The DataModule is the one shared object that takes a fold's training and validation arrays and hands them to any Lightning model in batches: shuffled for training so the model doesn't learn the row order, unshuffled for validation. Because everyone uses the same DataModule on the same arrays, a Lightning model and a scikit-learn model on the same fold see exactly the same numbers.
+### P3 · Regression & Deployment
+- [ ] #7 Explore amounts, durations, and leak suspects
+- [ ] #17 Models: OLS, Ridge, Lasso, decision tree
+- [ ] #21 Regression metrics (log + original scale) & residuals
+- [ ] #22 Interpretation (coefficients / importances / SHAP)
+- [ ] #30 Scoring service (`src/score.py`)
+- [ ] #31 Latency figures (1,000 calls) & input specification
 
-## 5. Models and who owns them
+### P4 · Transfer & Fairness
+- [ ] #8 Explore Ghana vs Kenya, macro, Findex, inclusion files
+- [ ] #18 Models: Random Forest, LightGBM
+- [ ] #23 Cross-market transfer & domain classifier / importance weights
+- [ ] #24 Evidence required for NkwaPay to trust Ghana predictions
+- [ ] #25 Model Card
+- [ ] #26 Fairness audit across country, loan type, lender, tenure, loan size + proxy + mitigation
+- [ ] #27 Regulatory mapping (BoG Directive, Act 843, Act 726)
+- [ ] #28 Findex Ghana exclusion analysis
+- [ ] #29 Plain-language decline explanation
+- [ ] #35 Ethical & regulatory audit document
 
-**Everyone trains at least two models, on the same arrays, through the same contract.** That covers the brief's five-model minimum with room to spare, and each person gets hands-on time with imbalance and validation.
+### Whole Team Deliverables
+- [x] #2 Profile all three datasets
+- [x] #3 Assign roles (P1–P4)
+- [ ] #9 Part A session: confirm D-2 to D-7, timeline, label, feature audit
+- [ ] #32 Derivations (`docs/derivations/`: SVM, LogReg, Linear, Boosting)
+- [ ] #33 All 4 notebooks run top-to-bottom on clean clone
+- [ ] #34 Technical report (6–10 pages)
+- [ ] #36 Debrief slides & mock Q&A
+- [ ] #37 Individual one-page reflections
+```
 
-| Model | Task | Framework | Owner |
-| --- | --- | --- | --- |
-| Majority-class and mean baselines | T2, T1 | scikit-learn | P1 |
-| k-Nearest Neighbours | T2 | scikit-learn | P1 |
-| SVM (RBF), on a subsample | T2 | scikit-learn | P1 |
-| Logistic regression with class weights | T2 | scikit-learn **and** Lightning (cross-check) | P2 |
-| MLP | T2 | Lightning | P2 |
-| Linear regression, Ridge, Lasso | T1 | scikit-learn; linear regression also in Lightning | P3 |
-| Decision tree with pruning | T2 | scikit-learn | P3 |
-| Random Forest | T2 | scikit-learn | P4 |
-| LightGBM | T2, T1 | LightGBM | P4 |
+</details>
 
-### The model contract
+---
 
-Every model, whatever its library, is wrapped with the same two actions: **fit** on one fold's arrays, and **predict** a default probability (Task 2) or an amount in currency (Task 1, already denormalized). The shared training script runs any model over every fold and writes predictions in identical columns (ID, split, fold, model, true value, prediction), so evaluation never needs to know which library is inside.
+## Project Docs
 
-### Logistic regression as a Lightning model
-
-Logistic regression is the simplest neural network: one layer, no hidden units. It works in three steps:
-
-1. **Score.** Multiply each feature by a learned weight and add them up, plus a constant. The result is the **logit**, the log-odds of default.
-2. **Squash.** Pass the logit through a sigmoid to turn it into a probability between 0 and 1.
-3. **Learn.** Compare the probability with the true label using binary cross-entropy, then nudge the weights to reduce it. Repeat over many batches.
-
-Binary cross-entropy is exactly the negative log-likelihood, so minimising it **is** maximum likelihood estimation, the derivation the report asks for. A small weight penalty (L2) keeps weights from growing just to fit noise.
-
-**Handling the 1.83% defaults.** Without help, the model can get a low loss by predicting "repays" for everyone. A positive weight fixes this: non-defaults ÷ defaults = 67,396 ÷ 1,258 ≈ 53.6, so each default counts about 54 times in the loss. The MLP is the same model with one or two hidden layers between features and output, letting it learn interactions such as "new borrower **and** long duration".
-
-## 6. Training, evaluation and inference
-
-**Train with the shared training script, judge with the shared evaluation script, ship with the scorer; nobody writes their own metric code.** Every model is judged by identical code on identical folds.
-
-### Training
-
-- **Same seed everywhere (42)**, so reruns give the same numbers.
-- **Handle imbalance in the loss, not by copying rows**: class weights in scikit-learn, `pos_weight` in Lightning, `scale_pos_weight` in LightGBM. Any oversampling happens inside the training fold only.
-- **Run every fold of all three schemes**, so the inflation gap can be reported.
-- **Calibrate the chosen model** (isotonic or Platt) on data it wasn't trained on, before applying the cost threshold.
-
-For Lightning models, the Trainer runs up to a set number of epochs, stops early once validation loss hasn't improved for a few epochs, and keeps the weights from the best epoch rather than the last one.
-
-### Evaluation: what the shared script produces
-
-| Output | Task | Covers |
-| --- | --- | --- |
-| PR-AUC, ROC-AUC; precision, recall, F1 across thresholds; confusion matrix at the cost threshold | T2 | Headline metrics, threshold sweep, operating point |
-| Reliability curve before and after calibration | T2 | Calibration |
-| Bootstrap 95% CIs on F1 and PR-AUC versus baseline | T2 | Noise floor |
-| Stratified vs GroupKFold vs temporal, side by side | Both | Validation integrity |
-| RMSE and MAE in log units and currency; residual-vs-fitted plot | T1 | Regression metrics and diagnostics |
-| All of the above by country, loan type, lender, tenure, loan-size band | Both | Fairness (P4) |
-
-### Inference: one application in, a decision out
-
-Inference reuses the exact training transforms; re-implementing any of them for the scorer is how deployed models silently break.
-
-1. **Build its features** with the same feature code used in training, pulling the borrower's history from NkwaPay's records.
-2. **Transform** them with the saved, already-fitted preprocessor. Nothing is re-fitted on a single application.
-3. **Predict the default probability** with the calibrated winning model.
-4. **Decide.** Above the cost-matrix threshold → decline; at or below → approve.
-5. **Set the limit** with the Task 1 model, then denormalize its output back to currency.
-6. **Explain.** Return the three features that pushed the score most, worded for the borrower.
-
-Two preprocessors are saved: the Task 2 one uses the requested loan amount as an input, while the Task 1 one excludes it, because the amount is what Task 1 predicts.
-
-The application sends customer_id, country, lender, loan type, requested amount, duration, application date and new/repeat status; borrower history comes from NkwaPay's own records. Report median and 95th-percentile latency over 1,000 calls.
-
-## 7. Who does what
-
-**Each of the four members owns one part of the project from start to finish, trains at least two models on the shared data, and writes one derivation.** Everyone also joins the Part A session, reviews one teammate's notebook (P1 reviews P2, P2 reviews P3, P3 reviews P4, P4 reviews P1), presents their own part at the debrief, and writes an individual reflection.
-
-"P1" to "P4" are role names, not people: agree who takes which role and add names to the [Team](#team) table.
-
-### P1: Data and features
-
-**In short:** prepares the data everyone else uses.
-
-- **Owns:** turning the team's cleaning decisions into the one shared feature file, building the features (borrower history, calendar, macro), creating the fold splits, and this README.
-- **Trains:** the baselines, kNN and SVM.
-- **Writes:** the `01_eda` notebook, the data section of the report, and the SVM derivation.
-- **Day 1:** shares a rough feature file built from the safe raw columns, so nobody has to wait, then explores the Train/Test structure.
-
-### P2: Classification and evaluation
-
-**In short:** builds the shared training and testing tools, and turns a probability into an approve-or-decline rule.
-
-- **Owns:** the Lightning template and DataModule, the shared training and evaluation scripts, the comparison of validation methods, the cost-based threshold, calibration and bootstrap confidence intervals.
-- **Trains:** logistic regression (scikit-learn and Lightning) and the MLP.
-- **Writes:** the `02_classification` notebook, the classification results, and the logistic regression derivation.
-- **Day 1:** explores the target, and gets the training and evaluation scripts running on P1's rough feature file.
-
-### P3: Regression and deployment
-
-**In short:** predicts how much to lend, and turns the final model into a working scorer.
-
-- **Owns:** the loan-amount task (normalizing and denormalizing the target, residual diagnostics), the scoring service, reason codes and latency.
-- **Trains:** linear regression, Ridge, Lasso and the decision tree.
-- **Writes:** the `03_regression` notebook, the regression and deployment sections, and the linear regression derivation.
-- **Day 1:** explores amounts, durations and the two leak suspects, then starts the Task 1 models and a scorer around a quick baseline model.
-
-### P4: Transfer and fairness
-
-**In short:** checks that the model works for Ghana and treats every group fairly.
-
-- **Owns:** the Kenya-to-Ghana shift study, fairness metrics by group, proxy analysis, the Model Card, the regulatory mapping, the Findex analysis and the borrower-facing explainer.
-- **Trains:** Random Forest and LightGBM.
-- **Writes:** the `04_transfer_and_fairness` notebook, the ethics and regulatory audit, and the gradient boosting derivation.
-- **Day 1:** explores Ghana against Kenya and the macro, Findex and inclusion files, then reads the regulations; none of this needs a model.
-
-## 8. Team rules
-
-**Code against the shared files, never around them.** If you need something they don't provide, add it to the shared code with its owner rather than patching your own copy.
-
-- Use only the shared features file and fold splits; never make your own split.
-- Fit scalers, encoders, calibrators and target scalers on training rows only.
-- Never tune on test-set scores; report them once at the end.
-- Produce predictions and metrics only through the shared scripts.
-- Keep the seed (42) and all paths in the shared config.
-- Commit code and small outputs; never raw data or large model files.
-- One other member reruns every pull request from scratch before merging.
-- Everyone can explain every section, including ones they didn't write.
-
-### Keeping the docs current
-
-**A pull request that changes code is not finished until the docs say so.** Outdated docs cost everyone time and say the wrong thing about the project's state.
-
-| If your PR… | Update, in the same PR |
+| Page | Purpose |
 | --- | --- |
-| changes `src/`, a notebook or results | [docs/WORKLOG.md](docs/WORKLOG.md) (new entry at the top) and [docs/PROGRESS.md](docs/PROGRESS.md) |
-| changes how far a notebook has got | the Status table at the top of this README |
-| makes or changes a data or modelling choice | [docs/DECISIONS.md](docs/DECISIONS.md) |
-| completes learning-outcome or deliverable work | tick it in [LEARNING_OUTCOMES](docs/LEARNING_OUTCOMES.md) and [DELIVERABLES](docs/DELIVERABLES.md) |
-| completes a step of someone's plan | tick it in `docs/P*_PLAN.md` |
-| uses AI substantially | [docs/AI_USE_LOG.md](docs/AI_USE_LOG.md) |
+| [docs/DATA_AND_PIPELINE_GUIDE.md](docs/DATA_AND_PIPELINE_GUIDE.md) | Full dataset profiles, column tables, leakage proof, glossary, Lightning primer |
+| [docs/PROGRESS.md](docs/PROGRESS.md) | Dashboard of completed work, current findings, blockers, session log |
+| [docs/WORKLOG.md](docs/WORKLOG.md) | Session handoff notes (newest first) |
+| [docs/DECISIONS.md](docs/DECISIONS.md) | Data & modeling decision log (never edit silently; mark superseded) |
+| [docs/feature_audit.md](docs/feature_audit.md) | Full 16-column leakage & role audit |
+| [docs/LEARNING_OUTCOMES.md](docs/LEARNING_OUTCOMES.md) | Rubric-mapped LOs and oral-defense self-check questions |
+| [docs/DELIVERABLES.md](docs/DELIVERABLES.md) | 100-point rubric checklist |
+| [docs/AI_USE_LOG.md](docs/AI_USE_LOG.md) | Mandatory AI-use declaration log |
 
-Write state as of the PR, never "uncommitted" or "not yet pushed". Name the PR number instead.
+---
 
-**It is enforced.** The GitHub Action *Docs freshness* fails a PR that changes `src/`, `notebooks/` or `requirements.txt` without touching `docs/WORKLOG.md` and `docs/PROGRESS.md`. For a change that truly needs no doc update (a typo), add the label `no-docs-needed`. The reviewer also checks the rest of the table above. If you use Claude Code, [CLAUDE.md](CLAUDE.md) tells it the same rule.
+## Team Rules & GitHub Workflow
 
-### How we work on GitHub
+**Code against the shared `src/` files, never around them.** Notebooks (`01`–`04`) should stay thin—import from `src/`, run experiments, plot diagnostics, and document findings.
 
-**One issue, one branch, one pull request; nothing goes straight to `main`.**
-
-1. **Pick up an issue.** Assign yourself on GitHub, so everyone can see who's on it.
-2. **Branch from the latest `main`.** Name it `<role>/<issue number>-<short-name>`, e.g. `p2/14-validation-study`.
-3. **Commit small and often.** Write commit messages as short commands that name the issue: `Add GroupKFold splits (#12)`.
-4. **Open a pull request** into `main`. Put the closing code (below) in the **description**, not just the title.
-5. **Get one review.** The reviewer from the rotation (P1 reviews P2, P2 reviews P3, P3 reviews P4, P4 reviews P1) pulls the branch, reruns it from scratch, and approves.
-6. **Merge with "Squash and merge"**, then delete the branch. The issue closes and the roadmap updates on its own.
-
-**Closing codes.** They only take effect when the pull request is merged into `main`.
-
-| Write in the PR description | What happens |
-| --- | --- |
-| `Closes #12` (or `Fixes #12`, `Resolves #12`) | Issue 12 closes on merge; the roadmap progress bar moves |
-| `Closes #12, closes #13` | Closes both: the keyword goes before each number |
-| `Refs #12` | Links the work to issue 12 but keeps it open; use for partial progress |
-
-**Before you ask for a review:**
-- The notebook runs top to bottom from a fresh kernel.
-- No data files, large outputs or model files are committed.
-- You pulled the latest `main` and fixed any conflicts.
-- Only your own notebook is edited; shared code changes are agreed with their owner. Two people editing one notebook causes merge conflicts that are painful to fix.
+1. **One issue, one branch, one PR:** branch from latest `main` as `<role>/<issue>-<short-name>` (e.g., `p3/17-task1-models`). Never push directly to `main`.
+2. **Link real issues in PR descriptions:** replace `Closes #<issue>` with e.g. `Closes #17` (or `Refs #17`). Enforced by `PR Issue Link Check`.
+3. **Docs ship with code:** update `docs/WORKLOG.md`, `docs/PROGRESS.md` (enforced by `Docs freshness`), and any affected doc per `CLAUDE.md`.
+4. **Tests must pass:** `CI (Lint & Guardrail Tests)` runs `ruff check src/ tests/` and `pytest tests/ -v` on every PR.
+5. **Peer review & rerun:** each PR requires 1 approval from the rotation (`P1 → P2 → P3 → P4 → P1`) before **Squash and merge**.
