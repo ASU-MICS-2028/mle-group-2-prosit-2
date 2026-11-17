@@ -18,11 +18,11 @@ Individual: one-page reflection each.
 
 ## Checklist
 
-**A:** ☐ timeline ☐ label ☐ audit of every column ☐ two tasks and goal ☐ cost matrix in money with ≥ 2 sensitivity cases
-**B:** ☐ EDA (imbalance, missing, skew, cardinality) ☐ `merge_asof` history, calendar, macro ☐ three validation schemes, inflation quantified ☐ ≥ 5 models ☐ classification and regression metrics ☐ bootstrap CIs on F1 and PR-AUC ☐ interpretation
-**C:** ☐ Kenya vs Ghana distributions ☐ domain classifier or importance weighting ☐ evidence needed to trust Ghana predictions
+**A:** ☐ timeline ☐ label ☐ audit of every column ☐ two tasks and goal 🟨 cost matrix in money with ≥ 2 sensitivity cases (draft, D-19)
+**B:** ☑ EDA (imbalance, missing, skew, cardinality; `reports/EDA_REPORT.md`) ☐ `merge_asof` history, calendar, macro ☑ three validation schemes, inflation quantified ☑ ≥ 5 models ☑ classification and regression metrics ☑ bootstrap CIs on F1 and PR-AUC 🟨 interpretation (coefficient and SHAP figures; plain-language write-up #22)
+**C:** ☑ Kenya vs Ghana distributions (EDA §8, `shift_*` figures) 🟨 domain classifier or importance weighting (figures done; write-up #23, #54) ☐ evidence needed to trust Ghana predictions
 **D:** ☐ Model Card ☐ Datasheet ☐ disaggregated metrics ☐ proxy analysis ☐ mitigation ☐ regulatory map ☐ Findex analysis ☐ borrower explanation
-**E:** 🟨 `joblib` bundle and `score_application()` in `src/score.py` (`p3/13-30-senior-scaffolding`; swap final winning models after comparison) ☐ latency (median, p95 over 1,000 calls) in final report 🟨 required inputs (`REQUIRED_APPLICATION_FIELDS` in `src/score.py`)
+**E:** 🟨 `joblib` bundle and `score_application()` in `src/serving/` (Ghana bugs fixed; final model choice pending) ☑ latency (median 44 ms, p95 75 ms over 1,000 calls; `reports/tables/scorer_latency.csv`) ☑ required inputs (`REQUIRED_APPLICATION_FIELDS`)
 
 ## Gaps in the README plan
 

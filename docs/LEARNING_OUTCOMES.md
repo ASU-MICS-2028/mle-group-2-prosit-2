@@ -10,7 +10,7 @@ At the debrief you must "explain, defend and reproduce your work without AI". If
 | ☐ | Label definition and time window | Report Part A | P2 |
 | 🟨 | Feature audit table for all 16 Train columns (draft; confirm in Part A session) | `docs/feature_audit.md` | P1 |
 | ☐ | Task 1 (amount) and Task 2 (default), business goal with threshold and approval floor | Report Part A | P2 |
-| ☐ | Cost matrix in money, with sensitivity at 2 other recovery rates | Report Part A | P2 |
+| 🟨 | Cost matrix in money, with sensitivity at 2 other recovery rates (draft in `configs/cost_matrix.yaml`, D-19; future-loss assumption to settle) | `02_classification` §9 | P2 |
 
 **Self-check:** Why can't `Total_Amount_to_Repay` be used at decision time? What does a false negative cost in cedis? Why is the threshold C_FP / (C_FP + C_FN)?
 
@@ -19,10 +19,10 @@ At the debrief you must "explain, defend and reproduce your work without AI". If
 | ☐ | Work | Evidence | Owner |
 | --- | --- | --- | --- |
 | ✅ | One shared feature file and folds, seed 42 (merged #39) | `src/features.py` | P1 |
-| 🟨 | Preprocessor fitted on training rows only (`src/preprocess.py` on `p3/13-30-senior-scaffolding`) | `src/preprocess.py` | P1/P2/P3 |
-| 🟨 | One train script and one evaluate script for all models (`p3/13-30-senior-scaffolding`) | `src/train.py`, `src/evaluate.py` | P2/P3 |
+| ✅ | Preprocessor fitted on training rows only, inside every fold | `src/processing/preprocess.py`, `src/training/cross_validation.py` | P1/P2/P3 |
+| ✅ | One train script and one evaluate script for all models (16 models, 50 prediction files) | `scripts/train.py`, `scripts/evaluate.py`, `reports/tables/` | P2/P3 |
 | ☐ | A teammate reproduces results from a fresh clone | PR reviews | all |
-| 🟨 | Scorer: probability, decision, limit, top-3 reasons, latency (`p3/13-30-senior-scaffolding`; final model swap pending) | `src/score.py` | Bernard |
+| 🟨 | Scorer: probability, decision, limit, top-3 reasons, review flags, latency (median 44 ms, p95 75 ms); final model choice pending | `src/serving/` | Bernard |
 
 **Self-check:** Where does leakage enter if the scaler sees validation rows? Why does a backward `merge_asof` keep history safe? Why reuse the training preprocessor at inference?
 
@@ -41,12 +41,12 @@ At the debrief you must "explain, defend and reproduce your work without AI". If
 
 | ☐ | Work | Evidence | Owner |
 | --- | --- | --- | --- |
-| ☐ | Stratified vs GroupKFold vs temporal; how inflated the naive score was; which we trust | `02_classification` | Henry |
-| 🟨 | ≥ 5 models incl. majority baseline (1 of 5+ done: logistic regression, ROC-AUC 0.845, PR-AUC 0.170) | `preds/`, results table | all |
-| ☐ | Threshold sweep, confusion matrix, cost-based operating point | `02_classification` | Henry |
-| ☐ | Calibration before/after | `02_classification` | Henry |
-| ☐ | Bootstrap 95% CIs on F1 and PR-AUC vs the ±0.0263 noise floor | `02_classification` | Henry |
-| ☐ | RMSE/MAE on log and original scale; residual plot | `03_regression` | Bernard |
+| ✅ | Stratified vs GroupKFold vs temporal; how inflated the naive score was; which we trust | `02_classification` §5, `reports/tables/task2_model_summary.csv` | Henry |
+| ✅ | ≥ 5 models incl. majority baseline (9 Task 2, 7 Task 1; best by customer: MLP / Random Forest PR-AUC 0.21) | `reports/tables/*_model_summary.csv` | all |
+| 🟨 | Threshold sweep, confusion matrix, cost-based operating point (done on draft costs) | `02_classification` §9 | Henry |
+| ✅ | Calibration before/after (Platt: ECE 0.30 → 0.002) | `02_classification` §8 | Henry |
+| ✅ | Bootstrap 95% CIs on F1 and PR-AUC vs the ±0.0263 noise floor (customer-level) | `02_classification` §10 | Henry |
+| ✅ | RMSE/MAE on log and original (USD) scale; residual plot | `03_regression`, `reports/figures/t1_residuals_*.png` | Bernard |
 
 **Self-check:** Why is accuracy useless at 1.83% defaults? Why PR-AUC over ROC-AUC? Which split gives the honest number? What does "calibrated" mean?
 

@@ -1,203 +1,245 @@
-# Prosit 2: Responsible Credit Scoring for NkwaPay
+<h1 align="center">Responsible Credit Scoring for NkwaPay</h1>
 
-ICS553 Machine Learning Essentials · Group 2
+<p align="center">
+  <b>ICS553 Machine Learning Essentials · Prosit 2 · Group 2 · Ashesi University</b><br>
+  Default-risk and loan-limit models trained on Kenyan digital loans, tested for transfer to Ghana,<br>
+  audited for fairness and regulation, and shipped as a scoring service with plain-language reasons.
+</p>
 
-We train a default-risk classifier (**Task 2**) and a loan-limit regressor (**Task 1**) on Kenyan digital loans, evaluate Kenya → Ghana cross-market transfer, conduct an ethical and regulatory audit (BoG Digital Credit Directive, Act 843, Act 726), and ship a low-latency scoring service with plain-language reason codes. Everyone builds against **one shared feature table (`src/features.py`), one preprocessing/training/evaluation pipeline (`src/`), and automated CI guardrails (`tests/`)**.
+<p align="center">
+  <img alt="Python 3.12" src="https://img.shields.io/badge/python-3.12-1f4e79?style=flat-square">
+  <img alt="Tests" src="https://img.shields.io/badge/tests-127_passing-2e7d32?style=flat-square">
+  <img alt="Models" src="https://img.shields.io/badge/models-16_trained-1f4e79?style=flat-square">
+  <img alt="Figures" src="https://img.shields.io/badge/figures-47-1f4e79?style=flat-square">
+  <img alt="Issues" src="https://img.shields.io/badge/issues-10_of_45_closed-d4a72c?style=flat-square">
+  <img alt="Deadline" src="https://img.shields.io/badge/deadline-19_Nov_2026-b03a2e?style=flat-square">
+</p>
 
-> **Detailed Data Dictionary, Leakage Proof & Glossary:** moved to [docs/DATA_AND_PIPELINE_GUIDE.md](docs/DATA_AND_PIPELINE_GUIDE.md) so this README stays crisp and actionable.
-
----
-
-## Status
-
-| Notebook / code | Purpose | Owner | Status |
-| --- | --- | --- | --- |
-| `01_eda.ipynb` + `src/features.py` + `src/eda_target.py` | Explore & clean data; target/shift EDA; build time-safe features & 3 fold schemes | Perfect (P1) + Henry (P2) | ✅ EDA §1–5, `features.parquet`, and `src/eda_target.py` ready |
-| `src/` shared ML pipeline + `tests/` | Shared `preprocess`, `datamodule`, `train`, `evaluate`, `fairness`, `score` + CI guardrails | Bernard (P3) | 🟨 Built on `p3/13-30-senior-scaffolding` (PR ready for review) |
-| `02_classification.ipynb` | Thin script-backed driver: LogReg/MLP, 3-scheme CV, calibration, cost threshold, bootstrap CIs | Henry (P2) | ✅ Refactored to import 100% from `src/` on `p3/13-30-senior-scaffolding` |
-| `03_regression.ipynb` | Thin script-backed driver: Task 1 limits, residual diagnostics, Part E scorer + latency | Bernard (P3) | ✅ Thin script-backed deliverable notebook ready on `p3/13-30-senior-scaffolding` |
-| `04_transfer_and_fairness.ipynb` | Thin script-backed driver: RF/LightGBM, Kenya → Ghana shift, fairness + mitigation, Findex | Eugene (P4) | 🟨 Script-backed notebook scaffolded; `docs/audit/` & boosting derivation next |
-
-Status key: ⬜ Not started · 🟨 In progress · ✅ Done
-
----
-
-## Team & Ownership
-
-| Role | Name | Focus & Owned Deliverables | Plan |
-| --- | --- | --- | --- |
-| **P1 · Data & Features** | Perfect ([@peaElorm](https://github.com/peaElorm)) | `src/features.py`, `01_eda.ipynb`, baselines/kNN/SVM, SVM derivation | [P1_PERFECT_PLAN.md](docs/P1_PERFECT_PLAN.md) |
-| **P2 · Classification & Evaluation** | Henry ([@henryhkb](https://github.com/henryhkb)) | `02_classification.ipynb`, LogReg & MLP, validation study, calibration, cost matrix, CIs, LogReg derivation | [P2_HENRY_PLAN.md](docs/P2_HENRY_PLAN.md) |
-| **P3 · Regression, Infra & Deployment** | Bernard ([@adjeibernardmarfo](https://github.com/adjeibernardmarfo)) | `03_regression.ipynb`, OLS/Ridge/Lasso/Tree, `src/score.py`, CI & `tests/`, Linear Reg derivation | [P3_BERNARD_PLAN.md](docs/P3_BERNARD_PLAN.md) |
-| **P4 · Transfer & Fairness** | Eugene ([@eugene-sew](https://github.com/eugene-sew)) | `04_transfer_and_fairness.ipynb`, RF & LightGBM, Kenya→Ghana shift, Model Card/Datasheet/BoG audit, Boosting derivation | [P4_EUGENE_PLAN.md](docs/P4_EUGENE_PLAN.md) |
-
-**Review rotation:** Perfect → Henry → Bernard → Eugene → Perfect.
+<p align="center">
+  <a href="#team">Team</a> ·
+  <a href="#progress">Progress</a> ·
+  <a href="#whats-left-by-person">What's left</a> ·
+  <a href="#key-results-so-far">Results</a> ·
+  <a href="#quick-start">Quick start</a> ·
+  <a href="#repository-structure">Structure</a> ·
+  <a href="#how-we-work">How we work</a>
+</p>
 
 ---
 
-## Getting Started & End-to-End Reproduction
+## Team
 
-### 1. Environment Setup
+<table>
+  <tr>
+    <td align="center" width="25%">
+      <a href="https://github.com/peaElorm"><img src="https://github.com/peaElorm.png?size=120" width="80" alt="Perfect"><br><b>Perfect Elorm Avugla</b></a><br>
+      <sub><code>peaElorm</code></sub><br>
+      <sub>Data &amp; features</sub>
+    </td>
+    <td align="center" width="25%">
+      <a href="https://github.com/henryhkb"><img src="https://github.com/henryhkb.png?size=120" width="80" alt="Henry"><br><b>Henry Kofi Brandoh</b></a><br>
+      <sub><code>henryhkb</code></sub><br>
+      <sub>Classification &amp; evaluation</sub>
+    </td>
+    <td align="center" width="25%">
+      <a href="https://github.com/adjeibernardmarfo"><img src="https://github.com/adjeibernardmarfo.png?size=120" width="80" alt="Bernard"><br><b>Bernard Marfo Adjei</b></a><br>
+      <sub><code>adjeibernardmarfo</code></sub><br>
+      <sub>Regression, deployment &amp; project lead</sub>
+    </td>
+    <td align="center" width="25%">
+      <a href="https://github.com/eugene-sew"><img src="https://github.com/eugene-sew.png?size=120" width="80" alt="Eugene"><br><b>Eugene</b></a><br>
+      <sub><code>eugene-sew</code></sub><br>
+      <sub>Transfer &amp; fairness</sub>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><sub><code>src/features.py</code>, <code>01_eda</code>, baselines, kNN, SVM, SVM derivation</sub></td>
+    <td valign="top"><sub><code>02_classification</code>, logistic regression, MLP, validation study, calibration, cost matrix, CIs, logistic derivation</sub></td>
+    <td valign="top"><sub><code>03_regression</code>, OLS/Ridge/Lasso/tree, scoring service, CI and tests, linear derivation</sub></td>
+    <td valign="top"><sub><code>04_transfer_and_fairness</code>, Random Forest, LightGBM, Kenya→Ghana shift, Model Card, Datasheet, regulation, boosting derivation</sub></td>
+  </tr>
+</table>
+
+Reviews rotate **Perfect → Henry → Bernard → Eugene → Perfect**. Every pull request needs one approval from the next person in the rotation, and nobody rewrites another member's notebook.
+
+---
+
+## Progress
+
+Status as of **17 Nov 2026**. GitHub's [roadmap issue #1](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/1) is the live source; this table adds work that is finished but still in review.
+
+<sub><img src="https://img.shields.io/badge/-done-2e7d32?style=flat-square"> closed on GitHub &nbsp; <img src="https://img.shields.io/badge/-in_review-1f4e79?style=flat-square"> finished, waiting in a pull request &nbsp; <img src="https://img.shields.io/badge/-in_progress-d4a72c?style=flat-square"> started &nbsp; <img src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> not started</sub>
+
+| Part | Rubric | Issues closed | Status |
+| --- | :---: | :---: | --- |
+| **Setup** | — | ![3/4](https://img.shields.io/badge/3%2F4-done-2e7d32?style=flat-square) | Data profiled, roles, repo, shared config. Left: protect `main` ([#56](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/56)) |
+| **A · Frame the problem** | 10 pts | ![2/7](https://img.shields.io/badge/2%2F7-in_progress-d4a72c?style=flat-square) | Structure and target EDA done; full EDA report in review. Left: Part A session, tasks and goal, cost matrix sign-off |
+| **B · Build & evaluate** | 30 + 20 pts | ![4/14](https://img.shields.io/badge/4%2F14-in_review-1f4e79?style=flat-square) | All 16 models trained; validation study, calibration, CIs and Task 1 metrics done (in review). Left: model choice, interpretation write-up, ablation, temporal calibration |
+| **C · Cross-market transfer** | (in B/D) | ![0/3](https://img.shields.io/badge/0%2F3-in_progress-d4a72c?style=flat-square) | Shift figures and domain classifier done; Eugene to own the analysis and notebook 04 |
+| **D · Ethics & regulation** | 20 pts | ![0/7](https://img.shields.io/badge/0%2F7-to_do-9aa0a6?style=flat-square) | Fairness and Findex figures ready; Model Card, Datasheet, regulation, mitigation not started |
+| **E · Deployment** | 15 pts | ![1/4](https://img.shields.io/badge/1%2F4-in_review-1f4e79?style=flat-square) | Scorer with reasons, review flags and latency (in review). Left: final model, limit rule |
+| **Deliverables** | 5 pts + all | ![0/6](https://img.shields.io/badge/0%2F6-to_do-9aa0a6?style=flat-square) | Derivations, report, audit, slides, reflections |
+
+### Notebooks
+
+| Notebook | Owner | Status |
+| --- | --- | --- |
+| [`01_eda.ipynb`](notebooks/01_eda.ipynb) | Perfect | ![done](https://img.shields.io/badge/-done-2e7d32?style=flat-square) Train/Test structure (PRs #38, #39); link the EDA report ([#48](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/48)) |
+| [`02_classification.ipynb`](notebooks/02_classification.ipynb) | Henry | ![in review](https://img.shields.io/badge/-in_review-1f4e79?style=flat-square) Henry's original restored + calibration, cost threshold, CIs (PR #47) |
+| [`03_regression.ipynb`](notebooks/03_regression.ipynb) | Bernard | ![in review](https://img.shields.io/badge/-in_review-1f4e79?style=flat-square) Task 1 models, residuals, scorer demo (PR #47); Task 2 tree to add |
+| [`04_transfer_and_fairness.ipynb`](notebooks/04_transfer_and_fairness.ipynb) | Eugene | ![needs owner](https://img.shields.io/badge/-needs_owner-b03a2e?style=flat-square) AI draft with known problems ([#54](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/54)) |
+
+### Done
+
+| Area | What | Evidence |
+| --- | --- | --- |
+| Data | Three datasets profiled; time-safe features (borrower history, calendar, macro) and 3 fold schemes with leakage checks | [`src/features.py`](src/features.py), [`docs/feature_audit.md`](docs/feature_audit.md) |
+| EDA | 10-question data-science report: structure, target, money, leakage, history, categories, Kenya vs Ghana, macro, Findex | [`reports/EDA_REPORT.md`](reports/EDA_REPORT.md) |
+| Models | 9 default models and 7 loan-amount models on random, by-customer and by-time validation | [`reports/tables/`](reports/tables) |
+| Evaluation | Calibration (Platt), cost threshold with sensitivity, customer-level bootstrap CIs | [`02_classification`](notebooks/02_classification.ipynb) §7–10 |
+| Product | Scorer: probability, decision, local-currency limit, 3 reasons, review flags; median latency about 25 ms | [`src/serving/`](src/serving) |
+| Evidence | 35 defence figures, each tied to the claim it supports | [`reports/FIGURES.md`](reports/FIGURES.md) |
+| Quality | 127 tests incl. end-to-end on fake data; architecture, normalization and time-safety tests; CI on Python 3.12 | [`tests/`](tests) |
+
+---
+
+## What's left, by person
+
+<table>
+<tr><td valign="top" width="50%">
+
+**<img src="https://github.com/peaElorm.png?size=40" width="20" align="center"> Perfect**
+- [#15](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/15) Baselines, kNN, SVM: review results (trained)
+- [#48](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/48) Link the EDA report from `01_eda`
+- [#32](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/32) SVM derivation
+- Review Eugene's pull requests
+
+**<img src="https://github.com/henryhkb.png?size=40" width="20" align="center"> Henry**
+- Review PR #47 and the stacked EDA/figures PR
+- [#10](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/10) Tasks and business goal · [#11](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/11) settle the cost assumptions
+- [#19](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/19) · [#20](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/20) Check §7–10 of 02, then close
+- [#55](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/55) Calibration on 2023+ loans
+- [#32](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/32) Logistic regression derivation
+
+</td><td valign="top" width="50%">
+
+**<img src="https://github.com/adjeibernardmarfo.png?size=40" width="20" align="center"> Bernard**
+- [#7](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/7) Leak-suspect ruling (evidence in EDA §5)
+- [#17](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/17) Task 2 decision tree in 03 · [#21](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/21) close after review
+- [#22](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/22) Interpretation write-up · [#52](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/52) ablation
+- [#51](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/51) Final scorer model · [#53](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/53) limit rule
+- [#32](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/32) Linear regression derivation
+
+**<img src="https://github.com/eugene-sew.png?size=40" width="20" align="center"> Eugene**
+- [#54](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/54) Own and fix notebook 04
+- [#8](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/8) · [#23](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/23) · [#24](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/24) Kenya→Ghana shift and trust evidence
+- [#25](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/25) Model Card · [#49](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/49) Datasheet · [#35](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/35) audit document
+- [#26](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/26) Fairness + proxies · [#50](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/50) mitigation
+- [#27](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/27) Regulation · [#28](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/28) Findex · [#29](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/29) decline explanation
+- [#18](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/18) Random Forest and LightGBM: review results (trained)
+
+</td></tr>
+</table>
+
+**Everyone:** [#9](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/9) Part A session · [#33](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/33) notebooks rerun from a clean clone · [#34](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/34) report · [#36](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/36) slides and Q&A · [#37](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/37) reflections · [#56](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/56) protect `main`
+
+---
+
+## Key results so far
+
+| Question | Answer | Evidence |
+| --- | --- | --- |
+| How rare is default? | 1.83% of 68,654 Kenyan loans; 1.3% in 2022, about 10% from 2023 | [EDA §3](reports/EDA_REPORT.md#3-how-rare-is-default-and-does-it-move) |
+| Which columns leak? | Repayment markup alone separates defaulters at AUC 0.98; both repayment columns dropped | [EDA §5](reports/EDA_REPORT.md#5-which-columns-leak-the-answer) |
+| How much do random folds flatter? | LightGBM PR-AUC 0.30 random → 0.19 by customer → 0.15 on 2023+ loans | [`val_scheme_pr_auc`](reports/figures/val_scheme_pr_auc.png) |
+| Best default models? | MLP 0.207 and Random Forest 0.204 PR-AUC by customer; intervals overlap logistic regression (0.175) | [`eval_model_intervals`](reports/figures/eval_model_intervals.png) |
+| Calibrated? | Platt scaling: calibration error 0.30 → 0.002 | [`eval_reliability_before_after`](reports/figures/eval_reliability_before_after.png) |
+| Does it transfer to Ghana? | No direct evidence: Ghana loans are 10x larger, 97% from unseen lenders, no labelled history; every Ghana score is flagged for review | [EDA §8](reports/EDA_REPORT.md#8-is-ghana-like-kenya), [`app_decision_mix`](reports/figures/app_decision_mix.png) |
+| Open concerns | Month and lender share act as period markers in the tree models ([#22](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/22)); the limit cuts half of requests ([#53](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/53)) | [`interp_shap_lightgbm`](reports/figures/interp_shap_lightgbm.png) |
+
+---
+
+## Quick start
+
+**1. Environment (Python 3.12)**
+
 ```bash
 python -m venv .venv
-# Linux/macOS: source .venv/bin/activate
-# Windows PowerShell: .venv\Scripts\Activate.ps1
-pip install -r requirements.txt
+# Windows: .venv\Scripts\Activate.ps1      macOS/Linux: source .venv/bin/activate
+pip install -r requirements-lock.txt
 ```
 
-### 2. Download Raw Data (Never Commit Data)
-Unzip into `data/raw/`:
-- `african-credit-scoring-challenge/` from [Zindi](https://zindi.africa/competitions/african-credit-scoring-challenge)
-- `GHA_2021_FINDEX_v02_M_csv/` from [World Bank Microdata Library](https://microdata.worldbank.org/index.php/catalog/4646)
-- `financial-inclusion-in-africa/` from Zindi (optional)
-
-### 3. Run the Reproducible Pipeline
-Using `Makefile` (or run `python -m ...` directly):
-
-```bash
-make features   # python -m src.features -> builds data/processed/features.parquet (~4s) with leakage assertions
-make eda-target # python -m src.eda_target -> reproducible target, leakage & 2023+ shift tables
-make train      # runs Task 2 & Task 1 models across fold_group, fold_strat, temporal -> writes preds/ & artifacts/
-make eval       # python -m src.evaluate -> aggregates all predictions in preds/
-make score      # python -m src.score -> scores sample Ghana application + runs 1,000-call latency benchmark
-make test       # pytest tests/ -v && ruff check src/ tests/
-```
-
-Or run individual models directly:
-```bash
-python -m src.train --task task2 --models majority logreg lightgbm --schemes fold_group temporal --predict-test
-python -m src.train --task task1 --models mean ols ridge lasso --schemes fold_group temporal --save-artifacts
-```
-
----
-
-## Repository & Shared Pipeline Architecture
+**2. Data** (never committed): unzip the three downloads into `data/raw/` with these folder names:
 
 ```text
-├── .github/
-│   ├── pull_request_template.md
-│   └── workflows/
-│       ├── ci.yml                  # Runs ruff lint + pytest guardrails on every PR
-│       ├── docs-freshness.yml      # Enforces WORKLOG.md & PROGRESS.md updates when code changes
-│       └── pr-issue-check.yml      # Enforces real issue linking ("Closes #13" / "Refs #13")
-├── .pre-commit-config.yaml         # Blocks accidental large-file commits + runs ruff locally
-├── Makefile                        # One-command reproduction (features, train, eval, score, test)
-├── pyproject.toml                  # Ruff & Pytest configuration
-├── data/                           # Gitignored raw CSVs & processed features.parquet
-├── artifacts/                      # Gitignored fitted joblib deployment bundles (task2_clf.joblib, task1_reg.joblib)
-├── preds/                          # Gitignored standardized prediction parquet files
-├── src/
-│   ├── config.py                   # Seed (42), paths, feature/drop schemas, cost constants
-│   ├── features.py                 # Time-safe merge_asof borrower history, macro join, 3 fold schemes (P1)
-│   ├── eda_target.py               # Reproducible target, leakage & 2023+ shift EDA script (converted from explore_target_henry)
-│   ├── preprocess.py               # ColumnTransformer (D-5 unseen category handling) & TargetLogScaler
-│   ├── transforms.py               # Alias re-exporting src.preprocess
-│   ├── datamodule.py               # Shared PyTorch Lightning DataModule, LitLogReg, LitMLP, LitLinearReg
-│   ├── train.py                    # Unified CV runner writing standardized preds/ & joblib artifacts/
-│   ├── evaluate.py                 # PR-AUC, ROC-AUC, cost threshold, calibration, bootstrap CIs, RMSE/MAE
-│   ├── fairness.py                 # Disaggregated group metrics, loan-size bands, Kenya->Ghana domain classifier
-│   └── score.py                    # Part E scoring service (probability, decision, limit, 3 plain reasons, latency)
-├── tests/
-│   ├── test_leakage_and_splits.py  # Automated assertions against leaky cols, split integrity, and 4-notebook rule
-│   └── test_pipeline_and_scorer.py # Preprocessor unseen-category, TargetLogScaler, metric & scorer contract tests
-├── notebooks/                      # ONLY the 4 required Prosit deliverable notebooks (thin script-backed drivers)
-│   ├── 01_eda.ipynb                # P1
-│   ├── 02_classification.ipynb     # P2 (imports from src/)
-│   ├── 03_regression.ipynb         # P3 (imports from src/)
-│   └── 04_transfer_and_fairness.ipynb # P4 (imports from src/)
-└── docs/                           # Tracking, decisions, derivations, audit artifacts, reflections
+data/raw/african-credit-scoring-challenge/   Train.csv, Test.csv, economic_indicators.csv   (Zindi)
+data/raw/GHA_2021_FINDEX_v02_M_csv/          micro_gha.csv                                  (World Bank)
+data/raw/financial-inclusion-in-africa/      Train.csv, ...                                 (Zindi, optional)
 ```
 
-### Model & Prediction Contract (`preds/`)
-Every model—whether scikit-learn, LightGBM, or PyTorch Lightning—runs through `src/train.py` and writes identical parquet columns:
-`ID, customer_id, country_id, lender_id, loan_type, is_new_borrower, split, scheme, fold, model, y_true, y_pred`.
-Because all models share this contract, `src/evaluate.py` and `04_transfer_and_fairness.ipynb` evaluate every model identically without custom glue code.
+**3. Run** (each command prints one line per step and a short summary)
+
+| Command | What it does | Output |
+| --- | --- | --- |
+| `make features` | Build features and folds; fails on any leakage | `data/processed/features.parquet` |
+| `make train` | All 16 models on every validation scheme, plus the scorer | `preds/`, `artifacts/` |
+| `make eval` | Metrics for every model, cost sensitivity | `reports/tables/` |
+| `make eda` | Data-science EDA report | `reports/EDA_REPORT.md` |
+| `make figures` | 35 defence figures and their catalogue | `reports/figures/`, `reports/FIGURES.md` |
+| `make score` | Sample decisions and 1,000-call latency | terminal, `reports/tables/scorer_latency.csv` |
+| `make test` | 127 tests, including end-to-end on fake data | — |
+| `make test-notebooks` | Run all 4 notebooks top to bottom (real data, slow) | — |
+
+Without `make` (e.g. on Windows): `python -m scripts.<name>`, for example `python -m scripts.train --task task2 --models logreg lightgbm --schemes fold_group temporal`. Every script has `--help`.
 
 ---
 
-## Live Roadmap & GitHub Issue Tracking
+## Repository structure
 
-**Master tracker: [Roadmap Issue #1](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/1).**
-Filter open issues by owner: [P1](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3AP1) · [P2](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3AP2) · [P3](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3AP3) · [P4](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3AP4) · [Whole team](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3Aall).
-
-> **Why GitHub Issue #1 is the live checklist:** Markdown checkboxes inside `README.md` do not auto-tick when PRs merge, whereas GitHub **automatically ticks** tasklist items inside an Issue when the referenced issue closes via `Closes #<num>`. Use the collapsible list below inside Issue #1 to keep progress 100% automatic.
-
-<details>
-<summary>Copy-paste tasklist for GitHub Issue #1 (auto-ticks when issues close)</summary>
-
-```markdown
-### P1 · Data & Features
-- [x] #4 Repo skeleton, `.gitignore`, shared config
-- [x] #5 Explore Train/Test structure (`01_eda.ipynb`)
-- [x] #12 Shared feature file & fold splits (`src/features.py`)
-- [ ] #15 Models: baselines, kNN, SVM
-
-### P2 · Classification & Evaluation
-- [ ] #6 Explore target by month, lender, loan type, tenure
-- [ ] #10 Define Task 1, Task 2, and business goal
-- [ ] #11 Cost matrix in cedis/shillings + sensitivity checks
-- [ ] #13 Shared `train` / `evaluate` / `datamodule` scripts
-- [ ] #14 Validation study (stratified vs GroupKFold vs temporal; D-7)
-- [x] #16 Models: logistic regression and MLP
-- [ ] #19 Calibration, threshold sweep, cost operating point
-- [ ] #20 Bootstrap 95% CIs on F1 and PR-AUC vs noise floor
-
-### P3 · Regression & Deployment
-- [ ] #7 Explore amounts, durations, and leak suspects
-- [ ] #17 Models: OLS, Ridge, Lasso, decision tree
-- [ ] #21 Regression metrics (log + original scale) & residuals
-- [ ] #22 Interpretation (coefficients / importances / SHAP)
-- [ ] #30 Scoring service (`src/score.py`)
-- [ ] #31 Latency figures (1,000 calls) & input specification
-
-### P4 · Transfer & Fairness
-- [ ] #8 Explore Ghana vs Kenya, macro, Findex, inclusion files
-- [ ] #18 Models: Random Forest, LightGBM
-- [ ] #23 Cross-market transfer & domain classifier / importance weights
-- [ ] #24 Evidence required for NkwaPay to trust Ghana predictions
-- [ ] #25 Model Card
-- [ ] #26 Fairness audit across country, loan type, lender, tenure, loan size + proxy + mitigation
-- [ ] #27 Regulatory mapping (BoG Directive, Act 843, Act 726)
-- [ ] #28 Findex Ghana exclusion analysis
-- [ ] #29 Plain-language decline explanation
-- [ ] #35 Ethical & regulatory audit document
-
-### Whole Team Deliverables
-- [x] #2 Profile all three datasets
-- [x] #3 Assign roles (P1–P4)
-- [ ] #9 Part A session: confirm D-2 to D-7, timeline, label, feature audit
-- [ ] #32 Derivations (`docs/derivations/`: SVM, LogReg, Linear, Boosting)
-- [ ] #33 All 4 notebooks run top-to-bottom on clean clone
-- [ ] #34 Technical report (6–10 pages)
-- [ ] #36 Debrief slides & mock Q&A
-- [ ] #37 Individual one-page reflections
+```text
+configs/            models.yaml (hyperparameters) · cost_matrix.yaml (measured vs assumed costs)
+scripts/            entry points: build_features, train, evaluate, make_eda_report, make_figures, score
+src/
+  config.py         seed, paths, feature lists (single source of truth)
+  features.py       time-safe borrower history, calendar, macro, fold schemes
+  analysis/         data_profile (EDA questions), target_eda
+  processing/       fold-safe ColumnTransformer, TargetLogScaler (log, standardize, clipped inverse)
+  models/           one file per family + registry: baselines, linear, neighbors, svm, trees,
+                    ensembles, lightning_modules, data_module
+  training/         cross_validation (one prediction format), lightning_runner, artifacts
+  evaluation/       metrics, calibration, cost_matrix, bootstrap, fairness, shift
+  serving/          schema, scorer, batch, reasons, latency
+  visualization/    one house style at 200 dpi: eda, classification, regression,
+                    interpretation, fairness, transfer, product
+  console.py        the one-line-per-step terminal output every script uses
+notebooks/          the four deliverable notebooks, one per owner
+reports/            EDA_REPORT.md, FIGURES.md, figures/*.png, tables/*.csv (committed)
+tests/              end-to-end, architecture, normalization, feature time-safety, serving, plots
+docs/               progress, work log, decisions, feature audit, plans, AI-use log
 ```
 
-</details>
+Every model writes the same prediction columns to `preds/` (`ID, customer_id, country_id, lender_id, loan_type, is_new_borrower, split, scheme, fold, model, y_true, y_pred`), so one evaluation script judges them all. Task 2 predictions are raw probabilities, calibrated out of fold before any threshold; Task 1 predictions are amounts in USD.
 
 ---
 
-## Project Docs
+## How we work
+
+1. **One issue, one branch, one pull request.** Branch from the latest `main` as `<role>/<issue>-<short-name>`; never push to `main`.
+2. **Link the issue** in the PR description (`Closes #17` or `Refs #17`); a check enforces it.
+3. **Docs ship with code:** update `docs/WORKLOG.md` and `docs/PROGRESS.md` (checked) and any doc listed in [`CLAUDE.md`](CLAUDE.md).
+4. **Tests and lint pass** (`make test`, `make lint`); CI runs both on Python 3.12.
+5. **One approval from the rotation reviewer**, who reruns the branch. Nobody merges their own PR unreviewed.
+6. **Owners own their notebooks.** Suggest changes to someone else's notebook in a PR they review.
+7. **Log AI use** in [`docs/AI_USE_LOG.md`](docs/AI_USE_LOG.md); each of us must explain our own work without AI at the debrief.
+
+## Documentation
 
 | Page | Purpose |
 | --- | --- |
-| [docs/DATA_AND_PIPELINE_GUIDE.md](docs/DATA_AND_PIPELINE_GUIDE.md) | Full dataset profiles, column tables, leakage proof, glossary, Lightning primer |
-| [docs/PROGRESS.md](docs/PROGRESS.md) | Dashboard of completed work, current findings, blockers, session log |
-| [docs/WORKLOG.md](docs/WORKLOG.md) | Session handoff notes (newest first) |
-| [docs/DECISIONS.md](docs/DECISIONS.md) | Data & modeling decision log (never edit silently; mark superseded) |
-| [docs/feature_audit.md](docs/feature_audit.md) | Full 16-column leakage & role audit |
-| [docs/LEARNING_OUTCOMES.md](docs/LEARNING_OUTCOMES.md) | Rubric-mapped LOs and oral-defense self-check questions |
-| [docs/DELIVERABLES.md](docs/DELIVERABLES.md) | 100-point rubric checklist |
-| [docs/AI_USE_LOG.md](docs/AI_USE_LOG.md) | Mandatory AI-use declaration log |
-
----
-
-## Team Rules & GitHub Workflow
-
-**Code against the shared `src/` files, never around them.** Notebooks (`01`–`04`) should stay thin—import from `src/`, run experiments, plot diagnostics, and document findings.
-
-1. **One issue, one branch, one PR:** branch from latest `main` as `<role>/<issue>-<short-name>` (e.g., `p3/17-task1-models`). Never push directly to `main`.
-2. **Link real issues in PR descriptions:** replace `Closes #<issue>` with e.g. `Closes #17` (or `Refs #17`). Enforced by `PR Issue Link Check`.
-3. **Docs ship with code:** update `docs/WORKLOG.md`, `docs/PROGRESS.md` (enforced by `Docs freshness`), and any affected doc per `CLAUDE.md`.
-4. **Tests must pass:** `CI (Lint & Guardrail Tests)` runs `ruff check src/ tests/` and `pytest tests/ -v` on every PR.
-5. **Peer review & rerun:** each PR requires 1 approval from the rotation (`P1 → P2 → P3 → P4 → P1`) before **Squash and merge**.
+| [`docs/PROGRESS.md`](docs/PROGRESS.md) | Dated status, findings, blockers, session log |
+| [`docs/WORKLOG.md`](docs/WORKLOG.md) | Handoff notes, newest first |
+| [`docs/DECISIONS.md`](docs/DECISIONS.md) | Every data and modelling decision, with its reason |
+| [`docs/DATA_AND_PIPELINE_GUIDE.md`](docs/DATA_AND_PIPELINE_GUIDE.md) | Data dictionary, leakage proof, glossary |
+| [`docs/feature_audit.md`](docs/feature_audit.md) | All 16 Train columns: available at decision time? used how? |
+| [`docs/DELIVERABLES.md`](docs/DELIVERABLES.md) · [`docs/LEARNING_OUTCOMES.md`](docs/LEARNING_OUTCOMES.md) | Rubric checklist and learning outcomes |
+| [`reports/EDA_REPORT.md`](reports/EDA_REPORT.md) · [`reports/FIGURES.md`](reports/FIGURES.md) | Exploration report and figure catalogue |

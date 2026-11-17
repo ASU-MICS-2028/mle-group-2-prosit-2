@@ -1,0 +1,29 @@
+# Hyperparameters for every model in src/models. Change values here, not in code,
+# so every run of scripts/train.py and every notebook uses the same settings.
+# Class imbalance is handled in the loss: class_weight / pos_weight / scale_pos_weight.
+
+task2:                       # default classification
+  majority: {}
+  logreg:            {max_iter: 2000}
+  knn:               {n_neighbors: 25, weights: distance}
+  svm_rbf:           {C: 1.0, gamma: scale, max_train_rows: 12000}   # SVC is O(n^2): fit on a stratified subsample
+  decision_tree:     {max_depth: 6, ccp_alpha: 0.0001}
+  random_forest:     {n_estimators: 200, max_depth: 10}
+  lightgbm:          {n_estimators: 300, learning_rate: 0.05, num_leaves: 31}
+  lit_logreg:        {lr: 0.01, weight_decay: 0.0001}                   # Henry's settings (02_classification)
+  lit_mlp:           {hidden: [64, 32], dropout: 0.2, lr: 0.001, weight_decay: 0.0001}
+
+task1:                       # loan-amount regression (target: log1p of amount in USD)
+  mean: {}
+  ols: {}
+  ridge:             {alpha: 10.0}
+  lasso:             {alpha: 0.01, max_iter: 2000}
+  decision_tree_reg: {max_depth: 6, ccp_alpha: 0.0001}
+  lightgbm_reg:      {n_estimators: 300, learning_rate: 0.05, num_leaves: 31}
+  lit_linear:        {lr: 0.01, weight_decay: 0.0001}
+
+lightning:                   # shared training loop for every Lightning model
+  batch_size: 1024
+  max_epochs: 50
+  patience: 5                # early stopping on a 10% customer-grouped hold-out of the training fold
+  early_stop_fraction: 0.1
