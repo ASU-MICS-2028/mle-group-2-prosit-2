@@ -77,7 +77,7 @@ Generated from GitHub on **17 Nov 2026** by `scripts/update_readme.py` (the *REA
 | **C · Cross-market transfer** | in B, D | ![0/3](https://img.shields.io/badge/0%2F3-closed-9aa0a6?style=flat-square) | [#23](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/23) [#24](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/24) [#54](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/54) |
 | **D · Ethics & regulation** | 20 pts | ![0/7](https://img.shields.io/badge/0%2F7-closed-9aa0a6?style=flat-square) | [#25](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/25) [#26](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/26) [#27](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/27) [#28](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/28) [#29](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/29) [#49](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/49) [#50](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/50) |
 | **E · Deployment** | 15 pts | ![2/4](https://img.shields.io/badge/2%2F4-closed-d4a72c?style=flat-square) | [#51](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/51) [#53](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/53) |
-| **Deliverables** | 5 pts + all | ![0/6](https://img.shields.io/badge/0%2F6-closed-9aa0a6?style=flat-square) | [#32](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/32) ⏳ [#33](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/33) [#34](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/34) [#35](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/35) [#36](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/36) [#37](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/37) |
+| **Deliverables** | 5 pts + all | ![0/6](https://img.shields.io/badge/0%2F6-closed-9aa0a6?style=flat-square) | [#32](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/32) [#33](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/33) [#34](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/34) [#35](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/35) [#36](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/36) [#37](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/37) |
 
 <sub>⏳ = a pull request for it is open.</sub>
 
@@ -115,10 +115,10 @@ Find your name, open each issue card and follow the steps. Every card says what 
 
 | | Person | Open | In review or merged | Not started | Jump to |
 | :---: | --- | :---: | :---: | :---: | --- |
-| <img src="https://github.com/peaElorm.png?size=60" width="28"> | **Perfect Elorm Avugla** · Data & features | 3 | 1 | 0 | [Perfect's issues](#peaelorm) |
-| <img src="https://github.com/henryhkb.png?size=60" width="28"> | **Henry Kofi Brandoh** · Classification & evaluation | 1 | 1 | 0 | [Henry's issues](#henryhkb) |
-| <img src="https://github.com/adjeibernardmarfo.png?size=60" width="28"> | **Bernard Marfo Adjei** · Regression, deployment & project lead | 7 | 1 | 3 | [Bernard's issues](#adjeibernardmarfo) |
-| <img src="https://github.com/eugene-sew.png?size=60" width="28"> | **Eugene** · Transfer & fairness | 14 | 1 | 7 | [Eugene's issues](#eugene-sew) |
+| <img src="https://github.com/peaElorm.png?size=60" width="28"> | **Perfect Elorm Avugla** · Data & features | 3 | 0 | 1 | [Perfect's issues](#peaelorm) |
+| <img src="https://github.com/henryhkb.png?size=60" width="28"> | **Henry Kofi Brandoh** · Classification & evaluation | 1 | 0 | 1 | [Henry's issues](#henryhkb) |
+| <img src="https://github.com/adjeibernardmarfo.png?size=60" width="28"> | **Bernard Marfo Adjei** · Regression, deployment & project lead | 7 | 0 | 4 | [Bernard's issues](#adjeibernardmarfo) |
+| <img src="https://github.com/eugene-sew.png?size=60" width="28"> | **Eugene** · Transfer & fairness | 14 | 0 | 8 | [Eugene's issues](#eugene-sew) |
 | 👥 | **Everyone** | 6 | 0 | 6 | [Shared issues](#everyone) |
 
 ### How to pick up an issue
@@ -186,7 +186,7 @@ Data & features · [peaElorm](https://github.com/peaElorm) · **3 open** · [Per
 </details>
 
 <details>
-<summary><img alt="a pull request for it is open" src="https://img.shields.io/badge/-in_review-1f4e79?style=flat-square"> <b>#32 · Derivations: SVM (P1), logistic regression (P2), linear regression (P3), gradient boosting (P4)</b></summary>
+<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#32 · Derivations: SVM (P1), logistic regression (P2), linear regression (P3), gradient boosting (P4)</b></summary>
 
 | | |
 | --- | --- |
@@ -197,7 +197,6 @@ Data & features · [peaElorm](https://github.com/peaElorm) · **3 open** · [Per
 | **How to run** | — |
 | **Done when** | The derivation is written, checked on a toy example, and you can explain it without notes. |
 | **Automated check** | All four derivations exist: SVM, logistic regression, linear regression, gradient boosting. Run `make acceptance ISSUE=32`; it also runs on every pull request that says `Closes #32` and when the issue is closed (a failing check reopens it). |
-| **Pull request** | [#62](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/pull/62) |
 
 **Steps**
 
@@ -215,7 +214,7 @@ Data & features · [peaElorm](https://github.com/peaElorm) · **3 open** · [Per
 Classification & evaluation · [henryhkb](https://github.com/henryhkb) · **1 open** · [Henry's assigned issues on GitHub](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3Ahenryhkb)
 
 <details>
-<summary><img alt="a pull request for it is open" src="https://img.shields.io/badge/-in_review-1f4e79?style=flat-square"> <b>#32 · Derivations: SVM (P1), logistic regression (P2), linear regression (P3), gradient boosting (P4)</b></summary>
+<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#32 · Derivations: SVM (P1), logistic regression (P2), linear regression (P3), gradient boosting (P4)</b></summary>
 
 | | |
 | --- | --- |
@@ -226,7 +225,6 @@ Classification & evaluation · [henryhkb](https://github.com/henryhkb) · **1 op
 | **How to run** | — |
 | **Done when** | The derivation is written, checked, and you can explain it without notes. |
 | **Automated check** | All four derivations exist: SVM, logistic regression, linear regression, gradient boosting. Run `make acceptance ISSUE=32`; it also runs on every pull request that says `Closes #32` and when the issue is closed (a failing check reopens it). |
-| **Pull request** | [#62](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/pull/62) |
 
 **Steps**
 
@@ -377,7 +375,7 @@ Regression, deployment & project lead · [adjeibernardmarfo](https://github.com/
 </details>
 
 <details>
-<summary><img alt="a pull request for it is open" src="https://img.shields.io/badge/-in_review-1f4e79?style=flat-square"> <b>#32 · Derivations: SVM (P1), logistic regression (P2), linear regression (P3), gradient boosting (P4)</b></summary>
+<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#32 · Derivations: SVM (P1), logistic regression (P2), linear regression (P3), gradient boosting (P4)</b></summary>
 
 | | |
 | --- | --- |
@@ -388,7 +386,6 @@ Regression, deployment & project lead · [adjeibernardmarfo](https://github.com/
 | **How to run** | — |
 | **Done when** | Written, checked, and explainable without notes. |
 | **Automated check** | All four derivations exist: SVM, logistic regression, linear regression, gradient boosting. Run `make acceptance ISSUE=32`; it also runs on every pull request that says `Closes #32` and when the issue is closed (a failing check reopens it). |
-| **Pull request** | [#62](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/pull/62) |
 
 **Steps**
 
@@ -688,7 +685,7 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open*
 </details>
 
 <details>
-<summary><img alt="a pull request for it is open" src="https://img.shields.io/badge/-in_review-1f4e79?style=flat-square"> <b>#32 · Derivations: SVM (P1), logistic regression (P2), linear regression (P3), gradient boosting (P4)</b></summary>
+<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#32 · Derivations: SVM (P1), logistic regression (P2), linear regression (P3), gradient boosting (P4)</b></summary>
 
 | | |
 | --- | --- |
@@ -699,7 +696,6 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open*
 | **How to run** | — |
 | **Done when** | Written and explainable without notes. |
 | **Automated check** | All four derivations exist: SVM, logistic regression, linear regression, gradient boosting. Run `make acceptance ISSUE=32`; it also runs on every pull request that says `Closes #32` and when the issue is closed (a failing check reopens it). |
-| **Pull request** | [#62](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/pull/62) |
 
 **Steps**
 
