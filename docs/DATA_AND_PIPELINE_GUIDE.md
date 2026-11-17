@@ -75,10 +75,10 @@ Only 7% of Ghanaian adults borrow formally, and women, rural and poorer adults h
 | Tool | Use it for |
 | --- | --- |
 | `pandas` | Loading, cleaning, borrower history (`src/features.py`) |
-| `scikit-learn` | Preprocessing (`src/preprocess.py`), splits, kNN, SVM, trees, Random Forest, metrics, calibration |
-| `LightGBM` | Gradient boosting, Task 1 and Task 2 (`src/train.py`) |
-| `PyTorch Lightning` | Logistic regression, linear regression, MLP (`src/datamodule.py`) |
-| `shap`, `joblib` | Reason codes and saved deployment bundles (`src/score.py`) |
+| `scikit-learn` | Preprocessing (`src/processing/preprocess.py`), splits, kNN, SVM, trees, Random Forest, metrics, calibration |
+| `LightGBM` | Gradient boosting, Task 1 and Task 2 (`src/training/cross_validation.py`) |
+| `PyTorch Lightning` | Logistic regression, linear regression, MLP (`src/models/lightning_modules.py`) |
+| `shap`, `joblib` | Reason codes and saved deployment bundles (`src/serving/`) |
 
 ---
 
@@ -88,18 +88,18 @@ Only 7% of Ghanaian adults borrow formally, and women, rural and poorer adults h
 flowchart LR
     A[Raw CSVs<br/>Train, Test, macro, Findex] --> B[src/features.py<br/>drop leaky columns;<br/>history, calendar, macro]
     B --> C[(features.parquet<br/>shared features + 3 fold schemes)]
-    C --> D[src/preprocess.py<br/>fit on training fold only]
+    C --> D[src/processing/preprocess.py<br/>fit on training fold only]
     D --> E[float32 arrays<br/>same inputs for every model]
-    E --> F[src/train.py<br/>sklearn + LightGBM + Lightning]
+    E --> F[src/training/cross_validation.py<br/>sklearn + LightGBM + Lightning]
     F --> G[preds/<br/>standardized parquet per model/fold]
-    G --> H[src/evaluate.py & src/fairness.py<br/>metrics, CIs, calibration, slices]
+    G --> H[src/evaluation/<br/>metrics, CIs, calibration, slices]
     H -- winning model --> I[artifacts/*.joblib]
-    I --> J[src/score.py<br/>one application in -> decision, limit, 3 reasons]
+    I --> J[src/serving/<br/>one application in -> decision, limit, 3 reasons]
 ```
 
 ### Normalization and denormalization (Task 1)
 
-Implemented in `TargetLogScaler` (`src/preprocess.py`):
+Implemented in `TargetLogScaler` (`src/processing/preprocess.py`):
 - **Forward:** $z = (\log(1 + y) - \mu) / \sigma$
 - **Back:** $\hat{y} = \max(0, \exp(\hat{z} \times \sigma + \mu) - 1)$
 
