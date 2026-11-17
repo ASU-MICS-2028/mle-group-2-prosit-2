@@ -9,7 +9,7 @@ Add an entry at the **top** at the end of each session, 5–10 lines. Link to no
 
 ---
 
-## 2026-11-17 (night) · Henry (P2) · `p2/55-temporal-calibration`, PR #XX
+## 2026-11-17 (night) · Henry (P2) · `p2/55-temporal-calibration`, PR #61
 **Did:** New `02_classification` §11 (#55): trained on pre-2023 loans with Platt fitted on their out-of-fold scores, checked calibration on 2023+ loans, then recalibrated on 2023 and checked on 2024; quarterly monitoring table; recommendation (D-24). Conclusions renumbered to §12.
 **Found:** (1) Stale calibration under-predicts: LogReg 4.5% predicted vs 8.7% actual on 2024 loans (ECE 0.076; MLP 7.1% vs 8.7%). (2) Believing it, the Ghana rule approves 89% at an 8.1% default rate: 183 GHS loss per application. (3) Recalibrating on 2023 halves ECE (0.038 / 0.029) but every 2024 applicant is then above the 3.6% break-even (lowest 6.2% / 4.9%), so the rule declines everyone; ROC-AUC unchanged (0.64–0.66). (4) Quarterly gaps reach 7.8 pp, visible within one quarter.
 **Next:** Logistic regression derivation (#32); personal reflection (#37); raise the pricing question (fee vs risk) for the report and #24.
