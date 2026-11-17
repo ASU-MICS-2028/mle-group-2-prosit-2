@@ -9,6 +9,10 @@ Add an entry at the **top** at the end of each session, 5–10 lines. Link to no
 
 ---
 
+## 2026-11-17 (night) · Bernard (P3 / PM) · `p3/48-eda-report-figures-tests` (PR #57)
+**Did:** Assigned every open issue on GitHub to its owner (P1 Perfect, P2 Henry, P3 Bernard, P4 Eugene; team issues to all four). README "What's left, by person": a summary table per person, then one expandable card per open issue (what it is, why it matters for the grade, what already exists, where to work, how to run it, when it is done, numbered steps), plus how to pick up an issue.
+**Next:** each person opens their cards and starts; Eugene first (#54, #9 for all).
+
 ## 2026-11-17 (evening) · Bernard (P3 / PM) · `p3/48-eda-report-figures-tests` (stacked on PR #47)
 **Did:** `reports/EDA_REPORT.md` (`make eda`): 10 data-science questions, each with figures, tables, computed findings and the decision it supports. Defence figure pack (`make figures`) with catalogue `reports/FIGURES.md`: preprocessing, validation, evaluation (PR/ROC, reliability before/after, customer-level CIs, cost sensitivity, threshold sweep, confusion matrix, calibration by tenure), Task 1 diagnostics, interpretation (coefficients, SHAP), fairness by group, Kenya-Ghana shift, and the product on all Test applications (`score_frame`). One house style at 200 dpi. Tests: 127 pass, including an end-to-end run from fake raw CSVs to scored applications, reports and figures; model architecture, normalization/denormalization, feature time-safety, and every plot. Issues #48-#56.
 **Found:** the README's leakage claim was imprecise: the repayment columns alone score AUC 0.66-0.70; their ratio to principal scores 0.98. Longer terms are much riskier (1.2% at 7 days, 31% above 60). The limit rule cuts about half of requests by construction (Kenya 42% limited; Ghana 70% limited, none fully approved) (#53). Tests caught two real bugs: scripts crashed when outputs lived outside the repo, and the latency chart crashed (the earlier figure run had silently stopped).

@@ -85,6 +85,7 @@ Findings so far:
 
 | Date | Who | Did | Next |
 | --- | --- | --- | --- |
+| 2026-11-17 | Bernard | All open issues assigned on GitHub; README issue cards per person | Everyone works their cards |
 | 2026-11-17 | Bernard | EDA report, defence figure pack + catalogue, end-to-end and architecture/normalization tests (127), issues #48-#56 | Review PR #47 and the stacked `p3/48-eda-report-figures-tests` PR |
 | 2026-11-17 | Bernard | Restructure (packages, scripts, configs, reports), scorer bug fixes, Henry's `02` restored and completed, all 16 models run | Review and merge `p3/30-scorer-fixes-and-structure`; Eugene takes `04` |
 | 2026-11-17 | Bernard | Script-first refactor (`src/eda_target.py`, thin `02`–`04` deliverable notebooks, D-17, 4-notebook test) | Merge PR; Part A session; audit & derivations |
