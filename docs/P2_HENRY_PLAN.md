@@ -35,7 +35,8 @@
 - [x] Cost-based operating point; bootstrap 95% CIs on F1 and PR-AUC against the ±0.0263 noise floor (§9–10 by Bernard, verified; §9b Ghana by Henry).
 
 **6 · Write up**: `02_classification` runs from a fresh kernel; logistic derivation (log-odds → likelihood → BCE → gradient Xᵀ(σ(Xw) − y), checked against autograd); results; reflection.
-- [x] `02_classification` runs top to bottom from a fresh kernel (`nbconvert --execute`, macOS); conclusions in §11 (PR #60).
+- [x] `02_classification` runs top to bottom from a fresh kernel (`nbconvert --execute`, macOS); conclusions in §12 (added in PR #60 as §11, renumbered when §11 calibration over time was added).
+- [x] Calibration over time (#55): pre-2023 Platt under-predicts 2023–24 risk; recalibrate on recent loans and monitor monthly (`02` §11, D-24, PR #XX).
 - [ ] Logistic regression derivation (`docs/derivations/logistic.md`, #32).
 - [ ] Personal reflection (#37).
 

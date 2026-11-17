@@ -9,6 +9,12 @@ Add an entry at the **top** at the end of each session, 5–10 lines. Link to no
 
 ---
 
+## 2026-11-17 (night) · Henry (P2) · `p2/55-temporal-calibration`, PR #XX
+**Did:** New `02_classification` §11 (#55): trained on pre-2023 loans with Platt fitted on their out-of-fold scores, checked calibration on 2023+ loans, then recalibrated on 2023 and checked on 2024; quarterly monitoring table; recommendation (D-24). Conclusions renumbered to §12.
+**Found:** (1) Stale calibration under-predicts: LogReg 4.5% predicted vs 8.7% actual on 2024 loans (ECE 0.076; MLP 7.1% vs 8.7%). (2) Believing it, the Ghana rule approves 89% at an 8.1% default rate: 183 GHS loss per application. (3) Recalibrating on 2023 halves ECE (0.038 / 0.029) but every 2024 applicant is then above the 3.6% break-even (lowest 6.2% / 4.9%), so the rule declines everyone; ROC-AUC unchanged (0.64–0.66). (4) Quarterly gaps reach 7.8 pp, visible within one quarter.
+**Next:** Logistic regression derivation (#32); personal reflection (#37); raise the pricing question (fee vs risk) for the report and #24.
+**Watch out:** §11 retrains both models 6 times on pre-2023 loans; the notebook now takes about 1 min 45 s.
+
 ## 2026-11-17 (later still) · Bernard (P3 / PM) · `p3/58-readme-status-after-merge` (PR #58)
 **Did:** Acceptance tests for every issue (`tests/acceptance/test_issues.py`, `make acceptance`), the *Issue acceptance* Action (PR must pass the tests of the issues it closes; a closed issue whose test fails is reopened), and an "Automated check" row on every README card (D-23). Fixed the README status Action failing before its script reached main. Repo About and topics set. No more Claude co-author trailers in commits.
 **Found:** scoreboard today: 18 checks pass; open issues whose check already passes (#8, #15, #18, #19, #20, #33) can be closed by their owners after review; 28 fail as expected for open work.
