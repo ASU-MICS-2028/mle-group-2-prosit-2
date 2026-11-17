@@ -9,7 +9,7 @@ import pytest
 
 from src import config as C
 
-SCRIPTS = ["build_features", "run_target_eda", "train", "evaluate", "make_figures", "make_eda_report", "score"]
+SCRIPTS = ["build_features", "run_target_eda", "train", "evaluate", "make_figures", "make_eda_report", "score", "update_readme"]
 NOTEBOOKS = ["01_eda", "02_classification", "03_regression", "04_transfer_and_fairness"]
 
 
