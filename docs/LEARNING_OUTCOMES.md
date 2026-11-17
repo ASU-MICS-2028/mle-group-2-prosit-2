@@ -44,7 +44,7 @@ At the debrief you must "explain, defend and reproduce your work without AI". If
 | ✅ | Stratified vs GroupKFold vs temporal; how inflated the naive score was; which we trust | `02_classification` §5, `reports/tables/task2_model_summary.csv` | Henry |
 | ✅ | ≥ 5 models incl. majority baseline (9 Task 2, 7 Task 1; best by customer: MLP / Random Forest PR-AUC 0.21) | `reports/tables/*_model_summary.csv` | all |
 | ✅ | Threshold sweep, confusion matrix, cost-based operating point (Ghana p\* 0.036: approve 88.6%, −44% expected loss) | `02_classification` §9, §9b (PR #60) | Henry |
-| ✅ | Calibration before/after (Platt: ECE 0.30 → 0.002) | `02_classification` §8 | Henry |
+| ✅ | Calibration before/after (Platt: ECE 0.30 → 0.002); over time: pre-2023 calibration under-predicts 2024 by half, recalibration plan (D-24) | `02_classification` §8, §11 (PR #61) | Henry |
 | ✅ | Bootstrap 95% CIs on F1 and PR-AUC vs the ±0.0263 noise floor (customer-level) | `02_classification` §10 | Henry |
 | ✅ | RMSE/MAE on log and original (USD) scale; residual plot | `03_regression`, `reports/figures/t1_residuals_*.png` | Bernard |
 
