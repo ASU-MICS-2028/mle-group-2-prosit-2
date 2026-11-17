@@ -5,7 +5,7 @@ PYTHON ?= python
 T2_MODELS ?= majority logreg knn svm_rbf decision_tree random_forest lightgbm lit_logreg lit_mlp
 T1_MODELS ?= mean ols ridge lasso decision_tree_reg lightgbm_reg lit_linear
 
-.PHONY: setup features eda eda-target train train-t2 train-t1 artifacts eval figures score test test-notebooks readme lint all clean-outputs
+.PHONY: setup features eda eda-target train train-t2 train-t1 artifacts eval figures score test test-notebooks acceptance readme lint all clean-outputs
 
 setup:            ## install exact package versions (Python 3.12)
 	$(PYTHON) -m pip install -r requirements-lock.txt
@@ -44,6 +44,9 @@ test:             ## unit + end-to-end tests on synthetic data (what CI runs)
 
 test-notebooks:   ## execute all 4 notebooks top to bottom (needs real data; slow)
 	RUN_NOTEBOOKS=1 $(PYTHON) -m pytest tests/test_scripts_and_notebooks.py -k notebook
+
+acceptance:       ## issue acceptance tests: all issues (open ones fail), or one with ISSUE=53
+	$(PYTHON) -m pytest tests/acceptance -rA --tb=line -p no:cacheprovider --issues $(if $(ISSUE),$(ISSUE),all)
 
 readme:           ## rebuild the README status sections from GitHub issues and PRs (needs gh)
 	$(PYTHON) -m scripts.update_readme

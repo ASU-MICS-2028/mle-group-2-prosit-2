@@ -28,6 +28,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 README = ROOT / "README.md"
 CARDS = ROOT / "docs" / "issue_cards.yaml"
+ACCEPTANCE = ROOT / "tests" / "acceptance" / "test_issues.py"
 REPO = "ASU-MICS-2028/mle-group-2-prosit-2"
 URL = f"https://github.com/{REPO}"
 
@@ -63,6 +64,14 @@ def fetch() -> tuple[dict[int, dict], list[dict]]:
 
 
 # --------------------------------------------------------------------------- pure helpers
+ACCEPTANCE_TEST = re.compile(r'@issue\((\d+)\)\s*\ndef \w+\([^)]*\):\s*\n\s*"""(.+?)(?:\n|""")')
+
+
+def acceptance_checks(source: str) -> dict[int, str]:
+    """issue number -> first docstring line of its acceptance test in tests/acceptance/test_issues.py."""
+    return {int(n): doc.strip() for n, doc in ACCEPTANCE_TEST.findall(source)}
+
+
 LINK = re.compile(r"\b(?:close[sd]?|fix(?:e[sd])?|resolve[sd]?|refs?)\s+#(\d+)", re.I)
 
 
@@ -117,8 +126,17 @@ def render_progress(issues: dict[int, dict], refs: dict[int, list[int]], today: 
     return "".join(rows)
 
 
-def render_card(card: dict, issue: dict, status: str, refs: dict[int, list[int]]) -> str:
+def render_card(
+    card: dict, issue: dict, status: str, refs: dict[int, list[int]], checks: dict[int, str] | None = None
+) -> str:
     n = card["issue"]
+    check = (checks or {}).get(n)
+    check_row = (
+        f"| **Automated check** | {check} Run `make acceptance ISSUE={n}`; it also runs on every pull request that "
+        f"says `Closes #{n}` and when the issue is closed (a failing check reopens it). |\n"
+        if check
+        else ""
+    )
     steps = "".join(f"{k}. {s}\n" for k, s in enumerate(card["steps"], 1))
     review = (
         f"| **Pull request** | {', '.join(f'[#{p}]({URL}/pull/{p})' for p in refs[n])} |\n" if n in refs else ""
@@ -132,13 +150,16 @@ def render_card(card: dict, issue: dict, status: str, refs: dict[int, list[int]]
         f"| **Where to work** | {card['where']} |\n"
         f"| **How to run** | {card['run']} |\n"
         f"| **Done when** | {card['done_when']} |\n"
+        f"{check_row}"
         f"{review}\n"
         f"**Steps**\n\n{steps}\n"
         f"[Open issue #{n} on GitHub →]({URL}/issues/{n})\n\n</details>\n\n"
     )
 
 
-def render_people(cards: dict, issues: dict[int, dict], refs: dict[int, list[int]]) -> tuple[str, list[int]]:
+def render_people(
+    cards: dict, issues: dict[int, dict], refs: dict[int, list[int]], checks: dict[int, str] | None = None
+) -> tuple[str, list[int]]:
     """The whole "What's left, by person" section, plus open issues that have no card (to warn about)."""
     legend = " &nbsp; ".join(f"{badge(k)} {v[2]}" for k, v in STATUS.items())
 
@@ -186,9 +207,9 @@ def render_people(cards: dict, issues: dict[int, dict], refs: dict[int, list[int
         )
         if not o:
             out.append("All of this person's issues are closed. ✅\n\n")
-        out.extend(render_card(c, i, effective_status(c, i, refs), refs) for c, i in live(p["issues"]))
+        out.extend(render_card(c, i, effective_status(c, i, refs), refs, checks) for c, i in live(p["issues"]))
     out.append('\n<h3 id="everyone">👥 Everyone</h3>\n\n')
-    out.extend(render_card(c, i, effective_status(c, i, refs), refs) for c, i in live(cards["everyone"]))
+    out.extend(render_card(c, i, effective_status(c, i, refs), refs, checks) for c, i in live(cards["everyone"]))
 
     carded = {c["issue"] for p in cards["people"] for c in p["issues"]} | {c["issue"] for c in cards["everyone"]}
     uncarded = sorted(
@@ -212,9 +233,16 @@ def replace_block(text: str, name: str, body: str) -> str:
     return pattern.sub(lambda _: f"{start}{sep}{body}{sep}{end}", text)
 
 
-def build(readme: str, cards: dict, issues: dict[int, dict], prs: list[dict], today: str) -> tuple[str, list[int]]:
+def build(
+    readme: str,
+    cards: dict,
+    issues: dict[int, dict],
+    prs: list[dict],
+    today: str,
+    checks: dict[int, str] | None = None,
+) -> tuple[str, list[int]]:
     refs = referenced_issues(prs)
-    people, uncarded = render_people(cards, issues, refs)
+    people, uncarded = render_people(cards, issues, refs, checks)
     text = replace_block(readme, "badge", render_badge(issues))
     text = replace_block(text, "progress", render_progress(issues, refs, today))
     text = replace_block(text, "people", people)
@@ -231,7 +259,8 @@ def main() -> None:
     issues, prs = fetch()
     current = README.read_text(encoding="utf-8")
     today = dt.date.today().strftime("%d %b %Y")
-    new, uncarded = build(current, cards, issues, prs, today)
+    checks = acceptance_checks(ACCEPTANCE.read_text(encoding="utf-8")) if ACCEPTANCE.exists() else {}
+    new, uncarded = build(current, cards, issues, prs, today, checks)
 
     def strip_date(s: str) -> str:
         return re.sub(r"Generated from GitHub on \*\*.*?\*\*", "", s)

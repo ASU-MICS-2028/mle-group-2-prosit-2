@@ -149,6 +149,7 @@ Data & features · [peaElorm](https://github.com/peaElorm) · **3 open** · [Per
 | **Where to work** | `configs/models.yaml`, `src/models/neighbors.py`, `src/models/svm.py` |
 | **How to run** | `python -m scripts.train --task task2 --models majority knn svm_rbf --schemes fold_group fold_strat temporal` then `make eval` |
 | **Done when** | You can explain each model's result and the comment is on the issue; close it. |
+| **Automated check** | Majority baseline, kNN and SVM results are in the model summary. Run `make acceptance ISSUE=15`; it also runs on every pull request that says `Closes #15` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -172,6 +173,7 @@ Data & features · [peaElorm](https://github.com/peaElorm) · **3 open** · [Per
 | **Where to work** | `notebooks/01_eda.ipynb`, `reports/EDA_REPORT.md`, `src/analysis/data_profile.py` |
 | **How to run** | `make eda` |
 | **Done when** | `01_eda` points to the report and you agree with its readings; close the issue. |
+| **Automated check** | The EDA report covers imbalance, missing values, skew and cardinality, and 01_eda links to it. Run `make acceptance ISSUE=48`; it also runs on every pull request that says `Closes #48` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -194,6 +196,7 @@ Data & features · [peaElorm](https://github.com/peaElorm) · **3 open** · [Per
 | **Where to work** | `docs/derivations/svm.md` |
 | **How to run** | — |
 | **Done when** | The derivation is written, checked on a toy example, and you can explain it without notes. |
+| **Automated check** | All four derivations exist: SVM, logistic regression, linear regression, gradient boosting. Run `make acceptance ISSUE=32`; it also runs on every pull request that says `Closes #32` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -221,6 +224,7 @@ Classification & evaluation · [henryhkb](https://github.com/henryhkb) · **6 op
 | **Where to work** | `notebooks/02_classification.ipynb` §8–9, `src/evaluation/calibration.py`, `src/evaluation/metrics.py` |
 | **How to run** | Run the notebook top to bottom |
 | **Done when** | You have rerun and can explain the sections; close the issue. |
+| **Automated check** | 02 calibrates the probabilities and picks the cost-based threshold with a confusion matrix. Run `make acceptance ISSUE=19`; it also runs on every pull request that says `Closes #19` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -243,6 +247,7 @@ Classification & evaluation · [henryhkb](https://github.com/henryhkb) · **6 op
 | **Where to work** | `notebooks/02_classification.ipynb` §10, `src/evaluation/bootstrap.py` |
 | **How to run** | Run the notebook |
 | **Done when** | You have rerun and can explain it; close the issue. |
+| **Automated check** | 02 reports customer-level bootstrap confidence intervals against the baseline. Run `make acceptance ISSUE=20`; it also runs on every pull request that says `Closes #20` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -264,6 +269,7 @@ Classification & evaluation · [henryhkb](https://github.com/henryhkb) · **6 op
 | **Where to work** | `configs/cost_matrix.yaml`, `docs/DECISIONS.md` |
 | **How to run** | `make eval` and `make figures` |
 | **Done when** | Every assumption is justified, the threshold is final, and D-19 is decided. |
+| **Automated check** | The cost matrix (D-19) is decided, with at least two alternative assumptions. Run `make acceptance ISSUE=11`; it also runs on every pull request that says `Closes #11` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -284,9 +290,10 @@ Classification & evaluation · [henryhkb](https://github.com/henryhkb) · **6 op
 | **What it is** | Write down Task 1 (loan amount, regression) and Task 2 (default, classification) and the business goal in one sentence. |
 | **Why it matters** | Rubric A (10 pts): two tasks and the business goal |
 | **Already done** | The tasks exist in code (`src/config.py`); nothing is written for the report. |
-| **Where to work** | Report Part A, `docs/DECISIONS.md` |
+| **Where to work** | `docs/part_a.md` |
 | **How to run** | — |
 | **Done when** | Both tasks and the goal are written and agreed at the Part A session (#9). |
+| **Automated check** | Task 1, Task 2 and the business goal are written in the Part A notes. Run `make acceptance ISSUE=10`; it also runs on every pull request that says `Closes #10` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -309,6 +316,7 @@ Classification & evaluation · [henryhkb](https://github.com/henryhkb) · **6 op
 | **Where to work** | `notebooks/02_classification.ipynb` (new section), `src/evaluation/` |
 | **How to run** | Run the notebook |
 | **Done when** | The figure and one paragraph of recommendation are in 02 and the report. |
+| **Automated check** | 02 checks calibration of pre-2023 models on 2023+ loans and recommends recalibration. Run `make acceptance ISSUE=55`; it also runs on every pull request that says `Closes #55` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -331,6 +339,7 @@ Classification & evaluation · [henryhkb](https://github.com/henryhkb) · **6 op
 | **Where to work** | `docs/derivations/logistic.md` |
 | **How to run** | — |
 | **Done when** | The derivation is written, checked, and you can explain it without notes. |
+| **Automated check** | All four derivations exist: SVM, logistic regression, linear regression, gradient boosting. Run `make acceptance ISSUE=32`; it also runs on every pull request that says `Closes #32` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -357,6 +366,7 @@ Regression, deployment & project lead · [adjeibernardmarfo](https://github.com/
 | **Where to work** | `notebooks/03_regression.ipynb`, `configs/models.yaml` |
 | **How to run** | Run the notebook |
 | **Done when** | Both trees are discussed in 03; close. |
+| **Automated check** | 03 compares OLS, Ridge, Lasso and the regression tree, and discusses the Task 2 decision tree. Run `make acceptance ISSUE=17`; it also runs on every pull request that says `Closes #17` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -378,6 +388,7 @@ Regression, deployment & project lead · [adjeibernardmarfo](https://github.com/
 | **Where to work** | `src/training/artifacts.py`, `docs/DECISIONS.md` |
 | **How to run** | `python -m scripts.train --save-artifacts --clf-artifact-model random_forest` |
 | **Done when** | The decision is recorded and the scorer and figures use the chosen model. |
+| **Automated check** | The deployed classifier and limit model are chosen and recorded as a decided decision. Run `make acceptance ISSUE=51`; it also runs on every pull request that says `Closes #51` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -400,6 +411,7 @@ Regression, deployment & project lead · [adjeibernardmarfo](https://github.com/
 | **Where to work** | `src/models/ensembles.py`, `src/serving/`, `tests/test_serving.py` |
 | **How to run** | `make train figures score test` |
 | **Done when** | Most good borrowers are no longer cut, and the rule is recorded. |
+| **Automated check** | The limit is a cap: at most 25% of Kenyan Test applications get their amount cut. Run `make acceptance ISSUE=53`; it also runs on every pull request that says `Closes #53` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -422,6 +434,7 @@ Regression, deployment & project lead · [adjeibernardmarfo](https://github.com/
 | **Where to work** | `docs/DECISIONS.md` |
 | **How to run** | `make eda` |
 | **Done when** | D-2 is decided at the session; close. |
+| **Automated check** | The leak-suspect ruling (D-2) is decided, backed by the leakage section of the EDA report. Run `make acceptance ISSUE=7`; it also runs on every pull request that says `Closes #7` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -440,9 +453,10 @@ Regression, deployment & project lead · [adjeibernardmarfo](https://github.com/
 | **What it is** | Explain, in plain language, what drives the default model. |
 | **Why it matters** | Rubric B: interpretation; LO6: explanations |
 | **Already done** | Figures: `interp_coefficients.png` (logistic regression), `interp_shap_lightgbm.png`. Finding: the tree model's top drivers (lender share, month) mostly mark the period, not the borrower. |
-| **Where to work** | Report Part B, `notebooks/03_regression.ipynb` |
+| **Where to work** | `docs/interpretation.md` (then the report's Part B) |
 | **How to run** | `make figures` |
 | **Done when** | The interpretation is written and matches the figures. |
+| **Automated check** | docs/interpretation.md explains the main drivers in plain language, using the coefficient and SHAP figures. Run `make acceptance ISSUE=22`; it also runs on every pull request that says `Closes #22` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -461,9 +475,10 @@ Regression, deployment & project lead · [adjeibernardmarfo](https://github.com/
 | **What it is** | Retrain without each feature group to see what carries the signal. |
 | **Why it matters** | Optional; strengthens rubric B interpretation |
 | **Already done** | Nothing yet; the feature lists live in `src/config.py`. |
-| **Where to work** | `scripts/` (new ablation script), `reports/` |
+| **Where to work** | a new ablation script in `scripts/`, table saved as `reports/tables/ablation.csv` |
 | **How to run** | — |
 | **Done when** | A table and figure show which groups matter. |
+| **Automated check** | An ablation table shows the effect of removing each feature group. Run `make acceptance ISSUE=52`; it also runs on every pull request that says `Closes #52` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -485,6 +500,7 @@ Regression, deployment & project lead · [adjeibernardmarfo](https://github.com/
 | **Where to work** | `docs/derivations/linear.md` |
 | **How to run** | — |
 | **Done when** | Written, checked, and explainable without notes. |
+| **Automated check** | All four derivations exist: SVM, logistic regression, linear regression, gradient boosting. Run `make acceptance ISSUE=32`; it also runs on every pull request that says `Closes #32` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -511,6 +527,7 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open*
 | **Where to work** | `notebooks/04_transfer_and_fairness.ipynb` |
 | **How to run** | `make test-notebooks` |
 | **Done when** | The notebook runs top to bottom and you can explain every cell. |
+| **Automated check** | 04 has no draft banner, calibrates before thresholds, and ran top to bottom without errors. Run `make acceptance ISSUE=54`; it also runs on every pull request that says `Closes #54` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -535,6 +552,7 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open*
 | **Where to work** | `notebooks/04_transfer_and_fairness.ipynb`, `src/evaluation/shift.py` |
 | **How to run** | `make figures` |
 | **Done when** | Part C section written with the figures. |
+| **Automated check** | 04 compares Kenya and Ghana, runs the domain classifier and reports the missing-history artefact. Run `make acceptance ISSUE=23`; it also runs on every pull request that says `Closes #23` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -554,9 +572,10 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open*
 | **What it is** | The brief asks what NkwaPay would need before trusting the model in Ghana. |
 | **Why it matters** | Brief Part C: what evidence would make Ghana scores trustworthy |
 | **Already done** | Every Ghana score is already flagged `needs_review` by the scorer. |
-| **Where to work** | Report Part C |
+| **Where to work** | `docs/audit/ghana_trust.md` |
 | **How to run** | — |
 | **Done when** | A short, concrete plan is in the report. |
+| **Automated check** | docs/audit/ghana_trust.md lists the evidence NkwaPay needs before trusting Ghana scores. Run `make acceptance ISSUE=24`; it also runs on every pull request that says `Closes #24` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -578,6 +597,7 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open*
 | **Where to work** | `notebooks/04_transfer_and_fairness.ipynb` |
 | **How to run** | `make figures` |
 | **Done when** | Gaps and proxies are written up with the figures. |
+| **Automated check** | 04 reports metrics per group and a proxy analysis. Run `make acceptance ISSUE=26`; it also runs on every pull request that says `Closes #26` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -596,9 +616,10 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open*
 | **What it is** | Apply one mitigation and show what it changes and what it costs. |
 | **Why it matters** | Rubric D: a mitigation with before/after |
 | **Already done** | The draft in 04 approves more new borrowers without showing the cost. |
-| **Where to work** | `notebooks/04_transfer_and_fairness.ipynb` |
+| **Where to work** | `notebooks/04_transfer_and_fairness.ipynb`, save the table as `reports/tables/fairness_mitigation.csv` |
 | **How to run** | — |
 | **Done when** | A before/after table and a recommendation. |
+| **Automated check** | A mitigation is applied with before/after metrics per group (reports/tables/fairness_mitigation.csv). Run `make acceptance ISSUE=50`; it also runs on every pull request that says `Closes #50` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -620,6 +641,7 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open*
 | **Where to work** | `docs/audit/model_card.md` |
 | **How to run** | — |
 | **Done when** | The card is complete and matches the deployed model (#51). |
+| **Automated check** | docs/audit/model_card.md has every Model Card section (Mitchell et al.). Run `make acceptance ISSUE=25`; it also runs on every pull request that says `Closes #25` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -640,6 +662,7 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open*
 | **Where to work** | `docs/audit/datasheet.md` |
 | **How to run** | — |
 | **Done when** | The datasheet is complete. |
+| **Automated check** | docs/audit/datasheet.md answers every Datasheet section (Gebru et al.). Run `make acceptance ISSUE=49`; it also runs on every pull request that says `Closes #49` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -660,6 +683,7 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open*
 | **Where to work** | `docs/audit/regulatory_map.md` |
 | **How to run** | — |
 | **Done when** | A table of requirements, our response, and gaps. |
+| **Automated check** | docs/audit/regulatory_map.md maps the design to the BoG Directive, Act 843 and Act 726, with gaps. Run `make acceptance ISSUE=27`; it also runs on every pull request that says `Closes #27` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -678,9 +702,10 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open*
 | **What it is** | Who in Ghana cannot access credit (Findex 2021), and does our model help close or widen that gap? |
 | **Why it matters** | Brief Part D.4: debt and access |
 | **Already done** | EDA §10: only 7.2% of adults borrow formally; women, rural, poorer and less-educated adults have less access (`eda_findex_access.png`). |
-| **Where to work** | Report Part D |
+| **Where to work** | `docs/audit/findex.md` (or notebook 04) |
 | **How to run** | `make eda` |
 | **Done when** | A paragraph with the figure. |
+| **Automated check** | Findex analysis says who in Ghana lacks credit and whether the model narrows or widens the gap. Run `make acceptance ISSUE=28`; it also runs on every pull request that says `Closes #28` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -701,6 +726,7 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open*
 | **Where to work** | `docs/audit/decline_explanation.md` |
 | **How to run** | `make score` |
 | **Done when** | A message a non-expert understands. |
+| **Automated check** | docs/audit/decline_explanation.md has a plain-language decline message with how to ask for review. Run `make acceptance ISSUE=29`; it also runs on every pull request that says `Closes #29` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -721,6 +747,7 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open*
 | **Where to work** | `reports/EDA_REPORT.md` |
 | **How to run** | `make eda` |
 | **Done when** | You agree with the sections; close. |
+| **Automated check** | Kenya vs Ghana, macro indicators and Findex are explored in the EDA report. Run `make acceptance ISSUE=8`; it also runs on every pull request that says `Closes #8` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -741,6 +768,7 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open*
 | **Where to work** | `src/models/ensembles.py`, `configs/models.yaml` |
 | **How to run** | `python -m scripts.train --task task2 --models random_forest lightgbm --schemes fold_group temporal` |
 | **Done when** | You can explain both; close. |
+| **Automated check** | Random Forest and LightGBM results are in the model summary. Run `make acceptance ISSUE=18`; it also runs on every pull request that says `Closes #18` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -761,6 +789,7 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open*
 | **Where to work** | `docs/audit/` |
 | **How to run** | — |
 | **Done when** | One complete audit document. |
+| **Automated check** | docs/audit/audit.md brings together the Model Card, fairness, proxy analysis and regulatory map. Run `make acceptance ISSUE=35`; it also runs on every pull request that says `Closes #35` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -781,6 +810,7 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open*
 | **Where to work** | `docs/derivations/boosting.md` |
 | **How to run** | — |
 | **Done when** | Written and explainable without notes. |
+| **Automated check** | All four derivations exist: SVM, logistic regression, linear regression, gradient boosting. Run `make acceptance ISSUE=32`; it also runs on every pull request that says `Closes #32` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -801,9 +831,10 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open*
 | **What it is** | Part A session: agree the loan timeline, the label, the feature audit and the leakage rulings. |
 | **Why it matters** | Rubric A (10 pts) |
 | **Already done** | Drafts: `docs/feature_audit.md`, `docs/DECISIONS.md` (D-2 to D-7, D-18 to D-20 are drafts). |
-| **Where to work** | `docs/DECISIONS.md`, `docs/feature_audit.md` |
+| **Where to work** | `docs/part_a.md` (timeline, label, decision moment), `docs/DECISIONS.md` |
 | **How to run** | — |
 | **Done when** | All Part A decisions are marked decided. |
+| **Automated check** | Part A notes exist (timeline, label, decision moment) and decisions D-2 to D-7 are decided. Run `make acceptance ISSUE=9`; it also runs on every pull request that says `Closes #9` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -827,6 +858,7 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open*
 | **Where to work** | GitHub settings |
 | **How to run** | — |
 | **Done when** | Direct pushes to `main` are blocked. |
+| **Automated check** | main requires a pull request with one approving review (checked through the GitHub API). Run `make acceptance ISSUE=56`; it also runs on every pull request that says `Closes #56` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -848,6 +880,7 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open*
 | **Where to work** | — |
 | **How to run** | `make all && make test-notebooks` |
 | **Done when** | All four notebooks pass on a clean clone. |
+| **Automated check** | All four notebooks are saved fully executed with no error outputs. Run `make acceptance ISSUE=33`; it also runs on every pull request that says `Closes #33` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -868,6 +901,7 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open*
 | **Where to work** | `docs/report/` |
 | **How to run** | — |
 | **Done when** | Submitted. |
+| **Automated check** | The technical report is in docs/report/. Run `make acceptance ISSUE=34`; it also runs on every pull request that says `Closes #34` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -889,6 +923,7 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open*
 | **Where to work** | `slides/` |
 | **How to run** | — |
 | **Done when** | Slides ready and rehearsed. |
+| **Automated check** | Debrief slides are in slides/. Run `make acceptance ISSUE=36`; it also runs on every pull request that says `Closes #36` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -910,6 +945,7 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open*
 | **Where to work** | `docs/reflections/<name>.md` |
 | **How to run** | — |
 | **Done when** | Four reflections submitted. |
+| **Automated check** | Four individual reflections are in docs/reflections/. Run `make acceptance ISSUE=37`; it also runs on every pull request that says `Closes #37` and when the issue is closed (a failing check reopens it). |
 
 **Steps**
 
@@ -1009,8 +1045,9 @@ Every model writes the same prediction columns to `preds/` (`ID, customer_id, co
 4. **Tests and lint pass** (`make test`, `make lint`); CI runs both on Python 3.12.
 5. **One approval from the rotation reviewer**, who reruns the branch. Nobody merges their own PR unreviewed.
 6. **Owners own their notebooks.** Suggest changes to someone else's notebook in a PR they review.
-7. **The README status updates itself.** Close issues and open PRs as usual; the *README status* Action rebuilds the progress table and issue cards. To change a card's text, edit [`docs/issue_cards.yaml`](docs/issue_cards.yaml).
-8. **Log AI use** in [`docs/AI_USE_LOG.md`](docs/AI_USE_LOG.md); each of us must explain our own work without AI at the debrief.
+7. **Every issue has an acceptance test** in [`tests/acceptance/test_issues.py`](tests/acceptance/test_issues.py) that passes only when it is done. `make acceptance` shows the scoreboard (`ISSUE=53` for one). A pull request that says `Closes #N` must pass issue N's test, and closing an issue whose test fails reopens it automatically.
+8. **The README status updates itself.** Close issues and open PRs as usual; the *README status* Action rebuilds the progress table and issue cards. To change a card's text, edit [`docs/issue_cards.yaml`](docs/issue_cards.yaml).
+9. **Log AI use** in [`docs/AI_USE_LOG.md`](docs/AI_USE_LOG.md); each of us must explain our own work without AI at the debrief.
 
 ## Documentation
 
