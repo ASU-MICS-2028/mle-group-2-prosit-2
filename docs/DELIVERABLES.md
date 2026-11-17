@@ -20,8 +20,8 @@ Individual: one-page reflection each.
 
 **A:** ☐ timeline ☑ label ☐ audit of every column ☑ two tasks and goal ☑ cost matrix in money with ≥ 2 sensitivity cases (cedis, D-22)
 **B:** ☑ EDA (imbalance, missing, skew, cardinality; `reports/EDA_REPORT.md`) ☐ `merge_asof` history, calendar, macro ☑ three validation schemes, inflation quantified ☑ ≥ 5 models ☑ classification and regression metrics ☑ bootstrap CIs on F1 and PR-AUC 🟨 interpretation (coefficient and SHAP figures; plain-language write-up #22)
-**C:** ☑ Kenya vs Ghana distributions (EDA §8, `shift_*` figures) 🟨 domain classifier or importance weighting (figures done; write-up #23, #54) ☐ evidence needed to trust Ghana predictions
-**D:** ☐ Model Card ☐ Datasheet ☐ disaggregated metrics ☐ proxy analysis ☐ mitigation ☐ regulatory map ☐ Findex analysis ☐ borrower explanation
+**C:** ☑ Kenya vs Ghana distributions (EDA §8, `shift_*` figures) ☑ domain classifier and importance weighting (`04` §2.2: AUC 0.985 without the label-history artefact; ESS share 0.04, so weighting is unusable) ☑ evidence needed to trust Ghana predictions (`04` §2.4: capped pilot of ~3,500 loans)
+**D:** ☑ Model Card ☑ Datasheet ☑ disaggregated metrics ☑ proxy analysis ☑ mitigation with cost ☑ regulatory map (Act 843/726 section numbers to confirm) ☑ Findex analysis ☑ borrower explanation · all in `docs/audit/` (summary: `audit.md`) and `04` §3–4
 **E:** 🟨 `joblib` bundle and `score_application()` in `src/serving/` (Ghana bugs fixed; final model choice pending) ☑ latency (median 44 ms, p95 75 ms over 1,000 calls; `reports/tables/scorer_latency.csv`) ☑ required inputs (`REQUIRED_APPLICATION_FIELDS`)
 
 ## Gaps in the README plan

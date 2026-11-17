@@ -9,6 +9,12 @@ Add an entry at the **top** at the end of each session, 5–10 lines. Link to no
 
 ---
 
+## 2026-11-17 (night) · Eugene (P4) · `p4/54-transfer-fairness-audit`
+**Did:** Rebuilt `04_transfer_and_fairness` on the restructured pipeline and fixed its four known problems (#54): calibrate before every threshold, mitigation with its cost, proxy analysis, audit docs. Added `decision_cost_by_group`, `proxy_strength`, `run_domain_classifier(drop_cols=...)` and `effective_sample_share` to `src/evaluation/` with `tests/test_fairness_and_shift.py` (12 tests). Wrote `docs/audit/` (Model Card, Datasheet, regulatory map, decline message, `audit.md` summary) and `docs/derivations/boosting.md`. D-23 to D-25.
+**Found:** (1) The shipped scorer approves **0% of first-time borrowers** (ratio 0; real default 21%). At the cedi threshold it is 12%, and at 6 lost future loans 49%: the cost assumption drives it. (2) A 25% starter loan at p ≤ 0.05 → 36% approved for +KES 8.7k on 567 applicants (D-24). (3) Ghana is separable even without the label-history artefact (AUC 0.985), and the importance weights have an ESS share of 0.04, so weighting is unusable (D-25). (4) No Ghanaian is approved in full: 70% are limited to ~16% of the request, and declines move 30% → 79% if the unknown history is treated as clean. (5) RF best by customer (PR-AUC 0.203), but every model is ≈ 0.6 ROC-AUC by time.
+**Next:** Bernard reviews; team settles the cost matrix (KES vs cedis, future loans) and D-24; I confirm the Act 843/726 section numbers on GhaLII.
+**Watch out:** `04` needs `make features artifacts` first (it uses the saved scorer for Ghana). Every number in its readings assumes threshold 0.019: if the config changes, re-run and re-read §3.
+
 ## 2026-11-17 (late night) · Henry (P2) · `p2/32-logistic-derivation`, PR #62
 **Did:** `docs/derivations/logistic.md`: log-odds → sigmoid → Bernoulli likelihood → BCE (and its stable form) → gradient (1/n)Xᵀ(σ(Xw) − y); Hessian and convexity; the `pos_weight` version our Lightning model trains. `tests/test_logistic_derivation.py` checks the analytic gradients against PyTorch autograd.
 **Found:** Weighting defaulters by c ≈ 54 shifts every log-odds by about log c ≈ 4.0, which explains why raw scores averaged 0.28–0.32 against a true 0.018 and why we calibrate afterwards (`02` §8).

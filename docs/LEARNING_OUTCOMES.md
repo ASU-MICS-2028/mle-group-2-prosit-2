@@ -33,6 +33,7 @@ At the debrief you must "explain, defend and reproduce your work without AI". If
 | ✅ | Logistic regression: log-odds → likelihood → BCE → gradient, plus `pos_weight` and convexity; gradient checked against PyTorch autograd (`tests/test_logistic_derivation.py`) | `docs/derivations/logistic.md` (PR #62) | Henry |
 | ☐ | Linear regression: Gaussian MLE → normal equations (Ridge as MAP) | `docs/derivations/linear.md` | Bernard |
 | ☐ | One of SVM (Perfect) / boosting / tree | `docs/derivations/<name>.md` | Perfect |
+| ✅ | Gradient boosting: functional gradient, pseudo-residuals, Newton leaf values, shrinkage; worked example checked numerically | `docs/derivations/boosting.md` | Eugene |
 | ☐ | Check each against scikit-learn on a small example | derivation notebook | author |
 
 **Self-check:** Show ∂BCE/∂w = Xᵀ(σ(Xw) − y). Why is minimising BCE maximum likelihood? Why do normal equations fail with collinear features? What does `pos_weight ≈ 53.6` do?
@@ -54,11 +55,11 @@ At the debrief you must "explain, defend and reproduce your work without AI". If
 
 | ☐ | Work | Evidence | Owner |
 | --- | --- | --- | --- |
-| ☐ | Datasheet and Model Card | `docs/audit/` | Eugene |
-| ☐ | PR-AUC, F1, selection rate by country, loan type, lender, tenure, size band | `04_transfer_and_fairness` | Eugene |
-| ☐ | Proxy analysis and one mitigation with before/after | `04_transfer_and_fairness` | Eugene |
-| ☐ | Regulatory map: BoG Directive, Act 843, Act 726; what we can't satisfy | `docs/audit/` | Eugene |
-| ☐ | Findex Ghana: who lacks credit; does the model narrow or widen the gap | `04_transfer_and_fairness` | Eugene |
+| ✅ | Datasheet and Model Card | `docs/audit/datasheet.md`, `docs/audit/model_card.md` | Eugene |
+| ✅ | PR-AUC, F1, selection rate by country, loan type, lender, tenure, size band (first-time borrowers 0% approved) | `04_transfer_and_fairness` §3.1 | Eugene |
+| ✅ | Proxy analysis and one mitigation with before/after and its cost (25% starter loan: 0% → 36%, KES 15 per applicant) | `04_transfer_and_fairness` §3.3–3.4 | Eugene |
+| ✅ | Regulatory map: BoG Directive, Act 843, Act 726; what we can't satisfy (Act section numbers to confirm) | `docs/audit/regulatory_map.md` | Eugene |
+| ✅ | Findex Ghana: who lacks credit; does the model narrow or widen the gap (widens, as shipped) | `04_transfer_and_fairness` §4 | Eugene |
 
 **Self-check:** Can a model be accurate and unfair? What is a proxy, with an example from this data? What must we tell a declined borrower?
 
@@ -67,7 +68,7 @@ At the debrief you must "explain, defend and reproduce your work without AI". If
 | ☐ | Work | Evidence | Owner |
 | --- | --- | --- | --- |
 | ☐ | 15-min debrief; each presents their part | `slides/` | all |
-| ☐ | Plain-language decline explanation | `docs/audit/` | Bernard / Eugene |
+| ✅ | Plain-language decline explanation | `docs/audit/decline_explanation.md` | Bernard / Eugene |
 | ☐ | Q&A rehearsal: ask each other the self-check questions, no notes | WORKLOG | all |
 | ☐ | One-page reflection each; AI-use declaration | `docs/reflections/` | each |
 

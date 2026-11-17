@@ -8,7 +8,7 @@ from .cost_matrix import (
     measure_cost_inputs,
     measure_market_cost_inputs,
 )
-from .fairness import add_loan_size_band, disaggregated_evaluation
+from .fairness import add_loan_size_band, decision_cost_by_group, disaggregated_evaluation, proxy_strength
 from .metrics import (
     classification_metrics,
     regression_metrics,
@@ -26,11 +26,13 @@ __all__ = [
     "classification_metrics",
     "cost_matrix_threshold",
     "cost_sensitivity_table",
+    "decision_cost_by_group",
     "disaggregated_evaluation",
     "load_cost_config",
     "make_calibrator",
     "measure_cost_inputs",
     "measure_market_cost_inputs",
+    "proxy_strength",
     "regression_metrics",
     "reliability_table",
     "run_domain_classifier",

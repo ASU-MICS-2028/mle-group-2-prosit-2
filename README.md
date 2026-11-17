@@ -8,7 +8,7 @@
 
 <p align="center">
   <img alt="Python 3.12" src="https://img.shields.io/badge/python-3.12-1f4e79?style=flat-square">
-  <img alt="Tests" src="https://img.shields.io/badge/tests-127_passing-2e7d32?style=flat-square">
+  <img alt="Tests" src="https://img.shields.io/badge/tests-149_passing-2e7d32?style=flat-square">
   <img alt="Models" src="https://img.shields.io/badge/models-16_trained-1f4e79?style=flat-square">
   <img alt="Figures" src="https://img.shields.io/badge/figures-47-1f4e79?style=flat-square">
   <!-- status:badge --><img alt="Issues" src="https://img.shields.io/badge/issues-17_of_46_closed-d4a72c?style=flat-square"><!-- /status:badge -->
@@ -90,7 +90,7 @@ Generated from GitHub on **18 Nov 2026** by `scripts/update_readme.py` (the *REA
 | [`01_eda.ipynb`](notebooks/01_eda.ipynb) | Perfect | ![done](https://img.shields.io/badge/-done-2e7d32?style=flat-square) Train/Test structure (PRs #38, #39); link the EDA report ([#48](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/48)) |
 | [`02_classification.ipynb`](notebooks/02_classification.ipynb) | Henry | ![merged](https://img.shields.io/badge/-merged-2e7d32?style=flat-square) Henry's original (PR #47) + problem framing (§0), cost matrix in cedis from Ghana's loans (§9b, p\* 0.036) and conclusions (§12); calibration and CIs verified (PR #60); calibration over time and recalibration plan (§11, #55, PR #61) |
 | [`03_regression.ipynb`](notebooks/03_regression.ipynb) | Bernard | ![merged](https://img.shields.io/badge/-merged-2e7d32?style=flat-square) Task 1 models, residuals, scorer demo (PR #47); Task 2 tree to add (#17) |
-| [`04_transfer_and_fairness.ipynb`](notebooks/04_transfer_and_fairness.ipynb) | Eugene | ![needs owner](https://img.shields.io/badge/-needs_owner-b03a2e?style=flat-square) AI draft with known problems ([#54](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/54)) |
+| [`04_transfer_and_fairness.ipynb`](notebooks/04_transfer_and_fairness.ipynb) | Eugene | ![in review](https://img.shields.io/badge/-in_review-1f4e79?style=flat-square) Rebuilt on the shipped scorer: ensembles, Kenya→Ghana shift, calibrated fairness audit, proxies, costed mitigation, Findex ([#54](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/54)); audit docs in [`docs/audit/`](docs/audit/audit.md) |
 
 ### Done
 
