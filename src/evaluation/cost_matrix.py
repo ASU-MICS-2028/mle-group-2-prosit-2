@@ -65,3 +65,26 @@ def measure_cost_inputs(train_raw: pd.DataFrame) -> dict[str, float]:
         "fee_rate_median_repaid": float(markup.median()),
         "loans_per_customer_median": float(loans.groupby("customer_id").size().median()),
     }
+
+
+def measure_market_cost_inputs(raw: pd.DataFrame, country: str = "Ghana") -> dict[str, float]:
+    """Measure principal and fee for a market that has no labels yet (e.g. Ghana in Test.csv; #11, D-22).
+
+    Without labels we cannot keep only repaid loans, so the fee is the *median* markup on the
+    market's most common loan term: the agreed fee schedule, robust to the few defaulted loans
+    whose amount owed includes penalties. Repayment columns stay out of every model (leak).
+    """
+    df = raw[raw["country_id"] == country]
+    if df.empty:
+        raise ValueError(f"no loans for country {country!r}")
+    term = int(df["duration"].mode().iloc[0])
+    on_term = df[df["duration"] == term]
+    markup = on_term["Total_Amount_to_Repay"] / on_term["Total_Amount"].replace(0, np.nan) - 1.0
+    return {
+        "principal_median": float(df["Total_Amount"].median()),
+        "fee_rate_median_on_term": float(markup.median()),
+        "term_days": float(term),
+        "share_on_term": float(len(on_term) / len(df)),
+        "n_loans": float(len(df)),
+    }
+

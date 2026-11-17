@@ -1,6 +1,6 @@
 # Progress dashboard
 
-**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-17 by Bernard (PRs #47 and #57 merged into `main`).
+**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-17 by Henry (PR #60).
 
 Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 
@@ -14,8 +14,8 @@ Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 | A | Explore the target | Henry | ✅ `src/analysis/target_eda.py` + `python -m scripts.run_target_eda` (tables in `reports/tables/eda_target_*.csv`) |
 | A | Explore amounts/durations (P3 slice) | Bernard | 🟨 amounts, terms, leakage and history in `reports/EDA_REPORT.md` §4-6 (PR #57); leak-suspect ruling at Part A session |
 | A | Explore Ghana and context files (P4 slice) | Eugene | 🟨 Kenya vs Ghana, macro and Findex in `reports/EDA_REPORT.md` §8-10 (PR #57); Eugene to interpret for Part C/D |
-| A | Timeline, label, feature audit table | Perfect + Henry | 🟨 audit table drafted (`docs/feature_audit.md`); timeline and label to do |
-| A | Two tasks + cost matrix in cedis/shillings | Henry | 🟨 draft from data in `configs/cost_matrix.yaml` (D-19): threshold 0.019 (1 future loan) to 0.106 (6); future-loss assumption to settle |
+| A | Timeline, label, feature audit table | Perfect + Henry | 🟨 label, window and decision moment in `02_classification` §0 (PR #60); audit table drafted (`docs/feature_audit.md`); timeline drawing to do |
+| A | Two tasks + cost matrix in cedis/shillings | Henry | ✅ tasks and goal in `02` §0; cedis from Ghana's loans in §9b (D-22): p\* 0.036, approve 88.6%, −44% expected loss (PR #60). Team config still KES (D-19) |
 | B | Shared feature file and fold splits | Perfect | ✅ merged (#39); Henry's baseline already uses it |
 | B | Preprocessor for unseen lenders and loan types (D-5) | Perfect + Bernard | ✅ `src/processing/preprocess.py` (PR #46; target scaler clipped in PR #47) |
 | B | Finish `01_eda`: missing values, skew, cardinality | Perfect | ⬜ |
@@ -44,6 +44,7 @@ Per-issue progress is on GitHub (Roadmap issue #1). Closed on 2026-11-17 with ev
 | 2026-11-17 | Bernard | Restructured `src/` into packages + `scripts/`, `configs/`, `reports/`; fixed scorer bugs (D-18, D-19); restored and completed Henry's `02` (§7–10); ran all 16 models | PR #47 |
 | 2026-11-16 | Bernard | Shared `src/` pipeline, `tests/` CI guardrails, `Makefile`, streamlined README | PR #46 |
 | 2026-11-10 | Henry | Logistic regression (raw + shared + Lightning) and MLP + temporal check | `notebooks/02_classification.ipynb`, `docs/learning/`, PRs #40, #41 |
+| 2026-11-17 | Henry | Problem framing, Ghana cost matrix in cedis, conclusions; verified calibration and CIs; D-7, D-22 | `02_classification` §0, §9b, §11; `src/evaluation/cost_matrix.py`; PR #60 |
 
 Findings so far:
 - Default rate by year is 1.3% (2022, 64,405 loans), 11.5% (2023), 8.7% (2024), so random splits will mislead; the 2023+ validation set defaults at 9.5%.
@@ -61,7 +62,7 @@ Findings so far:
 ## What's left, in order
 
 1. **Part A session (all four):** confirm [DECISIONS](DECISIONS.md) D-2 to D-7, which are drafts that the code already relies on. Draw the loan timeline, define the label, write the cost matrix.
-2. **Henry:** review `02` §7–10 (added by Bernard) and the draft cost matrix (D-19); decide the future-loss assumption; write the logistic regression derivation.
+2. **Henry:** logistic regression derivation (#32); temporal calibration (#55); agree with Bernard and Eugene whether the team config switches to the D-22 cedi costs; personal reflection.
 3. **Perfect:** finish `01_eda`, the unseen-category preprocessor (D-5), baselines, kNN, SVM and the SVM derivation.
 4. **Bernard:** get PR #47 reviewed and merged; #7 amounts/leak-suspect EDA, Task 2 decision tree (#17), linear regression derivation, final scorer model.
    **Eugene:** take ownership of `04` (fix the 4 issues listed at its top), Model Card, Datasheet, regulatory map, proxy analysis, mitigation.
@@ -76,7 +77,8 @@ Findings so far:
 | 2 | 🟥 | **Eugene (P4) has no commits; all of Part C/D so far is an AI draft (PR #46).** Parts C and D are 20+ points | Eugene owns `04` and `docs/audit/` today; deadline 19 Nov |
 | 2b | 🟧 | PR #46 was merged without review and rewrote Henry's notebook (since restored, D-20) | Branch protection on `main`; every PR reviewed by the rotation |
 | 3 | 🟨 | Review rotation: P1→P2→P3→P4→P1 (Perfect reviews Henry, Henry reviews Bernard, Bernard reviews Eugene, Eugene reviews Perfect) | Confirm everyone has repo access and is assigned issues |
-| 4 | 🟧 | D-2 to D-7 are drafts, yet Henry's results already depend on them | Hold the Part A session; mark each decided or changed |
+| 4 | 🟧 | D-2 to D-6 are drafts (D-7 decided in PR #60), yet results depend on them | Hold the Part A session; mark each decided or changed |
+| 9 | 🟨 | `pytest tests/` segfaults on macOS (LightGBM/PyTorch OpenMP clash); Linux CI passes | Mac users run tests in CI or with Linux; fix the import order in `tests/` |
 | 5 | 🟧 | Raw data is git-ignored; each person downloads the zips | See Getting started |
 | 6 | 🟨 | Brief says key `TransactionId`; file uses `ID` | Use `ID`; note in report |
 | 7 | 🟨 | README plan omits graded items: Datasheet, proxy analysis, a mitigation, AI declaration | See [DELIVERABLES](DELIVERABLES.md#gaps-in-the-readme-plan) |
@@ -85,6 +87,7 @@ Findings so far:
 
 | Date | Who | Did | Next |
 | --- | --- | --- | --- |
+| 2026-11-17 | Henry | Reviewed PR #47; framing (#10), Ghana cost matrix (#11), conclusions; verified #19, #20 (PR #60) | Derivation (#32); align cost config |
 | 2026-11-17 | Bernard | PRs #47, #57 merged; README status now auto-generated by a GitHub Action (D-21) | Each owner works their cards |
 | 2026-11-17 | Bernard | All open issues assigned on GitHub; README issue cards per person | Everyone works their cards |
 | 2026-11-17 | Bernard | EDA report, defence figure pack + catalogue, end-to-end and architecture/normalization tests (127), issues #48-#56 | Review PR #47 and the stacked PR #57 PR |

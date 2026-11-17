@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import numpy as np
+import pandas as pd
 
 from src.evaluation import (
     PlattCalibrator,
@@ -10,6 +11,7 @@ from src.evaluation import (
     classification_metrics,
     cost_matrix_threshold,
     cost_sensitivity_table,
+    measure_market_cost_inputs,
     regression_metrics,
 )
 
@@ -25,6 +27,20 @@ def test_cost_config_is_not_the_brief_example() -> None:
     """The brief says not to reuse Appendix A (GHS 300, 15% fee)."""
     cm = cost_matrix_threshold()
     assert (cm["principal"], cm["fee_rate"]) != (300.0, 0.15)
+
+
+def test_market_cost_inputs_use_the_main_term() -> None:
+    """Ghana has no labels: the fee is the median markup on its most common loan term (#11)."""
+    raw = pd.DataFrame({
+        "country_id": ["Ghana"] * 5 + ["Kenya"],
+        "duration": [7, 7, 7, 180, 7, 7],
+        "Total_Amount": [1000.0, 2000.0, 3000.0, 5000.0, 4000.0, 9.0],
+        "Total_Amount_to_Repay": [1030.0, 2060.0, 3090.0, 6000.0, 6000.0, 9.0],  # one defaulted 7-day loan
+    })
+    m = measure_market_cost_inputs(raw, "Ghana")
+    assert m["principal_median"] == 3000.0
+    assert np.isclose(m["fee_rate_median_on_term"], 0.03)   # the defaulted loan's 50% does not move the median
+    assert (m["term_days"], m["share_on_term"], m["n_loans"]) == (7.0, 0.8, 5.0)
 
 
 def test_sensitivity_has_at_least_two_alternatives() -> None:

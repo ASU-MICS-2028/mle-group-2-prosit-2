@@ -9,6 +9,12 @@ Add an entry at the **top** at the end of each session, 5–10 lines. Link to no
 
 ---
 
+## 2026-11-17 (evening) · Henry (P2) · `p2/11-ghana-cost-and-conclusions`, PR #60
+**Did:** Reviewed and approved PR #47 (tested on macOS). Added to `02_classification`: §0 problem framing (#10), §9b cost matrix in cedis from Ghana's own loans (#11; `src.evaluation.measure_market_cost_inputs` + unit test), §11 conclusions. Verified Bernard's §7–10 (#19, #20) by rerunning them. Decided D-7, added D-22.
+**Found:** (1) Ghana: median loan 3,002 GHS, fee 3.0% → C_FP 90, C_FN 2,416 GHS, **decline if p > 0.036** (0.029–0.047 across recovery; 0.15–0.23 if 6 future loans are lost). (2) At 0.036 the calibrated MLP approves 88.6% and cuts expected loss 44.3 → 25.0 GHS per application (−44%); the KES config's 0.019 approves only 78.7%, below the proposed 80% floor. (3) With customer-level bootstrap the MLP vs LogReg PR-AUC intervals overlap, so the MLP's lead is not established.
+**Next:** Logistic regression derivation (#32); agree with Bernard and Eugene whether `configs/cost_matrix.yaml` switches to the D-22 cedi values; temporal calibration (#55); personal reflection.
+**Watch out:** On macOS `pytest tests/` segfaults inside `tests/test_end_to_end.py` (LightGBM and PyTorch OpenMP clash; passes on Linux CI). Notebook `02` itself runs fine.
+
 ## 2026-11-17 (late) · Bernard (P3 / PM) · `p3/58-readme-status-after-merge`
 **Did:** PRs #47 and #57 merged; closed #21. The README status is now generated: `scripts/update_readme.py` rebuilds the issue badge, progress table and per-person cards from live issues and PRs; the *README status* Action runs it on every issue/PR change, daily and on demand (D-21). Card text moved to `docs/issue_cards.yaml`. Static notebook statuses updated to merged.
 **Watch out:** when `main` is protected (#56), allow GitHub Actions to push, or the README sync fails.
