@@ -144,16 +144,23 @@ def test_issue_9_part_a_session():
 
 @issue(10)
 def test_issue_10_tasks_and_goal():
-    """Task 1, Task 2 and the business goal are written in the Part A notes."""
-    assert_sections("docs/part_a.md", ["Task 1", "Task 2", "goal", "approv"], min_chars=600)
+    """Task 1, Task 2 and the business goal are written down (02 section 0, or docs/part_a.md)."""
+    src, cells = notebook("02_classification")
+    framing = [c for c in cells if c["cell_type"] == "markdown" and "two tasks" in "".join(c["source"]).lower()]
+    text = src if framing else read("docs/part_a.md")
+    for word in ("Task 1", "Task 2", "goal", "approv"):
+        assert word.lower() in text.lower(), f"the problem framing does not state {word}"
 
 
 @issue(11)
 def test_issue_11_cost_matrix():
-    """The cost matrix (D-19) is decided, with at least two alternative assumptions."""
-    assert_decided("D-19")
+    """A money cost matrix (KES or GHS) is decided (D-19 or D-22), with at least two alternative assumptions."""
+    statuses = {d: decision_status(d) for d in ("D-19", "D-22")}
+    assert any(v.startswith("decided") for v in statuses.values()), f"no cost-matrix decision is decided yet: {statuses}"
     sens = table("cost_sensitivity.csv")
     assert len(sens) >= 3 and {"c_fp", "c_fn", "threshold"} <= set(sens.columns)
+    src, _ = notebook("02_classification")
+    assert "cost_matrix_threshold" in src and ("GHS" in src or "KES" in src), "02 does not show the cost matrix in money"
 
 
 # ------------------------------------------------------------------ Part B

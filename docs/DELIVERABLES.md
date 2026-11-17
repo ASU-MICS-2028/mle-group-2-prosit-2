@@ -18,7 +18,7 @@ Individual: one-page reflection each.
 
 ## Checklist
 
-**A:** ☐ timeline ☐ label ☐ audit of every column ☐ two tasks and goal 🟨 cost matrix in money with ≥ 2 sensitivity cases (draft, D-19)
+**A:** ☐ timeline ☑ label ☐ audit of every column ☑ two tasks and goal ☑ cost matrix in money with ≥ 2 sensitivity cases (cedis, D-22)
 **B:** ☑ EDA (imbalance, missing, skew, cardinality; `reports/EDA_REPORT.md`) ☐ `merge_asof` history, calendar, macro ☑ three validation schemes, inflation quantified ☑ ≥ 5 models ☑ classification and regression metrics ☑ bootstrap CIs on F1 and PR-AUC 🟨 interpretation (coefficient and SHAP figures; plain-language write-up #22)
 **C:** ☑ Kenya vs Ghana distributions (EDA §8, `shift_*` figures) 🟨 domain classifier or importance weighting (figures done; write-up #23, #54) ☐ evidence needed to trust Ghana predictions
 **D:** ☐ Model Card ☐ Datasheet ☐ disaggregated metrics ☐ proxy analysis ☐ mitigation ☐ regulatory map ☐ Findex analysis ☐ borrower explanation
