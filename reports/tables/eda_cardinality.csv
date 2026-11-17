@@ -1,0 +1,5 @@
+column,n_train,n_test,top_value,top_share,unseen_in_test,test_rows_unseen
+lender_id,4,8,267278,0.9417222594459173,"296540, 296542, 297182, 297183",0.18333871141228353
+loan_type,22,22,Type_1,0.8990444839339296,"Type_3, Type_8",0.1654297085081209
+New_versus_Repeat,2,2,Repeat Loan,0.9917411949777143,-,0.0
+country_id,1,2,Kenya,1.0,Ghana,0.18957728299451435

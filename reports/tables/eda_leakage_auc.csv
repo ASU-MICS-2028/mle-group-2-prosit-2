@@ -1,0 +1,9 @@
+column,auc,verdict
+markup,0.9814649770461863,leak: repay / principal - 1 (D-2)
+lender_owed_over_funded,0.9798478237116156,leak: lender owed / funded (D-2)
+Lender_portion_to_be_repaid,0.6950412723281073,dropped: its ratio to funded leaks (D-2)
+duration,0.6651261058550461,kept
+Total_Amount_to_Repay,0.6610113930704609,dropped: its ratio to principal leaks (D-2)
+Amount_Funded_By_Lender,0.6594702680811824,dropped: = amount x portion (redundant)
+Total_Amount,0.6176246312872941,"kept (log, USD); Task 1 target"
+Lender_portion_Funded,0.5227606821594334,kept

@@ -1,0 +1,3 @@
+split,missing_cells,duplicate_rows,duplicate_ids,due_eq_disb_plus_duration,funded_eq_amount_x_portion,zero_amount_funded
+train,0,0,0,1.0,1.0,8520
+test,0,0,0,1.0,1.0,1868
