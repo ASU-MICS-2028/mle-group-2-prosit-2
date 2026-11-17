@@ -110,7 +110,7 @@ people:
       in one sentence.
     why: 'Rubric A (10 pts): two tasks and the business goal'
     already: The tasks exist in code (`src/config.py`); nothing is written for the report.
-    where: Report Part A, `docs/DECISIONS.md`
+    where: '`docs/part_a.md`'
     run: —
     done_when: Both tasks and the goal are written and agreed at the Part A session (#9).
     steps:
@@ -231,7 +231,7 @@ people:
     why: 'Rubric B: interpretation; LO6: explanations'
     already: 'Figures: `interp_coefficients.png` (logistic regression), `interp_shap_lightgbm.png`. Finding: the
       tree model''s top drivers (lender share, month) mostly mark the period, not the borrower.'
-    where: Report Part B, `notebooks/03_regression.ipynb`
+    where: '`docs/interpretation.md` (then the report''s Part B)'
     run: '`make figures`'
     done_when: The interpretation is written and matches the figures.
     steps:
@@ -242,7 +242,7 @@ people:
     what: Retrain without each feature group to see what carries the signal.
     why: Optional; strengthens rubric B interpretation
     already: Nothing yet; the feature lists live in `src/config.py`.
-    where: '`scripts/` (new ablation script), `reports/`'
+    where: a new ablation script in `scripts/`, table saved as `reports/tables/ablation.csv`
     run: —
     done_when: A table and figure show which groups matter.
     steps:
@@ -299,7 +299,7 @@ people:
     what: The brief asks what NkwaPay would need before trusting the model in Ghana.
     why: 'Brief Part C: what evidence would make Ghana scores trustworthy'
     already: Every Ghana score is already flagged `needs_review` by the scorer.
-    where: Report Part C
+    where: '`docs/audit/ghana_trust.md`'
     run: —
     done_when: A short, concrete plan is in the report.
     steps:
@@ -322,7 +322,7 @@ people:
     what: Apply one mitigation and show what it changes and what it costs.
     why: 'Rubric D: a mitigation with before/after'
     already: The draft in 04 approves more new borrowers without showing the cost.
-    where: '`notebooks/04_transfer_and_fairness.ipynb`'
+    where: '`notebooks/04_transfer_and_fairness.ipynb`, save the table as `reports/tables/fairness_mitigation.csv`'
     run: —
     done_when: A before/after table and a recommendation.
     steps:
@@ -368,7 +368,7 @@ people:
     why: 'Brief Part D.4: debt and access'
     already: 'EDA §10: only 7.2% of adults borrow formally; women, rural, poorer and less-educated adults have less
       access (`eda_findex_access.png`).'
-    where: Report Part D
+    where: '`docs/audit/findex.md` (or notebook 04)'
     run: '`make eda`'
     done_when: A paragraph with the figure.
     steps:
@@ -431,7 +431,7 @@ everyone:
   what: 'Part A session: agree the loan timeline, the label, the feature audit and the leakage rulings.'
   why: Rubric A (10 pts)
   already: 'Drafts: `docs/feature_audit.md`, `docs/DECISIONS.md` (D-2 to D-7, D-18 to D-20 are drafts).'
-  where: '`docs/DECISIONS.md`, `docs/feature_audit.md`'
+  where: '`docs/part_a.md` (timeline, label, decision moment), `docs/DECISIONS.md`'
   run: —
   done_when: All Part A decisions are marked decided.
   steps:

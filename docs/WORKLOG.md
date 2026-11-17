@@ -9,6 +9,10 @@ Add an entry at the **top** at the end of each session, 5–10 lines. Link to no
 
 ---
 
+## 2026-11-17 (later still) · Bernard (P3 / PM) · `p3/58-readme-status-after-merge` (PR #58)
+**Did:** Acceptance tests for every issue (`tests/acceptance/test_issues.py`, `make acceptance`), the *Issue acceptance* Action (PR must pass the tests of the issues it closes; a closed issue whose test fails is reopened), and an "Automated check" row on every README card (D-22). Fixed the README status Action failing before its script reached main. Repo About and topics set. No more Claude co-author trailers in commits.
+**Found:** scoreboard today: 18 checks pass; open issues whose check already passes (#8, #15, #18, #19, #20, #33) can be closed by their owners after review; 28 fail as expected for open work.
+
 ## 2026-11-17 (late) · Bernard (P3 / PM) · `p3/58-readme-status-after-merge`
 **Did:** PRs #47 and #57 merged; closed #21. The README status is now generated: `scripts/update_readme.py` rebuilds the issue badge, progress table and per-person cards from live issues and PRs; the *README status* Action runs it on every issue/PR change, daily and on demand (D-21). Card text moved to `docs/issue_cards.yaml`. Static notebook statuses updated to merged.
 **Watch out:** when `main` is protected (#56), allow GitHub Actions to push, or the README sync fails.
