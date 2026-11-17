@@ -77,7 +77,7 @@ Generated from GitHub on **17 Nov 2026** by `scripts/update_readme.py` (the *REA
 | **C · Cross-market transfer** | in B, D | ![0/3](https://img.shields.io/badge/0%2F3-closed-9aa0a6?style=flat-square) | [#23](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/23) [#24](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/24) [#54](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/54) |
 | **D · Ethics & regulation** | 20 pts | ![0/7](https://img.shields.io/badge/0%2F7-closed-9aa0a6?style=flat-square) | [#25](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/25) [#26](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/26) [#27](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/27) [#28](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/28) [#29](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/29) [#49](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/49) [#50](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/50) |
 | **E · Deployment** | 15 pts | ![2/4](https://img.shields.io/badge/2%2F4-closed-d4a72c?style=flat-square) | [#51](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/51) [#53](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/53) |
-| **Deliverables** | 5 pts + all | ![0/6](https://img.shields.io/badge/0%2F6-closed-9aa0a6?style=flat-square) | [#32](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/32) [#33](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/33) [#34](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/34) ⏳ [#35](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/35) [#36](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/36) [#37](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/37) |
+| **Deliverables** | 5 pts + all | ![0/6](https://img.shields.io/badge/0%2F6-closed-9aa0a6?style=flat-square) | [#32](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/32) [#33](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/33) [#34](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/34) [#35](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/35) [#36](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/36) [#37](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/37) |
 
 <sub>⏳ = a pull request for it is open.</sub>
 
@@ -119,7 +119,7 @@ Find your name, open each issue card and follow the steps. Every card says what 
 | <img src="https://github.com/henryhkb.png?size=60" width="28"> | **Henry Kofi Brandoh** · Classification & evaluation | 1 | 0 | 1 | [Henry's issues](#henryhkb) |
 | <img src="https://github.com/adjeibernardmarfo.png?size=60" width="28"> | **Bernard Marfo Adjei** · Regression, deployment & project lead | 7 | 0 | 4 | [Bernard's issues](#adjeibernardmarfo) |
 | <img src="https://github.com/eugene-sew.png?size=60" width="28"> | **Eugene** · Transfer & fairness | 14 | 0 | 8 | [Eugene's issues](#eugene-sew) |
-| 👥 | **Everyone** | 6 | 1 | 5 | [Shared issues](#everyone) |
+| 👥 | **Everyone** | 6 | 0 | 6 | [Shared issues](#everyone) |
 
 ### How to pick up an issue
 
@@ -776,7 +776,7 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open*
 </details>
 
 <details>
-<summary><img alt="a pull request for it is open" src="https://img.shields.io/badge/-in_review-1f4e79?style=flat-square"> <b>#34 · Technical report (6–10 pages)</b></summary>
+<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#34 · Technical report (6–10 pages)</b></summary>
 
 | | |
 | --- | --- |
@@ -787,7 +787,6 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open*
 | **How to run** | — |
 | **Done when** | Submitted. |
 | **Automated check** | The technical report is in docs/report/. Run `make acceptance ISSUE=34`; it also runs on every pull request that says `Closes #34` and when the issue is closed (a failing check reopens it). |
-| **Pull request** | [#63](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/pull/63) |
 
 **Steps**
 
