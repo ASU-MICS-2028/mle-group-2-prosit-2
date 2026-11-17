@@ -7,10 +7,10 @@ At the debrief you must "explain, defend and reproduce your work without AI". If
 | ☐ | Work | Evidence | Owner |
 | --- | --- | --- | --- |
 | ☐ | Loan timeline; mark the decision moment and closest column (`disbursement_date`) | Report Part A | P1 |
-| ✅ | Label definition and time window | `02_classification` §0 (PR #XX) | P2 |
+| ✅ | Label definition and time window | `02_classification` §0 (PR #60) | P2 |
 | 🟨 | Feature audit table for all 16 Train columns (draft; confirm in Part A session) | `docs/feature_audit.md` | P1 |
-| ✅ | Task 1 (amount) and Task 2 (default), business goal with threshold and approval floor | `02_classification` §0, D-22 (PR #XX) | P2 |
-| ✅ | Cost matrix in money, with sensitivity at 2 other recovery rates: in cedis from Ghana's loans, p\* 0.029 / 0.036 / 0.047 (D-22) | `02_classification` §9b (PR #XX) | P2 |
+| ✅ | Task 1 (amount) and Task 2 (default), business goal with threshold and approval floor | `02_classification` §0, D-22 (PR #60) | P2 |
+| ✅ | Cost matrix in money, with sensitivity at 2 other recovery rates: in cedis from Ghana's loans, p\* 0.029 / 0.036 / 0.047 (D-22) | `02_classification` §9b (PR #60) | P2 |
 
 **Self-check:** Why can't `Total_Amount_to_Repay` be used at decision time? What does a false negative cost in cedis? Why is the threshold C_FP / (C_FP + C_FN)?
 
@@ -43,7 +43,7 @@ At the debrief you must "explain, defend and reproduce your work without AI". If
 | --- | --- | --- | --- |
 | ✅ | Stratified vs GroupKFold vs temporal; how inflated the naive score was; which we trust | `02_classification` §5, `reports/tables/task2_model_summary.csv` | Henry |
 | ✅ | ≥ 5 models incl. majority baseline (9 Task 2, 7 Task 1; best by customer: MLP / Random Forest PR-AUC 0.21) | `reports/tables/*_model_summary.csv` | all |
-| ✅ | Threshold sweep, confusion matrix, cost-based operating point (Ghana p\* 0.036: approve 88.6%, −44% expected loss) | `02_classification` §9, §9b (PR #XX) | Henry |
+| ✅ | Threshold sweep, confusion matrix, cost-based operating point (Ghana p\* 0.036: approve 88.6%, −44% expected loss) | `02_classification` §9, §9b (PR #60) | Henry |
 | ✅ | Calibration before/after (Platt: ECE 0.30 → 0.002) | `02_classification` §8 | Henry |
 | ✅ | Bootstrap 95% CIs on F1 and PR-AUC vs the ±0.0263 noise floor (customer-level) | `02_classification` §10 | Henry |
 | ✅ | RMSE/MAE on log and original (USD) scale; residual plot | `03_regression`, `reports/figures/t1_residuals_*.png` | Bernard |

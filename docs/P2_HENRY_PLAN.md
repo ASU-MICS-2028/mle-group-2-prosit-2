@@ -14,7 +14,7 @@
 - [x] Finish the leak check (`extra_pct` median & IQR by outcome in `src/analysis/target_eda.py`).
 
 **2 · Part A: label, tasks, cost matrix**
-- [x] Define label and window; write Task 1 (amount) and Task 2 (default) (`02_classification` §0, PR #XX).
+- [x] Define label and window; write Task 1 (amount) and Task 2 (default) (`02_classification` §0, PR #60).
 - [x] Cost matrix in cedis/shillings from the data. **Don't reuse the brief's example numbers.** (KES draft by Bernard, D-19; cedis from Ghana's own loans, D-22: 3,002 GHS, 3.0% fee)
 - [x] Threshold = C_FP / (C_FP + C_FN); show it under two other recovery assumptions (Ghana p\* 0.029 / 0.036 / 0.047; 0.15–0.23 if 6 future loans are lost).
 
@@ -35,7 +35,7 @@
 - [x] Cost-based operating point; bootstrap 95% CIs on F1 and PR-AUC against the ±0.0263 noise floor (§9–10 by Bernard, verified; §9b Ghana by Henry).
 
 **6 · Write up**: `02_classification` runs from a fresh kernel; logistic derivation (log-odds → likelihood → BCE → gradient Xᵀ(σ(Xw) − y), checked against autograd); results; reflection.
-- [x] `02_classification` runs top to bottom from a fresh kernel (`nbconvert --execute`, macOS); conclusions in §11 (PR #XX).
+- [x] `02_classification` runs top to bottom from a fresh kernel (`nbconvert --execute`, macOS); conclusions in §11 (PR #60).
 - [ ] Logistic regression derivation (`docs/derivations/logistic.md`, #32).
 - [ ] Personal reflection (#37).
 
