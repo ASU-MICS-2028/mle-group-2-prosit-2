@@ -33,3 +33,53 @@ MACRO_INDICATORS = {
     "Deposit interest rate (%)": "macro_deposit_rate",
     "Unemployment rate": "macro_unemployment",
 }
+
+# Shared feature, target, slice, and output schemas (single source of truth across src/ and notebooks/)
+KEY_COLUMNS = ["ID", "split", "target", "customer_id", "tbl_loan_id", "disbursement_date"]
+CAT_FEATURES = ["lender_id", "loan_type"]
+FAIRNESS_SLICES = ["country_id", "lender_id", "loan_type", "is_new_borrower"]
+
+NUM_FEATURES_T2 = [
+    "log_amount_usd",
+    "log_amount_local",
+    "duration",
+    "Lender_portion_Funded",
+    "is_new_borrower",
+    "n_lenders_on_loan",
+    "n_past_loans",
+    "days_since_last_loan",
+    "n_past_labelled",
+    "n_past_defaults",
+    "past_default_rate",
+    "days_since_last_default",
+    "disb_month",
+    "disb_dow",
+    "disb_dom",
+    *MACRO_INDICATORS.values(),
+]
+
+# Task 1 predicts loan amount, so amount-derived features are excluded to prevent target leakage.
+NUM_FEATURES_T1 = [
+    c for c in NUM_FEATURES_T2 if c not in ("log_amount_usd", "log_amount_local")
+]
+
+PRED_COLUMNS = [
+    "ID",
+    "customer_id",
+    "country_id",
+    "lender_id",
+    "loan_type",
+    "is_new_borrower",
+    "split",
+    "scheme",
+    "fold",
+    "model",
+    "y_true",
+    "y_pred",
+]
+
+# Default Ghanaian cost-matrix parameters (override via CLI or function args as data-driven values are finalized)
+DEFAULT_PRINCIPAL_GHS = 300.0
+DEFAULT_FEE_RATE = 0.15
+DEFAULT_RECOVERY_RATE = 0.20
+DEFAULT_COLLECTION_COST_GHS = 25.0

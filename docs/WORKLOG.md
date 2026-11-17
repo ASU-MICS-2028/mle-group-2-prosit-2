@@ -9,6 +9,18 @@ Add an entry at the **top** at the end of each session, 5–10 lines. Link to no
 
 ---
 
+## 2026-11-17 · Bernard (P3 / PM) · `p3/13-30-senior-scaffolding`
+**Did:** Converted non-deliverable `notebooks/explore_target_henry.ipynb` into `src/eda_target.py` (with full Issue `#6` breakdowns: tenure, year, month, lender, loan type, `extra_pct`, and 2023+ lender/population shift) and deleted `notebooks/explore_target_henry.ipynb`; refactored `notebooks/02_classification.ipynb` and created `notebooks/03_regression.ipynb` and `notebooks/04_transfer_and_fairness.ipynb` as thin, top-to-bottom executable wrappers importing 100% from `src/`; added `eda-target` to `Makefile`, enforced the exact 4-deliverable-notebooks rule in `tests/test_leakage_and_splits.py`, and recorded Decision D-17.
+**Found:** `python -m src.eda_target` shows the 2023+ jump (1.33% -> 9.53% default) is driven by **both** lender mix (`267278` share dropped 97.1% -> 49.0%) **and** nearly 10x higher defaults inside `267278` itself (0.95% -> 9.12%).
+**Next:** Merge `p3/13-30-senior-scaffolding` PR (`Closes #13, refs #6, #30`), hold Part A session (#9) to confirm D-2..D-7, and complete `docs/audit/`, `docs/derivations/`, technical report, slides, and individual reflections.
+**Watch out:** Non-deliverable notebooks must be written as scripts in `src/`, not added to `notebooks/` — CI `test_only_four_deliverable_notebooks_exist` enforces this.
+
+## 2026-11-16 · Bernard (P3 / PM) · `p3/13-30-senior-scaffolding`
+**Did:** Built shared senior-level ML engineering scaffolding on `p3/13-30-senior-scaffolding` without modifying P1 (`src/features.py`, `01_eda.ipynb`) or P2 (`02_classification.ipynb`, `explore_target_henry.ipynb`) files: added `NUM_FEATURES_T1`, `NUM_FEATURES_T2`, `PRED_COLUMNS`, and cost constants to `src/config.py`; created `src/preprocess.py` (`transforms.py` alias), `src/datamodule.py`, `src/train.py`, `src/evaluate.py`, `src/fairness.py`, and `src/score.py` (Part E scorer + 1,000-call latency benchmark); added automated `pytest` guardrails (`tests/`), `ci.yml`, `pr-issue-check.yml`, `.pre-commit-config.yaml`, `pyproject.toml`, and `Makefile`; streamlined `README.md` (moving full data dictionary/glossary to `docs/DATA_AND_PIPELINE_GUIDE.md`) and added `docs/P3_BERNARD_PLAN.md` & `docs/P4_EUGENE_PLAN.md`.
+**Found:** `data/processed/features.parquet` has shape `(87248, 31)` matching `src/features.py`. Excluding `log_amount_usd` and `log_amount_local` from `NUM_FEATURES_T1` prevents Task 1 target leakage while keeping all 19 numeric features for Task 2.
+**Next:** Henry reviews `p3/13-30-senior-scaffolding` PR (`Closes #13, refs #30`); team runs `make train` / `make eval`, holds Part A session (#9) to finalize D-2..D-7, and finishes `02_classification.ipynb`, `03_regression.ipynb`, and `04_transfer_and_fairness.ipynb`.
+**Watch out:** `.venv` is managed with `uv` (`uv pip install`); added `pytest>=7.4` and `ruff>=0.3` to `requirements.txt`. Run `pytest tests/ -v` and `ruff check src/ tests/` before every PR.
+
 ## 2026-11-10 · Perfect (P1) · `p1/docs-sync`
 **Did:** Synced every doc to `main` after #39–#41: README Status table, PROGRESS (done table, findings, what's left, blockers), WORKLOG titles that still said "uncommitted" or "not yet pushed", LEARNING_OUTCOMES, P1 and P2 plans. Added the rule **docs ship with code**: README section "Keeping the docs current", `CLAUDE.md`, an extended PR template and the `Docs freshness` GitHub Action (D-15).
 **Found:** The README Status table was stale because it was never part of a PR checklist. Henry's #41 now does use `features.parquet` and `fold_group`, so an earlier note that it did not is out of date.
