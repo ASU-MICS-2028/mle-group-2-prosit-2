@@ -11,7 +11,7 @@
   <img alt="Tests" src="https://img.shields.io/badge/tests-127_passing-2e7d32?style=flat-square">
   <img alt="Models" src="https://img.shields.io/badge/models-16_trained-1f4e79?style=flat-square">
   <img alt="Figures" src="https://img.shields.io/badge/figures-47-1f4e79?style=flat-square">
-  <img alt="Issues" src="https://img.shields.io/badge/issues-10_of_45_closed-d4a72c?style=flat-square">
+  <!-- status:badge --><img alt="Issues" src="https://img.shields.io/badge/issues-12_of_45_closed-d4a72c?style=flat-square"><!-- /status:badge -->
   <img alt="Deadline" src="https://img.shields.io/badge/deadline-19_Nov_2026-b03a2e?style=flat-square">
 </p>
 
@@ -66,27 +66,30 @@ Reviews rotate **Perfect → Henry → Bernard → Eugene → Perfect**. Every p
 
 ## Progress
 
-Status as of **17 Nov 2026**. GitHub's [roadmap issue #1](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/1) is the live source; this table adds work that is finished but still in review.
+<!-- status:progress -->
+Generated from GitHub on **17 Nov 2026** by `scripts/update_readme.py` (the *README status* Action keeps it current).
 
-<sub><img src="https://img.shields.io/badge/-done-2e7d32?style=flat-square"> closed on GitHub &nbsp; <img src="https://img.shields.io/badge/-in_review-1f4e79?style=flat-square"> finished, waiting in a pull request &nbsp; <img src="https://img.shields.io/badge/-in_progress-d4a72c?style=flat-square"> started &nbsp; <img src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> not started</sub>
-
-| Part | Rubric | Issues closed | Status |
+| Part | Rubric | Closed | Still open |
 | --- | :---: | :---: | --- |
-| **Setup** | — | ![3/4](https://img.shields.io/badge/3%2F4-done-2e7d32?style=flat-square) | Data profiled, roles, repo, shared config. Left: protect `main` ([#56](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/56)) |
-| **A · Frame the problem** | 10 pts | ![2/7](https://img.shields.io/badge/2%2F7-in_progress-d4a72c?style=flat-square) | Structure and target EDA done; full EDA report in review. Left: Part A session, tasks and goal, cost matrix sign-off |
-| **B · Build & evaluate** | 30 + 20 pts | ![4/14](https://img.shields.io/badge/4%2F14-in_review-1f4e79?style=flat-square) | All 16 models trained; validation study, calibration, CIs and Task 1 metrics done (in review). Left: model choice, interpretation write-up, ablation, temporal calibration |
-| **C · Cross-market transfer** | (in B/D) | ![0/3](https://img.shields.io/badge/0%2F3-in_progress-d4a72c?style=flat-square) | Shift figures and domain classifier done; Eugene to own the analysis and notebook 04 |
-| **D · Ethics & regulation** | 20 pts | ![0/7](https://img.shields.io/badge/0%2F7-to_do-9aa0a6?style=flat-square) | Fairness and Findex figures ready; Model Card, Datasheet, regulation, mitigation not started |
-| **E · Deployment** | 15 pts | ![1/4](https://img.shields.io/badge/1%2F4-in_review-1f4e79?style=flat-square) | Scorer with reasons, review flags and latency (in review). Left: final model, limit rule |
-| **Deliverables** | 5 pts + all | ![0/6](https://img.shields.io/badge/0%2F6-to_do-9aa0a6?style=flat-square) | Derivations, report, audit, slides, reflections |
+| **Setup** | — | ![3/4](https://img.shields.io/badge/3%2F4-closed-d4a72c?style=flat-square) | [#56](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/56) |
+| **A · Frame the problem** | 10 pts | ![2/7](https://img.shields.io/badge/2%2F7-closed-d4a72c?style=flat-square) | [#7](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/7) [#8](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/8) [#9](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/9) [#10](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/10) [#11](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/11) |
+| **B · Build & evaluate** | 30 + 20 pts | ![5/14](https://img.shields.io/badge/5%2F14-closed-d4a72c?style=flat-square) | [#15](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/15) [#17](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/17) [#18](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/18) [#19](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/19) [#20](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/20) [#22](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/22) [#48](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/48) [#52](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/52) [#55](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/55) |
+| **C · Cross-market transfer** | in B, D | ![0/3](https://img.shields.io/badge/0%2F3-closed-9aa0a6?style=flat-square) | [#23](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/23) [#24](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/24) [#54](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/54) |
+| **D · Ethics & regulation** | 20 pts | ![0/7](https://img.shields.io/badge/0%2F7-closed-9aa0a6?style=flat-square) | [#25](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/25) [#26](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/26) [#27](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/27) [#28](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/28) [#29](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/29) [#49](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/49) [#50](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/50) |
+| **E · Deployment** | 15 pts | ![2/4](https://img.shields.io/badge/2%2F4-closed-d4a72c?style=flat-square) | [#51](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/51) [#53](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/53) |
+| **Deliverables** | 5 pts + all | ![0/6](https://img.shields.io/badge/0%2F6-closed-9aa0a6?style=flat-square) | [#32](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/32) [#33](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/33) [#34](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/34) [#35](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/35) [#36](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/36) [#37](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/37) |
+
+<sub>⏳ = a pull request for it is open.</sub>
+
+<!-- /status:progress -->
 
 ### Notebooks
 
 | Notebook | Owner | Status |
 | --- | --- | --- |
 | [`01_eda.ipynb`](notebooks/01_eda.ipynb) | Perfect | ![done](https://img.shields.io/badge/-done-2e7d32?style=flat-square) Train/Test structure (PRs #38, #39); link the EDA report ([#48](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/48)) |
-| [`02_classification.ipynb`](notebooks/02_classification.ipynb) | Henry | ![in review](https://img.shields.io/badge/-in_review-1f4e79?style=flat-square) Henry's original restored + calibration, cost threshold, CIs (PR #47) |
-| [`03_regression.ipynb`](notebooks/03_regression.ipynb) | Bernard | ![in review](https://img.shields.io/badge/-in_review-1f4e79?style=flat-square) Task 1 models, residuals, scorer demo (PR #47); Task 2 tree to add |
+| [`02_classification.ipynb`](notebooks/02_classification.ipynb) | Henry | ![merged](https://img.shields.io/badge/-merged-2e7d32?style=flat-square) Henry's original restored + calibration, cost threshold, CIs (PR #47); Henry to verify #19, #20 |
+| [`03_regression.ipynb`](notebooks/03_regression.ipynb) | Bernard | ![merged](https://img.shields.io/badge/-merged-2e7d32?style=flat-square) Task 1 models, residuals, scorer demo (PR #47); Task 2 tree to add (#17) |
 | [`04_transfer_and_fairness.ipynb`](notebooks/04_transfer_and_fairness.ipynb) | Eugene | ![needs owner](https://img.shields.io/badge/-needs_owner-b03a2e?style=flat-square) AI draft with known problems ([#54](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/54)) |
 
 ### Done
@@ -105,15 +108,16 @@ Status as of **17 Nov 2026**. GitHub's [roadmap issue #1](https://github.com/ASU
 
 ## What's left, by person
 
-Find your name, open each issue card (click the row) and follow the steps. Every card says what the task is, why it matters for the grade, what already exists, where to work, how to run it, and when it is done. Close an issue with a pull request whose description says `Closes #<number>`. Every open issue is **assigned on GitHub** to its owner; signed in, [see the issues assigned to you](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3A%40me).
+<!-- status:people -->
+Find your name, open each issue card and follow the steps. Every card says what the task is, why it matters for the grade, what already exists, where to work, how to run it, and when it is done. Close an issue with a pull request whose description says `Closes #<number>`. Every open issue is **assigned on GitHub** to its owner; signed in, [see the issues assigned to you](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3A%40me).
 
-<sub><img alt="finished, waiting in a pull request" src="https://img.shields.io/badge/-in_review-1f4e79?style=flat-square"> finished, waiting in a pull request &nbsp; <img alt="evidence exists, owner must finish" src="https://img.shields.io/badge/-partly_done-d4a72c?style=flat-square"> evidence exists, owner must finish &nbsp; <img alt="models already ran, owner must review" src="https://img.shields.io/badge/-trained,_review-d4a72c?style=flat-square"> models already ran, owner must review &nbsp; <img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> not started &nbsp; <img alt="start today" src="https://img.shields.io/badge/-start_now-b03a2e?style=flat-square"> start today</sub>
+<sub><img alt="a pull request for it is open" src="https://img.shields.io/badge/-in_review-1f4e79?style=flat-square"> a pull request for it is open &nbsp; <img alt="work is on main; owner verifies and closes" src="https://img.shields.io/badge/-merged,_verify_%26_close-2e7d32?style=flat-square"> work is on main; owner verifies and closes &nbsp; <img alt="evidence exists, owner must finish" src="https://img.shields.io/badge/-partly_done-d4a72c?style=flat-square"> evidence exists, owner must finish &nbsp; <img alt="models already ran, owner must review" src="https://img.shields.io/badge/-trained,_review-d4a72c?style=flat-square"> models already ran, owner must review &nbsp; <img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> not started &nbsp; <img alt="start today" src="https://img.shields.io/badge/-start_now-b03a2e?style=flat-square"> start today</sub>
 
-| | Person | Open | In review | Not started | Jump to |
+| | Person | Open | In review or merged | Not started | Jump to |
 | :---: | --- | :---: | :---: | :---: | --- |
 | <img src="https://github.com/peaElorm.png?size=60" width="28"> | **Perfect Elorm Avugla** · Data & features | 3 | 0 | 1 | [Perfect's issues](#peaelorm) |
 | <img src="https://github.com/henryhkb.png?size=60" width="28"> | **Henry Kofi Brandoh** · Classification & evaluation | 6 | 2 | 3 | [Henry's issues](#henryhkb) |
-| <img src="https://github.com/adjeibernardmarfo.png?size=60" width="28"> | **Bernard Marfo Adjei** · Regression, deployment & project lead | 9 | 2 | 4 | [Bernard's issues](#adjeibernardmarfo) |
+| <img src="https://github.com/adjeibernardmarfo.png?size=60" width="28"> | **Bernard Marfo Adjei** · Regression, deployment & project lead | 7 | 0 | 4 | [Bernard's issues](#adjeibernardmarfo) |
 | <img src="https://github.com/eugene-sew.png?size=60" width="28"> | **Eugene** · Transfer & fairness | 14 | 0 | 8 | [Eugene's issues](#eugene-sew) |
 | 👥 | **Everyone** | 6 | 0 | 6 | [Shared issues](#everyone) |
 
@@ -128,11 +132,11 @@ git push -u origin p4/54-fix-notebook-04
 gh pr create --fill                               # description must say: Closes #54
 ```
 
-Then add a line to `docs/WORKLOG.md` and `docs/PROGRESS.md` (a check enforces it) and ask the next person in the review rotation to approve.
+Then add a line to `docs/WORKLOG.md` and `docs/PROGRESS.md` (a check enforces it) and ask the next person in the review rotation to approve. The cards below update themselves when issues and pull requests change.
 
 <h3 id="peaelorm"><img src="https://github.com/peaElorm.png?size=60" width="32" align="center"> Perfect Elorm Avugla</h3>
 
-Data & features · [peaElorm](https://github.com/peaElorm) · **3 open** (0 in review, 1 not started) · [Perfect's assigned issues on GitHub](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3ApeaElorm)
+Data & features · [peaElorm](https://github.com/peaElorm) · **3 open** · [Perfect's assigned issues on GitHub](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3ApeaElorm)
 
 <details>
 <summary><img alt="models already ran, owner must review" src="https://img.shields.io/badge/-trained,_review-d4a72c?style=flat-square"> <b>#15 · Models: baselines, kNN, SVM</b></summary>
@@ -204,45 +208,45 @@ Data & features · [peaElorm](https://github.com/peaElorm) · **3 open** (0 in r
 
 <h3 id="henryhkb"><img src="https://github.com/henryhkb.png?size=60" width="32" align="center"> Henry Kofi Brandoh</h3>
 
-Classification & evaluation · [henryhkb](https://github.com/henryhkb) · **6 open** (2 in review, 3 not started) · [Henry's assigned issues on GitHub](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3Ahenryhkb)
+Classification & evaluation · [henryhkb](https://github.com/henryhkb) · **6 open** · [Henry's assigned issues on GitHub](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3Ahenryhkb)
 
 <details>
-<summary><img alt="finished, waiting in a pull request" src="https://img.shields.io/badge/-in_review-1f4e79?style=flat-square"> <b>#19 · Calibration, threshold sweep and cost-based operating point</b></summary>
+<summary><img alt="work is on main; owner verifies and closes" src="https://img.shields.io/badge/-merged,_verify_%26_close-2e7d32?style=flat-square"> <b>#19 · Calibration, threshold sweep and cost-based operating point</b></summary>
 
 | | |
 | --- | --- |
 | **What it is** | Calibration of the default probabilities, a threshold sweep, and the cost-based operating point with a confusion matrix. |
 | **Why it matters** | Rubric C (20 pts): PR-AUC, calibration and a cost-based operating point |
-| **Already done** | Sections 8 and 9 of `02_classification.ipynb` were added in PR #47: Platt vs isotonic calibration (ECE 0.30 → 0.002), threshold sweep, confusion matrix, F1-best threshold for comparison. |
+| **Already done** | Merged to main in PR #47: sections 8 and 9 of `02_classification.ipynb` (Platt vs isotonic calibration, ECE 0.30 → 0.002; threshold sweep; confusion matrix; F1-best threshold for comparison). |
 | **Where to work** | `notebooks/02_classification.ipynb` §8–9, `src/evaluation/calibration.py`, `src/evaluation/metrics.py` |
 | **How to run** | Run the notebook top to bottom |
-| **Done when** | PR #47 is merged and you agree with the sections; close the issue. |
+| **Done when** | You have rerun and can explain the sections; close the issue. |
 
 **Steps**
 
-1. Review sections 8–9 in PR #47 and rerun them yourself.
-2. Make sure you can explain why calibration comes before the threshold and why Platt is used in the scorer.
-3. Approve PR #47 (you are the reviewer) or comment on what to change.
+1. Rerun sections 8–9 of `02_classification.ipynb` yourself.
+2. Make sure you can explain why calibration comes before the threshold and why the scorer uses Platt.
+3. Change anything you disagree with in a pull request; otherwise comment and close the issue.
 
 [Open issue #19 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/19)
 
 </details>
 
 <details>
-<summary><img alt="finished, waiting in a pull request" src="https://img.shields.io/badge/-in_review-1f4e79?style=flat-square"> <b>#20 · Bootstrap 95% CIs on F1 and PR-AUC; noise floor</b></summary>
+<summary><img alt="work is on main; owner verifies and closes" src="https://img.shields.io/badge/-merged,_verify_%26_close-2e7d32?style=flat-square"> <b>#20 · Bootstrap 95% CIs on F1 and PR-AUC; noise floor</b></summary>
 
 | | |
 | --- | --- |
 | **What it is** | 95% bootstrap confidence intervals on PR-AUC and F1, and whether the model beats the baseline beyond the ±0.0263 noise floor. |
 | **Why it matters** | Rubric C (20 pts): bootstrap CIs and the noise floor |
-| **Already done** | Section 10 of `02_classification` (PR #47) resamples customers, not rows; both models beat the baseline; LogReg and MLP intervals overlap. |
+| **Already done** | Merged to main in PR #47: section 10 of `02_classification` resamples customers, not rows; both models beat the baseline; logistic regression and MLP intervals overlap. |
 | **Where to work** | `notebooks/02_classification.ipynb` §10, `src/evaluation/bootstrap.py` |
 | **How to run** | Run the notebook |
-| **Done when** | PR #47 is merged; close the issue. |
+| **Done when** | You have rerun and can explain it; close the issue. |
 
 **Steps**
 
-1. Review section 10 and `src/evaluation/bootstrap.py`.
+1. Rerun section 10 and read `src/evaluation/bootstrap.py`.
 2. Be ready to explain why we resample customers (a customer's loans are correlated).
 
 [Open issue #20 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/20)
@@ -340,47 +344,7 @@ Classification & evaluation · [henryhkb](https://github.com/henryhkb) · **6 op
 
 <h3 id="adjeibernardmarfo"><img src="https://github.com/adjeibernardmarfo.png?size=60" width="32" align="center"> Bernard Marfo Adjei</h3>
 
-Regression, deployment & project lead · [adjeibernardmarfo](https://github.com/adjeibernardmarfo) · **9 open** (2 in review, 4 not started) · [Bernard's assigned issues on GitHub](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3Aadjeibernardmarfo)
-
-<details>
-<summary><img alt="finished, waiting in a pull request" src="https://img.shields.io/badge/-in_review-1f4e79?style=flat-square"> <b>#30 · Scoring service: saved model + function returning probability, decision, limit and top 3 reasons</b></summary>
-
-| | |
-| --- | --- |
-| **What it is** | The scoring service: one application in; probability, decision, limit and top 3 reasons out. |
-| **Why it matters** | Rubric E (15 pts): working scoring service with reason codes |
-| **Already done** | PR #47 fixes the Ghana bugs (limit in shillings, 0% risk), restricts reasons to what a borrower can act on, and adds review flags. Demo: `make score`. |
-| **Where to work** | `src/serving/` |
-| **How to run** | `make score` |
-| **Done when** | Closes automatically when PR #47 merges. |
-
-**Steps**
-
-1. Get PR #47 reviewed by Henry and merged.
-
-[Open issue #30 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/30)
-
-</details>
-
-<details>
-<summary><img alt="finished, waiting in a pull request" src="https://img.shields.io/badge/-in_review-1f4e79?style=flat-square"> <b>#21 · Regression metrics on log and original scales; residual plot</b></summary>
-
-| | |
-| --- | --- |
-| **What it is** | RMSE and MAE on the log and original scales, plus a residual-vs-fitted plot, for the loan-amount models. |
-| **Why it matters** | Rubric C: regression metrics on both scales and residual diagnostics |
-| **Already done** | In `03_regression` and `reports/figures/t1_*` (PR #47 and the stacked PR). |
-| **Where to work** | `notebooks/03_regression.ipynb` |
-| **How to run** | `make eval` |
-| **Done when** | PRs merged; close the issue. |
-
-**Steps**
-
-1. Get the PRs merged; add one reading paragraph to the report.
-
-[Open issue #21 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/21)
-
-</details>
+Regression, deployment & project lead · [adjeibernardmarfo](https://github.com/adjeibernardmarfo) · **7 open** · [Bernard's assigned issues on GitHub](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3Aadjeibernardmarfo)
 
 <details>
 <summary><img alt="evidence exists, owner must finish" src="https://img.shields.io/badge/-partly_done-d4a72c?style=flat-square"> <b>#17 · Models: OLS, Ridge, Lasso and decision tree</b></summary>
@@ -534,7 +498,7 @@ Regression, deployment & project lead · [adjeibernardmarfo](https://github.com/
 
 <h3 id="eugene-sew"><img src="https://github.com/eugene-sew.png?size=60" width="32" align="center"> Eugene</h3>
 
-Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open** (0 in review, 8 not started) · [Eugene's assigned issues on GitHub](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3Aeugene-sew)
+Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open** · [Eugene's assigned issues on GitHub](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3Aeugene-sew)
 
 <details>
 <summary><img alt="start today" src="https://img.shields.io/badge/-start_now-b03a2e?style=flat-square"> <b>#54 · Notebook 04: rerun on the new pipeline and fix its four known problems</b></summary>
@@ -867,6 +831,7 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open*
 **Steps**
 
 1. An admin: Settings → Branches → add rule for `main` → require a pull request, 1 approval, and status checks `lint-and-test`, `docs-updated`, `check-issue-link`.
+2. Allow GitHub Actions to push to `main` (add it to the bypass list), or the *README status* Action cannot commit its updates.
 
 [Open issue #56 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/56)
 
@@ -893,7 +858,7 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open*
 </details>
 
 <details>
-<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#34 · Technical report (6â€“10 pages)</b></summary>
+<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#34 · Technical report (6–10 pages)</b></summary>
 
 | | |
 | --- | --- |
@@ -953,6 +918,9 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open*
 [Open issue #37 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/37)
 
 </details>
+
+
+<!-- /status:people -->
 
 ---
 
@@ -1041,7 +1009,8 @@ Every model writes the same prediction columns to `preds/` (`ID, customer_id, co
 4. **Tests and lint pass** (`make test`, `make lint`); CI runs both on Python 3.12.
 5. **One approval from the rotation reviewer**, who reruns the branch. Nobody merges their own PR unreviewed.
 6. **Owners own their notebooks.** Suggest changes to someone else's notebook in a PR they review.
-7. **Log AI use** in [`docs/AI_USE_LOG.md`](docs/AI_USE_LOG.md); each of us must explain our own work without AI at the debrief.
+7. **The README status updates itself.** Close issues and open PRs as usual; the *README status* Action rebuilds the progress table and issue cards. To change a card's text, edit [`docs/issue_cards.yaml`](docs/issue_cards.yaml).
+8. **Log AI use** in [`docs/AI_USE_LOG.md`](docs/AI_USE_LOG.md); each of us must explain our own work without AI at the debrief.
 
 ## Documentation
 
