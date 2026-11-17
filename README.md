@@ -72,8 +72,8 @@ Generated from GitHub on **17 Nov 2026** by `scripts/update_readme.py` (the *REA
 | Part | Rubric | Closed | Still open |
 | --- | :---: | :---: | --- |
 | **Setup** | — | ![3/4](https://img.shields.io/badge/3%2F4-closed-d4a72c?style=flat-square) | [#56](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/56) |
-| **A · Frame the problem** | 10 pts | ![2/7](https://img.shields.io/badge/2%2F7-closed-d4a72c?style=flat-square) | [#7](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/7) [#8](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/8) [#9](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/9) [#10](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/10) [#11](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/11) |
-| **B · Build & evaluate** | 30 + 20 pts | ![5/14](https://img.shields.io/badge/5%2F14-closed-d4a72c?style=flat-square) | [#15](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/15) [#17](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/17) [#18](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/18) [#19](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/19) [#20](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/20) [#22](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/22) [#48](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/48) [#52](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/52) [#55](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/55) |
+| **A · Frame the problem** | 10 pts | ![2/7](https://img.shields.io/badge/2%2F7-closed-d4a72c?style=flat-square) | [#7](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/7) [#8](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/8) [#9](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/9) [#10](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/10) ⏳ [#11](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/11) ⏳ |
+| **B · Build & evaluate** | 30 + 20 pts | ![5/14](https://img.shields.io/badge/5%2F14-closed-d4a72c?style=flat-square) | [#15](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/15) [#17](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/17) [#18](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/18) [#19](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/19) ⏳ [#20](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/20) ⏳ [#22](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/22) [#48](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/48) [#52](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/52) [#55](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/55) |
 | **C · Cross-market transfer** | in B, D | ![0/3](https://img.shields.io/badge/0%2F3-closed-9aa0a6?style=flat-square) | [#23](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/23) [#24](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/24) [#54](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/54) |
 | **D · Ethics & regulation** | 20 pts | ![0/7](https://img.shields.io/badge/0%2F7-closed-9aa0a6?style=flat-square) | [#25](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/25) [#26](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/26) [#27](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/27) [#28](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/28) [#29](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/29) [#49](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/49) [#50](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/50) |
 | **E · Deployment** | 15 pts | ![2/4](https://img.shields.io/badge/2%2F4-closed-d4a72c?style=flat-square) | [#51](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/51) [#53](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/53) |
@@ -116,7 +116,7 @@ Find your name, open each issue card and follow the steps. Every card says what 
 | | Person | Open | In review or merged | Not started | Jump to |
 | :---: | --- | :---: | :---: | :---: | --- |
 | <img src="https://github.com/peaElorm.png?size=60" width="28"> | **Perfect Elorm Avugla** · Data & features | 3 | 0 | 1 | [Perfect's issues](#peaelorm) |
-| <img src="https://github.com/henryhkb.png?size=60" width="28"> | **Henry Kofi Brandoh** · Classification & evaluation | 6 | 2 | 3 | [Henry's issues](#henryhkb) |
+| <img src="https://github.com/henryhkb.png?size=60" width="28"> | **Henry Kofi Brandoh** · Classification & evaluation | 6 | 4 | 2 | [Henry's issues](#henryhkb) |
 | <img src="https://github.com/adjeibernardmarfo.png?size=60" width="28"> | **Bernard Marfo Adjei** · Regression, deployment & project lead | 7 | 0 | 4 | [Bernard's issues](#adjeibernardmarfo) |
 | <img src="https://github.com/eugene-sew.png?size=60" width="28"> | **Eugene** · Transfer & fairness | 14 | 0 | 8 | [Eugene's issues](#eugene-sew) |
 | 👥 | **Everyone** | 6 | 0 | 6 | [Shared issues](#everyone) |
@@ -211,7 +211,7 @@ Data & features · [peaElorm](https://github.com/peaElorm) · **3 open** · [Per
 Classification & evaluation · [henryhkb](https://github.com/henryhkb) · **6 open** · [Henry's assigned issues on GitHub](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3Ahenryhkb)
 
 <details>
-<summary><img alt="work is on main; owner verifies and closes" src="https://img.shields.io/badge/-merged,_verify_%26_close-2e7d32?style=flat-square"> <b>#19 · Calibration, threshold sweep and cost-based operating point</b></summary>
+<summary><img alt="a pull request for it is open" src="https://img.shields.io/badge/-in_review-1f4e79?style=flat-square"> <b>#19 · Calibration, threshold sweep and cost-based operating point</b></summary>
 
 | | |
 | --- | --- |
@@ -221,6 +221,7 @@ Classification & evaluation · [henryhkb](https://github.com/henryhkb) · **6 op
 | **Where to work** | `notebooks/02_classification.ipynb` §8–9, `src/evaluation/calibration.py`, `src/evaluation/metrics.py` |
 | **How to run** | Run the notebook top to bottom |
 | **Done when** | You have rerun and can explain the sections; close the issue. |
+| **Pull request** | [#60](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/pull/60) |
 
 **Steps**
 
@@ -233,7 +234,7 @@ Classification & evaluation · [henryhkb](https://github.com/henryhkb) · **6 op
 </details>
 
 <details>
-<summary><img alt="work is on main; owner verifies and closes" src="https://img.shields.io/badge/-merged,_verify_%26_close-2e7d32?style=flat-square"> <b>#20 · Bootstrap 95% CIs on F1 and PR-AUC; noise floor</b></summary>
+<summary><img alt="a pull request for it is open" src="https://img.shields.io/badge/-in_review-1f4e79?style=flat-square"> <b>#20 · Bootstrap 95% CIs on F1 and PR-AUC; noise floor</b></summary>
 
 | | |
 | --- | --- |
@@ -243,6 +244,7 @@ Classification & evaluation · [henryhkb](https://github.com/henryhkb) · **6 op
 | **Where to work** | `notebooks/02_classification.ipynb` §10, `src/evaluation/bootstrap.py` |
 | **How to run** | Run the notebook |
 | **Done when** | You have rerun and can explain it; close the issue. |
+| **Pull request** | [#60](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/pull/60) |
 
 **Steps**
 
@@ -254,7 +256,7 @@ Classification & evaluation · [henryhkb](https://github.com/henryhkb) · **6 op
 </details>
 
 <details>
-<summary><img alt="evidence exists, owner must finish" src="https://img.shields.io/badge/-partly_done-d4a72c?style=flat-square"> <b>#11 · Cost matrix in cedis/shillings</b></summary>
+<summary><img alt="a pull request for it is open" src="https://img.shields.io/badge/-in_review-1f4e79?style=flat-square"> <b>#11 · Cost matrix in cedis/shillings</b></summary>
 
 | | |
 | --- | --- |
@@ -264,6 +266,7 @@ Classification & evaluation · [henryhkb](https://github.com/henryhkb) · **6 op
 | **Where to work** | `configs/cost_matrix.yaml`, `docs/DECISIONS.md` |
 | **How to run** | `make eval` and `make figures` |
 | **Done when** | Every assumption is justified, the threshold is final, and D-19 is decided. |
+| **Pull request** | [#60](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/pull/60) |
 
 **Steps**
 
@@ -277,7 +280,7 @@ Classification & evaluation · [henryhkb](https://github.com/henryhkb) · **6 op
 </details>
 
 <details>
-<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#10 · Define Task 1 and Task 2 and the business goal</b></summary>
+<summary><img alt="a pull request for it is open" src="https://img.shields.io/badge/-in_review-1f4e79?style=flat-square"> <b>#10 · Define Task 1 and Task 2 and the business goal</b></summary>
 
 | | |
 | --- | --- |
@@ -287,6 +290,7 @@ Classification & evaluation · [henryhkb](https://github.com/henryhkb) · **6 op
 | **Where to work** | Report Part A, `docs/DECISIONS.md` |
 | **How to run** | — |
 | **Done when** | Both tasks and the goal are written and agreed at the Part A session (#9). |
+| **Pull request** | [#60](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/pull/60) |
 
 **Steps**
 
