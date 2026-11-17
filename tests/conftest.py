@@ -74,3 +74,34 @@ def sandbox(tmp_path_factory):
     yield root
     mp.undo()
     schema._fx_table.cache_clear()
+
+
+# ----------------------------------------------------------------- acceptance tests (tests/acceptance)
+def pytest_addoption(parser):
+    parser.addoption(
+        "--issues",
+        action="store",
+        default=None,
+        help="run acceptance tests for these GitHub issues: comma list (e.g. 53,54) or 'all'",
+    )
+
+
+def pytest_collection_modifyitems(config, items):
+    """Acceptance tests are opt-in: open issues are expected to fail, so `make test` and CI skip them."""
+    wanted = config.getoption("--issues")
+    skip = pytest.mark.skip(reason="acceptance test: run with --issues N (or make acceptance)")
+    keep, drop = [], []
+    for item in items:
+        marker = item.get_closest_marker("issue")
+        if marker is None:
+            keep.append(item)
+        elif wanted is None:
+            item.add_marker(skip)
+            keep.append(item)
+        elif wanted == "all" or str(marker.args[0]) in {s.strip().lstrip("#") for s in wanted.split(",")}:
+            keep.append(item)
+        else:
+            drop.append(item)
+    if drop:
+        config.hook.pytest_deselected(items=drop)
+        items[:] = keep

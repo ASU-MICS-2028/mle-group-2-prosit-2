@@ -9,6 +9,10 @@ Add an entry at the **top** at the end of each session, 5–10 lines. Link to no
 
 ---
 
+## 2026-11-17 (later still) · Bernard (P3 / PM) · `p3/58-readme-status-after-merge` (PR #58)
+**Did:** Acceptance tests for every issue (`tests/acceptance/test_issues.py`, `make acceptance`), the *Issue acceptance* Action (PR must pass the tests of the issues it closes; a closed issue whose test fails is reopened), and an "Automated check" row on every README card (D-23). Fixed the README status Action failing before its script reached main. Repo About and topics set. No more Claude co-author trailers in commits.
+**Found:** scoreboard today: 18 checks pass; open issues whose check already passes (#8, #15, #18, #19, #20, #33) can be closed by their owners after review; 28 fail as expected for open work.
+
 ## 2026-11-17 (evening) · Henry (P2) · `p2/11-ghana-cost-and-conclusions`, PR #60
 **Did:** Reviewed and approved PR #47 (tested on macOS). Added to `02_classification`: §0 problem framing (#10), §9b cost matrix in cedis from Ghana's own loans (#11; `src.evaluation.measure_market_cost_inputs` + unit test), §11 conclusions. Verified Bernard's §7–10 (#19, #20) by rerunning them. Decided D-7, added D-22.
 **Found:** (1) Ghana: median loan 3,002 GHS, fee 3.0% → C_FP 90, C_FN 2,416 GHS, **decline if p > 0.036** (0.029–0.047 across recovery; 0.15–0.23 if 6 future loans are lost). (2) At 0.036 the calibrated MLP approves 88.6% and cuts expected loss 44.3 → 25.0 GHS per application (−44%); the KES config's 0.019 approves only 78.7%, below the proposed 80% floor. (3) With customer-level bootstrap the MLP vs LogReg PR-AUC intervals overlap, so the MLP's lead is not established.

@@ -1,0 +1,110 @@
+name: Issue acceptance
+
+# Each GitHub issue has an acceptance test in tests/acceptance/test_issues.py that passes only when the
+# issue's "done when" is true.
+#  - Pull request: if its description says "Closes #N" (or Fixes/Resolves), issue N's test must pass.
+#  - Issue closed: issue N's test runs on main; if it fails, the issue is reopened with the reason.
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, edited, synchronize, reopened]
+  issues:
+    types: [closed]
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: read
+
+jobs:
+  pull-request:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Find the issues this pull request closes
+        id: refs
+        env:
+          BODY: ${{ github.event.pull_request.body }}
+          TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          ids=$(printf '%s\n%s\n' "$TITLE" "$BODY" \
+            | grep -oiE '(close[sd]?|fix(e[sd])?|resolve[sd]?)[[:space:]]+#[0-9]+' \
+            | grep -oE '[0-9]+' | sort -un | paste -sd, -)
+          echo "issues=$ids" >> "$GITHUB_OUTPUT"
+          if [ -z "$ids" ]; then echo "This pull request closes no issue: nothing to check."; else echo "Checking issues: $ids"; fi
+
+      - uses: actions/checkout@v4
+        if: steps.refs.outputs.issues != ''
+
+      - uses: actions/setup-python@v5
+        if: steps.refs.outputs.issues != ''
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        if: steps.refs.outputs.issues != ''
+        run: pip install -r requirements-lock.txt
+
+      - name: Run the acceptance tests of the closed issues
+        if: steps.refs.outputs.issues != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set +e
+          python -m pytest tests/acceptance -rA --tb=short -p no:cacheprovider --issues "${{ steps.refs.outputs.issues }}"
+          code=$?
+          if [ "$code" = "5" ]; then echo "No acceptance test for these issues yet."; exit 0; fi
+          exit $code
+
+  issue-closed:
+    if: github.event_name == 'issues'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Check the acceptance tests are on main
+        id: guard
+        run: |
+          if [ -f tests/acceptance/test_issues.py ]; then echo "ready=true" >> "$GITHUB_OUTPUT"
+          else echo "::notice::tests/acceptance is not on main yet."; echo "ready=false" >> "$GITHUB_OUTPUT"; fi
+
+      - uses: actions/setup-python@v5
+        if: steps.guard.outputs.ready == 'true'
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        if: steps.guard.outputs.ready == 'true'
+        run: pip install -r requirements-lock.txt
+
+      - name: Verify the closed issue is really done
+        if: steps.guard.outputs.ready == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          N: ${{ github.event.issue.number }}
+          REPO: ${{ github.repository }}
+        run: |
+          set +e
+          python -m pytest tests/acceptance -rA --tb=line -p no:cacheprovider --issues "$N" > result.txt 2>&1
+          code=$?
+          cat result.txt
+          if [ "$code" = "5" ]; then
+            echo "Issue #$N has no automated acceptance test."
+            exit 0
+          fi
+          if [ "$code" = "0" ]; then
+            gh issue comment "$N" -R "$REPO" --body "✅ Acceptance check passed on \`main\` (\`make acceptance ISSUE=$N\`)."
+            exit 0
+          fi
+          reason=$(grep -E "^FAILED|Error|assert" result.txt | head -5)
+          printf '%s\n\n```\n%s\n```\n\n%s\n' \
+            "❌ Reopened: the acceptance check for #$N fails on \`main\`, so the issue is not done yet." \
+            "$reason" \
+            "Run \`make acceptance ISSUE=$N\` locally to see what is missing. The check is in \`tests/acceptance/test_issues.py\`." > comment.md
+          gh issue reopen "$N" -R "$REPO"
+          gh issue comment "$N" -R "$REPO" --body-file comment.md

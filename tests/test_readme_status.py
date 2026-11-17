@@ -91,3 +91,17 @@ def test_real_cards_file_is_valid_and_readme_has_markers() -> None:
     readme = U.README.read_text(encoding="utf-8")
     for name in ("badge", "progress", "people"):
         assert f"<!-- status:{name} -->" in readme and f"<!-- /status:{name} -->" in readme
+
+
+def test_cards_show_the_automated_check() -> None:
+    checks = U.acceptance_checks('@issue(3)\ndef test_issue_3_x():\n    """Three is done when the file exists."""\n')
+    assert checks == {3: "Three is done when the file exists."}
+    text, _ = U.build(README, CARDS, ISSUES, PRS, "17 Nov 2026", checks)
+    assert "Three is done when the file exists." in text and "make acceptance ISSUE=3" in text
+
+
+def test_every_card_has_an_acceptance_test() -> None:
+    checks = U.acceptance_checks(U.ACCEPTANCE.read_text(encoding="utf-8"))
+    cards = yaml.safe_load(U.CARDS.read_text(encoding="utf-8"))
+    carded = {c["issue"] for p in cards["people"] for c in p["issues"]} | {c["issue"] for c in cards["everyone"]}
+    assert not carded - set(checks), f"issues with a card but no acceptance test: {sorted(carded - set(checks))}"
