@@ -30,7 +30,7 @@ At the debrief you must "explain, defend and reproduce your work without AI". If
 
 | ☐ | Work | Evidence | Owner |
 | --- | --- | --- | --- |
-| ☐ | Logistic regression: log-odds → likelihood → BCE → gradient | `docs/derivations/logistic.md` | Henry |
+| ✅ | Logistic regression: log-odds → likelihood → BCE → gradient, plus `pos_weight` and convexity; gradient checked against PyTorch autograd (`tests/test_logistic_derivation.py`) | `docs/derivations/logistic.md` (PR #62) | Henry |
 | ☐ | Linear regression: Gaussian MLE → normal equations (Ridge as MAP) | `docs/derivations/linear.md` | Bernard |
 | ☐ | One of SVM (Perfect) / boosting / tree | `docs/derivations/<name>.md` | Perfect |
 | ☐ | Check each against scikit-learn on a small example | derivation notebook | author |
