@@ -88,7 +88,7 @@ Generated from GitHub on **17 Nov 2026** by `scripts/update_readme.py` (the *REA
 | Notebook | Owner | Status |
 | --- | --- | --- |
 | [`01_eda.ipynb`](notebooks/01_eda.ipynb) | Perfect | ![done](https://img.shields.io/badge/-done-2e7d32?style=flat-square) Train/Test structure (PRs #38, #39); link the EDA report ([#48](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/48)) |
-| [`02_classification.ipynb`](notebooks/02_classification.ipynb) | Henry | ![merged](https://img.shields.io/badge/-merged-2e7d32?style=flat-square) Henry's original restored + calibration, cost threshold, CIs (PR #47); Henry to verify #19, #20 |
+| [`02_classification.ipynb`](notebooks/02_classification.ipynb) | Henry | ![merged](https://img.shields.io/badge/-merged-2e7d32?style=flat-square) Henry's original (PR #47) + problem framing (§0), cost matrix in cedis from Ghana's loans (§9b, p\* 0.036) and conclusions (§11); calibration and CIs verified (PR #XX) |
 | [`03_regression.ipynb`](notebooks/03_regression.ipynb) | Bernard | ![merged](https://img.shields.io/badge/-merged-2e7d32?style=flat-square) Task 1 models, residuals, scorer demo (PR #47); Task 2 tree to add (#17) |
 | [`04_transfer_and_fairness.ipynb`](notebooks/04_transfer_and_fairness.ipynb) | Eugene | ![needs owner](https://img.shields.io/badge/-needs_owner-b03a2e?style=flat-square) AI draft with known problems ([#54](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/54)) |
 
