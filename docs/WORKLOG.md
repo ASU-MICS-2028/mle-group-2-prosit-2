@@ -9,7 +9,7 @@ Add an entry at the **top** at the end of each session, 5–10 lines. Link to no
 
 ---
 
-## 2026-11-17 (late night) · Henry (P2) · `p2/32-logistic-derivation`, PR #XX
+## 2026-11-17 (late night) · Henry (P2) · `p2/32-logistic-derivation`, PR #62
 **Did:** `docs/derivations/logistic.md`: log-odds → sigmoid → Bernoulli likelihood → BCE (and its stable form) → gradient (1/n)Xᵀ(σ(Xw) − y); Hessian and convexity; the `pos_weight` version our Lightning model trains. `tests/test_logistic_derivation.py` checks the analytic gradients against PyTorch autograd.
 **Found:** Weighting defaulters by c ≈ 54 shifts every log-odds by about log c ≈ 4.0, which explains why raw scores averaged 0.28–0.32 against a true 0.018 and why we calibrate afterwards (`02` §8).
 **Next:** Personal reflection (#37). #32 stays open until Perfect (SVM), Bernard (linear) and Eugene (boosting) add theirs.

@@ -1,6 +1,6 @@
 # Progress dashboard
 
-**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-17 by Henry (PR #XX).
+**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-17 by Henry (PR #62).
 
 Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 
@@ -47,7 +47,7 @@ Per-issue progress is on GitHub (Roadmap issue #1). Closed on 2026-11-17 with ev
 | 2026-11-10 | Henry | Logistic regression (raw + shared + Lightning) and MLP + temporal check | `notebooks/02_classification.ipynb`, `docs/learning/`, PRs #40, #41 |
 | 2026-11-17 | Henry | Problem framing, Ghana cost matrix in cedis, conclusions; verified calibration and CIs; D-7, D-22 | `02_classification` §0, §9b, §11; `src/evaluation/cost_matrix.py`; PR #60 |
 | 2026-11-17 | Henry | Calibration over time (#55): stale vs recalibrated Platt on 2023+ loans, quarterly monitoring, recommendation (D-24) | `02_classification` §11, PR #61 |
-| 2026-11-17 | Henry | Logistic regression derivation: log-odds → likelihood → BCE → gradient, `pos_weight`, convexity; 4 autograd tests | `docs/derivations/logistic.md`, `tests/test_logistic_derivation.py`, PR #XX |
+| 2026-11-17 | Henry | Logistic regression derivation: log-odds → likelihood → BCE → gradient, `pos_weight`, convexity; 4 autograd tests | `docs/derivations/logistic.md`, `tests/test_logistic_derivation.py`, PR #62 |
 
 Findings so far:
 - Default rate by year is 1.3% (2022, 64,405 loans), 11.5% (2023), 8.7% (2024), so random splits will mislead; the 2023+ validation set defaults at 9.5%.
@@ -90,7 +90,7 @@ Findings so far:
 
 | Date | Who | Did | Next |
 | --- | --- | --- | --- |
-| 2026-11-17 | Henry | Logistic regression derivation with autograd check (`docs/derivations/logistic.md`, #32, PR #XX) | Reflection (#37) |
+| 2026-11-17 | Henry | Logistic regression derivation with autograd check (`docs/derivations/logistic.md`, #32, PR #62) | Reflection (#37) |
 | 2026-11-17 | Henry | Calibration over time on 2023+ loans and recalibration plan, `02` §11 (#55, PR #61) | Derivation (#32); reflection |
 | 2026-11-17 | Bernard | Acceptance test per issue + Action that blocks unfinished closes (D-23) | Owners close issues whose checks pass |
 | 2026-11-17 | Henry | Reviewed PR #47; framing (#10), Ghana cost matrix (#11), conclusions; verified #19, #20 (PR #60) | Derivation (#32); align cost config |

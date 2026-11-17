@@ -37,7 +37,7 @@
 **6 · Write up**: `02_classification` runs from a fresh kernel; logistic derivation (log-odds → likelihood → BCE → gradient Xᵀ(σ(Xw) − y), checked against autograd); results; reflection.
 - [x] `02_classification` runs top to bottom from a fresh kernel (`nbconvert --execute`, macOS); conclusions in §12 (added in PR #60 as §11, renumbered when §11 calibration over time was added).
 - [x] Calibration over time (#55): pre-2023 Platt under-predicts 2023–24 risk; recalibrate on recent loans and monitor monthly (`02` §11, D-24, PR #61).
-- [x] Logistic regression derivation (`docs/derivations/logistic.md`, #32): log-odds → sigmoid → likelihood → BCE → gradient Xᵀ(σ(Xw) − y), weighted version, convexity; checked against autograd (PR #XX).
+- [x] Logistic regression derivation (`docs/derivations/logistic.md`, #32): log-odds → sigmoid → likelihood → BCE → gradient Xᵀ(σ(Xw) − y), weighted version, convexity; checked against autograd (PR #62).
 - [ ] Personal reflection (#37).
 
 ## You understand it when you can answer
