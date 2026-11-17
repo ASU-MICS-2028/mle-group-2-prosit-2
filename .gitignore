@@ -4,6 +4,8 @@ datasets/
 *.zip
 *.csv
 *.parquet
+# Small generated results are committed so the report's numbers live in the repo
+!reports/tables/*.csv
 artifacts/*
 !artifacts/.gitkeep
 preds/*

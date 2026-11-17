@@ -1,0 +1,20 @@
+# Cost matrix for the Task 2 operating threshold (issue #11, owner: Henry, P2).
+# DRAFT: the "measured" values come from Train.csv; the "assumption" values have no
+# source in our data and must be agreed by the team before the report.
+#
+# decline when  p(default) > C_FP / (C_FP + C_FN)
+#   C_FP = principal * fee_rate * future_loans          (profit lost by declining a good borrower)
+#   C_FN = principal * (1 - recovery_rate) + collection_cost  (money lost by approving a defaulter)
+
+currency: KES
+
+principal: 5249          # measured: median Total_Amount in Train.csv
+fee_rate: 0.0168         # measured: mean markup (Total_Amount_to_Repay / Total_Amount - 1) on repaid loans
+future_loans: 1          # assumption: loans lost when a good borrower is declined (median customer takes 6)
+recovery_rate: 0.20      # assumption: share of principal recovered after default (no recovery data)
+collection_cost: 250     # assumption: KES spent chasing one default (agent visit, SMS, airtime)
+
+# Alternative assumptions for the sensitivity table (the brief asks for at least two).
+sensitivity:
+  recovery_rate: [0.0, 0.20, 0.40]
+  future_loans: [1, 6]

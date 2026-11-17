@@ -1,15 +1,22 @@
+[project]
+name = "nkwapay-credit-scoring"
+version = "0.2.0"
+description = "ICS553 Prosit 2: responsible credit scoring for NkwaPay (Group 2)"
+requires-python = ">=3.12,<3.13"
+
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]
+addopts = "-q"
 
 [tool.ruff]
-target-version = "py311"
-line-length = 100
-src = ["src", "tests"]
+target-version = "py312"
+line-length = 120
+src = ["src", "scripts", "tests"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "W"]
 ignore = ["E501"]
 
 [tool.ruff.lint.isort]
-known-first-party = ["src"]
+known-first-party = ["src", "scripts"]
