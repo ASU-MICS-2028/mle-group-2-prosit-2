@@ -1,0 +1,498 @@
+# Issue cards shown in the README (section "What's left, by person").
+# Edit the text here; scripts/update_readme.py and the "README status" GitHub Action rebuild the README.
+# Closed issues disappear automatically; an issue referenced by an open pull request shows "in review".
+# status: urgent (start today) | todo (not started) | partly (evidence exists) | trained (models ran, review them)
+#         | merged (work is on main; the owner verifies and closes the issue)
+
+people:
+- name: Perfect Elorm Avugla
+  github: peaElorm
+  label: P1
+  role: Data & features
+  issues:
+  - issue: 15
+    status: trained
+    what: Your three models (majority baseline, k-nearest neighbours, RBF SVM) for default prediction.
+    why: 'Rubric B (30 pts): at least 5 models including a majority baseline'
+    already: All three were trained on all three validation schemes in the full run. Results are in `reports/tables/task2_model_summary.csv`
+      and `reports/figures/eval_model_intervals.png`.
+    where: '`configs/models.yaml`, `src/models/neighbors.py`, `src/models/svm.py`'
+    run: '`python -m scripts.train --task task2 --models majority knn svm_rbf --schemes fold_group fold_strat temporal`
+      then `make eval`'
+    done_when: You can explain each model's result and the comment is on the issue; close it.
+    steps:
+    - Open `reports/tables/task2_model_summary.csv` and find `majority`, `knn`, `svm_rbf`.
+    - 'Explain the numbers: the baseline is the floor (PR-AUC 0.018); kNN reaches about 0.155; the SVM is weakest
+      (0.07) because it is trained on a 12,000-row subsample (`configs/models.yaml`).'
+    - Optionally try a larger `max_train_rows` or a different `C`, `gamma` in `configs/models.yaml` and rerun.
+    - Add two or three sentences on these models to the report's results section.
+  - issue: 48
+    status: partly
+    what: 'The brief''s Part B.1 exploration: class imbalance, missing values, value skew (log transform), number
+      of categories.'
+    why: 'Rubric B: EDA covering imbalance, missing values, skew and cardinality'
+    already: All four are in `reports/EDA_REPORT.md` (sections 1, 3, 4, 7) with figures, built by `make eda`.
+    where: '`notebooks/01_eda.ipynb`, `reports/EDA_REPORT.md`, `src/analysis/data_profile.py`'
+    run: '`make eda`'
+    done_when: '`01_eda` points to the report and you agree with its readings; close the issue.'
+    steps:
+    - Read `reports/EDA_REPORT.md` end to end and check every reading against your own `01_eda` work.
+    - In `01_eda.ipynb`, add a short final section that links the report and shows its key figures (imbalance, raw
+      vs log amounts, cardinality table).
+    - Fix or comment on anything you disagree with.
+  - issue: 32
+    status: todo
+    what: 'Your derivation: the support vector machine.'
+    why: 'LO3, rubric B (30 pts): at least two correct derivations are required'
+    already: Nothing yet. The SVM implementation is in `src/models/svm.py`.
+    where: '`docs/derivations/svm.md`'
+    run: —
+    done_when: The derivation is written, checked on a toy example, and you can explain it without notes.
+    steps:
+    - 'Write `docs/derivations/svm.md`: the maximum-margin problem, slack variables and the hinge loss, the dual,
+      and the kernel trick (RBF).'
+    - 'Check it on a tiny example: fit `sklearn.svm.SVC(kernel=''linear'')` on 2-D toy data and show the margin
+      and support vectors match your derivation.'
+    - Keep it to 1–2 pages; it goes into the technical report.
+- name: Henry Kofi Brandoh
+  github: henryhkb
+  label: P2
+  role: Classification & evaluation
+  issues:
+  - issue: 19
+    status: merged
+    what: Calibration of the default probabilities, a threshold sweep, and the cost-based operating point with a
+      confusion matrix.
+    why: 'Rubric C (20 pts): PR-AUC, calibration and a cost-based operating point'
+    already: 'Merged to main in PR #47: sections 8 and 9 of `02_classification.ipynb` (Platt vs isotonic calibration,
+      ECE 0.30 → 0.002; threshold sweep; confusion matrix; F1-best threshold for comparison).'
+    where: '`notebooks/02_classification.ipynb` §8–9, `src/evaluation/calibration.py`, `src/evaluation/metrics.py`'
+    run: Run the notebook top to bottom
+    done_when: You have rerun and can explain the sections; close the issue.
+    steps:
+    - Rerun sections 8–9 of `02_classification.ipynb` yourself.
+    - Make sure you can explain why calibration comes before the threshold and why the scorer uses Platt.
+    - Change anything you disagree with in a pull request; otherwise comment and close the issue.
+  - issue: 20
+    status: merged
+    what: 95% bootstrap confidence intervals on PR-AUC and F1, and whether the model beats the baseline beyond the
+      ±0.0263 noise floor.
+    why: 'Rubric C (20 pts): bootstrap CIs and the noise floor'
+    already: 'Merged to main in PR #47: section 10 of `02_classification` resamples customers, not rows; both models
+      beat the baseline; logistic regression and MLP intervals overlap.'
+    where: '`notebooks/02_classification.ipynb` §10, `src/evaluation/bootstrap.py`'
+    run: Run the notebook
+    done_when: You have rerun and can explain it; close the issue.
+    steps:
+    - Rerun section 10 and read `src/evaluation/bootstrap.py`.
+    - Be ready to explain why we resample customers (a customer's loans are correlated).
+  - issue: 11
+    status: partly
+    what: The cost of approving a defaulter vs declining a good borrower, in shillings or cedis, which sets the
+      approve/decline threshold.
+    why: 'Rubric A (10 pts): cost matrix in money with at least two sensitivity cases'
+    already: 'A draft in `configs/cost_matrix.yaml` (decision D-19): principal 5,249 KES and fee 1.68% are **measured**
+      from Train; recovery 20%, collection cost 250 KES and 1 future loan lost are **assumptions**. Threshold 0.019
+      (1 future loan) to 0.106 (6 future loans).'
+    where: '`configs/cost_matrix.yaml`, `docs/DECISIONS.md`'
+    run: '`make eval` and `make figures`'
+    done_when: Every assumption is justified, the threshold is final, and D-19 is decided.
+    steps:
+    - Decide each assumption and write one sentence of justification for it (e.g. sources on Kenyan or Ghanaian
+      digital-lending recovery).
+    - Edit `configs/cost_matrix.yaml`; rerun section 9 of `02` and `make eval figures`.
+    - Write the cost-matrix table for report Part A, in KES (and GHS for Ghana), like Appendix A of the brief but
+      with our numbers.
+    - Update D-19 in `docs/DECISIONS.md` from draft to decided.
+  - issue: 10
+    status: todo
+    what: Write down Task 1 (loan amount, regression) and Task 2 (default, classification) and the business goal
+      in one sentence.
+    why: 'Rubric A (10 pts): two tasks and the business goal'
+    already: The tasks exist in code (`src/config.py`); nothing is written for the report.
+    where: Report Part A, `docs/DECISIONS.md`
+    run: —
+    done_when: Both tasks and the goal are written and agreed at the Part A session (#9).
+    steps:
+    - 'Define each task: target, unit (Task 1 is USD, converted to local currency), decision moment (disbursement).'
+    - Write the goal, e.g. "decline when P(default) exceeds the cost threshold, while approving at least X% of applicants";
+      pick X from `reports/figures/eval_threshold_sweep.png`.
+    - Put it in the report's Part A section.
+  - issue: 55
+    status: todo
+    what: Calibration was fitted on folds that mix 2022 and 2023 loans. Defaults jumped from 1.3% to about 10% in
+      2023, so probabilities may be far too low for recent loans.
+    why: 'Rubric C: honest evaluation of calibration over time'
+    already: The temporal predictions exist in `preds/task2_*_temporal.parquet`.
+    where: '`notebooks/02_classification.ipynb` (new section), `src/evaluation/`'
+    run: Run the notebook
+    done_when: The figure and one paragraph of recommendation are in 02 and the report.
+    steps:
+    - Train on loans before 2023, score 2023+ loans, and draw a reliability curve (raw and Platt) with `src.visualization.plot_reliability`.
+    - Report how far off it is (ECE, mean predicted vs actual).
+    - 'Recommend what NkwaPay should do: recalibrate on recent loans and monitor monthly.'
+  - issue: 32
+    status: todo
+    what: 'Your derivation: logistic regression.'
+    why: 'LO3, rubric B (30 pts): at least two correct derivations are required'
+    already: The Lightning model in `src/models/lightning_modules.py` and the test `test_logistic_loss_is_weighted_negative_log_likelihood`
+      already show BCE = negative log-likelihood.
+    where: '`docs/derivations/logistic.md`'
+    run: —
+    done_when: The derivation is written, checked, and you can explain it without notes.
+    steps:
+    - 'Write `docs/derivations/logistic.md`: log-odds model → Bernoulli likelihood → negative log-likelihood (BCE)
+      → gradient → why `pos_weight` reweights it.'
+    - Check your gradient numerically on a tiny example against scikit-learn.
+- name: Bernard Marfo Adjei
+  github: adjeibernardmarfo
+  label: P3
+  role: Regression, deployment & project lead
+  issues:
+  - issue: 30
+    status: merged
+    what: 'The scoring service: one application in; probability, decision, limit and top 3 reasons out.'
+    why: 'Rubric E (15 pts): working scoring service with reason codes'
+    already: 'PR #47 fixes the Ghana bugs (limit in shillings, 0% risk), restricts reasons to what a borrower can
+      act on, and adds review flags. Demo: `make score`.'
+    where: '`src/serving/`'
+    run: '`make score`'
+    done_when: 'Closes automatically when PR #47 merges.'
+    steps:
+    - 'Get PR #47 reviewed by Henry and merged.'
+  - issue: 21
+    status: merged
+    what: RMSE and MAE on the log and original scales, plus a residual-vs-fitted plot, for the loan-amount models.
+    why: 'Rubric C: regression metrics on both scales and residual diagnostics'
+    already: 'In `03_regression` and `reports/figures/t1_*` (PR #47 and the stacked PR).'
+    where: '`notebooks/03_regression.ipynb`'
+    run: '`make eval`'
+    done_when: PRs merged; close the issue.
+    steps:
+    - Get the PRs merged; add one reading paragraph to the report.
+  - issue: 17
+    status: partly
+    what: 'Your models: OLS, Ridge, Lasso and a pruned decision tree.'
+    why: 'Rubric B (30 pts): models'
+    already: OLS, Ridge, Lasso and the regression tree are trained and compared in `03_regression`. The brief's
+      model table also gives P3 the **pruned decision tree for default prediction**, which is trained (`decision_tree`)
+      but not discussed.
+    where: '`notebooks/03_regression.ipynb`, `configs/models.yaml`'
+    run: Run the notebook
+    done_when: Both trees are discussed in 03; close.
+    steps:
+    - Add a short section to `03_regression` comparing `decision_tree` (Task 2) with the other classifiers, using
+      `reports/tables/task2_model_summary.csv`.
+    - Explain the pruning settings (`max_depth`, `ccp_alpha` in `configs/models.yaml`).
+  - issue: 51
+    status: todo
+    what: Choose which classifier and limit model the scorer uses.
+    why: 'Rubric E: the deployed model must be the justified choice'
+    already: 'The scorer uses calibrated logistic regression, which under-predicts new borrowers (2.2% vs 5.7% observed
+      for one profile). MLP and Random Forest rank best, but their intervals overlap logistic regression. Evidence:
+      `eval_model_intervals.png`, `eval_calibration_by_tenure.png`.'
+    where: '`src/training/artifacts.py`, `docs/DECISIONS.md`'
+    run: '`python -m scripts.train --save-artifacts --clf-artifact-model random_forest`'
+    done_when: The decision is recorded and the scorer and figures use the chosen model.
+    steps:
+    - Compare the candidates on GroupKFold and temporal PR-AUC, calibration by tenure, and explainability (the committee
+      prefers simple models).
+    - 'Refit: `python -m scripts.train --save-artifacts --clf-artifact-model <name>`.'
+    - Record the choice and its reason in `docs/DECISIONS.md`; rerun `make figures score`.
+  - issue: 53
+    status: todo
+    what: The limit model predicts the typical loan amount, so about half of all requests are cut (Kenya 42%; Ghana
+      70%, none fully approved).
+    why: 'Rubric E: the limit must make business sense'
+    already: 'Evidence: `reports/figures/app_decision_mix.png`, `app_limit_vs_request.png`.'
+    where: '`src/models/ensembles.py`, `src/serving/`, `tests/test_serving.py`'
+    run: '`make train figures score test`'
+    done_when: Most good borrowers are no longer cut, and the rule is recorded.
+    steps:
+    - Change the limit to a cap, e.g. LightGBM quantile regression (`objective='quantile', alpha=0.85`) or a multiple
+      of the predicted amount.
+    - Report the share of repaid loans that would have been cut under the new rule.
+    - Update `src/serving/scorer.py`, `batch.py`, tests and figures; record the rule in DECISIONS.
+  - issue: 7
+    status: partly
+    what: Explore amounts and terms, and rule on the two repayment columns.
+    why: 'Rubric A (10 pts): leakage correctly identified'
+    already: 'EDA §4–5: amounts are heavy-tailed (log needed); the markup separates defaulters at AUC 0.98, so both
+      columns are dropped (D-2).'
+    where: '`docs/DECISIONS.md`'
+    run: '`make eda`'
+    done_when: D-2 is decided at the session; close.
+    steps:
+    - Present the ruling at the Part A session (#9) using `eda_leakage_univariate_auc.png` and `eda_markup_by_outcome.png`.
+    - Mark D-2 decided in `docs/DECISIONS.md`.
+  - issue: 22
+    status: partly
+    what: Explain, in plain language, what drives the default model.
+    why: 'Rubric B: interpretation; LO6: explanations'
+    already: 'Figures: `interp_coefficients.png` (logistic regression), `interp_shap_lightgbm.png`. Finding: the
+      tree model''s top drivers (lender share, month) mostly mark the period, not the borrower.'
+    where: Report Part B, `notebooks/03_regression.ipynb`
+    run: '`make figures`'
+    done_when: The interpretation is written and matches the figures.
+    steps:
+    - 'Write one page: top drivers, direction, and what they mean for a borrower.'
+    - State the period-marker finding and what the ablation (#52) shows.
+  - issue: 52
+    status: todo
+    what: Retrain without each feature group to see what carries the signal.
+    why: Optional; strengthens rubric B interpretation
+    already: Nothing yet; the feature lists live in `src/config.py`.
+    where: '`scripts/` (new ablation script), `reports/`'
+    run: —
+    done_when: A table and figure show which groups matter.
+    steps:
+    - For each group (history, calendar, lender share, product, amount), retrain the chosen model without it on
+      GroupKFold and temporal.
+    - Tabulate the PR-AUC change; save the table and a bar chart to `reports/`.
+  - issue: 32
+    status: todo
+    what: 'Your derivation: linear regression.'
+    why: 'LO3, rubric B (30 pts): at least two correct derivations are required'
+    already: Nothing yet.
+    where: '`docs/derivations/linear.md`'
+    run: —
+    done_when: Written, checked, and explainable without notes.
+    steps:
+    - 'Write `docs/derivations/linear.md`: Gaussian likelihood → least squares → normal equations → Ridge as MAP
+      with a Gaussian prior.'
+    - Check the normal-equation solution against `sklearn.linear_model.LinearRegression` on a toy example.
+- name: Eugene
+  github: eugene-sew
+  label: P4
+  role: Transfer & fairness
+  issues:
+  - issue: 54
+    status: urgent
+    what: '`04_transfer_and_fairness.ipynb` is an AI draft from PR #46 with outputs from old code and four known
+      problems (listed at its top).'
+    why: 'Rubric C/D (40 pts together): your notebook must be correct and yours'
+    already: 'Helpers are ready: `src/evaluation/fairness.py`, `shift.py`, `calibration.py`.'
+    where: '`notebooks/04_transfer_and_fairness.ipynb`'
+    run: '`make test-notebooks`'
+    done_when: The notebook runs top to bottom and you can explain every cell.
+    steps:
+    - Rerun the notebook on the current pipeline (`make features train` first).
+    - 'Calibrate before every threshold: `calibrate_oof(...)`.'
+    - Use the current feature list (D-18) in the domain classifier.
+    - Show the cost of the mitigation (#50) and add a proxy analysis (#26).
+    - Rewrite every reading in your own words; you will defend it.
+  - issue: 23
+    status: partly
+    what: Compare Kenya and Ghana and measure the shift (domain classifier or importance weighting).
+    why: 'Brief Part C: cross-market transfer'
+    already: 'Figures: `shift_log_amount_usd.png`, `shift_duration.png`, `shift_domain_scores.png` (AUC 0.996),
+      `shift_drivers.png`. Key finding: every Ghana row has no labelled history.'
+    where: '`notebooks/04_transfer_and_fairness.ipynb`, `src/evaluation/shift.py`'
+    run: '`make figures`'
+    done_when: Part C section written with the figures.
+    steps:
+    - Write up the distributions and the domain classifier.
+    - Explain the `n_past_labelled` artefact (labels exist only in Train).
+    - Try importance weighting (`run_domain_classifier(...)['importance_weights']`) to re-weight Kenyan validation.
+  - issue: 24
+    status: todo
+    what: The brief asks what NkwaPay would need before trusting the model in Ghana.
+    why: 'Brief Part C: what evidence would make Ghana scores trustworthy'
+    already: Every Ghana score is already flagged `needs_review` by the scorer.
+    where: Report Part C
+    run: —
+    done_when: A short, concrete plan is in the report.
+    steps:
+    - Propose a labelled pilot (size, duration), calibration on Ghana outcomes, and monitoring triggers.
+    - 'Tie it to the shift evidence from #23.'
+  - issue: 26
+    status: partly
+    what: PR-AUC, F1 and selection rate by country, loan type, lender, tenure and loan size; check whether any feature
+      stands in for a protected attribute.
+    why: 'Rubric D (20 pts): disaggregated metrics and proxy analysis'
+    already: Figures `fair_selection_*.png` and tables `reports/tables/fairness_*.csv` (calibrated, GroupKFold).
+    where: '`notebooks/04_transfer_and_fairness.ipynb`'
+    run: '`make figures`'
+    done_when: Gaps and proxies are written up with the figures.
+    steps:
+    - Identify the gaps that exceed real risk differences.
+    - 'Proxy analysis: how well do model inputs predict tenure or country? Which features act as proxies?'
+  - issue: 50
+    status: todo
+    what: Apply one mitigation and show what it changes and what it costs.
+    why: 'Rubric D: a mitigation with before/after'
+    already: The draft in 04 approves more new borrowers without showing the cost.
+    where: '`notebooks/04_transfer_and_fairness.ipynb`'
+    run: —
+    done_when: A before/after table and a recommendation.
+    steps:
+    - 'Pick one: group-aware threshold, reweighting, or dropping a proxy feature.'
+    - Show selection rate, PR-AUC, F1 and expected cost per group, before and after, on calibrated predictions.
+  - issue: 25
+    status: todo
+    what: A one-page Model Card for the deployed model.
+    why: 'Rubric D: Model Card (Mitchell et al.)'
+    already: Facts are in `reports/FIGURES.md`, `docs/DECISIONS.md` and the scorer.
+    where: '`docs/audit/model_card.md`'
+    run: —
+    done_when: The card is complete and matches the deployed model (#51).
+    steps:
+    - 'Fill the standard sections: model details, intended use, factors, metrics, evaluation data, training data,
+      ethical considerations, caveats.'
+  - issue: 49
+    status: todo
+    what: A datasheet for the datasets we used.
+    why: 'LO5: Datasheet (Gebru et al.)'
+    already: '`reports/EDA_REPORT.md` has the facts (two-lender rows, overlap, defaulters cut off, Ghana gap, leaking
+      columns).'
+    where: '`docs/audit/datasheet.md`'
+    run: —
+    done_when: The datasheet is complete.
+    steps:
+    - 'Answer the datasheet questions: motivation, composition, collection, preprocessing, uses, distribution, maintenance.'
+  - issue: 27
+    status: todo
+    what: Map our design to the Bank of Ghana Digital Credit Directive, the Data Protection Act 2012 (Act 843) and
+      the Credit Reporting Act 2007 (Act 726).
+    why: 'Rubric D: regulatory mapping'
+    already: Nothing yet.
+    where: '`docs/audit/regulatory_map.md`'
+    run: —
+    done_when: A table of requirements, our response, and gaps.
+    steps:
+    - List each relevant requirement and how we meet it (reason codes, review flags, data minimisation).
+    - List what we cannot satisfy yet.
+  - issue: 28
+    status: partly
+    what: Who in Ghana cannot access credit (Findex 2021), and does our model help close or widen that gap?
+    why: 'Brief Part D.4: debt and access'
+    already: 'EDA §10: only 7.2% of adults borrow formally; women, rural, poorer and less-educated adults have less
+      access (`eda_findex_access.png`).'
+    where: Report Part D
+    run: '`make eda`'
+    done_when: A paragraph with the figure.
+    steps:
+    - Interpret the table and argue whether a model trained on existing borrowers narrows or widens the gap.
+  - issue: 29
+    status: partly
+    what: A plain-language message for a borrower whose application was declined.
+    why: 'LO6: borrower-facing explanation'
+    already: The scorer already gives three reasons (`make score` shows examples).
+    where: '`docs/audit/decline_explanation.md`'
+    run: '`make score`'
+    done_when: A message a non-expert understands.
+    steps:
+    - 'Write the full message: decision, the three reasons, what the borrower can do, how to ask for review (BoG
+      requirement).'
+  - issue: 8
+    status: partly
+    what: Explore Ghana vs Kenya and the macro, Findex and inclusion files.
+    why: Part A exploration (your slice)
+    already: EDA §8–10 covers all of it with figures.
+    where: '`reports/EDA_REPORT.md`'
+    run: '`make eda`'
+    done_when: You agree with the sections; close.
+    steps:
+    - Read the sections, add anything you find missing, and use them in Parts C and D.
+  - issue: 18
+    status: trained
+    what: Random Forest and LightGBM for default prediction.
+    why: 'Rubric B: your models'
+    already: 'Both trained on all schemes: Random Forest PR-AUC 0.204, LightGBM 0.195 by customer.'
+    where: '`src/models/ensembles.py`, `configs/models.yaml`'
+    run: '`python -m scripts.train --task task2 --models random_forest lightgbm --schemes fold_group temporal`'
+    done_when: You can explain both; close.
+    steps:
+    - Read their results and SHAP figure; be able to explain bagging vs boosting and their settings in `configs/models.yaml`.
+  - issue: 35
+    status: todo
+    what: One document with the Model Card, fairness results, proxy analysis and regulatory map.
+    why: 'Rubric D (20 pts): the audit document'
+    already: 'Built from #25, #26, #27, #49, #50.'
+    where: '`docs/audit/`'
+    run: —
+    done_when: One complete audit document.
+    steps:
+    - Assemble the parts into `docs/audit/audit.md` with an executive summary.
+  - issue: 32
+    status: todo
+    what: 'Your derivation: gradient boosting.'
+    why: 'LO3, rubric B (30 pts): at least two correct derivations are required'
+    already: Nothing yet.
+    where: '`docs/derivations/boosting.md`'
+    run: —
+    done_when: Written and explainable without notes.
+    steps:
+    - 'Write `docs/derivations/boosting.md`: additive model, fitting each tree to the negative gradient, log-loss
+      gradient, learning rate.'
+everyone:
+- issue: 9
+  status: urgent
+  what: 'Part A session: agree the loan timeline, the label, the feature audit and the leakage rulings.'
+  why: Rubric A (10 pts)
+  already: 'Drafts: `docs/feature_audit.md`, `docs/DECISIONS.md` (D-2 to D-7, D-18 to D-20 are drafts).'
+  where: '`docs/DECISIONS.md`, `docs/feature_audit.md`'
+  run: —
+  done_when: All Part A decisions are marked decided.
+  steps:
+  - Meet (30–45 min).
+  - 'Draw the timeline: application → approval → disbursement → due date → repaid/defaulted; mark the decision moment
+    (`disbursement_date`).'
+  - Define the label (default = not repaid by the due date).
+  - Mark each draft decision decided or changed.
+- issue: 56
+  status: todo
+  what: Turn on branch protection so nothing reaches `main` without review and passing CI.
+  why: Process
+  already: 'PR #46 was merged without review.'
+  where: GitHub settings
+  run: —
+  done_when: Direct pushes to `main` are blocked.
+  steps:
+  - 'An admin: Settings → Branches → add rule for `main` → require a pull request, 1 approval, and status checks
+    `lint-and-test`, `docs-updated`, `check-issue-link`.'
+  - Allow GitHub Actions to push to `main` (add it to the bypass list), or the *README status* Action cannot commit
+    its updates.
+- issue: 33
+  status: todo
+  what: Each notebook reruns from a clean clone without errors.
+  why: 'Rubric B: reproducible pipeline'
+  already: '`make test-notebooks` runs all four.'
+  where: —
+  run: '`make all && make test-notebooks`'
+  done_when: All four notebooks pass on a clean clone.
+  steps:
+  - Each reviewer clones fresh, follows Quick start, runs `make all` and `make test-notebooks`.
+- issue: 34
+  status: todo
+  what: The 6–10 page technical report.
+  why: All rubric parts
+  already: 'Numbers and figures: `reports/EDA_REPORT.md`, `reports/FIGURES.md`, `reports/tables/`.'
+  where: '`docs/report/`'
+  run: —
+  done_when: Submitted.
+  steps:
+  - 'Sections: framing and cost matrix, data, methods with derivations, results, diagnostics, transfer, limitations,
+    reproducibility, AI-use declaration.'
+  - Each owner writes their part; one person edits for one voice.
+- issue: 36
+  status: todo
+  what: Debrief slides and mock Q&A.
+  why: 'Rubric E (15 pts): presentation and defence'
+  already: '`reports/FIGURES.md` lists what each figure defends.'
+  where: '`slides/`'
+  run: —
+  done_when: Slides ready and rehearsed.
+  steps:
+  - Each presents their part (about 3–4 minutes).
+  - Rehearse questions without notes; the AI policy requires explaining your work without AI.
+- issue: 37
+  status: todo
+  what: One-page individual reflection each.
+  why: Rubric F (5 pts)
+  already: —
+  where: '`docs/reflections/<name>.md`'
+  run: —
+  done_when: Four reflections submitted.
+  steps:
+  - Your contribution, what you learned, what you would do differently.

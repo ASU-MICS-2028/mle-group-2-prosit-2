@@ -1,6 +1,6 @@
 # Progress dashboard
 
-**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-17 by Bernard on branch `p3/30-scorer-fixes-and-structure` (PR #46 is merged into `main`).
+**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-17 by Bernard (PRs #47 and #57 merged into `main`).
 
 Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 
@@ -12,24 +12,24 @@ Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 | Setup | Roles, docs, tracking | Perfect | ✅ pushed 2026-11-07 |
 | A | Explore Train/Test structure | Perfect | ✅ `notebooks/01_eda.ipynb` §1-5, merged (#38, #39) |
 | A | Explore the target | Henry | ✅ `src/analysis/target_eda.py` + `python -m scripts.run_target_eda` (tables in `reports/tables/eda_target_*.csv`) |
-| A | Explore amounts/durations (P3 slice) | Bernard | 🟨 amounts, terms, leakage and history in `reports/EDA_REPORT.md` §4-6 (`p3/48-eda-report-figures-tests`); leak-suspect ruling at Part A session |
-| A | Explore Ghana and context files (P4 slice) | Eugene | 🟨 Kenya vs Ghana, macro and Findex in `reports/EDA_REPORT.md` §8-10 (`p3/48-eda-report-figures-tests`); Eugene to interpret for Part C/D |
+| A | Explore amounts/durations (P3 slice) | Bernard | 🟨 amounts, terms, leakage and history in `reports/EDA_REPORT.md` §4-6 (PR #57); leak-suspect ruling at Part A session |
+| A | Explore Ghana and context files (P4 slice) | Eugene | 🟨 Kenya vs Ghana, macro and Findex in `reports/EDA_REPORT.md` §8-10 (PR #57); Eugene to interpret for Part C/D |
 | A | Timeline, label, feature audit table | Perfect + Henry | 🟨 audit table drafted (`docs/feature_audit.md`); timeline and label to do |
 | A | Two tasks + cost matrix in cedis/shillings | Henry | 🟨 draft from data in `configs/cost_matrix.yaml` (D-19): threshold 0.019 (1 future loan) to 0.106 (6); future-loss assumption to settle |
 | B | Shared feature file and fold splits | Perfect | ✅ merged (#39); Henry's baseline already uses it |
-| B | Preprocessor for unseen lenders and loan types (D-5) | Perfect + Bernard | ✅ `src/processing/preprocess.py` (PR #46; target scaler clipped on `p3/30-scorer-fixes-and-structure`) |
+| B | Preprocessor for unseen lenders and loan types (D-5) | Perfect + Bernard | ✅ `src/processing/preprocess.py` (PR #46; target scaler clipped in PR #47) |
 | B | Finish `01_eda`: missing values, skew, cardinality | Perfect | ⬜ |
 | B | Perfect's models: baselines, kNN, SVM | Perfect | ⬜ |
-| B | Shared train/evaluate scripts, Lightning DataModule | Henry + Bernard | ✅ PR #46, restructured on `p3/30-scorer-fixes-and-structure`: `src/models/`, `src/training/`, `src/evaluation/`, `scripts/`, 41 tests |
+| B | Shared train/evaluate scripts, Lightning DataModule | Henry + Bernard | ✅ PR #46, restructured in PR #47: `src/models/`, `src/training/`, `src/evaluation/`, `scripts/`, 41 tests |
 | B | Logistic regression (scikit-learn + Lightning) | Henry | ✅ ROC-AUC 0.844, PR-AUC 0.180 on the D-18 feature list (was 0.845 / 0.170) |
 | B | MLP | Henry | ✅ ROC-AUC 0.867, PR-AUC 0.209; by time 0.649 (was 0.48 with macro columns) |
 | B | Models, validation study, calibration, CIs | per [Team & Ownership](../README.md#team--ownership) | ✅ all 16 models run (`reports/tables/`); calibration (Platt, ECE 0.30 → 0.002) and customer-level CIs in `02_classification` §8–10 (added by Bernard) |
 | C | Kenya → Ghana transfer study | Eugene | 🟥 `04` is an AI draft (PR #46) Eugene must own; helpers in `src/evaluation/shift.py` |
 | D | Model Card, Datasheet, fairness, regulation, Findex | Eugene | 🟥 not started by Eugene; helpers in `src/evaluation/fairness.py` |
-| E | Scoring service, reason codes | Bernard | 🟨 #30 bugs fixed on `p3/30-scorer-fixes-and-structure` (Ghana limit currency, 0% risk, false reasons, review flags); latency median 44 ms, p95 75 ms |
+| E | Scoring service, reason codes | Bernard | 🟨 #30 bugs fixed in PR #47 (Ghana limit currency, 0% risk, false reasons, review flags); latency median 44 ms, p95 75 ms |
 | Final | Report, audit, slides, reflections, AI declaration | all | ⬜ |
 
-Per-issue progress is on GitHub (Roadmap issue #1). Closed on 2026-11-17 with evidence: #3, #4, #5, #12, #14. Reopened: #30 (scorer bugs, now fixed on `p3/30-scorer-fixes-and-structure`).
+Per-issue progress is on GitHub (Roadmap issue #1). Closed on 2026-11-17 with evidence: #3, #4, #5, #12, #14. Reopened: #30 (scorer bugs, now fixed in PR #47).
 
 ## Done so far
 
@@ -41,7 +41,7 @@ Per-issue progress is on GitHub (Roadmap issue #1). Closed on 2026-11-17 with ev
 | 2026-11-09 | Perfect | Train/Test structure EDA: two-lender loans, sibling-row leak, Ghana shift | `notebooks/01_eda.ipynb`, PR #38 |
 | 2026-11-10 | Perfect | Shared feature file, 3 fold schemes, leakage checks, feature audit, P3/P4 roles | `src/features.py`, `docs/feature_audit.md`, PR #39 (merged by Bernard) |
 | 2026-11-17 | Bernard | Converted `explore_target_henry.ipynb` to a script; made `02`–`04` script-backed notebooks (02 later restored, D-20) | PR #46 (merged without review) |
-| 2026-11-17 | Bernard | Restructured `src/` into packages + `scripts/`, `configs/`, `reports/`; fixed scorer bugs (D-18, D-19); restored and completed Henry's `02` (§7–10); ran all 16 models | `p3/30-scorer-fixes-and-structure` |
+| 2026-11-17 | Bernard | Restructured `src/` into packages + `scripts/`, `configs/`, `reports/`; fixed scorer bugs (D-18, D-19); restored and completed Henry's `02` (§7–10); ran all 16 models | PR #47 |
 | 2026-11-16 | Bernard | Shared `src/` pipeline, `tests/` CI guardrails, `Makefile`, streamlined README | PR #46 |
 | 2026-11-10 | Henry | Logistic regression (raw + shared + Lightning) and MLP + temporal check | `notebooks/02_classification.ipynb`, `docs/learning/`, PRs #40, #41 |
 
@@ -63,7 +63,7 @@ Findings so far:
 1. **Part A session (all four):** confirm [DECISIONS](DECISIONS.md) D-2 to D-7, which are drafts that the code already relies on. Draw the loan timeline, define the label, write the cost matrix.
 2. **Henry:** review `02` §7–10 (added by Bernard) and the draft cost matrix (D-19); decide the future-loss assumption; write the logistic regression derivation.
 3. **Perfect:** finish `01_eda`, the unseen-category preprocessor (D-5), baselines, kNN, SVM and the SVM derivation.
-4. **Bernard:** get `p3/30-scorer-fixes-and-structure` reviewed and merged; #7 amounts/leak-suspect EDA, Task 2 decision tree (#17), linear regression derivation, final scorer model.
+4. **Bernard:** get PR #47 reviewed and merged; #7 amounts/leak-suspect EDA, Task 2 decision tree (#17), linear regression derivation, final scorer model.
    **Eugene:** take ownership of `04` (fix the 4 issues listed at its top), Model Card, Datasheet, regulatory map, proxy analysis, mitigation.
 5. Report, audit, slides, reflections, AI-use declaration.
 6. **Deadline: 19 Nov 2026.**
@@ -85,8 +85,10 @@ Findings so far:
 
 | Date | Who | Did | Next |
 | --- | --- | --- | --- |
-| 2026-11-17 | Bernard | EDA report, defence figure pack + catalogue, end-to-end and architecture/normalization tests (127), issues #48-#56 | Review PR #47 and the stacked `p3/48-eda-report-figures-tests` PR |
-| 2026-11-17 | Bernard | Restructure (packages, scripts, configs, reports), scorer bug fixes, Henry's `02` restored and completed, all 16 models run | Review and merge `p3/30-scorer-fixes-and-structure`; Eugene takes `04` |
+| 2026-11-17 | Bernard | PRs #47, #57 merged; README status now auto-generated by a GitHub Action (D-21) | Each owner works their cards |
+| 2026-11-17 | Bernard | All open issues assigned on GitHub; README issue cards per person | Everyone works their cards |
+| 2026-11-17 | Bernard | EDA report, defence figure pack + catalogue, end-to-end and architecture/normalization tests (127), issues #48-#56 | Review PR #47 and the stacked PR #57 PR |
+| 2026-11-17 | Bernard | Restructure (packages, scripts, configs, reports), scorer bug fixes, Henry's `02` restored and completed, all 16 models run | Review and merge PR #47; Eugene takes `04` |
 | 2026-11-17 | Bernard | Script-first refactor (`src/eda_target.py`, thin `02`–`04` deliverable notebooks, D-17, 4-notebook test) | Merge PR; Part A session; audit & derivations |
 | 2026-11-16 | Bernard | Senior ML scaffolding (`preprocess`, `datamodule`, `train`, `evaluate`, `fairness`, `score`, `tests/`, CI, `Makefile`, streamlined `README.md`) on `p3/13-30-senior-scaffolding` | Review & merge PR; run all models via `src.train`, finish `03_regression.ipynb` |
 | 2026-11-10 | Perfect | Docs sync after #39–#41; docs-freshness rule and check | Part A session; finish `01_eda` |

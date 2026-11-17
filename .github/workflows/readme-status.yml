@@ -1,0 +1,75 @@
+name: README status
+
+# Keeps the README's progress table, issue badge and per-person issue cards in step with GitHub.
+# Runs when issues or pull requests change, when the card text or generator changes on main,
+# every morning, and on demand (Actions tab -> README status -> Run workflow).
+# It commits only when the status actually changed (the date alone never triggers a commit).
+
+on:
+  issues:
+    types: [opened, edited, closed, reopened, assigned, unassigned, labeled, unlabeled]
+  pull_request:
+    types: [opened, edited, closed, reopened]
+  push:
+    branches: [main]
+    paths: ["docs/issue_cards.yaml", "scripts/update_readme.py"]
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: read
+  pull-requests: read
+
+concurrency:
+  group: readme-status
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      # Always work on main: the README updates are committed there, never into a pull request branch.
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      # Until the pull request that adds the generator is merged, main does not have it yet: skip cleanly.
+      - name: Check the generator is on main
+        id: guard
+        run: |
+          if [ -f scripts/update_readme.py ] && [ -f docs/issue_cards.yaml ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::notice::scripts/update_readme.py is not on main yet (it arrives when its pull request merges); nothing to do."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-python@v5
+        if: steps.guard.outputs.ready == 'true'
+        with:
+          python-version: "3.12"
+
+      - name: Install PyYAML
+        if: steps.guard.outputs.ready == 'true'
+        run: pip install pyyaml
+
+      - name: Rebuild README status from issues and pull requests
+        if: steps.guard.outputs.ready == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python -m scripts.update_readme
+
+      - name: Commit if the status changed
+        if: steps.guard.outputs.ready == 'true'
+        run: |
+          if git diff --quiet README.md; then
+            echo "README status unchanged."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "README status: sync with issues and pull requests [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main

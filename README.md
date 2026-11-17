@@ -11,7 +11,7 @@
   <img alt="Tests" src="https://img.shields.io/badge/tests-127_passing-2e7d32?style=flat-square">
   <img alt="Models" src="https://img.shields.io/badge/models-16_trained-1f4e79?style=flat-square">
   <img alt="Figures" src="https://img.shields.io/badge/figures-47-1f4e79?style=flat-square">
-  <img alt="Issues" src="https://img.shields.io/badge/issues-10_of_45_closed-d4a72c?style=flat-square">
+  <!-- status:badge --><img alt="Issues" src="https://img.shields.io/badge/issues-12_of_45_closed-d4a72c?style=flat-square"><!-- /status:badge -->
   <img alt="Deadline" src="https://img.shields.io/badge/deadline-19_Nov_2026-b03a2e?style=flat-square">
 </p>
 
@@ -66,27 +66,30 @@ Reviews rotate **Perfect → Henry → Bernard → Eugene → Perfect**. Every p
 
 ## Progress
 
-Status as of **17 Nov 2026**. GitHub's [roadmap issue #1](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/1) is the live source; this table adds work that is finished but still in review.
+<!-- status:progress -->
+Generated from GitHub on **17 Nov 2026** by `scripts/update_readme.py` (the *README status* Action keeps it current).
 
-<sub><img src="https://img.shields.io/badge/-done-2e7d32?style=flat-square"> closed on GitHub &nbsp; <img src="https://img.shields.io/badge/-in_review-1f4e79?style=flat-square"> finished, waiting in a pull request &nbsp; <img src="https://img.shields.io/badge/-in_progress-d4a72c?style=flat-square"> started &nbsp; <img src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> not started</sub>
-
-| Part | Rubric | Issues closed | Status |
+| Part | Rubric | Closed | Still open |
 | --- | :---: | :---: | --- |
-| **Setup** | — | ![3/4](https://img.shields.io/badge/3%2F4-done-2e7d32?style=flat-square) | Data profiled, roles, repo, shared config. Left: protect `main` ([#56](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/56)) |
-| **A · Frame the problem** | 10 pts | ![2/7](https://img.shields.io/badge/2%2F7-in_progress-d4a72c?style=flat-square) | Structure and target EDA done; full EDA report in review. Left: Part A session, tasks and goal, cost matrix sign-off |
-| **B · Build & evaluate** | 30 + 20 pts | ![4/14](https://img.shields.io/badge/4%2F14-in_review-1f4e79?style=flat-square) | All 16 models trained; validation study, calibration, CIs and Task 1 metrics done (in review). Left: model choice, interpretation write-up, ablation, temporal calibration |
-| **C · Cross-market transfer** | (in B/D) | ![0/3](https://img.shields.io/badge/0%2F3-in_progress-d4a72c?style=flat-square) | Shift figures and domain classifier done; Eugene to own the analysis and notebook 04 |
-| **D · Ethics & regulation** | 20 pts | ![0/7](https://img.shields.io/badge/0%2F7-to_do-9aa0a6?style=flat-square) | Fairness and Findex figures ready; Model Card, Datasheet, regulation, mitigation not started |
-| **E · Deployment** | 15 pts | ![1/4](https://img.shields.io/badge/1%2F4-in_review-1f4e79?style=flat-square) | Scorer with reasons, review flags and latency (in review). Left: final model, limit rule |
-| **Deliverables** | 5 pts + all | ![0/6](https://img.shields.io/badge/0%2F6-to_do-9aa0a6?style=flat-square) | Derivations, report, audit, slides, reflections |
+| **Setup** | — | ![3/4](https://img.shields.io/badge/3%2F4-closed-d4a72c?style=flat-square) | [#56](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/56) |
+| **A · Frame the problem** | 10 pts | ![2/7](https://img.shields.io/badge/2%2F7-closed-d4a72c?style=flat-square) | [#7](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/7) [#8](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/8) [#9](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/9) [#10](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/10) [#11](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/11) |
+| **B · Build & evaluate** | 30 + 20 pts | ![5/14](https://img.shields.io/badge/5%2F14-closed-d4a72c?style=flat-square) | [#15](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/15) [#17](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/17) [#18](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/18) [#19](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/19) [#20](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/20) [#22](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/22) [#48](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/48) [#52](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/52) [#55](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/55) |
+| **C · Cross-market transfer** | in B, D | ![0/3](https://img.shields.io/badge/0%2F3-closed-9aa0a6?style=flat-square) | [#23](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/23) [#24](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/24) [#54](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/54) |
+| **D · Ethics & regulation** | 20 pts | ![0/7](https://img.shields.io/badge/0%2F7-closed-9aa0a6?style=flat-square) | [#25](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/25) [#26](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/26) [#27](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/27) [#28](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/28) [#29](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/29) [#49](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/49) [#50](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/50) |
+| **E · Deployment** | 15 pts | ![2/4](https://img.shields.io/badge/2%2F4-closed-d4a72c?style=flat-square) | [#51](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/51) [#53](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/53) |
+| **Deliverables** | 5 pts + all | ![0/6](https://img.shields.io/badge/0%2F6-closed-9aa0a6?style=flat-square) | [#32](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/32) [#33](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/33) [#34](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/34) [#35](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/35) [#36](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/36) [#37](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/37) |
+
+<sub>⏳ = a pull request for it is open.</sub>
+
+<!-- /status:progress -->
 
 ### Notebooks
 
 | Notebook | Owner | Status |
 | --- | --- | --- |
 | [`01_eda.ipynb`](notebooks/01_eda.ipynb) | Perfect | ![done](https://img.shields.io/badge/-done-2e7d32?style=flat-square) Train/Test structure (PRs #38, #39); link the EDA report ([#48](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/48)) |
-| [`02_classification.ipynb`](notebooks/02_classification.ipynb) | Henry | ![in review](https://img.shields.io/badge/-in_review-1f4e79?style=flat-square) Henry's original restored + calibration, cost threshold, CIs (PR #47) |
-| [`03_regression.ipynb`](notebooks/03_regression.ipynb) | Bernard | ![in review](https://img.shields.io/badge/-in_review-1f4e79?style=flat-square) Task 1 models, residuals, scorer demo (PR #47); Task 2 tree to add |
+| [`02_classification.ipynb`](notebooks/02_classification.ipynb) | Henry | ![merged](https://img.shields.io/badge/-merged-2e7d32?style=flat-square) Henry's original restored + calibration, cost threshold, CIs (PR #47); Henry to verify #19, #20 |
+| [`03_regression.ipynb`](notebooks/03_regression.ipynb) | Bernard | ![merged](https://img.shields.io/badge/-merged-2e7d32?style=flat-square) Task 1 models, residuals, scorer demo (PR #47); Task 2 tree to add (#17) |
 | [`04_transfer_and_fairness.ipynb`](notebooks/04_transfer_and_fairness.ipynb) | Eugene | ![needs owner](https://img.shields.io/badge/-needs_owner-b03a2e?style=flat-square) AI draft with known problems ([#54](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/54)) |
 
 ### Done
@@ -105,43 +108,819 @@ Status as of **17 Nov 2026**. GitHub's [roadmap issue #1](https://github.com/ASU
 
 ## What's left, by person
 
-<table>
-<tr><td valign="top" width="50%">
+<!-- status:people -->
+Find your name, open each issue card and follow the steps. Every card says what the task is, why it matters for the grade, what already exists, where to work, how to run it, and when it is done. Close an issue with a pull request whose description says `Closes #<number>`. Every open issue is **assigned on GitHub** to its owner; signed in, [see the issues assigned to you](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3A%40me).
 
-**<img src="https://github.com/peaElorm.png?size=40" width="20" align="center"> Perfect**
-- [#15](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/15) Baselines, kNN, SVM: review results (trained)
-- [#48](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/48) Link the EDA report from `01_eda`
-- [#32](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/32) SVM derivation
-- Review Eugene's pull requests
+<sub><img alt="a pull request for it is open" src="https://img.shields.io/badge/-in_review-1f4e79?style=flat-square"> a pull request for it is open &nbsp; <img alt="work is on main; owner verifies and closes" src="https://img.shields.io/badge/-merged,_verify_%26_close-2e7d32?style=flat-square"> work is on main; owner verifies and closes &nbsp; <img alt="evidence exists, owner must finish" src="https://img.shields.io/badge/-partly_done-d4a72c?style=flat-square"> evidence exists, owner must finish &nbsp; <img alt="models already ran, owner must review" src="https://img.shields.io/badge/-trained,_review-d4a72c?style=flat-square"> models already ran, owner must review &nbsp; <img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> not started &nbsp; <img alt="start today" src="https://img.shields.io/badge/-start_now-b03a2e?style=flat-square"> start today</sub>
 
-**<img src="https://github.com/henryhkb.png?size=40" width="20" align="center"> Henry**
-- Review PR #47 and the stacked EDA/figures PR
-- [#10](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/10) Tasks and business goal · [#11](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/11) settle the cost assumptions
-- [#19](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/19) · [#20](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/20) Check §7–10 of 02, then close
-- [#55](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/55) Calibration on 2023+ loans
-- [#32](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/32) Logistic regression derivation
+| | Person | Open | In review or merged | Not started | Jump to |
+| :---: | --- | :---: | :---: | :---: | --- |
+| <img src="https://github.com/peaElorm.png?size=60" width="28"> | **Perfect Elorm Avugla** · Data & features | 3 | 0 | 1 | [Perfect's issues](#peaelorm) |
+| <img src="https://github.com/henryhkb.png?size=60" width="28"> | **Henry Kofi Brandoh** · Classification & evaluation | 6 | 2 | 3 | [Henry's issues](#henryhkb) |
+| <img src="https://github.com/adjeibernardmarfo.png?size=60" width="28"> | **Bernard Marfo Adjei** · Regression, deployment & project lead | 7 | 0 | 4 | [Bernard's issues](#adjeibernardmarfo) |
+| <img src="https://github.com/eugene-sew.png?size=60" width="28"> | **Eugene** · Transfer & fairness | 14 | 0 | 8 | [Eugene's issues](#eugene-sew) |
+| 👥 | **Everyone** | 6 | 0 | 6 | [Shared issues](#everyone) |
 
-</td><td valign="top" width="50%">
+### How to pick up an issue
 
-**<img src="https://github.com/adjeibernardmarfo.png?size=40" width="20" align="center"> Bernard**
-- [#7](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/7) Leak-suspect ruling (evidence in EDA §5)
-- [#17](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/17) Task 2 decision tree in 03 · [#21](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/21) close after review
-- [#22](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/22) Interpretation write-up · [#52](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/52) ablation
-- [#51](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/51) Final scorer model · [#53](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/53) limit rule
-- [#32](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/32) Linear regression derivation
+```bash
+git switch main && git pull                      # start from the latest main
+git switch -c p4/54-fix-notebook-04              # <role>/<issue>-<short-name>
+# ... do the steps on the card, run `make test` ...
+git add -A && git commit -m "Fix notebook 04 calibration (#54)"
+git push -u origin p4/54-fix-notebook-04
+gh pr create --fill                               # description must say: Closes #54
+```
 
-**<img src="https://github.com/eugene-sew.png?size=40" width="20" align="center"> Eugene**
-- [#54](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/54) Own and fix notebook 04
-- [#8](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/8) · [#23](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/23) · [#24](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/24) Kenya→Ghana shift and trust evidence
-- [#25](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/25) Model Card · [#49](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/49) Datasheet · [#35](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/35) audit document
-- [#26](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/26) Fairness + proxies · [#50](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/50) mitigation
-- [#27](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/27) Regulation · [#28](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/28) Findex · [#29](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/29) decline explanation
-- [#18](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/18) Random Forest and LightGBM: review results (trained)
+Then add a line to `docs/WORKLOG.md` and `docs/PROGRESS.md` (a check enforces it) and ask the next person in the review rotation to approve. The cards below update themselves when issues and pull requests change.
 
-</td></tr>
-</table>
+<h3 id="peaelorm"><img src="https://github.com/peaElorm.png?size=60" width="32" align="center"> Perfect Elorm Avugla</h3>
 
-**Everyone:** [#9](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/9) Part A session · [#33](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/33) notebooks rerun from a clean clone · [#34](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/34) report · [#36](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/36) slides and Q&A · [#37](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/37) reflections · [#56](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/56) protect `main`
+Data & features · [peaElorm](https://github.com/peaElorm) · **3 open** · [Perfect's assigned issues on GitHub](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3ApeaElorm)
+
+<details>
+<summary><img alt="models already ran, owner must review" src="https://img.shields.io/badge/-trained,_review-d4a72c?style=flat-square"> <b>#15 · Models: baselines, kNN, SVM</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | Your three models (majority baseline, k-nearest neighbours, RBF SVM) for default prediction. |
+| **Why it matters** | Rubric B (30 pts): at least 5 models including a majority baseline |
+| **Already done** | All three were trained on all three validation schemes in the full run. Results are in `reports/tables/task2_model_summary.csv` and `reports/figures/eval_model_intervals.png`. |
+| **Where to work** | `configs/models.yaml`, `src/models/neighbors.py`, `src/models/svm.py` |
+| **How to run** | `python -m scripts.train --task task2 --models majority knn svm_rbf --schemes fold_group fold_strat temporal` then `make eval` |
+| **Done when** | You can explain each model's result and the comment is on the issue; close it. |
+
+**Steps**
+
+1. Open `reports/tables/task2_model_summary.csv` and find `majority`, `knn`, `svm_rbf`.
+2. Explain the numbers: the baseline is the floor (PR-AUC 0.018); kNN reaches about 0.155; the SVM is weakest (0.07) because it is trained on a 12,000-row subsample (`configs/models.yaml`).
+3. Optionally try a larger `max_train_rows` or a different `C`, `gamma` in `configs/models.yaml` and rerun.
+4. Add two or three sentences on these models to the report's results section.
+
+[Open issue #15 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/15)
+
+</details>
+
+<details>
+<summary><img alt="evidence exists, owner must finish" src="https://img.shields.io/badge/-partly_done-d4a72c?style=flat-square"> <b>#48 · Finish EDA: class imbalance, missing values, skew and cardinality</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | The brief's Part B.1 exploration: class imbalance, missing values, value skew (log transform), number of categories. |
+| **Why it matters** | Rubric B: EDA covering imbalance, missing values, skew and cardinality |
+| **Already done** | All four are in `reports/EDA_REPORT.md` (sections 1, 3, 4, 7) with figures, built by `make eda`. |
+| **Where to work** | `notebooks/01_eda.ipynb`, `reports/EDA_REPORT.md`, `src/analysis/data_profile.py` |
+| **How to run** | `make eda` |
+| **Done when** | `01_eda` points to the report and you agree with its readings; close the issue. |
+
+**Steps**
+
+1. Read `reports/EDA_REPORT.md` end to end and check every reading against your own `01_eda` work.
+2. In `01_eda.ipynb`, add a short final section that links the report and shows its key figures (imbalance, raw vs log amounts, cardinality table).
+3. Fix or comment on anything you disagree with.
+
+[Open issue #48 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/48)
+
+</details>
+
+<details>
+<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#32 · Derivations: SVM (P1), logistic regression (P2), linear regression (P3), gradient boosting (P4)</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | Your derivation: the support vector machine. |
+| **Why it matters** | LO3, rubric B (30 pts): at least two correct derivations are required |
+| **Already done** | Nothing yet. The SVM implementation is in `src/models/svm.py`. |
+| **Where to work** | `docs/derivations/svm.md` |
+| **How to run** | — |
+| **Done when** | The derivation is written, checked on a toy example, and you can explain it without notes. |
+
+**Steps**
+
+1. Write `docs/derivations/svm.md`: the maximum-margin problem, slack variables and the hinge loss, the dual, and the kernel trick (RBF).
+2. Check it on a tiny example: fit `sklearn.svm.SVC(kernel='linear')` on 2-D toy data and show the margin and support vectors match your derivation.
+3. Keep it to 1–2 pages; it goes into the technical report.
+
+[Open issue #32 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/32)
+
+</details>
+
+
+<h3 id="henryhkb"><img src="https://github.com/henryhkb.png?size=60" width="32" align="center"> Henry Kofi Brandoh</h3>
+
+Classification & evaluation · [henryhkb](https://github.com/henryhkb) · **6 open** · [Henry's assigned issues on GitHub](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3Ahenryhkb)
+
+<details>
+<summary><img alt="work is on main; owner verifies and closes" src="https://img.shields.io/badge/-merged,_verify_%26_close-2e7d32?style=flat-square"> <b>#19 · Calibration, threshold sweep and cost-based operating point</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | Calibration of the default probabilities, a threshold sweep, and the cost-based operating point with a confusion matrix. |
+| **Why it matters** | Rubric C (20 pts): PR-AUC, calibration and a cost-based operating point |
+| **Already done** | Merged to main in PR #47: sections 8 and 9 of `02_classification.ipynb` (Platt vs isotonic calibration, ECE 0.30 → 0.002; threshold sweep; confusion matrix; F1-best threshold for comparison). |
+| **Where to work** | `notebooks/02_classification.ipynb` §8–9, `src/evaluation/calibration.py`, `src/evaluation/metrics.py` |
+| **How to run** | Run the notebook top to bottom |
+| **Done when** | You have rerun and can explain the sections; close the issue. |
+
+**Steps**
+
+1. Rerun sections 8–9 of `02_classification.ipynb` yourself.
+2. Make sure you can explain why calibration comes before the threshold and why the scorer uses Platt.
+3. Change anything you disagree with in a pull request; otherwise comment and close the issue.
+
+[Open issue #19 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/19)
+
+</details>
+
+<details>
+<summary><img alt="work is on main; owner verifies and closes" src="https://img.shields.io/badge/-merged,_verify_%26_close-2e7d32?style=flat-square"> <b>#20 · Bootstrap 95% CIs on F1 and PR-AUC; noise floor</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | 95% bootstrap confidence intervals on PR-AUC and F1, and whether the model beats the baseline beyond the ±0.0263 noise floor. |
+| **Why it matters** | Rubric C (20 pts): bootstrap CIs and the noise floor |
+| **Already done** | Merged to main in PR #47: section 10 of `02_classification` resamples customers, not rows; both models beat the baseline; logistic regression and MLP intervals overlap. |
+| **Where to work** | `notebooks/02_classification.ipynb` §10, `src/evaluation/bootstrap.py` |
+| **How to run** | Run the notebook |
+| **Done when** | You have rerun and can explain it; close the issue. |
+
+**Steps**
+
+1. Rerun section 10 and read `src/evaluation/bootstrap.py`.
+2. Be ready to explain why we resample customers (a customer's loans are correlated).
+
+[Open issue #20 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/20)
+
+</details>
+
+<details>
+<summary><img alt="evidence exists, owner must finish" src="https://img.shields.io/badge/-partly_done-d4a72c?style=flat-square"> <b>#11 · Cost matrix in cedis/shillings</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | The cost of approving a defaulter vs declining a good borrower, in shillings or cedis, which sets the approve/decline threshold. |
+| **Why it matters** | Rubric A (10 pts): cost matrix in money with at least two sensitivity cases |
+| **Already done** | A draft in `configs/cost_matrix.yaml` (decision D-19): principal 5,249 KES and fee 1.68% are **measured** from Train; recovery 20%, collection cost 250 KES and 1 future loan lost are **assumptions**. Threshold 0.019 (1 future loan) to 0.106 (6 future loans). |
+| **Where to work** | `configs/cost_matrix.yaml`, `docs/DECISIONS.md` |
+| **How to run** | `make eval` and `make figures` |
+| **Done when** | Every assumption is justified, the threshold is final, and D-19 is decided. |
+
+**Steps**
+
+1. Decide each assumption and write one sentence of justification for it (e.g. sources on Kenyan or Ghanaian digital-lending recovery).
+2. Edit `configs/cost_matrix.yaml`; rerun section 9 of `02` and `make eval figures`.
+3. Write the cost-matrix table for report Part A, in KES (and GHS for Ghana), like Appendix A of the brief but with our numbers.
+4. Update D-19 in `docs/DECISIONS.md` from draft to decided.
+
+[Open issue #11 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/11)
+
+</details>
+
+<details>
+<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#10 · Define Task 1 and Task 2 and the business goal</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | Write down Task 1 (loan amount, regression) and Task 2 (default, classification) and the business goal in one sentence. |
+| **Why it matters** | Rubric A (10 pts): two tasks and the business goal |
+| **Already done** | The tasks exist in code (`src/config.py`); nothing is written for the report. |
+| **Where to work** | Report Part A, `docs/DECISIONS.md` |
+| **How to run** | — |
+| **Done when** | Both tasks and the goal are written and agreed at the Part A session (#9). |
+
+**Steps**
+
+1. Define each task: target, unit (Task 1 is USD, converted to local currency), decision moment (disbursement).
+2. Write the goal, e.g. "decline when P(default) exceeds the cost threshold, while approving at least X% of applicants"; pick X from `reports/figures/eval_threshold_sweep.png`.
+3. Put it in the report's Part A section.
+
+[Open issue #10 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/10)
+
+</details>
+
+<details>
+<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#55 · Does calibration hold on 2023+ loans? Temporal calibration and recalibration plan</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | Calibration was fitted on folds that mix 2022 and 2023 loans. Defaults jumped from 1.3% to about 10% in 2023, so probabilities may be far too low for recent loans. |
+| **Why it matters** | Rubric C: honest evaluation of calibration over time |
+| **Already done** | The temporal predictions exist in `preds/task2_*_temporal.parquet`. |
+| **Where to work** | `notebooks/02_classification.ipynb` (new section), `src/evaluation/` |
+| **How to run** | Run the notebook |
+| **Done when** | The figure and one paragraph of recommendation are in 02 and the report. |
+
+**Steps**
+
+1. Train on loans before 2023, score 2023+ loans, and draw a reliability curve (raw and Platt) with `src.visualization.plot_reliability`.
+2. Report how far off it is (ECE, mean predicted vs actual).
+3. Recommend what NkwaPay should do: recalibrate on recent loans and monitor monthly.
+
+[Open issue #55 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/55)
+
+</details>
+
+<details>
+<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#32 · Derivations: SVM (P1), logistic regression (P2), linear regression (P3), gradient boosting (P4)</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | Your derivation: logistic regression. |
+| **Why it matters** | LO3, rubric B (30 pts): at least two correct derivations are required |
+| **Already done** | The Lightning model in `src/models/lightning_modules.py` and the test `test_logistic_loss_is_weighted_negative_log_likelihood` already show BCE = negative log-likelihood. |
+| **Where to work** | `docs/derivations/logistic.md` |
+| **How to run** | — |
+| **Done when** | The derivation is written, checked, and you can explain it without notes. |
+
+**Steps**
+
+1. Write `docs/derivations/logistic.md`: log-odds model → Bernoulli likelihood → negative log-likelihood (BCE) → gradient → why `pos_weight` reweights it.
+2. Check your gradient numerically on a tiny example against scikit-learn.
+
+[Open issue #32 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/32)
+
+</details>
+
+
+<h3 id="adjeibernardmarfo"><img src="https://github.com/adjeibernardmarfo.png?size=60" width="32" align="center"> Bernard Marfo Adjei</h3>
+
+Regression, deployment & project lead · [adjeibernardmarfo](https://github.com/adjeibernardmarfo) · **7 open** · [Bernard's assigned issues on GitHub](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3Aadjeibernardmarfo)
+
+<details>
+<summary><img alt="evidence exists, owner must finish" src="https://img.shields.io/badge/-partly_done-d4a72c?style=flat-square"> <b>#17 · Models: OLS, Ridge, Lasso and decision tree</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | Your models: OLS, Ridge, Lasso and a pruned decision tree. |
+| **Why it matters** | Rubric B (30 pts): models |
+| **Already done** | OLS, Ridge, Lasso and the regression tree are trained and compared in `03_regression`. The brief's model table also gives P3 the **pruned decision tree for default prediction**, which is trained (`decision_tree`) but not discussed. |
+| **Where to work** | `notebooks/03_regression.ipynb`, `configs/models.yaml` |
+| **How to run** | Run the notebook |
+| **Done when** | Both trees are discussed in 03; close. |
+
+**Steps**
+
+1. Add a short section to `03_regression` comparing `decision_tree` (Task 2) with the other classifiers, using `reports/tables/task2_model_summary.csv`.
+2. Explain the pruning settings (`max_depth`, `ccp_alpha` in `configs/models.yaml`).
+
+[Open issue #17 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/17)
+
+</details>
+
+<details>
+<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#51 · Choose the deployed models and refit the scoring service</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | Choose which classifier and limit model the scorer uses. |
+| **Why it matters** | Rubric E: the deployed model must be the justified choice |
+| **Already done** | The scorer uses calibrated logistic regression, which under-predicts new borrowers (2.2% vs 5.7% observed for one profile). MLP and Random Forest rank best, but their intervals overlap logistic regression. Evidence: `eval_model_intervals.png`, `eval_calibration_by_tenure.png`. |
+| **Where to work** | `src/training/artifacts.py`, `docs/DECISIONS.md` |
+| **How to run** | `python -m scripts.train --save-artifacts --clf-artifact-model random_forest` |
+| **Done when** | The decision is recorded and the scorer and figures use the chosen model. |
+
+**Steps**
+
+1. Compare the candidates on GroupKFold and temporal PR-AUC, calibration by tenure, and explainability (the committee prefers simple models).
+2. Refit: `python -m scripts.train --save-artifacts --clf-artifact-model <name>`.
+3. Record the choice and its reason in `docs/DECISIONS.md`; rerun `make figures score`.
+
+[Open issue #51 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/51)
+
+</details>
+
+<details>
+<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#53 · Limit rule: cap at a high quantile, not the typical amount</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | The limit model predicts the typical loan amount, so about half of all requests are cut (Kenya 42%; Ghana 70%, none fully approved). |
+| **Why it matters** | Rubric E: the limit must make business sense |
+| **Already done** | Evidence: `reports/figures/app_decision_mix.png`, `app_limit_vs_request.png`. |
+| **Where to work** | `src/models/ensembles.py`, `src/serving/`, `tests/test_serving.py` |
+| **How to run** | `make train figures score test` |
+| **Done when** | Most good borrowers are no longer cut, and the rule is recorded. |
+
+**Steps**
+
+1. Change the limit to a cap, e.g. LightGBM quantile regression (`objective='quantile', alpha=0.85`) or a multiple of the predicted amount.
+2. Report the share of repaid loans that would have been cut under the new rule.
+3. Update `src/serving/scorer.py`, `batch.py`, tests and figures; record the rule in DECISIONS.
+
+[Open issue #53 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/53)
+
+</details>
+
+<details>
+<summary><img alt="evidence exists, owner must finish" src="https://img.shields.io/badge/-partly_done-d4a72c?style=flat-square"> <b>#7 · Explore amounts, durations and the two leak suspects</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | Explore amounts and terms, and rule on the two repayment columns. |
+| **Why it matters** | Rubric A (10 pts): leakage correctly identified |
+| **Already done** | EDA §4–5: amounts are heavy-tailed (log needed); the markup separates defaulters at AUC 0.98, so both columns are dropped (D-2). |
+| **Where to work** | `docs/DECISIONS.md` |
+| **How to run** | `make eda` |
+| **Done when** | D-2 is decided at the session; close. |
+
+**Steps**
+
+1. Present the ruling at the Part A session (#9) using `eda_leakage_univariate_auc.png` and `eda_markup_by_outcome.png`.
+2. Mark D-2 decided in `docs/DECISIONS.md`.
+
+[Open issue #7 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/7)
+
+</details>
+
+<details>
+<summary><img alt="evidence exists, owner must finish" src="https://img.shields.io/badge/-partly_done-d4a72c?style=flat-square"> <b>#22 · Interpretation: coefficients, importances or SHAP</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | Explain, in plain language, what drives the default model. |
+| **Why it matters** | Rubric B: interpretation; LO6: explanations |
+| **Already done** | Figures: `interp_coefficients.png` (logistic regression), `interp_shap_lightgbm.png`. Finding: the tree model's top drivers (lender share, month) mostly mark the period, not the borrower. |
+| **Where to work** | Report Part B, `notebooks/03_regression.ipynb` |
+| **How to run** | `make figures` |
+| **Done when** | The interpretation is written and matches the figures. |
+
+**Steps**
+
+1. Write one page: top drivers, direction, and what they mean for a borrower.
+2. State the period-marker finding and what the ablation (#52) shows.
+
+[Open issue #22 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/22)
+
+</details>
+
+<details>
+<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#52 · Ablation study: what each feature group adds</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | Retrain without each feature group to see what carries the signal. |
+| **Why it matters** | Optional; strengthens rubric B interpretation |
+| **Already done** | Nothing yet; the feature lists live in `src/config.py`. |
+| **Where to work** | `scripts/` (new ablation script), `reports/` |
+| **How to run** | — |
+| **Done when** | A table and figure show which groups matter. |
+
+**Steps**
+
+1. For each group (history, calendar, lender share, product, amount), retrain the chosen model without it on GroupKFold and temporal.
+2. Tabulate the PR-AUC change; save the table and a bar chart to `reports/`.
+
+[Open issue #52 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/52)
+
+</details>
+
+<details>
+<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#32 · Derivations: SVM (P1), logistic regression (P2), linear regression (P3), gradient boosting (P4)</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | Your derivation: linear regression. |
+| **Why it matters** | LO3, rubric B (30 pts): at least two correct derivations are required |
+| **Already done** | Nothing yet. |
+| **Where to work** | `docs/derivations/linear.md` |
+| **How to run** | — |
+| **Done when** | Written, checked, and explainable without notes. |
+
+**Steps**
+
+1. Write `docs/derivations/linear.md`: Gaussian likelihood → least squares → normal equations → Ridge as MAP with a Gaussian prior.
+2. Check the normal-equation solution against `sklearn.linear_model.LinearRegression` on a toy example.
+
+[Open issue #32 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/32)
+
+</details>
+
+
+<h3 id="eugene-sew"><img src="https://github.com/eugene-sew.png?size=60" width="32" align="center"> Eugene</h3>
+
+Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **14 open** · [Eugene's assigned issues on GitHub](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3Aeugene-sew)
+
+<details>
+<summary><img alt="start today" src="https://img.shields.io/badge/-start_now-b03a2e?style=flat-square"> <b>#54 · Notebook 04: rerun on the new pipeline and fix its four known problems</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | `04_transfer_and_fairness.ipynb` is an AI draft from PR #46 with outputs from old code and four known problems (listed at its top). |
+| **Why it matters** | Rubric C/D (40 pts together): your notebook must be correct and yours |
+| **Already done** | Helpers are ready: `src/evaluation/fairness.py`, `shift.py`, `calibration.py`. |
+| **Where to work** | `notebooks/04_transfer_and_fairness.ipynb` |
+| **How to run** | `make test-notebooks` |
+| **Done when** | The notebook runs top to bottom and you can explain every cell. |
+
+**Steps**
+
+1. Rerun the notebook on the current pipeline (`make features train` first).
+2. Calibrate before every threshold: `calibrate_oof(...)`.
+3. Use the current feature list (D-18) in the domain classifier.
+4. Show the cost of the mitigation (#50) and add a proxy analysis (#26).
+5. Rewrite every reading in your own words; you will defend it.
+
+[Open issue #54 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/54)
+
+</details>
+
+<details>
+<summary><img alt="evidence exists, owner must finish" src="https://img.shields.io/badge/-partly_done-d4a72c?style=flat-square"> <b>#23 · Compare Kenya and Ghana distributions; domain classifier or importance weighting</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | Compare Kenya and Ghana and measure the shift (domain classifier or importance weighting). |
+| **Why it matters** | Brief Part C: cross-market transfer |
+| **Already done** | Figures: `shift_log_amount_usd.png`, `shift_duration.png`, `shift_domain_scores.png` (AUC 0.996), `shift_drivers.png`. Key finding: every Ghana row has no labelled history. |
+| **Where to work** | `notebooks/04_transfer_and_fairness.ipynb`, `src/evaluation/shift.py` |
+| **How to run** | `make figures` |
+| **Done when** | Part C section written with the figures. |
+
+**Steps**
+
+1. Write up the distributions and the domain classifier.
+2. Explain the `n_past_labelled` artefact (labels exist only in Train).
+3. Try importance weighting (`run_domain_classifier(...)['importance_weights']`) to re-weight Kenyan validation.
+
+[Open issue #23 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/23)
+
+</details>
+
+<details>
+<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#24 · Evidence NkwaPay would need to trust the model in Ghana</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | The brief asks what NkwaPay would need before trusting the model in Ghana. |
+| **Why it matters** | Brief Part C: what evidence would make Ghana scores trustworthy |
+| **Already done** | Every Ghana score is already flagged `needs_review` by the scorer. |
+| **Where to work** | Report Part C |
+| **How to run** | — |
+| **Done when** | A short, concrete plan is in the report. |
+
+**Steps**
+
+1. Propose a labelled pilot (size, duration), calibration on Ghana outcomes, and monitoring triggers.
+2. Tie it to the shift evidence from #23.
+
+[Open issue #24 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/24)
+
+</details>
+
+<details>
+<summary><img alt="evidence exists, owner must finish" src="https://img.shields.io/badge/-partly_done-d4a72c?style=flat-square"> <b>#26 · Fairness by country, loan type, lender, tenure and loan-size band; proxy analysis</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | PR-AUC, F1 and selection rate by country, loan type, lender, tenure and loan size; check whether any feature stands in for a protected attribute. |
+| **Why it matters** | Rubric D (20 pts): disaggregated metrics and proxy analysis |
+| **Already done** | Figures `fair_selection_*.png` and tables `reports/tables/fairness_*.csv` (calibrated, GroupKFold). |
+| **Where to work** | `notebooks/04_transfer_and_fairness.ipynb` |
+| **How to run** | `make figures` |
+| **Done when** | Gaps and proxies are written up with the figures. |
+
+**Steps**
+
+1. Identify the gaps that exceed real risk differences.
+2. Proxy analysis: how well do model inputs predict tenure or country? Which features act as proxies?
+
+[Open issue #26 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/26)
+
+</details>
+
+<details>
+<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#50 · Bias mitigation with before/after metrics and its cost</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | Apply one mitigation and show what it changes and what it costs. |
+| **Why it matters** | Rubric D: a mitigation with before/after |
+| **Already done** | The draft in 04 approves more new borrowers without showing the cost. |
+| **Where to work** | `notebooks/04_transfer_and_fairness.ipynb` |
+| **How to run** | — |
+| **Done when** | A before/after table and a recommendation. |
+
+**Steps**
+
+1. Pick one: group-aware threshold, reweighting, or dropping a proxy feature.
+2. Show selection rate, PR-AUC, F1 and expected cost per group, before and after, on calibrated predictions.
+
+[Open issue #50 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/50)
+
+</details>
+
+<details>
+<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#25 · Model Card</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | A one-page Model Card for the deployed model. |
+| **Why it matters** | Rubric D: Model Card (Mitchell et al.) |
+| **Already done** | Facts are in `reports/FIGURES.md`, `docs/DECISIONS.md` and the scorer. |
+| **Where to work** | `docs/audit/model_card.md` |
+| **How to run** | — |
+| **Done when** | The card is complete and matches the deployed model (#51). |
+
+**Steps**
+
+1. Fill the standard sections: model details, intended use, factors, metrics, evaluation data, training data, ethical considerations, caveats.
+
+[Open issue #25 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/25)
+
+</details>
+
+<details>
+<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#49 · Datasheet for the datasets (Gebru et al.)</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | A datasheet for the datasets we used. |
+| **Why it matters** | LO5: Datasheet (Gebru et al.) |
+| **Already done** | `reports/EDA_REPORT.md` has the facts (two-lender rows, overlap, defaulters cut off, Ghana gap, leaking columns). |
+| **Where to work** | `docs/audit/datasheet.md` |
+| **How to run** | — |
+| **Done when** | The datasheet is complete. |
+
+**Steps**
+
+1. Answer the datasheet questions: motivation, composition, collection, preprocessing, uses, distribution, maintenance.
+
+[Open issue #49 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/49)
+
+</details>
+
+<details>
+<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#27 · Regulatory mapping: BoG Digital Credit Directive, Act 843, Act 726</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | Map our design to the Bank of Ghana Digital Credit Directive, the Data Protection Act 2012 (Act 843) and the Credit Reporting Act 2007 (Act 726). |
+| **Why it matters** | Rubric D: regulatory mapping |
+| **Already done** | Nothing yet. |
+| **Where to work** | `docs/audit/regulatory_map.md` |
+| **How to run** | — |
+| **Done when** | A table of requirements, our response, and gaps. |
+
+**Steps**
+
+1. List each relevant requirement and how we meet it (reason codes, review flags, data minimisation).
+2. List what we cannot satisfy yet.
+
+[Open issue #27 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/27)
+
+</details>
+
+<details>
+<summary><img alt="evidence exists, owner must finish" src="https://img.shields.io/badge/-partly_done-d4a72c?style=flat-square"> <b>#28 · Findex: who in Ghana cannot access credit</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | Who in Ghana cannot access credit (Findex 2021), and does our model help close or widen that gap? |
+| **Why it matters** | Brief Part D.4: debt and access |
+| **Already done** | EDA §10: only 7.2% of adults borrow formally; women, rural, poorer and less-educated adults have less access (`eda_findex_access.png`). |
+| **Where to work** | Report Part D |
+| **How to run** | `make eda` |
+| **Done when** | A paragraph with the figure. |
+
+**Steps**
+
+1. Interpret the table and argue whether a model trained on existing borrowers narrows or widens the gap.
+
+[Open issue #28 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/28)
+
+</details>
+
+<details>
+<summary><img alt="evidence exists, owner must finish" src="https://img.shields.io/badge/-partly_done-d4a72c?style=flat-square"> <b>#29 · Plain-language explanation for a declined borrower</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | A plain-language message for a borrower whose application was declined. |
+| **Why it matters** | LO6: borrower-facing explanation |
+| **Already done** | The scorer already gives three reasons (`make score` shows examples). |
+| **Where to work** | `docs/audit/decline_explanation.md` |
+| **How to run** | `make score` |
+| **Done when** | A message a non-expert understands. |
+
+**Steps**
+
+1. Write the full message: decision, the three reasons, what the borrower can do, how to ask for review (BoG requirement).
+
+[Open issue #29 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/29)
+
+</details>
+
+<details>
+<summary><img alt="evidence exists, owner must finish" src="https://img.shields.io/badge/-partly_done-d4a72c?style=flat-square"> <b>#8 · Explore Ghana vs Kenya and the macro, Findex and inclusion files</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | Explore Ghana vs Kenya and the macro, Findex and inclusion files. |
+| **Why it matters** | Part A exploration (your slice) |
+| **Already done** | EDA §8–10 covers all of it with figures. |
+| **Where to work** | `reports/EDA_REPORT.md` |
+| **How to run** | `make eda` |
+| **Done when** | You agree with the sections; close. |
+
+**Steps**
+
+1. Read the sections, add anything you find missing, and use them in Parts C and D.
+
+[Open issue #8 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/8)
+
+</details>
+
+<details>
+<summary><img alt="models already ran, owner must review" src="https://img.shields.io/badge/-trained,_review-d4a72c?style=flat-square"> <b>#18 · Models: Random Forest and LightGBM</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | Random Forest and LightGBM for default prediction. |
+| **Why it matters** | Rubric B: your models |
+| **Already done** | Both trained on all schemes: Random Forest PR-AUC 0.204, LightGBM 0.195 by customer. |
+| **Where to work** | `src/models/ensembles.py`, `configs/models.yaml` |
+| **How to run** | `python -m scripts.train --task task2 --models random_forest lightgbm --schemes fold_group temporal` |
+| **Done when** | You can explain both; close. |
+
+**Steps**
+
+1. Read their results and SHAP figure; be able to explain bagging vs boosting and their settings in `configs/models.yaml`.
+
+[Open issue #18 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/18)
+
+</details>
+
+<details>
+<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#35 · Ethical and regulatory audit document</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | One document with the Model Card, fairness results, proxy analysis and regulatory map. |
+| **Why it matters** | Rubric D (20 pts): the audit document |
+| **Already done** | Built from #25, #26, #27, #49, #50. |
+| **Where to work** | `docs/audit/` |
+| **How to run** | — |
+| **Done when** | One complete audit document. |
+
+**Steps**
+
+1. Assemble the parts into `docs/audit/audit.md` with an executive summary.
+
+[Open issue #35 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/35)
+
+</details>
+
+<details>
+<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#32 · Derivations: SVM (P1), logistic regression (P2), linear regression (P3), gradient boosting (P4)</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | Your derivation: gradient boosting. |
+| **Why it matters** | LO3, rubric B (30 pts): at least two correct derivations are required |
+| **Already done** | Nothing yet. |
+| **Where to work** | `docs/derivations/boosting.md` |
+| **How to run** | — |
+| **Done when** | Written and explainable without notes. |
+
+**Steps**
+
+1. Write `docs/derivations/boosting.md`: additive model, fitting each tree to the negative gradient, log-loss gradient, learning rate.
+
+[Open issue #32 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/32)
+
+</details>
+
+
+<h3 id="everyone">👥 Everyone</h3>
+
+<details>
+<summary><img alt="start today" src="https://img.shields.io/badge/-start_now-b03a2e?style=flat-square"> <b>#9 · Part A session: loan timeline, label definition, feature audit, leakage rulings</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | Part A session: agree the loan timeline, the label, the feature audit and the leakage rulings. |
+| **Why it matters** | Rubric A (10 pts) |
+| **Already done** | Drafts: `docs/feature_audit.md`, `docs/DECISIONS.md` (D-2 to D-7, D-18 to D-20 are drafts). |
+| **Where to work** | `docs/DECISIONS.md`, `docs/feature_audit.md` |
+| **How to run** | — |
+| **Done when** | All Part A decisions are marked decided. |
+
+**Steps**
+
+1. Meet (30–45 min).
+2. Draw the timeline: application → approval → disbursement → due date → repaid/defaulted; mark the decision moment (`disbursement_date`).
+3. Define the label (default = not repaid by the due date).
+4. Mark each draft decision decided or changed.
+
+[Open issue #9 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/9)
+
+</details>
+
+<details>
+<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#56 · Protect main: require one approving review and passing CI</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | Turn on branch protection so nothing reaches `main` without review and passing CI. |
+| **Why it matters** | Process |
+| **Already done** | PR #46 was merged without review. |
+| **Where to work** | GitHub settings |
+| **How to run** | — |
+| **Done when** | Direct pushes to `main` are blocked. |
+
+**Steps**
+
+1. An admin: Settings → Branches → add rule for `main` → require a pull request, 1 approval, and status checks `lint-and-test`, `docs-updated`, `check-issue-link`.
+2. Allow GitHub Actions to push to `main` (add it to the bypass list), or the *README status* Action cannot commit its updates.
+
+[Open issue #56 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/56)
+
+</details>
+
+<details>
+<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#33 · All four notebooks run end to end from a clean clone</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | Each notebook reruns from a clean clone without errors. |
+| **Why it matters** | Rubric B: reproducible pipeline |
+| **Already done** | `make test-notebooks` runs all four. |
+| **Where to work** | — |
+| **How to run** | `make all && make test-notebooks` |
+| **Done when** | All four notebooks pass on a clean clone. |
+
+**Steps**
+
+1. Each reviewer clones fresh, follows Quick start, runs `make all` and `make test-notebooks`.
+
+[Open issue #33 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/33)
+
+</details>
+
+<details>
+<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#34 · Technical report (6–10 pages)</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | The 6–10 page technical report. |
+| **Why it matters** | All rubric parts |
+| **Already done** | Numbers and figures: `reports/EDA_REPORT.md`, `reports/FIGURES.md`, `reports/tables/`. |
+| **Where to work** | `docs/report/` |
+| **How to run** | — |
+| **Done when** | Submitted. |
+
+**Steps**
+
+1. Sections: framing and cost matrix, data, methods with derivations, results, diagnostics, transfer, limitations, reproducibility, AI-use declaration.
+2. Each owner writes their part; one person edits for one voice.
+
+[Open issue #34 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/34)
+
+</details>
+
+<details>
+<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#36 · Debrief slides and mock Q&A</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | Debrief slides and mock Q&A. |
+| **Why it matters** | Rubric E (15 pts): presentation and defence |
+| **Already done** | `reports/FIGURES.md` lists what each figure defends. |
+| **Where to work** | `slides/` |
+| **How to run** | — |
+| **Done when** | Slides ready and rehearsed. |
+
+**Steps**
+
+1. Each presents their part (about 3–4 minutes).
+2. Rehearse questions without notes; the AI policy requires explaining your work without AI.
+
+[Open issue #36 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/36)
+
+</details>
+
+<details>
+<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#37 · Individual reflections</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | One-page individual reflection each. |
+| **Why it matters** | Rubric F (5 pts) |
+| **Already done** | — |
+| **Where to work** | `docs/reflections/<name>.md` |
+| **How to run** | — |
+| **Done when** | Four reflections submitted. |
+
+**Steps**
+
+1. Your contribution, what you learned, what you would do differently.
+
+[Open issue #37 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/37)
+
+</details>
+
+
+<!-- /status:people -->
 
 ---
 
@@ -230,7 +1009,8 @@ Every model writes the same prediction columns to `preds/` (`ID, customer_id, co
 4. **Tests and lint pass** (`make test`, `make lint`); CI runs both on Python 3.12.
 5. **One approval from the rotation reviewer**, who reruns the branch. Nobody merges their own PR unreviewed.
 6. **Owners own their notebooks.** Suggest changes to someone else's notebook in a PR they review.
-7. **Log AI use** in [`docs/AI_USE_LOG.md`](docs/AI_USE_LOG.md); each of us must explain our own work without AI at the debrief.
+7. **The README status updates itself.** Close issues and open PRs as usual; the *README status* Action rebuilds the progress table and issue cards. To change a card's text, edit [`docs/issue_cards.yaml`](docs/issue_cards.yaml).
+8. **Log AI use** in [`docs/AI_USE_LOG.md`](docs/AI_USE_LOG.md); each of us must explain our own work without AI at the debrief.
 
 ## Documentation
 
