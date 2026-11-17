@@ -12,8 +12,8 @@ Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 | Setup | Roles, docs, tracking | Perfect | ✅ pushed 2026-11-07 |
 | A | Explore Train/Test structure | Perfect | ✅ `notebooks/01_eda.ipynb` §1-5, merged (#38, #39) |
 | A | Explore the target | Henry | ✅ `src/analysis/target_eda.py` + `python -m scripts.run_target_eda` (tables in `reports/tables/eda_target_*.csv`) |
-| A | Explore amounts/durations (P3 slice) | Bernard | ⬜ |
-| A | Explore Ghana and context files (P4 slice) | Eugene | ⬜ |
+| A | Explore amounts/durations (P3 slice) | Bernard | 🟨 amounts, terms, leakage and history in `reports/EDA_REPORT.md` §4-6 (`p3/48-eda-report-figures-tests`); leak-suspect ruling at Part A session |
+| A | Explore Ghana and context files (P4 slice) | Eugene | 🟨 Kenya vs Ghana, macro and Findex in `reports/EDA_REPORT.md` §8-10 (`p3/48-eda-report-figures-tests`); Eugene to interpret for Part C/D |
 | A | Timeline, label, feature audit table | Perfect + Henry | 🟨 audit table drafted (`docs/feature_audit.md`); timeline and label to do |
 | A | Two tasks + cost matrix in cedis/shillings | Henry | 🟨 draft from data in `configs/cost_matrix.yaml` (D-19): threshold 0.019 (1 future loan) to 0.106 (6); future-loss assumption to settle |
 | B | Shared feature file and fold splits | Perfect | ✅ merged (#39); Henry's baseline already uses it |
@@ -85,6 +85,7 @@ Findings so far:
 
 | Date | Who | Did | Next |
 | --- | --- | --- | --- |
+| 2026-11-17 | Bernard | EDA report, defence figure pack + catalogue, end-to-end and architecture/normalization tests (127), issues #48-#56 | Review PR #47 and the stacked `p3/48-eda-report-figures-tests` PR |
 | 2026-11-17 | Bernard | Restructure (packages, scripts, configs, reports), scorer bug fixes, Henry's `02` restored and completed, all 16 models run | Review and merge `p3/30-scorer-fixes-and-structure`; Eugene takes `04` |
 | 2026-11-17 | Bernard | Script-first refactor (`src/eda_target.py`, thin `02`–`04` deliverable notebooks, D-17, 4-notebook test) | Merge PR; Part A session; audit & derivations |
 | 2026-11-16 | Bernard | Senior ML scaffolding (`preprocess`, `datamodule`, `train`, `evaluate`, `fairness`, `score`, `tests/`, CI, `Makefile`, streamlined `README.md`) on `p3/13-30-senior-scaffolding` | Review & merge PR; run all models via `src.train`, finish `03_regression.ipynb` |

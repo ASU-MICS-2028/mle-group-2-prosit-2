@@ -23,12 +23,17 @@ SAMPLE_APPLICATION = {
 }
 
 
-def benchmark_latency(n_calls: int = 1000, app: dict[str, Any] | None = None, _bundle=None) -> dict[str, float]:
-    """Median, p95, mean, min and max milliseconds per call, after one warm-up call."""
+def benchmark_latency(
+    n_calls: int = 1000, app: dict[str, Any] | None = None, _bundle=None, return_samples: bool = False
+) -> dict[str, Any]:
+    """Median, p95, mean, min and max milliseconds per call, after one warm-up call.
+
+    `return_samples=True` adds the raw per-call timings under "samples_ms" (for a histogram).
+    """
     app = app or SAMPLE_APPLICATION
     score_application(app, _bundle=_bundle)  # warm-up: loads artifacts and the exchange-rate table
     ms = np.array([score_application(app, _bundle=_bundle)["latency_ms"] for _ in range(n_calls)])
-    return {
+    stats: dict[str, Any] = {
         "n_calls": n_calls,
         "median_ms": float(np.median(ms)),
         "p95_ms": float(np.percentile(ms, 95)),
@@ -36,3 +41,6 @@ def benchmark_latency(n_calls: int = 1000, app: dict[str, Any] | None = None, _b
         "min_ms": float(ms.min()),
         "max_ms": float(ms.max()),
     }
+    if return_samples:
+        stats["samples_ms"] = ms
+    return stats

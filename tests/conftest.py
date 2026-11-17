@@ -47,3 +47,30 @@ def synthetic_features() -> pd.DataFrame:
     df["fold_strat"] = np.arange(n) % C.N_FOLDS
     df["temporal"] = np.where(df["disbursement_date"] < C.TEMPORAL_CUTOFF, "train", "valid")
     return df
+
+
+@pytest.fixture(scope="module")
+def sandbox(tmp_path_factory):
+    """A throw-away project root with fake raw files; every config path points into it.
+
+    Module-scoped: the end-to-end module builds the pipeline once; other modules see the real paths.
+    """
+    from tests.synthetic import write_raw
+
+    from src.serving import schema
+
+    root = tmp_path_factory.mktemp("project")
+    paths = write_raw(root, np.random.default_rng(7))
+    mp = pytest.MonkeyPatch()
+    mp.setattr(C, "TRAIN_CSV", paths["train"])
+    mp.setattr(C, "TEST_CSV", paths["test"])
+    mp.setattr(C, "MACRO_CSV", paths["macro"])
+    mp.setattr(C, "FINDEX_CSV", paths["findex"])
+    for name, sub in {"PROCESSED": "data/processed", "PREDS": "preds", "ARTIFACTS": "artifacts", "REPORTS": "reports",
+                      "FIGURES": "reports/figures", "TABLES": "reports/tables"}.items():
+        mp.setattr(C, name, root / sub)
+    mp.setattr(C, "FEATURES_PARQUET", root / "data/processed/features.parquet")
+    schema._fx_table.cache_clear()
+    yield root
+    mp.undo()
+    schema._fx_table.cache_clear()
