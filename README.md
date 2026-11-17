@@ -11,7 +11,7 @@
   <img alt="Tests" src="https://img.shields.io/badge/tests-127_passing-2e7d32?style=flat-square">
   <img alt="Models" src="https://img.shields.io/badge/models-16_trained-1f4e79?style=flat-square">
   <img alt="Figures" src="https://img.shields.io/badge/figures-47-1f4e79?style=flat-square">
-  <!-- status:badge --><img alt="Issues" src="https://img.shields.io/badge/issues-12_of_45_closed-d4a72c?style=flat-square"><!-- /status:badge -->
+  <!-- status:badge --><img alt="Issues" src="https://img.shields.io/badge/issues-16_of_45_closed-d4a72c?style=flat-square"><!-- /status:badge -->
   <img alt="Deadline" src="https://img.shields.io/badge/deadline-19_Nov_2026-b03a2e?style=flat-square">
 </p>
 
@@ -72,8 +72,8 @@ Generated from GitHub on **17 Nov 2026** by `scripts/update_readme.py` (the *REA
 | Part | Rubric | Closed | Still open |
 | --- | :---: | :---: | --- |
 | **Setup** | — | ![3/4](https://img.shields.io/badge/3%2F4-closed-d4a72c?style=flat-square) | [#56](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/56) |
-| **A · Frame the problem** | 10 pts | ![2/7](https://img.shields.io/badge/2%2F7-closed-d4a72c?style=flat-square) | [#7](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/7) [#8](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/8) [#9](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/9) [#10](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/10) [#11](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/11) |
-| **B · Build & evaluate** | 30 + 20 pts | ![5/14](https://img.shields.io/badge/5%2F14-closed-d4a72c?style=flat-square) | [#15](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/15) [#17](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/17) [#18](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/18) [#19](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/19) [#20](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/20) [#22](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/22) [#48](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/48) [#52](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/52) [#55](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/55) |
+| **A · Frame the problem** | 10 pts | ![4/7](https://img.shields.io/badge/4%2F7-closed-d4a72c?style=flat-square) | [#7](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/7) [#8](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/8) [#9](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/9) |
+| **B · Build & evaluate** | 30 + 20 pts | ![7/14](https://img.shields.io/badge/7%2F14-closed-d4a72c?style=flat-square) | [#15](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/15) [#17](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/17) [#18](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/18) [#22](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/22) [#48](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/48) [#52](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/52) [#55](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/55) |
 | **C · Cross-market transfer** | in B, D | ![0/3](https://img.shields.io/badge/0%2F3-closed-9aa0a6?style=flat-square) | [#23](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/23) [#24](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/24) [#54](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/54) |
 | **D · Ethics & regulation** | 20 pts | ![0/7](https://img.shields.io/badge/0%2F7-closed-9aa0a6?style=flat-square) | [#25](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/25) [#26](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/26) [#27](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/27) [#28](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/28) [#29](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/29) [#49](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/49) [#50](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/50) |
 | **E · Deployment** | 15 pts | ![2/4](https://img.shields.io/badge/2%2F4-closed-d4a72c?style=flat-square) | [#51](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/51) [#53](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/53) |
@@ -88,7 +88,7 @@ Generated from GitHub on **17 Nov 2026** by `scripts/update_readme.py` (the *REA
 | Notebook | Owner | Status |
 | --- | --- | --- |
 | [`01_eda.ipynb`](notebooks/01_eda.ipynb) | Perfect | ![done](https://img.shields.io/badge/-done-2e7d32?style=flat-square) Train/Test structure (PRs #38, #39); link the EDA report ([#48](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/48)) |
-| [`02_classification.ipynb`](notebooks/02_classification.ipynb) | Henry | ![merged](https://img.shields.io/badge/-merged-2e7d32?style=flat-square) Henry's original restored + calibration, cost threshold, CIs (PR #47); Henry to verify #19, #20 |
+| [`02_classification.ipynb`](notebooks/02_classification.ipynb) | Henry | ![merged](https://img.shields.io/badge/-merged-2e7d32?style=flat-square) Henry's original (PR #47) + problem framing (§0), cost matrix in cedis from Ghana's loans (§9b, p\* 0.036) and conclusions (§11); calibration and CIs verified (PR #60) |
 | [`03_regression.ipynb`](notebooks/03_regression.ipynb) | Bernard | ![merged](https://img.shields.io/badge/-merged-2e7d32?style=flat-square) Task 1 models, residuals, scorer demo (PR #47); Task 2 tree to add (#17) |
 | [`04_transfer_and_fairness.ipynb`](notebooks/04_transfer_and_fairness.ipynb) | Eugene | ![needs owner](https://img.shields.io/badge/-needs_owner-b03a2e?style=flat-square) AI draft with known problems ([#54](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/54)) |
 
@@ -116,7 +116,7 @@ Find your name, open each issue card and follow the steps. Every card says what 
 | | Person | Open | In review or merged | Not started | Jump to |
 | :---: | --- | :---: | :---: | :---: | --- |
 | <img src="https://github.com/peaElorm.png?size=60" width="28"> | **Perfect Elorm Avugla** · Data & features | 3 | 0 | 1 | [Perfect's issues](#peaelorm) |
-| <img src="https://github.com/henryhkb.png?size=60" width="28"> | **Henry Kofi Brandoh** · Classification & evaluation | 6 | 2 | 3 | [Henry's issues](#henryhkb) |
+| <img src="https://github.com/henryhkb.png?size=60" width="28"> | **Henry Kofi Brandoh** · Classification & evaluation | 2 | 0 | 2 | [Henry's issues](#henryhkb) |
 | <img src="https://github.com/adjeibernardmarfo.png?size=60" width="28"> | **Bernard Marfo Adjei** · Regression, deployment & project lead | 7 | 0 | 4 | [Bernard's issues](#adjeibernardmarfo) |
 | <img src="https://github.com/eugene-sew.png?size=60" width="28"> | **Eugene** · Transfer & fairness | 14 | 0 | 8 | [Eugene's issues](#eugene-sew) |
 | 👥 | **Everyone** | 6 | 0 | 6 | [Shared issues](#everyone) |
@@ -211,99 +211,7 @@ Data & features · [peaElorm](https://github.com/peaElorm) · **3 open** · [Per
 
 <h3 id="henryhkb"><img src="https://github.com/henryhkb.png?size=60" width="32" align="center"> Henry Kofi Brandoh</h3>
 
-Classification & evaluation · [henryhkb](https://github.com/henryhkb) · **6 open** · [Henry's assigned issues on GitHub](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3Ahenryhkb)
-
-<details>
-<summary><img alt="work is on main; owner verifies and closes" src="https://img.shields.io/badge/-merged,_verify_%26_close-2e7d32?style=flat-square"> <b>#19 · Calibration, threshold sweep and cost-based operating point</b></summary>
-
-| | |
-| --- | --- |
-| **What it is** | Calibration of the default probabilities, a threshold sweep, and the cost-based operating point with a confusion matrix. |
-| **Why it matters** | Rubric C (20 pts): PR-AUC, calibration and a cost-based operating point |
-| **Already done** | Merged to main in PR #47: sections 8 and 9 of `02_classification.ipynb` (Platt vs isotonic calibration, ECE 0.30 → 0.002; threshold sweep; confusion matrix; F1-best threshold for comparison). |
-| **Where to work** | `notebooks/02_classification.ipynb` §8–9, `src/evaluation/calibration.py`, `src/evaluation/metrics.py` |
-| **How to run** | Run the notebook top to bottom |
-| **Done when** | You have rerun and can explain the sections; close the issue. |
-| **Automated check** | 02 calibrates the probabilities and picks the cost-based threshold with a confusion matrix. Run `make acceptance ISSUE=19`; it also runs on every pull request that says `Closes #19` and when the issue is closed (a failing check reopens it). |
-
-**Steps**
-
-1. Rerun sections 8–9 of `02_classification.ipynb` yourself.
-2. Make sure you can explain why calibration comes before the threshold and why the scorer uses Platt.
-3. Change anything you disagree with in a pull request; otherwise comment and close the issue.
-
-[Open issue #19 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/19)
-
-</details>
-
-<details>
-<summary><img alt="work is on main; owner verifies and closes" src="https://img.shields.io/badge/-merged,_verify_%26_close-2e7d32?style=flat-square"> <b>#20 · Bootstrap 95% CIs on F1 and PR-AUC; noise floor</b></summary>
-
-| | |
-| --- | --- |
-| **What it is** | 95% bootstrap confidence intervals on PR-AUC and F1, and whether the model beats the baseline beyond the ±0.0263 noise floor. |
-| **Why it matters** | Rubric C (20 pts): bootstrap CIs and the noise floor |
-| **Already done** | Merged to main in PR #47: section 10 of `02_classification` resamples customers, not rows; both models beat the baseline; logistic regression and MLP intervals overlap. |
-| **Where to work** | `notebooks/02_classification.ipynb` §10, `src/evaluation/bootstrap.py` |
-| **How to run** | Run the notebook |
-| **Done when** | You have rerun and can explain it; close the issue. |
-| **Automated check** | 02 reports customer-level bootstrap confidence intervals against the baseline. Run `make acceptance ISSUE=20`; it also runs on every pull request that says `Closes #20` and when the issue is closed (a failing check reopens it). |
-
-**Steps**
-
-1. Rerun section 10 and read `src/evaluation/bootstrap.py`.
-2. Be ready to explain why we resample customers (a customer's loans are correlated).
-
-[Open issue #20 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/20)
-
-</details>
-
-<details>
-<summary><img alt="evidence exists, owner must finish" src="https://img.shields.io/badge/-partly_done-d4a72c?style=flat-square"> <b>#11 · Cost matrix in cedis/shillings</b></summary>
-
-| | |
-| --- | --- |
-| **What it is** | The cost of approving a defaulter vs declining a good borrower, in shillings or cedis, which sets the approve/decline threshold. |
-| **Why it matters** | Rubric A (10 pts): cost matrix in money with at least two sensitivity cases |
-| **Already done** | A draft in `configs/cost_matrix.yaml` (decision D-19): principal 5,249 KES and fee 1.68% are **measured** from Train; recovery 20%, collection cost 250 KES and 1 future loan lost are **assumptions**. Threshold 0.019 (1 future loan) to 0.106 (6 future loans). |
-| **Where to work** | `configs/cost_matrix.yaml`, `docs/DECISIONS.md` |
-| **How to run** | `make eval` and `make figures` |
-| **Done when** | Every assumption is justified, the threshold is final, and D-19 is decided. |
-| **Automated check** | The cost matrix (D-19) is decided, with at least two alternative assumptions. Run `make acceptance ISSUE=11`; it also runs on every pull request that says `Closes #11` and when the issue is closed (a failing check reopens it). |
-
-**Steps**
-
-1. Decide each assumption and write one sentence of justification for it (e.g. sources on Kenyan or Ghanaian digital-lending recovery).
-2. Edit `configs/cost_matrix.yaml`; rerun section 9 of `02` and `make eval figures`.
-3. Write the cost-matrix table for report Part A, in KES (and GHS for Ghana), like Appendix A of the brief but with our numbers.
-4. Update D-19 in `docs/DECISIONS.md` from draft to decided.
-
-[Open issue #11 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/11)
-
-</details>
-
-<details>
-<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#10 · Define Task 1 and Task 2 and the business goal</b></summary>
-
-| | |
-| --- | --- |
-| **What it is** | Write down Task 1 (loan amount, regression) and Task 2 (default, classification) and the business goal in one sentence. |
-| **Why it matters** | Rubric A (10 pts): two tasks and the business goal |
-| **Already done** | The tasks exist in code (`src/config.py`); nothing is written for the report. |
-| **Where to work** | `docs/part_a.md` |
-| **How to run** | — |
-| **Done when** | Both tasks and the goal are written and agreed at the Part A session (#9). |
-| **Automated check** | Task 1, Task 2 and the business goal are written in the Part A notes. Run `make acceptance ISSUE=10`; it also runs on every pull request that says `Closes #10` and when the issue is closed (a failing check reopens it). |
-
-**Steps**
-
-1. Define each task: target, unit (Task 1 is USD, converted to local currency), decision moment (disbursement).
-2. Write the goal, e.g. "decline when P(default) exceeds the cost threshold, while approving at least X% of applicants"; pick X from `reports/figures/eval_threshold_sweep.png`.
-3. Put it in the report's Part A section.
-
-[Open issue #10 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/10)
-
-</details>
+Classification & evaluation · [henryhkb](https://github.com/henryhkb) · **2 open** · [Henry's assigned issues on GitHub](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3Ahenryhkb)
 
 <details>
 <summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#55 · Does calibration hold on 2023+ loans? Temporal calibration and recalibration plan</b></summary>
