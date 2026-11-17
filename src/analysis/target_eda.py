@@ -1,10 +1,9 @@
-"""Reproducible target and leakage exploration (converted from explore_target_henry.ipynb).
+"""Reproducible target and leakage exploration (Henry's explore_target_henry.ipynb as a script).
 
 Covers Issue #6: overall default rate, missing values, repayment markup leak check (`extra_pct`),
 default rate by tenure, year, month, lender_id, loan_type, and 2023+ lender-mix vs population shift.
 
-CLI usage:
-    python -m src.eda_target
+Run:  python -m scripts.run_target_eda   (or: make eda-target)
 """
 from __future__ import annotations
 
@@ -13,7 +12,7 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
-from . import config as C
+from .. import config as C
 
 
 def load_target_eda_source() -> tuple[pd.DataFrame, str]:
@@ -135,28 +134,3 @@ def compute_target_eda(df: pd.DataFrame) -> dict[str, Any]:
         "shift_2023_summary": shift_summary,
         "shift_2023_by_lender": shift_by_lender,
     }
-
-
-def main() -> None:
-    df, source = load_target_eda_source()
-    res = compute_target_eda(df)
-    print(f"Source: {source}  rows={res['n_rows']}  defaults={res['n_defaults']} ({res['default_rate']*100:.2f}%)")
-    if res["extra_pct_by_target"] is not None:
-        print("\n--- Repayment markup (extra_pct) leakage check ---")
-        print(res["extra_pct_by_target"].to_string(index=False))
-    print("\n--- Default rate by tenure ---")
-    print(res["by_tenure"].to_string(index=False))
-    print("\n--- Default rate by year ---")
-    print(res["by_year"].to_string(index=False))
-    print("\n--- Default rate by lender_id ---")
-    print(res["by_lender"].to_string(index=False))
-    print("\n--- Default rate by loan_type (top 10) ---")
-    print(res["by_loan_type"].head(10).to_string(index=False))
-    print("\n--- 2023+ temporal shift summary ---")
-    print(res["shift_2023_summary"].to_string(index=False))
-    print("\n--- 2023+ shift by lender_id ---")
-    print(res["shift_2023_by_lender"].to_string(index=False))
-
-
-if __name__ == "__main__":
-    main()

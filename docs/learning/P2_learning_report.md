@@ -2,6 +2,8 @@
 
 **Author:** Henry (P2, classification and evaluation) · **As of:** 2026-11-10 · **Notebook:** `notebooks/02_classification.ipynb`
 
+> **Update 2026-11-17 (Bernard, supervisor):** the numbers below use the 19-column feature list of 2026-11-10. Decision D-18 removed the four macro columns and `log_amount_local` from the model inputs (they act as year and country markers), so `02_classification.ipynb` now uses the shared 14-column list and its numbers differ slightly. The notebook also gained sections 7–10 (calibration, cost threshold, confidence intervals; #19, #20). The method and reasoning in this report are unchanged; see `docs/WORKLOG.md` (2026-11-17) for the new figures. Module paths moved too: see "Where did the old modules go?" in the README.
+
 This report walks through all of P2's work so far, in plain language: what was done, why, what came out, and what it means. Read it top to bottom once, then use the self-check questions at the end to test yourself before the debrief.
 
 The earlier, more detailed note on the first model is [`P2_logistic_regression_baseline.md`](P2_logistic_regression_baseline.md).

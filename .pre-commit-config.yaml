@@ -12,4 +12,4 @@ repos:
     rev: v0.6.9
     hooks:
       - id: ruff
-        files: ^(src|tests)/
+        files: ^(src|scripts|tests)/

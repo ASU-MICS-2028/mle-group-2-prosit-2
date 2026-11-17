@@ -14,16 +14,16 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.12"
           cache: pip
 
-      - name: Install dependencies
+      - name: Install exact dependency versions
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r requirements-lock.txt
 
-      - name: Lint shared source and tests with ruff
-        run: ruff check src/ tests/
+      - name: Lint shared source, scripts and tests with ruff
+        run: ruff check src/ scripts/ tests/
 
       - name: Run ML leakage, pipeline, and scorer contract tests
         run: pytest tests/ -v

@@ -2,128 +2,162 @@
 
 ICS553 Machine Learning Essentials · Group 2
 
-We train a default-risk classifier (**Task 2**) and a loan-limit regressor (**Task 1**) on Kenyan digital loans, evaluate Kenya → Ghana cross-market transfer, conduct an ethical and regulatory audit (BoG Digital Credit Directive, Act 843, Act 726), and ship a low-latency scoring service with plain-language reason codes. Everyone builds against **one shared feature table (`src/features.py`), one preprocessing/training/evaluation pipeline (`src/`), and automated CI guardrails (`tests/`)**.
+We train a default-risk classifier (**Task 2**) and a loan-limit regressor (**Task 1**) on Kenyan digital loans, evaluate Kenya → Ghana cross-market transfer, audit the models for fairness and regulation (BoG Digital Credit Directive, Act 843, Act 726), and ship a scoring service with plain-language reason codes. Everyone builds against **one shared feature file (`src/features.py`), one library of models and metrics (`src/`), and one set of entry points (`scripts/`)**, so every result is comparable.
 
-> **Detailed Data Dictionary, Leakage Proof & Glossary:** moved to [docs/DATA_AND_PIPELINE_GUIDE.md](docs/DATA_AND_PIPELINE_GUIDE.md) so this README stays crisp and actionable.
+> **Data dictionary, leakage proof and glossary:** [docs/DATA_AND_PIPELINE_GUIDE.md](docs/DATA_AND_PIPELINE_GUIDE.md).
 
 ---
 
 ## Status
 
-| Notebook / code | Purpose | Owner | Status |
-| --- | --- | --- | --- |
-| `01_eda.ipynb` + `src/features.py` + `src/eda_target.py` | Explore & clean data; target/shift EDA; build time-safe features & 3 fold schemes | Perfect (P1) + Henry (P2) | ✅ EDA §1–5, `features.parquet`, and `src/eda_target.py` ready |
-| `src/` shared ML pipeline + `tests/` | Shared `preprocess`, `datamodule`, `train`, `evaluate`, `fairness`, `score` + CI guardrails | Bernard (P3) | 🟨 Built on `p3/13-30-senior-scaffolding` (PR ready for review) |
-| `02_classification.ipynb` | Thin script-backed driver: LogReg/MLP, 3-scheme CV, calibration, cost threshold, bootstrap CIs | Henry (P2) | ✅ Refactored to import 100% from `src/` on `p3/13-30-senior-scaffolding` |
-| `03_regression.ipynb` | Thin script-backed driver: Task 1 limits, residual diagnostics, Part E scorer + latency | Bernard (P3) | ✅ Thin script-backed deliverable notebook ready on `p3/13-30-senior-scaffolding` |
-| `04_transfer_and_fairness.ipynb` | Thin script-backed driver: RF/LightGBM, Kenya → Ghana shift, fairness + mitigation, Findex | Eugene (P4) | 🟨 Script-backed notebook scaffolded; `docs/audit/` & boosting derivation next |
+Detailed, dated status lives in [docs/PROGRESS.md](docs/PROGRESS.md); this table only says where each deliverable stands.
 
-Status key: ⬜ Not started · 🟨 In progress · ✅ Done
+| Deliverable | Purpose | Owner | Status |
+| --- | --- | --- | --- |
+| `01_eda.ipynb` + `src/features.py` | Train/Test structure EDA; time-safe features and 3 fold schemes | Perfect (P1) | ✅ merged (PRs #38, #39) |
+| `src/analysis/target_eda.py` | Henry's target EDA as a script: default rate by year, month, lender, type, tenure; 2023+ shift | Henry (P2) | ✅ merged (PR #46) |
+| `02_classification.ipynb` | LogReg (scikit-learn + Lightning), MLP, validation study | Henry (P2) | ✅ Henry's original restored on `p3/30-scorer-fixes-and-structure`; calibration, cost threshold and CIs still to add (#19, #20) |
+| `03_regression.ipynb` | Task 1 limits, residuals, scorer demo and latency | Bernard (P3) | 🟨 rerun on the restructured pipeline; amounts/leak-suspect EDA (#7) and Task 2 tree (#17) still to do |
+| `src/serving/` scorer | Probability, decision, limit, 3 reasons, review flags | Bernard (P3) | 🟨 Ghana currency and 0%-risk bugs fixed on `p3/30-scorer-fixes-and-structure` (#30) |
+| `04_transfer_and_fairness.ipynb` | RF/LightGBM, Kenya → Ghana shift, fairness, Findex | Eugene (P4) | 🟥 AI-generated draft; Eugene to own and fix (see the note at its top) |
+
+Status key: ⬜ Not started · 🟨 In progress · ✅ Done · 🟥 Needs owner action
 
 ---
 
 ## Team & Ownership
 
-| Role | Name | Focus & Owned Deliverables | Plan |
+| Role | Name | Owns | Plan |
 | --- | --- | --- | --- |
 | **P1 · Data & Features** | Perfect ([@peaElorm](https://github.com/peaElorm)) | `src/features.py`, `01_eda.ipynb`, baselines/kNN/SVM, SVM derivation | [P1_PERFECT_PLAN.md](docs/P1_PERFECT_PLAN.md) |
 | **P2 · Classification & Evaluation** | Henry ([@henryhkb](https://github.com/henryhkb)) | `02_classification.ipynb`, LogReg & MLP, validation study, calibration, cost matrix, CIs, LogReg derivation | [P2_HENRY_PLAN.md](docs/P2_HENRY_PLAN.md) |
-| **P3 · Regression, Infra & Deployment** | Bernard ([@adjeibernardmarfo](https://github.com/adjeibernardmarfo)) | `03_regression.ipynb`, OLS/Ridge/Lasso/Tree, `src/score.py`, CI & `tests/`, Linear Reg derivation | [P3_BERNARD_PLAN.md](docs/P3_BERNARD_PLAN.md) |
-| **P4 · Transfer & Fairness** | Eugene ([@eugene-sew](https://github.com/eugene-sew)) | `04_transfer_and_fairness.ipynb`, RF & LightGBM, Kenya→Ghana shift, Model Card/Datasheet/BoG audit, Boosting derivation | [P4_EUGENE_PLAN.md](docs/P4_EUGENE_PLAN.md) |
+| **P3 · Regression & Deployment** | Bernard ([@adjeibernardmarfo](https://github.com/adjeibernardmarfo)) | `03_regression.ipynb`, OLS/Ridge/Lasso/tree, `src/serving/`, CI & `tests/`, linear regression derivation | [P3_BERNARD_PLAN.md](docs/P3_BERNARD_PLAN.md) |
+| **P4 · Transfer & Fairness** | Eugene ([@eugene-sew](https://github.com/eugene-sew)) | `04_transfer_and_fairness.ipynb`, RF & LightGBM, Kenya→Ghana shift, Model Card/Datasheet/BoG audit, boosting derivation | [P4_EUGENE_PLAN.md](docs/P4_EUGENE_PLAN.md) |
 
-**Review rotation:** Perfect → Henry → Bernard → Eugene → Perfect.
+**Review rotation:** Perfect → Henry → Bernard → Eugene → Perfect. Each person owns their own notebook; nobody rewrites another member's notebook without their approval.
 
 ---
 
-## Getting Started & End-to-End Reproduction
+## Getting started
 
-### 1. Environment Setup
+### 1. Environment (Python 3.12)
+
 ```bash
 python -m venv .venv
-# Linux/macOS: source .venv/bin/activate
-# Windows PowerShell: .venv\Scripts\Activate.ps1
-pip install -r requirements.txt
+# Windows PowerShell: .venv\Scripts\Activate.ps1     macOS/Linux: source .venv/bin/activate
+pip install -r requirements-lock.txt
 ```
 
-### 2. Download Raw Data (Never Commit Data)
-Unzip into `data/raw/`:
-- `african-credit-scoring-challenge/` from [Zindi](https://zindi.africa/competitions/african-credit-scoring-challenge)
-- `GHA_2021_FINDEX_v02_M_csv/` from [World Bank Microdata Library](https://microdata.worldbank.org/index.php/catalog/4646)
-- `financial-inclusion-in-africa/` from Zindi (optional)
+`requirements-lock.txt` pins every package to an exact version for every platform; `requirements.txt` lists only the direct dependencies. CI installs the lock file on Python 3.12, so it tests exactly what you run.
 
-### 3. Run the Reproducible Pipeline
-Using `Makefile` (or run `python -m ...` directly):
+### 2. Data (never committed)
 
-```bash
-make features   # python -m src.features -> builds data/processed/features.parquet (~4s) with leakage assertions
-make eda-target # python -m src.eda_target -> reproducible target, leakage & 2023+ shift tables
-make train      # runs Task 2 & Task 1 models across fold_group, fold_strat, temporal -> writes preds/ & artifacts/
-make eval       # python -m src.evaluate -> aggregates all predictions in preds/
-make score      # python -m src.score -> scores sample Ghana application + runs 1,000-call latency benchmark
-make test       # pytest tests/ -v && ruff check src/ tests/
-```
-
-Or run individual models directly:
-```bash
-python -m src.train --task task2 --models majority logreg lightgbm --schemes fold_group temporal --predict-test
-python -m src.train --task task1 --models mean ols ridge lasso --schemes fold_group temporal --save-artifacts
-```
-
----
-
-## Repository & Shared Pipeline Architecture
+Unzip into `data/raw/` with these exact folder names:
 
 ```text
-├── .github/
-│   ├── pull_request_template.md
-│   └── workflows/
-│       ├── ci.yml                  # Runs ruff lint + pytest guardrails on every PR
-│       ├── docs-freshness.yml      # Enforces WORKLOG.md & PROGRESS.md updates when code changes
-│       └── pr-issue-check.yml      # Enforces real issue linking ("Closes #13" / "Refs #13")
-├── .pre-commit-config.yaml         # Blocks accidental large-file commits + runs ruff locally
-├── Makefile                        # One-command reproduction (features, train, eval, score, test)
-├── pyproject.toml                  # Ruff & Pytest configuration
-├── data/                           # Gitignored raw CSVs & processed features.parquet
-├── artifacts/                      # Gitignored fitted joblib deployment bundles (task2_clf.joblib, task1_reg.joblib)
-├── preds/                          # Gitignored standardized prediction parquet files
-├── src/
-│   ├── config.py                   # Seed (42), paths, feature/drop schemas, cost constants
-│   ├── features.py                 # Time-safe merge_asof borrower history, macro join, 3 fold schemes (P1)
-│   ├── eda_target.py               # Reproducible target, leakage & 2023+ shift EDA script (converted from explore_target_henry)
-│   ├── preprocess.py               # ColumnTransformer (D-5 unseen category handling) & TargetLogScaler
-│   ├── transforms.py               # Alias re-exporting src.preprocess
-│   ├── datamodule.py               # Shared PyTorch Lightning DataModule, LitLogReg, LitMLP, LitLinearReg
-│   ├── train.py                    # Unified CV runner writing standardized preds/ & joblib artifacts/
-│   ├── evaluate.py                 # PR-AUC, ROC-AUC, cost threshold, calibration, bootstrap CIs, RMSE/MAE
-│   ├── fairness.py                 # Disaggregated group metrics, loan-size bands, Kenya->Ghana domain classifier
-│   └── score.py                    # Part E scoring service (probability, decision, limit, 3 plain reasons, latency)
-├── tests/
-│   ├── test_leakage_and_splits.py  # Automated assertions against leaky cols, split integrity, and 4-notebook rule
-│   └── test_pipeline_and_scorer.py # Preprocessor unseen-category, TargetLogScaler, metric & scorer contract tests
-├── notebooks/                      # ONLY the 4 required Prosit deliverable notebooks (thin script-backed drivers)
-│   ├── 01_eda.ipynb                # P1
-│   ├── 02_classification.ipynb     # P2 (imports from src/)
-│   ├── 03_regression.ipynb         # P3 (imports from src/)
-│   └── 04_transfer_and_fairness.ipynb # P4 (imports from src/)
-└── docs/                           # Tracking, decisions, derivations, audit artifacts, reflections
+data/raw/african-credit-scoring-challenge/   Train.csv, Test.csv, economic_indicators.csv, ...   (Zindi)
+data/raw/GHA_2021_FINDEX_v02_M_csv/          micro_gha.csv                                       (World Bank)
+data/raw/financial-inclusion-in-africa/      Train.csv, ...                                      (Zindi, optional)
 ```
 
-### Model & Prediction Contract (`preds/`)
-Every model—whether scikit-learn, LightGBM, or PyTorch Lightning—runs through `src/train.py` and writes identical parquet columns:
-`ID, customer_id, country_id, lender_id, loan_type, is_new_borrower, split, scheme, fold, model, y_true, y_pred`.
-Because all models share this contract, `src/evaluate.py` and `04_transfer_and_fairness.ipynb` evaluate every model identically without custom glue code.
+### 3. Reproduce everything
+
+```bash
+make features     # data/raw -> data/processed/features.parquet, fails loudly on leakage (~5 s)
+make train        # every model on every validation scheme -> preds/, plus the scorer -> artifacts/
+make eval         # metrics for every prediction file -> reports/tables/
+make figures      # report figures -> reports/figures/
+make score        # sample decisions + 1,000-call latency benchmark
+make test         # pytest; `make lint` runs ruff
+```
+
+On Windows without `make`, run the same modules directly, e.g. `python -m scripts.train --task task2 --models logreg lightgbm --schemes fold_group temporal`. Every script has `--help`.
 
 ---
 
-## Live Roadmap & GitHub Issue Tracking
+## Repository structure
 
-**Master tracker: [Roadmap Issue #1](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/1).**
+```text
+├── configs/
+│   ├── models.yaml                 # hyperparameters for every model (edit here, not in code)
+│   └── cost_matrix.yaml            # cost-matrix inputs: measured from Train.csv vs assumptions (#11, draft)
+├── data/                           # git-ignored: raw/ (the three zips) and processed/features.parquet
+├── scripts/                        # entry points, run as `python -m scripts.<name>`
+│   ├── build_features.py           # -> data/processed/features.parquet
+│   ├── run_target_eda.py           # target / leakage / 2023+ shift tables
+│   ├── train.py                    # any model x any validation scheme -> preds/; --save-artifacts -> artifacts/
+│   ├── evaluate.py                 # all preds/ -> reports/tables/*_model_summary.csv, cost sensitivity
+│   ├── make_figures.py             # -> reports/figures/*.png
+│   └── score.py                    # sample decisions and latency
+├── src/
+│   ├── config.py                   # seed, paths, feature lists (single source of truth)
+│   ├── features.py                 # time-safe borrower history, calendar, macro, fold schemes (P1)
+│   ├── analysis/target_eda.py      # Henry's target EDA as a reusable function
+│   ├── processing/preprocess.py    # fold-safe ColumnTransformer (D-5) and TargetLogScaler (clipped)
+│   ├── models/                     # one file per model family + registry
+│   │   ├── __init__.py             # build_estimator(name, task): the registry, settings from configs/models.yaml
+│   │   ├── baselines.py            # majority class, mean
+│   │   ├── linear.py               # logistic regression, OLS, Ridge, Lasso
+│   │   ├── neighbors.py            # kNN
+│   │   ├── svm.py                  # RBF SVM on a stratified subsample
+│   │   ├── trees.py                # pruned decision trees
+│   │   ├── ensembles.py            # Random Forest, LightGBM
+│   │   ├── lightning_modules.py    # LitLogReg, LitMLP, LitLinearReg (Henry's architectures)
+│   │   └── data_module.py          # LoanDataModule (customer-grouped early-stopping split)
+│   ├── training/
+│   │   ├── cross_validation.py     # run_cv, predict_test_split: one prediction format for every model
+│   │   ├── lightning_runner.py     # one quiet Trainer loop for every Lightning model
+│   │   └── artifacts.py            # calibrated scorer bundle for deployment
+│   ├── evaluation/
+│   │   ├── metrics.py              # PR-AUC, ROC-AUC, F1 at threshold, reliability/ECE, RMSE/MAE
+│   │   ├── calibration.py          # Platt (deployment) and isotonic, out-of-fold
+│   │   ├── cost_matrix.py          # threshold from configs/cost_matrix.yaml + sensitivity table
+│   │   ├── bootstrap.py            # 95% CIs, resampling customers (not rows)
+│   │   ├── fairness.py             # metrics and selection rate per group
+│   │   └── shift.py                # Kenya-vs-Ghana domain classifier, importance weights
+│   ├── serving/                    # Part E scoring service
+│   │   ├── schema.py               # required fields, exchange rate, application -> feature row
+│   │   ├── scorer.py               # score_application(): probability, decision, limit, reasons, review flags
+│   │   ├── reasons.py              # plain-language reason codes a borrower can act on
+│   │   └── latency.py              # median / p95 over 1,000 calls
+│   └── visualization/              # reusable plots; save_figure() -> reports/figures/
+├── notebooks/                      # the brief's 4 deliverable notebooks; each owner writes their own
+├── reports/                        # committed outputs: tables/*.csv and figures/*.png for the report
+├── preds/ · artifacts/             # git-ignored predictions and model bundles (regenerate with make train)
+├── tests/                          # one file per area; run in CI on synthetic data (no real data in CI)
+└── docs/                           # tracking, decisions, derivations, audit, reflections
+```
+
+### Model and prediction contract
+
+Every model, whatever its library, goes through `src/training/cross_validation.py` and writes the same parquet columns to `preds/`:
+`ID, customer_id, country_id, lender_id, loan_type, is_new_borrower, split, scheme, fold, model, y_true, y_pred`.
+Task 2 `y_pred` is a raw (uncalibrated) probability; Task 1 `y_pred` is an amount in **USD**. `scripts/evaluate.py` calibrates Task 2 out of fold before any threshold metric, because the cost threshold only means something on calibrated probabilities.
+
+### Where did the old modules go? (PR #46 → this structure)
+
+| Before | Now |
+| --- | --- |
+| `src/preprocess.py`, `src/transforms.py` | `src/processing/preprocess.py` |
+| `src/datamodule.py` | `src/models/lightning_modules.py`, `src/models/data_module.py`, `src/training/lightning_runner.py` |
+| `src/train.py` | `src/models/*` (estimators), `src/training/cross_validation.py`, `src/training/artifacts.py`, `scripts/train.py` |
+| `src/evaluate.py` | `src/evaluation/{metrics,calibration,cost_matrix,bootstrap}.py`, `scripts/evaluate.py` |
+| `src/fairness.py` | `src/evaluation/fairness.py`, `src/evaluation/shift.py` |
+| `src/score.py` | `src/serving/*`, `scripts/score.py` |
+| `src/eda_target.py` | `src/analysis/target_eda.py`, `scripts/run_target_eda.py` |
+| `python -m src.<module>` | `python -m scripts.<name>` or `make <target>` (`python -m src.features` still works) |
+
+---
+
+## Live roadmap and GitHub issues
+
+**Master tracker: [Roadmap issue #1](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/1).**
 Filter open issues by owner: [P1](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3AP1) · [P2](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3AP2) · [P3](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3AP3) · [P4](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3AP4) · [Whole team](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aissue+label%3Aall).
 
-> **Why GitHub Issue #1 is the live checklist:** Markdown checkboxes inside `README.md` do not auto-tick when PRs merge, whereas GitHub **automatically ticks** tasklist items inside an Issue when the referenced issue closes via `Closes #<num>`. Use the collapsible list below inside Issue #1 to keep progress 100% automatic.
+> GitHub ticks tasklist items inside an issue automatically when the referenced issue closes, so issue #1 is the live checklist. The copy below reflects GitHub as of 2026-11-17.
 
 <details>
-<summary>Copy-paste tasklist for GitHub Issue #1 (auto-ticks when issues close)</summary>
+<summary>Copy-paste tasklist for GitHub issue #1 (auto-ticks when issues close)</summary>
 
 ```markdown
 ### P1 · Data & Features
@@ -133,11 +167,11 @@ Filter open issues by owner: [P1](https://github.com/ASU-MICS-2028/mle-group-2-p
 - [ ] #15 Models: baselines, kNN, SVM
 
 ### P2 · Classification & Evaluation
-- [ ] #6 Explore target by month, lender, loan type, tenure
+- [x] #6 Explore target by month, lender, loan type, tenure
 - [ ] #10 Define Task 1, Task 2, and business goal
 - [ ] #11 Cost matrix in cedis/shillings + sensitivity checks
-- [ ] #13 Shared `train` / `evaluate` / `datamodule` scripts
-- [ ] #14 Validation study (stratified vs GroupKFold vs temporal; D-7)
+- [x] #13 Shared `train` / `evaluate` / `datamodule` scripts
+- [x] #14 Validation study (stratified vs GroupKFold vs temporal; D-7)
 - [x] #16 Models: logistic regression and MLP
 - [ ] #19 Calibration, threshold sweep, cost operating point
 - [ ] #20 Bootstrap 95% CIs on F1 and PR-AUC vs noise floor
@@ -147,8 +181,8 @@ Filter open issues by owner: [P1](https://github.com/ASU-MICS-2028/mle-group-2-p
 - [ ] #17 Models: OLS, Ridge, Lasso, decision tree
 - [ ] #21 Regression metrics (log + original scale) & residuals
 - [ ] #22 Interpretation (coefficients / importances / SHAP)
-- [ ] #30 Scoring service (`src/score.py`)
-- [ ] #31 Latency figures (1,000 calls) & input specification
+- [ ] #30 Scoring service (`src/serving/`)
+- [x] #31 Latency figures (1,000 calls) & input specification
 
 ### P4 · Transfer & Fairness
 - [ ] #8 Explore Ghana vs Kenya, macro, Findex, inclusion files
@@ -177,27 +211,28 @@ Filter open issues by owner: [P1](https://github.com/ASU-MICS-2028/mle-group-2-p
 
 ---
 
-## Project Docs
+## Project docs
 
 | Page | Purpose |
 | --- | --- |
-| [docs/DATA_AND_PIPELINE_GUIDE.md](docs/DATA_AND_PIPELINE_GUIDE.md) | Full dataset profiles, column tables, leakage proof, glossary, Lightning primer |
-| [docs/PROGRESS.md](docs/PROGRESS.md) | Dashboard of completed work, current findings, blockers, session log |
+| [docs/DATA_AND_PIPELINE_GUIDE.md](docs/DATA_AND_PIPELINE_GUIDE.md) | Dataset profiles, column tables, leakage proof, glossary, Lightning primer |
+| [docs/PROGRESS.md](docs/PROGRESS.md) | What's done, what's left, blockers, session log |
 | [docs/WORKLOG.md](docs/WORKLOG.md) | Session handoff notes (newest first) |
-| [docs/DECISIONS.md](docs/DECISIONS.md) | Data & modeling decision log (never edit silently; mark superseded) |
-| [docs/feature_audit.md](docs/feature_audit.md) | Full 16-column leakage & role audit |
-| [docs/LEARNING_OUTCOMES.md](docs/LEARNING_OUTCOMES.md) | Rubric-mapped LOs and oral-defense self-check questions |
+| [docs/DECISIONS.md](docs/DECISIONS.md) | Data and modelling decisions (never edit silently; mark superseded) |
+| [docs/feature_audit.md](docs/feature_audit.md) | 16-column leakage and role audit |
+| [docs/LEARNING_OUTCOMES.md](docs/LEARNING_OUTCOMES.md) | Learning outcomes and self-check questions |
 | [docs/DELIVERABLES.md](docs/DELIVERABLES.md) | 100-point rubric checklist |
-| [docs/AI_USE_LOG.md](docs/AI_USE_LOG.md) | Mandatory AI-use declaration log |
+| [docs/AI_USE_LOG.md](docs/AI_USE_LOG.md) | AI-use declaration log |
 
 ---
 
-## Team Rules & GitHub Workflow
+## Team rules and GitHub workflow
 
-**Code against the shared `src/` files, never around them.** Notebooks (`01`–`04`) should stay thin—import from `src/`, run experiments, plot diagnostics, and document findings.
+**Shared logic lives in `src/`; entry points in `scripts/`; settings in `configs/`.** Notebooks are where each owner shows, explains and interprets their own work; they may import from `src/` or build a model step by step in plain sight, whichever the owner needs to explain it at the debrief.
 
-1. **One issue, one branch, one PR:** branch from latest `main` as `<role>/<issue>-<short-name>` (e.g., `p3/17-task1-models`). Never push directly to `main`.
-2. **Link real issues in PR descriptions:** replace `Closes #<issue>` with e.g. `Closes #17` (or `Refs #17`). Enforced by `PR Issue Link Check`.
-3. **Docs ship with code:** update `docs/WORKLOG.md`, `docs/PROGRESS.md` (enforced by `Docs freshness`), and any affected doc per `CLAUDE.md`.
-4. **Tests must pass:** `CI (Lint & Guardrail Tests)` runs `ruff check src/ tests/` and `pytest tests/ -v` on every PR.
-5. **Peer review & rerun:** each PR requires 1 approval from the rotation (`P1 → P2 → P3 → P4 → P1`) before **Squash and merge**.
+1. **One issue, one branch, one PR:** branch from the latest `main` as `<role>/<issue>-<short-name>` (e.g. `p3/17-task1-models`). Never push to `main`.
+2. **Link real issues:** `Closes #17` or `Refs #17` in the PR description (checked by `PR Issue Link Check`).
+3. **Docs ship with code:** update `docs/WORKLOG.md` and `docs/PROGRESS.md` (checked by `Docs freshness`) and any doc listed in `CLAUDE.md`.
+4. **Tests must pass:** CI runs `ruff check src/ scripts/ tests/` and `pytest` on Python 3.12.
+5. **Review before merge:** one approval from the rotation reviewer (P1 → P2 → P3 → P4 → P1), who reruns the branch. Nobody merges their own PR unreviewed.
+6. **Owners own their notebooks:** propose changes to someone else's notebook as a PR they review, never as a rewrite.
