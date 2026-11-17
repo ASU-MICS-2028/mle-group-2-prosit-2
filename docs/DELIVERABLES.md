@@ -22,7 +22,7 @@ Individual: one-page reflection each.
 **B:** ☐ EDA (imbalance, missing, skew, cardinality) ☐ `merge_asof` history, calendar, macro ☐ three validation schemes, inflation quantified ☐ ≥ 5 models ☐ classification and regression metrics ☐ bootstrap CIs on F1 and PR-AUC ☐ interpretation
 **C:** ☐ Kenya vs Ghana distributions ☐ domain classifier or importance weighting ☐ evidence needed to trust Ghana predictions
 **D:** ☐ Model Card ☐ Datasheet ☐ disaggregated metrics ☐ proxy analysis ☐ mitigation ☐ regulatory map ☐ Findex analysis ☐ borrower explanation
-**E:** ☐ joblib model and `score()` ☐ latency (median, p95 over 1,000 calls) ☐ required inputs
+**E:** 🟨 `joblib` bundle and `score_application()` in `src/score.py` (`p3/13-30-senior-scaffolding`; swap final winning models after comparison) ☐ latency (median, p95 over 1,000 calls) in final report 🟨 required inputs (`REQUIRED_APPLICATION_FIELDS` in `src/score.py`)
 
 ## Gaps in the README plan
 

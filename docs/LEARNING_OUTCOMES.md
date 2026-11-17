@@ -19,10 +19,10 @@ At the debrief you must "explain, defend and reproduce your work without AI". If
 | ☐ | Work | Evidence | Owner |
 | --- | --- | --- | --- |
 | ✅ | One shared feature file and folds, seed 42 (merged #39) | `src/features.py` | P1 |
-| 🟨 | Preprocessor fitted on training rows only (inside each fold in Henry's pipeline; shared `src/preprocess.py` still to write) | `src/preprocess.py` | P1/P2 |
-| ☐ | One train script and one evaluate script for all models | `src/train.py`, `src/evaluate.py` | P2 |
+| 🟨 | Preprocessor fitted on training rows only (`src/preprocess.py` on `p3/13-30-senior-scaffolding`) | `src/preprocess.py` | P1/P2/P3 |
+| 🟨 | One train script and one evaluate script for all models (`p3/13-30-senior-scaffolding`) | `src/train.py`, `src/evaluate.py` | P2/P3 |
 | ☐ | A teammate reproduces results from a fresh clone | PR reviews | all |
-| ☐ | Scorer: probability, decision, limit, top-3 reasons, latency | `src/score.py` | Bernard |
+| 🟨 | Scorer: probability, decision, limit, top-3 reasons, latency (`p3/13-30-senior-scaffolding`; final model swap pending) | `src/score.py` | Bernard |
 
 **Self-check:** Where does leakage enter if the scaler sees validation rows? Why does a backward `merge_asof` keep history safe? Why reuse the training preprocessor at inference?
 
@@ -75,7 +75,7 @@ At the debrief you must "explain, defend and reproduce your work without AI". If
 
 | Task | Read |
 | --- | --- |
-| Leakage, features | README §1 "The leak, from first principles" |
+| Leakage, features | [DATA_AND_PIPELINE_GUIDE](DATA_AND_PIPELINE_GUIDE.md#1-understand-the-data) ("The leak, from first principles") |
 | Logistic regression, class weights | ISLR ch. 4; HOMLP ch. 4 |
 | Validation, calibration | ISLR ch. 5; scikit-learn "Probability calibration" |
 | Linear models, Ridge/Lasso | ISLR ch. 3, 6 |
