@@ -30,23 +30,39 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
+      # Always work on main: the README updates are committed there, never into a pull request branch.
       - uses: actions/checkout@v4
         with:
           ref: main
 
+      # Until the pull request that adds the generator is merged, main does not have it yet: skip cleanly.
+      - name: Check the generator is on main
+        id: guard
+        run: |
+          if [ -f scripts/update_readme.py ] && [ -f docs/issue_cards.yaml ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::notice::scripts/update_readme.py is not on main yet (it arrives when its pull request merges); nothing to do."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/setup-python@v5
+        if: steps.guard.outputs.ready == 'true'
         with:
           python-version: "3.12"
 
       - name: Install PyYAML
+        if: steps.guard.outputs.ready == 'true'
         run: pip install pyyaml
 
       - name: Rebuild README status from issues and pull requests
+        if: steps.guard.outputs.ready == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: python -m scripts.update_readme
 
       - name: Commit if the status changed
+        if: steps.guard.outputs.ready == 'true'
         run: |
           if git diff --quiet README.md; then
             echo "README status unchanged."
