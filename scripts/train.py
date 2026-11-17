@@ -10,6 +10,8 @@ from __future__ import annotations
 
 import argparse
 
+from src import config as C
+from src.console import console
 from src.models import TASK1_MODELS, TASK2_MODELS
 from src.processing import load_features
 from src.training import fit_and_save_deployment_artifacts, predict_test_split, run_cv
@@ -29,24 +31,33 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
-    df = load_features()
+    explicit_models = args.models is not None
     models = args.models or (["majority", "logreg"] if args.task == "task2" else ["mean", "ridge"])
     valid = TASK2_MODELS if args.task == "task2" else TASK1_MODELS
     unknown = sorted(set(models) - set(valid))
     if unknown:
         raise SystemExit(f"Unknown {args.task} models {unknown}. Options: {valid}")
 
-    for name in models:
-        for scheme in args.schemes:
-            preds = run_cv(df, model_name=name, task=args.task, scheme=scheme)
-            print(f"{args.task}:{name:<18} {scheme:<11} -> preds/{args.task}_{name}_{scheme}.parquet ({len(preds):,} rows)")
-        if args.predict_test:
-            predict_test_split(df, model_name=name, task=args.task)
-            print(f"{args.task}:{name:<18} test        -> preds/{args.task}_{name}_test.parquet")
-
+    df = load_features()
+    jobs = [] if (args.save_artifacts and not explicit_models) else [
+        (m, s) for m in models for s in args.schemes + (["test"] if args.predict_test else [])
+    ]
+    if jobs:
+        console.title(f"Train {args.task}: {len(models)} model(s) x {len(args.schemes)} scheme(s)")
+        for i, (model, scheme) in enumerate(jobs, 1):
+            with console.step(f"[{i:>2}/{len(jobs)}] {model:<18} {scheme}"):
+                if scheme == "test":
+                    predict_test_split(df, model_name=model, task=args.task)
+                else:
+                    run_cv(df, model_name=model, task=args.task, scheme=scheme)
     if args.save_artifacts:
-        paths = fit_and_save_deployment_artifacts(df, clf_model=args.clf_artifact_model, reg_model=args.reg_artifact_model)
-        print(f"Scorer artifacts: {paths['clf_path'].name}, {paths['reg_path'].name}")
+        console.title("Scorer artifacts")
+        with console.step(f"calibrated {args.clf_artifact_model} + {args.reg_artifact_model} limits"):
+            paths = fit_and_save_deployment_artifacts(df, clf_model=args.clf_artifact_model, reg_model=args.reg_artifact_model)
+    summary = [f"{len(jobs)} prediction file(s) in {C.rel(C.PREDS)}"] if jobs else []
+    if args.save_artifacts:
+        summary.append(f"{paths['clf_path'].name} and {paths['reg_path'].name} in {C.rel(C.ARTIFACTS)}")
+    console.done("; ".join(summary))
 
 
 if __name__ == "__main__":

@@ -1,0 +1,4 @@
+split,country_id,rows,loans,customers,first_loan,last_loan,default_rate
+test,Ghana,3525,2084,446,2021-11-30,2023-03-21,
+test,Kenya,15069,14983,4516,2021-11-08,2024-11-14,
+train,Kenya,68654,66520,6540,2021-10-04,2024-11-14,0.0183237684621435

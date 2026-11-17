@@ -87,3 +87,11 @@ PRED_COLUMNS = [
     "y_true",
     "y_pred",
 ]
+
+
+def rel(path: Path) -> Path:
+    """`path` relative to the project root for printing, or unchanged if it lives elsewhere."""
+    try:
+        return Path(path).resolve().relative_to(ROOT)
+    except ValueError:
+        return Path(path)
