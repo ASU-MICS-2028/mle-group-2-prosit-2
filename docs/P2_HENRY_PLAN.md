@@ -14,9 +14,9 @@
 - [x] Finish the leak check (`extra_pct` median & IQR by outcome in `src/analysis/target_eda.py`).
 
 **2 · Part A: label, tasks, cost matrix**
-- [ ] Define label and window; write Task 1 (amount) and Task 2 (default).
-- [ ] Cost matrix in cedis/shillings from the data. **Don't reuse the brief's example numbers.**
-- [ ] Threshold = C_FP / (C_FP + C_FN); show it under two other recovery assumptions.
+- [x] Define label and window; write Task 1 (amount) and Task 2 (default) (`02_classification` §0, PR #60).
+- [x] Cost matrix in cedis/shillings from the data. **Don't reuse the brief's example numbers.** (KES draft by Bernard, D-19; cedis from Ghana's own loans, D-22: 3,002 GHS, 3.0% fee)
+- [x] Threshold = C_FP / (C_FP + C_FN); show it under two other recovery assumptions (Ghana p\* 0.029 / 0.036 / 0.047; 0.15–0.23 if 6 future loans are lost).
 
 **3 · Shared tools on the rough file**
 - [x] `src/config.py` (seed 42, paths; written by Perfect)
@@ -27,13 +27,17 @@
 - [x] Logistic regression in Lightning (`BCEWithLogitsLoss(pos_weight≈53.6)`, Adam, early stopping); cross-check against scikit-learn (done: both give ROC-AUC 0.845, PR-AUC 0.170; coefficients not compared).
 
 **4 · Validation study** (after Perfect's folds): stratified vs GroupKFold vs temporal; quantify inflation; decide D-7.
+- [x] Done (`02_classification` §5–6); D-7 decided: compare with GroupKFold, quote by-time (ROC-AUC 0.63–0.65) as the honest forecast.
 
 **5 · Models and noise floor**
-- [ ] MLP vs logistic regression.
-- [ ] Calibrate on held-out data (isotonic vs Platt); reliability curve before and after.
-- [ ] Cost-based operating point; bootstrap 95% CIs on F1 and PR-AUC against the ±0.0263 noise floor.
+- [x] MLP vs logistic regression (calibrated PR-AUC 0.204 vs 0.175; customer-level CIs overlap, so the lead is not established).
+- [x] Calibrate on held-out data (isotonic vs Platt); reliability curve before and after (§8, added by Bernard, verified by Henry).
+- [x] Cost-based operating point; bootstrap 95% CIs on F1 and PR-AUC against the ±0.0263 noise floor (§9–10 by Bernard, verified; §9b Ghana by Henry).
 
 **6 · Write up**: `02_classification` runs from a fresh kernel; logistic derivation (log-odds → likelihood → BCE → gradient Xᵀ(σ(Xw) − y), checked against autograd); results; reflection.
+- [x] `02_classification` runs top to bottom from a fresh kernel (`nbconvert --execute`, macOS); conclusions in §11 (PR #60).
+- [ ] Logistic regression derivation (`docs/derivations/logistic.md`, #32).
+- [ ] Personal reflection (#37).
 
 ## You understand it when you can answer
 - Why does minimising BCE equal maximum likelihood?
