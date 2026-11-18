@@ -1,6 +1,6 @@
 # Progress dashboard
 
-**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-18 by Eugene (`p4/54-transfer-fairness-audit`, PR to open).
+**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-18 by Eugene (PR #64, `p4/54-transfer-fairness-audit`).
 
 Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 
