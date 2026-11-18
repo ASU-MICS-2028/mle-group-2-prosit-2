@@ -34,10 +34,10 @@ The three numbered reasons are the scorer's own wording for this applicant (`mak
    | "This loan product has a higher rate of missed repayments" | Yes, with the alternative product named | Only if another product is actually offered |
    | "Your overall application profile" (filler when fewer than 3 reasons apply) | **No** | It says nothing. Show fewer reasons instead |
 
-3. **Always offer a next step**, and prefer a starter loan to a flat decline. This is the mitigation in `04` §3.4: first-time borrowers at p ≤ 0.05 are offered 25% of the request.
+3. **Always offer a next step**, and prefer a starter loan to a flat decline. The scorer does this itself (D-24): a first-time borrower between the threshold (0.10) and 0.30 gets decision `starter` and an offer of 25% of the request (`recommended_limit`). A decline message is only sent above 0.30, or to repeat borrowers above the threshold; it should still suggest a smaller loan.
 4. **Always state the review route and the 20-day response time** (BoG Directive 6(1)(e)).
 5. **Say what data was used and what was not**, and that the borrower can ask to see or correct it (Act 843 principles; section numbers to be confirmed).
 
-## Gap still open in code
+## In code
 
-The scorer returns one list of reasons for both the credit team and the borrower. The borrower app should apply rule 2 (rephrase lender reasons, drop the filler), or the scorer could return a separate borrower-facing list. This is a P3/P4 follow-up, together with the starter-loan offer, which the scorer does not yet produce.
+`score_application` returns `top_3_reasons` (credit team) and `borrower_reasons` (rule 2 applied: lender reason reworded, filler dropped, so it may hold fewer than 3). The borrower app shows only `borrower_reasons`. Tested in `tests/test_serving.py`.

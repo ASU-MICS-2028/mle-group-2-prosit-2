@@ -8,7 +8,7 @@
 
 <p align="center">
   <img alt="Python 3.12" src="https://img.shields.io/badge/python-3.12-1f4e79?style=flat-square">
-  <img alt="Tests" src="https://img.shields.io/badge/tests-149_passing-2e7d32?style=flat-square">
+  <img alt="Tests" src="https://img.shields.io/badge/tests-155_passing-2e7d32?style=flat-square">
   <img alt="Models" src="https://img.shields.io/badge/models-16_trained-1f4e79?style=flat-square">
   <img alt="Figures" src="https://img.shields.io/badge/figures-47-1f4e79?style=flat-square">
   <!-- status:badge --><img alt="Issues" src="https://img.shields.io/badge/issues-17_of_46_closed-d4a72c?style=flat-square"><!-- /status:badge -->

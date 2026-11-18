@@ -1,6 +1,6 @@
 # Progress dashboard
 
-**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-17 by Eugene (`p4/54-transfer-fairness-audit`, PR to open).
+**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-18 by Eugene (`p4/54-transfer-fairness-audit`, PR to open).
 
 Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 
@@ -45,7 +45,7 @@ Per-issue progress is on GitHub (Roadmap issue #1). Closed on 2026-11-17 with ev
 | 2026-11-17 | Bernard | Restructured `src/` into packages + `scripts/`, `configs/`, `reports/`; fixed scorer bugs (D-18, D-19); restored and completed Henry's `02` (§7–10); ran all 16 models | PR #47 |
 | 2026-11-16 | Bernard | Shared `src/` pipeline, `tests/` CI guardrails, `Makefile`, streamlined README | PR #46 |
 | 2026-11-10 | Henry | Logistic regression (raw + shared + Lightning) and MLP + temporal check | `notebooks/02_classification.ipynb`, `docs/learning/`, PRs #40, #41 |
-| 2026-11-17 | Eugene | `04` rebuilt on the shipped scorer; audit docs, boosting derivation, fairness/shift helpers + 12 tests; D-23 to D-25 | `04`, `docs/audit/`, `docs/derivations/boosting.md`; branch `p4/54-transfer-fairness-audit` |
+| 2026-11-18 | Eugene | `04` rebuilt on the shipped scorer; cedi cost matrix (D-26); starter loan and borrower reasons in the scorer (D-24); audit docs, boosting derivation, fairness/shift helpers + 18 tests; D-23 to D-26 | `04`, `docs/audit/`, `docs/derivations/boosting.md`; branch `p4/54-transfer-fairness-audit` |
 | 2026-11-17 | Henry | Problem framing, Ghana cost matrix in cedis, conclusions; verified calibration and CIs; D-7, D-22 | `02_classification` §0, §9b, §11; `src/evaluation/cost_matrix.py`; PR #60 |
 | 2026-11-17 | Henry | Calibration over time (#55): stale vs recalibrated Platt on 2023+ loans, quarterly monitoring, recommendation (D-24) | `02_classification` §11, PR #61 |
 | 2026-11-17 | Henry | Logistic regression derivation: log-odds → likelihood → BCE → gradient, `pos_weight`, convexity; 4 autograd tests | `docs/derivations/logistic.md`, `tests/test_logistic_derivation.py`, PR #62 |
@@ -58,10 +58,10 @@ Findings so far:
 - Defaulters get cut off (3.5% ever get another loan), so labels cover only approved borrowers.
 - Logistic regression on shared features: ROC-AUC 0.844, PR-AUC 0.180; MLP 0.867 / 0.209 (Henry, `02`, D-18 feature list).
 - Naive random folds inflate scores: LightGBM PR-AUC 0.303 random vs 0.195 by customer vs 0.148 by time (2023+). Best by customer: MLP 0.207, Random Forest 0.204. On 2023+ loans every model drops to ROC-AUC 0.56–0.65.
-- Draft cost matrix (D-19): declining a good borrower costs 88 KES, approving a default 4,449 KES, so the cost threshold is 0.019 and the MLP approves 79%; with 6 future loans lost per wrong decline the threshold is 0.106.
+- (Superseded by D-26.) Draft cost matrix (D-19): declining a good borrower costs 88 KES, approving a default 4,449 KES, so the cost threshold is 0.019 and the MLP approves 79%; with 6 future loans lost per wrong decline the threshold is 0.106.
 - Task 1 (USD): every model beats the mean on the log scale (LightGBM R² 0.21 by customer, 0.61 by time), but on dollars the linear models are worse than the mean; trees are best.
 - Kenya vs Ghana is almost perfectly separable (domain AUC 0.997). Without the label-history artefact (`n_past_labelled` is 0 for all of Ghana) it is still 0.985, so importance weighting is unusable (ESS share 0.04, D-25) (`04` §2.2).
-- The shipped scorer approves 0% of first-time borrowers (real default 21%); a 25% starter loan at p ≤ 0.05 gives 36% for KES 15 per first-time applicant (D-24, `04` §3.4). No Ghanaian is approved in full (`04` §2.3).
+- Team cost matrix is now cedis with 3 future loans lost (D-26): threshold 0.10, 97.5% of Kenyan applicants approved. First-time borrowers 49% vs 98%; the scorer's 25% starter loan up to p 0.30 lifts them to 81% for GHS 18 per first-time applicant (D-24, `04` §3.4). No Ghanaian is approved in full (`04` §2.3).
 - The deployed calibrated logistic regression under-predicts new borrowers (2.2% for a profile whose real rate is 5.7%).
 
 ## What's left, in order
@@ -79,7 +79,7 @@ Findings so far:
 | # | Severity | Item | Next step |
 | --- | --- | --- | --- |
 | 1 | 🟧 | **Deadline confirmed: 19 Nov 2026.** The brief's Nov 2–6 dates are superseded. Nine days left as of 2026-11-10 | Plan backwards from 19 Nov: models and results by about 15 Nov, report, audit and slides after |
-| 2 | 🟨 | Parts C and D rebuilt by Eugene on the shipped scorer; the numbers depend on the cost matrix (0% vs 49% first-time approval) | Team settles D-19 vs D-22 and future loans; re-run `04` if the config changes |
+| 2 | 🟨 | Cost matrix switched to cedis, 3 lost loans (D-26); committed `reports/` tables and `02`/`03` outputs predate it | Re-run `make all`, `02` and `03` after the PR merges |
 | 2b | 🟧 | PR #46 was merged without review and rewrote Henry's notebook (since restored, D-20) | Branch protection on `main`; every PR reviewed by the rotation |
 | 3 | 🟨 | Review rotation: P1→P2→P3→P4→P1 (Perfect reviews Henry, Henry reviews Bernard, Bernard reviews Eugene, Eugene reviews Perfect) | Confirm everyone has repo access and is assigned issues |
 | 4 | 🟧 | D-2 to D-6 are drafts (D-7 decided in PR #60), yet results depend on them | Hold the Part A session; mark each decided or changed |
@@ -95,7 +95,7 @@ Findings so far:
 | 2026-11-17 | Henry | Logistic regression derivation with autograd check (`docs/derivations/logistic.md`, #32, PR #62) | Reflection (#37) |
 | 2026-11-17 | Henry | Calibration over time on 2023+ loans and recalibration plan, `02` §11 (#55, PR #61) | Derivation (#32); reflection |
 | 2026-11-17 | Bernard | Acceptance test per issue + Action that blocks unfinished closes (D-23) | Owners close issues whose checks pass |
-| 2026-11-17 | Eugene | `04` rebuilt (#54): calibrated audit, shift, proxies, costed mitigation, Findex; `docs/audit/`; boosting derivation; 12 tests | Bernard reviews; cost-matrix decision |
+| 2026-11-18 | Eugene | `04` rebuilt (#54); cedi cost matrix (D-26); starter loan + borrower reasons in the scorer (D-24); `docs/audit/`; boosting derivation; 18 tests | Bernard reviews; re-run `02`/`03`/`make all` on the cedi config |
 | 2026-11-17 | Henry | Reviewed PR #47; framing (#10), Ghana cost matrix (#11), conclusions; verified #19, #20 (PR #60) | Derivation (#32); align cost config |
 | 2026-11-17 | Bernard | PRs #47, #57 merged; README status now auto-generated by a GitHub Action (D-21) | Each owner works their cards |
 | 2026-11-17 | Bernard | All open issues assigned on GitHub; README issue cards per person | Everyone works their cards |

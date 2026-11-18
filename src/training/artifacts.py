@@ -10,7 +10,7 @@ from sklearn.pipeline import Pipeline
 
 from .. import config as C
 from ..evaluation.calibration import PlattCalibrator
-from ..evaluation.cost_matrix import cost_matrix_threshold
+from ..evaluation.cost_matrix import cost_matrix_threshold, load_cost_config
 from ..models import LIGHTNING_MODELS, build_estimator
 from ..processing import TargetLogScaler, get_feature_lists, make_preprocessor
 from .cross_validation import run_cv, task_target
@@ -71,6 +71,7 @@ def fit_and_save_deployment_artifacts(
             "model_name": clf_model,
             "threshold": float(threshold if threshold is not None else cost["threshold"]),
             "cost_matrix": cost,
+            "starter_loan": load_cost_config().get("starter_loan"),
             "training_scope": training_scope,
         },
         clf_path,

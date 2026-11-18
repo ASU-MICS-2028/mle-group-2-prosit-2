@@ -83,3 +83,14 @@ def test_customer_bootstrap_is_wider_than_row_bootstrap() -> None:
     assert clustered["resampled_unit"] == "customer"
     width = lambda r: r["pr_auc_ci_high"] - r["pr_auc_ci_low"]  # noqa: E731
     assert width(clustered) >= width(rows)
+
+
+def test_cost_config_is_in_cedis_and_the_starter_band_sits_above_the_threshold() -> None:
+    """D-26: the product is for Ghana; D-24: a starter band at or below the threshold would never be used."""
+    from src.evaluation import load_cost_config
+
+    cm, cfg = cost_matrix_threshold(), load_cost_config()
+    assert cm["currency"] == "GHS"
+    starter = cfg["starter_loan"]
+    assert cm["threshold"] < starter["max_probability"] < 1.0
+    assert 0.0 < starter["share_of_request"] < 1.0
