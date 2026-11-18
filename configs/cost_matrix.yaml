@@ -1,4 +1,4 @@
-# Cost matrix for the Task 2 operating threshold (issue #11; D-22 measured the cedi values, D-26 adopted them).
+# Cost matrix for the Task 2 operating threshold (issue #11; D-22 measured the cedi values, D-28 adopted them).
 # In cedis, because the product is for Ghana. "measured" values come from Ghana's own loans in Test.csv
 # (src.evaluation.measure_market_cost_inputs); "assumption" values have no source in our data.
 #
@@ -10,12 +10,12 @@ currency: GHS
 
 principal: 3002          # measured: median Total_Amount of Ghana's loans (Test.csv)
 fee_rate: 0.030          # measured: median markup on Ghana's 7-day loans (86% of Ghana loans)
-future_loans: 3          # assumption (D-26): this loan + ~2 later ones. After a repaid loan the median customer
+future_loans: 3          # assumption (D-28): this loan + ~2 later ones. After a repaid loan the median customer
                          # takes 8 more; we assume about 1 in 4 declined good borrowers leave for good
 recovery_rate: 0.20      # assumption: share of principal recovered after default (no recovery data)
 collection_cost: 14.8    # assumption: the old 250 KES per default, converted to GHS through USD
 
-# First-time borrowers just above the threshold get a smaller starter loan instead of a decline (D-24).
+# First-time borrowers just above the threshold get a smaller starter loan instead of a decline (D-26).
 starter_loan:
   max_probability: 0.30  # offered when threshold < calibrated p <= this, first-time borrowers only
   share_of_request: 0.25 # starter amount = 25% of the request (never above the Task 1 limit)

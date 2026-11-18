@@ -13,8 +13,8 @@ Format follows Mitchell et al. (2019), *Model Cards for Model Reporting*. Owner:
 
   Since D-18 there are **no macro columns and no local-currency amount**.
 - **Decision rule** (`decide` in `src/serving/scorer.py`):
-  - **Decline** when the calibrated probability is above $C_{FP}/(C_{FP}+C_{FN})$. With the shipped cedi cost matrix (D-26) that is **0.10**.
-  - **Starter loan (D-24):** a first-time borrower between 0.10 and 0.30 is offered a loan of 25% of the request instead of a decline.
+  - **Decline** when the calibrated probability is above $C_{FP}/(C_{FP}+C_{FN})$. With the shipped cedi cost matrix (D-28) that is **0.10**.
+  - **Starter loan (D-26):** a first-time borrower between 0.10 and 0.30 is offered a loan of 25% of the request instead of a decline.
   - Otherwise, **approve** the request, or **limit** it to the Task 1 recommended amount (LightGBM, in USD, converted to local currency) when the request is larger than that amount.
   - Every decision comes with 3 reasons for the credit team (`top_3_reasons`) and a borrower-facing version (`borrower_reasons`). The borrower version rewords the funding-lender reason and drops filler.
   - A `needs_review` flag marks applications outside the training scope: an unseen country, lender or product, or an amount outside the range.
@@ -43,9 +43,12 @@ Format follows Mitchell et al. (2019), *Model Cards for Model Reporting*. Owner:
 - **Money:** expected cost of decisions in GHS, from the cost matrix.
 - **Uncertainty:** customer-level bootstrap 95% intervals, in `reports/tables/task2_bootstrap_ci.csv` (P2).
 
-## Training and evaluation data
+## Training data
 
 - **Training:** `Train.csv`, 68,654 Kenyan loan rows from 6,540 customers, Oct 2021 – Nov 2024, with a 1.83% default rate. Leaky repayment columns are removed. History is built only from earlier loans whose due date has passed. See `docs/audit/datasheet.md`.
+
+## Evaluation data
+
 - **Evaluation:** 5-fold GroupKFold by customer, and a temporal split (train before 2023-01-01, validate after). Ghana appears only in `Test.csv` (3,525 rows) and has no labels, so it can be described but not evaluated.
 
 ## Quantitative analyses
@@ -87,7 +90,7 @@ Calibration error (ECE) falls from 0.304 to 0.002 after calibration. Raw class-w
 - **First-time borrowers carry the largest gap.**
   - They are approved 48.7% of the time against 97.9% (ratio 0.50). The gap tracks real risk (21% default), but it falls on people with no history, who Findex suggests are disproportionately women, rural and poorer adults.
   - The size of the gap is a cost-matrix choice: with the same model, first-time approval is 0% under the old KES matrix, 12% in cedis with 1 lost loan, 49% with 3 (shipped) and 70% with 6.
-  - **Mitigation adopted (D-24, in the scorer):** a 25% starter loan up to p = 0.30. It lifts first-time approval to 81.3% (ratio 0.83) for GHS 10.0k of extra expected cost on 567 applicants, about GHS 18 each. Approving the same band at full size would cost GHS 38.7k.
+  - **Mitigation adopted (D-26, in the scorer):** a 25% starter loan up to p = 0.30. It lifts first-time approval to 81.3% (ratio 0.83) for GHS 10.0k of extra expected cost on 567 applicants, about GHS 18 each. Approving the same band at full size would cost GHS 38.7k.
 - **Proxies.**
   - Lender and product identify Ghana perfectly (proxy strength 1.0), and USD amount nearly so (0.90).
   - `n_past_loans` (0.91) and `n_past_labelled` (0.83) identify first-time borrowers.
@@ -101,6 +104,6 @@ Calibration error (ECE) falls from 0.304 to 0.002 after calibration. Raw class-w
 1. **Do not automate Ghana with this model.** The domain classifier separates Ghana from Kenya with an AUC of 0.985 even after removing the label-history artefact, and importance weighting would rest on 4% of Kenyan rows. Ghanaian probabilities depend on how the unknown label history is encoded: the median moves from 0.011 to 0.028. Run a **capped pilot of about 3,500 loans over about 3 months**, then recalibrate on Ghanaian outcomes (notebook §2.4).
 2. **Encode missing history as unknown.** Label-derived history is structurally 0 for every Ghanaian row because no Ghanaian loan has a label.
 3. **Use calibrated probabilities everywhere.** Rates read off raw class-weighted scores are wrong by an order of magnitude.
-4. **Measure the cost assumptions.** Recovery, collection cost and the 3 future loans lost (D-26) are assumptions, and first-time approval moves from 12% to 70% across them. Replace them with pilot figures.
+4. **Measure the cost assumptions.** Recovery, collection cost and the 3 future loans lost (D-28) are assumptions, and first-time approval moves from 12% to 70% across them. Replace them with pilot figures.
 5. **Expect drift.** Default rates moved from 1.3% (2022) to 11.5% (2023), and ROC-AUC by time is about 0.6. Monitor monthly and recalibrate on recent outcomes (#55).
 6. **Keep a human in the loop for declines**, and log every decision for the Bank of Ghana (Directive 3.7).

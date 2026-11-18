@@ -86,7 +86,7 @@ def test_customer_bootstrap_is_wider_than_row_bootstrap() -> None:
 
 
 def test_cost_config_is_in_cedis_and_the_starter_band_sits_above_the_threshold() -> None:
-    """D-26: the product is for Ghana; D-24: a starter band at or below the threshold would never be used."""
+    """D-28: the product is for Ghana; D-26: a starter band at or below the threshold would never be used."""
     from src.evaluation import load_cost_config
 
     cm, cfg = cost_matrix_threshold(), load_cost_config()

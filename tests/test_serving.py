@@ -106,7 +106,7 @@ def test_reasons_never_contradict_the_record() -> None:
     assert reasons[0] == REASON_TEMPLATES["n_past_loans"][0]
 
 
-# ----------------------------------------------------------------- starter loan (D-24) and borrower wording
+# ----------------------------------------------------------------- starter loan (D-26) and borrower wording
 STARTER = {"max_probability": 0.30, "share_of_request": 0.25}
 
 

@@ -9,10 +9,11 @@ Owner: Eugene (P4). This is the summary. The evidence is in the linked parts and
 | Fairness results, proxies, mitigation | `04` notebook §3; summary below |
 | Regulatory map (BoG Directive 2025, Act 843, Act 726) | [regulatory_map.md](regulatory_map.md) |
 | Borrower decline message | [decline_explanation.md](decline_explanation.md) |
+| Evidence needed before trusting Ghana scores | [ghana_trust.md](ghana_trust.md) |
 
 ## Executive summary
 
-**What we audited.** The shipped scorer is a Platt-calibrated logistic regression. It declines above p\* = 0.10 (cedi cost matrix, D-26), offers first-time borrowers just above that a 25% starter loan (D-24), and otherwise approves the request or limits it to the Task 1 amount. All figures below are out-of-fold on Kenyan loans, unless they say Ghana.
+**What we audited.** The shipped scorer is a Platt-calibrated logistic regression. It declines above p\* = 0.10 (cedi cost matrix, D-28), offers first-time borrowers just above that a 25% starter loan (D-26), and otherwise approves the request or limits it to the Task 1 amount. All figures below are out-of-fold on Kenyan loans, unless they say Ghana.
 
 1. **First-time borrowers carry the largest gap.**
    - At p\* = 0.10, 48.7% of first-time borrowers are approved, against 97.9% of repeat borrowers. The disparate-impact ratio is 0.50.
@@ -23,11 +24,11 @@ Owner: Eugene (P4). This is the summary. The evidence is in the linked parts and
    | --- | --- | --- |
    | Old KES, 1 lost loan (D-19) | 0.019 | 0% |
    | Cedis, 1 lost loan (D-22) | 0.036 | 12% |
-   | **Cedis, 3 lost loans (shipped, D-26)** | **0.10** | **49%** |
+   | **Cedis, 3 lost loans (shipped, D-28)** | **0.10** | **49%** |
    | Cedis, 6 lost loans | 0.18 | 70% |
 
    Three lost loans assumes that about 1 in 4 declined good borrowers leave, taking the 8 later loans a typical customer takes with them. The pilot should measure it.
-3. **Mitigation, now in the scorer (D-24).**
+3. **Mitigation, now in the scorer (D-26).**
    - First-time borrowers between 0.10 and 0.30 get a starter loan of 25% of the request instead of a decline. Their approval rises from 49% to 81% (ratio 0.83, above 0.8).
    - 185 people get a starter loan, and 18% of them default. The extra expected cost is GHS 10.0k across 567 applicants, about GHS 18 each. Approving the same band at full size would cost GHS 38.7k.
 4. **Proxies.**

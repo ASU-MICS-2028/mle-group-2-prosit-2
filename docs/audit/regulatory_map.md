@@ -14,7 +14,7 @@ Status key: ✅ met by our design · 🟨 partly met, or met only in principle �
 
 | Para | Requirement (paraphrased) | How the tool relates | Status |
 | --- | --- | --- | --- |
-| 1.3(1), 1.3(3) | Objectives: promote **access** to digital credit; **responsible** and cost-effective credit | The fairness audit measures exactly this trade-off: at the shipped threshold 49% of first-time borrowers are approved (98% of repeat), and no Ghanaian gets the full amount. The scorer's starter loan (D-24) lifts first-time approval to 81% at a known cost (about GHS 18 per first-time applicant) | 🟨 |
+| 1.3(1), 1.3(3) | Objectives: promote **access** to digital credit; **responsible** and cost-effective credit | The fairness audit measures exactly this trade-off: at the shipped threshold 49% of first-time borrowers are approved (98% of repeat), and no Ghanaian gets the full amount. The scorer's starter loan (D-26) lifts first-time approval to 81% at a known cost (about GHS 18 per first-time applicant) | 🟨 |
 | 2.1(5)(d)(ii) | Licence application needs a risk-management policy and a **comprehensive risk assessment** | Model Card, the Kenya→Ghana shift study and the monitoring triggers are the model-risk part of that assessment | 🟨 |
 | 2.1(5)(d)(x), (xi) | A **Data Protection Impact Assessment approved by the Data Protection Commission** and a data protection certificate | Not done. The Datasheet lists the personal data used, which is the starting point for a DPIA | ❌ |
 | 2.1(5)(d)(xiv) | A written **Digital Credit Policy** | The cost-matrix threshold, limit model and decline rules are the technical core of that policy; NkwaPay must adopt them formally | 🟨 |

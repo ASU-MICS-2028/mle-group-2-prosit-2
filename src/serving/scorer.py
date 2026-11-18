@@ -5,7 +5,7 @@
 
 Decision rule (`decide`): decline if calibrated P(default) > the cost-matrix threshold; otherwise approve,
 or approve with a lower limit if the request exceeds the Task 1 limit. First-time borrowers just above the
-threshold get a `starter` loan (a share of the request) instead of a decline (D-24, configs/cost_matrix.yaml).
+threshold get a `starter` loan (a share of the request) instead of a decline (D-26, configs/cost_matrix.yaml).
 `needs_review` is True when the application is outside what the model was trained on
 (another country, an unseen lender or product, an unusual amount): a person should look at it.
 """
