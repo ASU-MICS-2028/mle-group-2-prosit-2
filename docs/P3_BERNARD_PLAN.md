@@ -16,9 +16,9 @@
 - [ ] Document findings in `docs/WORKLOG.md` and confirm leak rulings in Part A session (#9).
 
 **2 · Task 1 Models & Diagnostics (#17, #21, #22)**
-- [ ] Train the pruned decision tree for Task 2 (`decision_tree`, the P3 classifier in the brief's model table) and compare it in `03_regression.ipynb`.
-- [ ] Run Task 1 models (`mean`, `ols`, `ridge`, `lasso`, `decision_tree_reg`, `lightgbm_reg`, `lit_linear`) via `python -m scripts.train` across `fold_group`, `fold_strat`, and `temporal`.
-- [ ] Report RMSE and MAE on both log and original scales + residual-vs-fitted diagnostic plot in `03_regression.ipynb`.
+- [x] Train the pruned decision tree for Task 2 (`decision_tree`, the P3 classifier in the brief's model table) and compare it in `03_regression.ipynb` (#17).
+- [x] Run Task 1 models (`mean`, `ols`, `ridge`, `lasso`, `decision_tree_reg`, `lightgbm_reg`, `lit_linear`) via `python -m scripts.train` across `fold_group`, `fold_strat`, and `temporal`.
+- [x] Report RMSE and MAE on both log and original scales + residual-vs-fitted diagnostic plot in `03_regression.ipynb`.
 - [ ] Extract feature importances / coefficients / SHAP interpretation for loan limits.
 
 **3 · Part E Scoring Service (#30, #31)**
@@ -29,5 +29,5 @@
 
 **4 · Write up & Derivation (#32, #33, #34)**
 - [x] `docs/derivations/linear.md`: Gaussian MLE -> normal equations -> Ridge (MAP), checked against scikit-learn (`tests/test_linear_derivation.py`).
-- [ ] `03_regression.ipynb` runs top to bottom from a fresh kernel.
+- [x] `03_regression.ipynb` runs top to bottom from a fresh kernel.
 - [ ] Regression + Deployment sections in Technical Report + individual reflection.
