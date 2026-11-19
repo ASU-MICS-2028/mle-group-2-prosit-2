@@ -77,7 +77,7 @@ Generated from GitHub on **19 Nov 2026** by `scripts/update_readme.py` (the *REA
 | **C · Cross-market transfer** | in B, D | ![3/3](https://img.shields.io/badge/3%2F3-closed-2e7d32?style=flat-square) | — |
 | **D · Ethics & regulation** | 20 pts | ![6/7](https://img.shields.io/badge/6%2F7-closed-d4a72c?style=flat-square) | [#27](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/27) ⏳ |
 | **E · Deployment** | 15 pts | ![4/4](https://img.shields.io/badge/4%2F4-closed-2e7d32?style=flat-square) | — |
-| **Deliverables** | 5 pts + all | ![4/6](https://img.shields.io/badge/4%2F6-closed-d4a72c?style=flat-square) | [#36](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/36) [#37](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/37) ⏳ |
+| **Deliverables** | 5 pts + all | ![4/6](https://img.shields.io/badge/4%2F6-closed-d4a72c?style=flat-square) | [#36](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/36) [#37](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/37) |
 
 <sub>⏳ = a pull request for it is open.</sub>
 
@@ -119,7 +119,7 @@ Find your name, open each issue card and follow the steps. Every card says what 
 | <img src="https://github.com/henryhkb.png?size=60" width="28"> | **Henry Kofi Brandoh** · Classification & evaluation | 0 | 0 | 0 | [Henry's issues](#henryhkb) |
 | <img src="https://github.com/adjeibernardmarfo.png?size=60" width="28"> | **Bernard Marfo Adjei** · Regression, deployment & project lead | 1 | 0 | 0 | [Bernard's issues](#adjeibernardmarfo) |
 | <img src="https://github.com/eugene-sew.png?size=60" width="28"> | **Eugene** · Transfer & fairness | 1 | 1 | 0 | [Eugene's issues](#eugene-sew) |
-| 👥 | **Everyone** | 4 | 1 | 3 | [Shared issues](#everyone) |
+| 👥 | **Everyone** | 4 | 0 | 4 | [Shared issues](#everyone) |
 
 ### How to pick up an issue
 
@@ -274,7 +274,7 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **1 open**
 </details>
 
 <details>
-<summary><img alt="a pull request for it is open" src="https://img.shields.io/badge/-in_review-1f4e79?style=flat-square"> <b>#37 · Individual reflections</b></summary>
+<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#37 · Individual reflections</b></summary>
 
 | | |
 | --- | --- |
@@ -285,7 +285,6 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **1 open**
 | **How to run** | — |
 | **Done when** | Four reflections submitted. |
 | **Automated check** | Four individual reflections are in docs/reflections/. Run `make acceptance ISSUE=37`; it also runs on every pull request that says `Closes #37` and when the issue is closed (a failing check reopens it). |
-| **Pull request** | [#75](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/pull/75) |
 
 **Steps**
 
