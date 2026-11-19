@@ -9,6 +9,10 @@ Add an entry at the **top** at the end of each session, 5–10 lines. Link to no
 
 ---
 
+## 2026-11-19 (evening) · Eugene (P4) · `p4/65-app-inputs-cleanup`
+**Did:** Made the borrower app production-shaped and Ghana-only: the borrower types only their mobile-money number, amount and term; history, lender and product are looked up from NkwaPay's records by that number (demo: 8 real Ghanaian customers from `features.parquet` behind made-up numbers 024 000 0001–0008; unknown numbers are scored as new customers on Ghana's standard lender and product). The demo-controls panel is gone; the credit-team panel shows the records used. Removed the date picker (applications are scored today); amount slider range per market (GHS 50–10,000, KES 500–50,000, defaults near each median); lender and product dropdowns no longer accept free text.
+**Next:** Bernard reviews. **Watch out:** Ghanaian records have labelled history 0 (no outcomes yet), so the demo cannot show a missed repayment for a Ghanaian customer.
+
 ## 2026-11-19 · Eugene (P4) · `p4/27-37-act843-and-reflection`
 **Did:** Read Act 843 from the Data Protection Commission's official PDF and put section numbers in `docs/audit/regulatory_map.md` (s.17–28, s.32–35, s.41), plus a new s.18(2) row (Kenyan training data → Kenya's DPA 2019, not assessed). Re-ran `04` after Bernard's D-30 limit cap and refreshed the Ghana figures in 04 and `docs/audit/`.
 **Found:** s.41 (automated decisions: notify, reconsider within 21 days) has a contract exemption (s.41(4)(a)–(b)) that arguably covers loan applications; we keep the review route because the BoG Directive requires one. After D-30, 7% of Ghanaians are approved in full and 79% limited to a median 46% of the request (was 0% and 15%).

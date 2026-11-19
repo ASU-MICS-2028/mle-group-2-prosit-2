@@ -1,6 +1,6 @@
 # Progress dashboard
 
-**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-19 by Eugene (branch `p4/27-37-act843-and-reflection`).
+**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-19 by Eugene (branch `p4/65-app-inputs-cleanup`).
 
 Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 
@@ -107,6 +107,7 @@ Findings so far:
 
 | Date | Who | Did | Next |
 | --- | --- | --- | --- |
+| 2026-11-19 | Eugene | Borrower app production-shaped: number + amount + term; history, lender, product looked up from records; Ghana only (GHS) | Bernard reviews |
 | 2026-11-19 | Eugene | Act 843 section numbers in the regulatory map (incl. s.41 contract exemption, s.18(2) foreign data subjects); `04` re-run after D-30 | Reflection (submitted separately); Act 726 numbers |
 | 2026-11-18 | Eugene | Borrower app wired to the live scorer; app smoke test | Merge after PR #64 |
 | 2026-11-18 | Eugene | `04` rebuilt (#54); cedi cost matrix (D-28); starter loan + borrower reasons in the scorer (D-26); `docs/audit/`; boosting derivation; 18 tests | Bernard reviews; re-run `02`/`03`/`make all` on the cedi config |
