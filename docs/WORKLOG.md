@@ -9,6 +9,11 @@ Add an entry at the **top** at the end of each session, 5–10 lines. Link to no
 
 ---
 
+## 2026-11-19 (late night) · Bernard (P3) · `p3/17-task2-decision-tree` (#17)
+**Did:** Added Section 4 to `notebooks/03_regression.ipynb` comparing the P3 Task 2 pruned `decision_tree` against all other Task 2 classifiers using `reports/tables/task2_model_summary.csv`, inspecting its pruning settings (`max_depth=6`, `ccp_alpha=0.0001` in `configs/models.yaml`), depth/leaves and top splits; updated Section 5 to fit/demo the D-29/D-30 scorer (`logreg` + `lightgbm_reg_q85`) and re-executed `03_regression.ipynb` top to bottom via `nbconvert --execute`.
+**Found:** `decision_tree` achieves `fold_group` ROC-AUC 0.849 / PR-AUC 0.157 (beating `knn` 0.155 and `svm_rbf` 0.073) but drops hardest on `temporal` (ROC-AUC 0.559, PR-AUC 0.113) because top splits track period-sensitive features. `test_issue_17_p3_models` passes and all 14 cells execute cleanly.
+**Next:** Run the feature-group ablation study (#52) and write the plain-language interpretation doc (#22).
+
 ## 2026-11-19 (late night) · Bernard (P3) · `p3/53-quantile-limit-rule` (#53)
 **Did:** Registered `lightgbm_reg_q85` (`objective="quantile", alpha=0.85`) in `configs/models.yaml`, `src/models/__init__.py`, and `src/models/ensembles.py`; switched `fit_and_save_deployment_artifacts` (`src/training/artifacts.py`) and `scripts/train.py` to use it as the deployed limit cap (D-30); added unit tests in `tests/test_architecture.py` and `tests/test_serving.py`; refitted the bundle and regenerated `make figures` and `make score`.
 **Found:** On `fold_group` OOF, `lightgbm_reg_q85` cuts only **15.7%** of repaid Kenyan loans (vs 50.1% under mean regression, and 19.6% of defaulted loans). On Test (`reports/tables/product_decisions_by_country.csv`), Kenyan `"limit"` drops from **48.9% → 14.6%** (83.0% approved in full; ≤25% acceptance target met), Ghana gets 6.9% approved / 79.4% limited / 100% flagged for review, and 1,000-call latency is median 21 ms, p95 26 ms.
