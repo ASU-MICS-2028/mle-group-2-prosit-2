@@ -32,7 +32,7 @@ At the debrief you must "explain, defend and reproduce your work without AI". If
 | --- | --- | --- | --- |
 | ✅ | Logistic regression: log-odds → likelihood → BCE → gradient, plus `pos_weight` and convexity; gradient checked against PyTorch autograd (`tests/test_logistic_derivation.py`) | `docs/derivations/logistic.md` (PR #62) | Henry |
 | ☐ | Linear regression: Gaussian MLE → normal equations (Ridge as MAP) | `docs/derivations/linear.md` | Bernard |
-| ☐ | One of SVM (Perfect) / boosting / tree | `docs/derivations/<name>.md` | Perfect |
+| ✅ | SVM: widest street → hinge loss → Lagrangian → dual → RBF kernel; each claim checked against scikit-learn `SVC` on toy data (`tests/test_svm_derivation.py`, 8 tests) | `docs/derivations/svm.md` (branch `p1/32-svm-derivation`, not yet merged) |
 | ✅ | Gradient boosting: functional gradient, pseudo-residuals, Newton leaf values, shrinkage; worked example checked numerically | `docs/derivations/boosting.md` | Eugene |
 | ☐ | Check each against scikit-learn on a small example | derivation notebook | author |
 

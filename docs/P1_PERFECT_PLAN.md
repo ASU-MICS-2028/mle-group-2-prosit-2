@@ -29,7 +29,11 @@
 
 **5 · Your models**: baselines (majority, mean), kNN, SVM RBF on a subsample, through Henry's scripts.
 
-**6 · Write up**: `01_eda` runs from a fresh kernel; SVM derivation (margin, hinge loss, dual, kernel) checked against scikit-learn; data section; reflection.
+**6 · Write up**:
+- [ ] `01_eda` runs from a fresh kernel.
+- [x] SVM derivation (margin, hinge loss, dual, kernel) checked against scikit-learn: `docs/derivations/svm.md`, `tests/test_svm_derivation.py` (branch `p1/32-svm-derivation`, awaiting review).
+- [ ] Data section of the report.
+- [ ] Reflection.
 
 ## You understand it when you can answer
 - Why does a random split inflate our score here, and by how much?

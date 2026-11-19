@@ -87,7 +87,7 @@ Generated from GitHub on **19 Nov 2026** by `scripts/update_readme.py` (the *REA
 
 | Notebook | Owner | Status |
 | --- | --- | --- |
-| [`01_eda.ipynb`](notebooks/01_eda.ipynb) | Perfect | ![done](https://img.shields.io/badge/-done-2e7d32?style=flat-square) Train/Test structure (PRs #38, #39); link the EDA report ([#48](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/48)) |
+| [`01_eda.ipynb`](notebooks/01_eda.ipynb) | Perfect | ![done](https://img.shields.io/badge/-done-2e7d32?style=flat-square) Train/Test structure (PRs #38, #39); §6 links the EDA report and records the checks against it ([#48](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/48), branch `p1/32-svm-derivation`, awaiting review) |
 | [`02_classification.ipynb`](notebooks/02_classification.ipynb) | Henry | ![merged](https://img.shields.io/badge/-merged-2e7d32?style=flat-square) Henry's original (PR #47) + problem framing (§0), cost matrix in cedis from Ghana's loans (§9b, p\* 0.036) and conclusions (§12); calibration and CIs verified (PR #60); calibration over time and recalibration plan (§11, #55, PR #61) |
 | [`03_regression.ipynb`](notebooks/03_regression.ipynb) | Bernard | ![merged](https://img.shields.io/badge/-merged-2e7d32?style=flat-square) Task 1 models, residuals, scorer demo (PR #47); Task 2 tree to add (#17) |
 | [`04_transfer_and_fairness.ipynb`](notebooks/04_transfer_and_fairness.ipynb) | Eugene | ![in review](https://img.shields.io/badge/-in_review-1f4e79?style=flat-square) Rebuilt on the shipped scorer: ensembles, Kenya→Ghana shift, calibrated fairness audit, proxies, costed mitigation, Findex ([#54](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/54)); audit docs in [`docs/audit/`](docs/audit/audit.md) |
