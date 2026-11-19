@@ -76,7 +76,7 @@ Generated from GitHub on **19 Nov 2026** by `scripts/update_readme.py` (the *REA
 | **B · Build & evaluate** | 30 + 20 pts | ![10/14](https://img.shields.io/badge/10%2F14-closed-d4a72c?style=flat-square) | [#17](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/17) [#18](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/18) [#22](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/22) [#52](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/52) |
 | **C · Cross-market transfer** | in B, D | ![3/3](https://img.shields.io/badge/3%2F3-closed-2e7d32?style=flat-square) | — |
 | **D · Ethics & regulation** | 20 pts | ![6/7](https://img.shields.io/badge/6%2F7-closed-d4a72c?style=flat-square) | [#27](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/27) |
-| **E · Deployment** | 15 pts | ![3/4](https://img.shields.io/badge/3%2F4-closed-d4a72c?style=flat-square) | [#53](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/53) |
+| **E · Deployment** | 15 pts | ![3/4](https://img.shields.io/badge/3%2F4-closed-d4a72c?style=flat-square) | [#53](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/53) ⏳ |
 | **Deliverables** | 5 pts + all | ![3/6](https://img.shields.io/badge/3%2F6-closed-d4a72c?style=flat-square) | [#33](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/33) [#36](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/36) [#37](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/37) |
 
 <sub>⏳ = a pull request for it is open.</sub>
@@ -117,7 +117,7 @@ Find your name, open each issue card and follow the steps. Every card says what 
 | :---: | --- | :---: | :---: | :---: | --- |
 | <img src="https://github.com/peaElorm.png?size=60" width="28"> | **Perfect Elorm Avugla** · Data & features | 0 | 0 | 0 | [Perfect's issues](#peaelorm) |
 | <img src="https://github.com/henryhkb.png?size=60" width="28"> | **Henry Kofi Brandoh** · Classification & evaluation | 0 | 0 | 0 | [Henry's issues](#henryhkb) |
-| <img src="https://github.com/adjeibernardmarfo.png?size=60" width="28"> | **Bernard Marfo Adjei** · Regression, deployment & project lead | 5 | 0 | 2 | [Bernard's issues](#adjeibernardmarfo) |
+| <img src="https://github.com/adjeibernardmarfo.png?size=60" width="28"> | **Bernard Marfo Adjei** · Regression, deployment & project lead | 5 | 1 | 1 | [Bernard's issues](#adjeibernardmarfo) |
 | <img src="https://github.com/eugene-sew.png?size=60" width="28"> | **Eugene** · Transfer & fairness | 3 | 0 | 1 | [Eugene's issues](#eugene-sew) |
 | 👥 | **Everyone** | 5 | 0 | 5 | [Shared issues](#everyone) |
 
@@ -175,7 +175,7 @@ Regression, deployment & project lead · [adjeibernardmarfo](https://github.com/
 </details>
 
 <details>
-<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#53 · Limit rule: cap at a high quantile, not the typical amount</b></summary>
+<summary><img alt="a pull request for it is open" src="https://img.shields.io/badge/-in_review-1f4e79?style=flat-square"> <b>#53 · Limit rule: cap at a high quantile, not the typical amount</b></summary>
 
 | | |
 | --- | --- |
@@ -186,6 +186,7 @@ Regression, deployment & project lead · [adjeibernardmarfo](https://github.com/
 | **How to run** | `make train figures score test` |
 | **Done when** | Most good borrowers are no longer cut, and the rule is recorded. |
 | **Automated check** | The limit is a cap: at most 25% of Kenyan Test applications get their amount cut. Run `make acceptance ISSUE=53`; it also runs on every pull request that says `Closes #53` and when the issue is closed (a failing check reopens it). |
+| **Pull request** | [#72](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/pull/72) |
 
 **Steps**
 
