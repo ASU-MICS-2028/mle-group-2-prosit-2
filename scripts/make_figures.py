@@ -34,6 +34,7 @@ from src.evaluation import (  # noqa: E402
 from src.processing import load_features  # noqa: E402
 from src.serving import benchmark_latency, load_bundle, score_frame  # noqa: E402
 from src.visualization import (  # noqa: E402
+    plot_ablation,
     plot_calibration_by_group,
     plot_coefficients,
     plot_confusion,
@@ -224,6 +225,15 @@ def main() -> None:
                 "Top drivers are the lender's funding share and the calendar month, which both encode the period (2022 vs 2023+), then borrower history: part of the score tracks time, not the borrower (#22, ablation #52).")
     except Exception as exc:  # SHAP is optional for the rest of the figures
         console.info(f"SHAP skipped: {exc}")
+    ablation_csv = C.TABLES / "ablation.csv"
+    if ablation_csv.exists():
+        ablation_df = pd.read_csv(ablation_csv)
+        reg.add(plot_ablation(ablation_df, metric="delta_pr_auc"), "interp_ablation", "5. Interpretation",
+                "PR-AUC change when removing each feature group or adding macro columns back (random, by-customer, by-time).",
+                "Shows which feature groups carry genuine credit signal vs period/random-fold artefacts (#52, D-18).")
+        reg.add(plot_ablation(ablation_df, metric="delta_roc_auc"), "interp_ablation_roc", "5. Interpretation",
+                "ROC-AUC change when removing each feature group or adding macro columns back (random, by-customer, by-time).",
+                "Confirms macro columns hurt temporal generalisation (D-18 seed: MLP 0.48 -> 0.65 without macro) and calendar helps mainly in-period.")
 
     # ------------------------------------------------------------- fairness
     console.title("Figures: fairness")

@@ -36,6 +36,9 @@ eval:             ## metrics for every file in preds/ -> reports/tables
 figures:          ## defence figure pack -> reports/figures + reports/FIGURES.md
 	$(PYTHON) -m scripts.make_figures
 
+ablation:         ## feature-group ablation study (#52) -> reports/tables/ablation.csv + interp_ablation.png
+	$(PYTHON) -m scripts.run_ablation
+
 score:            ## sample decisions + 1,000-call latency benchmark
 	$(PYTHON) -m scripts.score
 

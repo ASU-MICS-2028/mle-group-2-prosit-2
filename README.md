@@ -11,7 +11,7 @@
   <img alt="Tests" src="https://img.shields.io/badge/tests-163_passing-2e7d32?style=flat-square">
   <img alt="Models" src="https://img.shields.io/badge/models-16_trained-1f4e79?style=flat-square">
   <img alt="Figures" src="https://img.shields.io/badge/figures-47-1f4e79?style=flat-square">
-  <!-- status:badge --><img alt="Issues" src="https://img.shields.io/badge/issues-34_of_46_closed-d4a72c?style=flat-square"><!-- /status:badge -->
+  <!-- status:badge --><img alt="Issues" src="https://img.shields.io/badge/issues-41_of_46_closed-d4a72c?style=flat-square"><!-- /status:badge -->
   <img alt="Deadline" src="https://img.shields.io/badge/deadline-19_Nov_2026-b03a2e?style=flat-square">
 </p>
 
@@ -72,12 +72,12 @@ Generated from GitHub on **19 Nov 2026** by `scripts/update_readme.py` (the *REA
 | Part | Rubric | Closed | Still open |
 | --- | :---: | :---: | --- |
 | **Setup** | — | ![3/4](https://img.shields.io/badge/3%2F4-closed-d4a72c?style=flat-square) | [#56](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/56) |
-| **A · Frame the problem** | 10 pts | ![4/7](https://img.shields.io/badge/4%2F7-closed-d4a72c?style=flat-square) | [#7](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/7) [#8](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/8) [#9](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/9) |
-| **B · Build & evaluate** | 30 + 20 pts | ![11/14](https://img.shields.io/badge/11%2F14-closed-d4a72c?style=flat-square) | [#18](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/18) [#22](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/22) [#52](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/52) ⏳ |
+| **A · Frame the problem** | 10 pts | ![5/7](https://img.shields.io/badge/5%2F7-closed-d4a72c?style=flat-square) | [#7](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/7) [#9](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/9) |
+| **B · Build & evaluate** | 30 + 20 pts | ![14/14](https://img.shields.io/badge/14%2F14-closed-2e7d32?style=flat-square) | — |
 | **C · Cross-market transfer** | in B, D | ![3/3](https://img.shields.io/badge/3%2F3-closed-2e7d32?style=flat-square) | — |
-| **D · Ethics & regulation** | 20 pts | ![6/7](https://img.shields.io/badge/6%2F7-closed-d4a72c?style=flat-square) | [#27](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/27) |
+| **D · Ethics & regulation** | 20 pts | ![6/7](https://img.shields.io/badge/6%2F7-closed-d4a72c?style=flat-square) | [#27](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/27) ⏳ |
 | **E · Deployment** | 15 pts | ![4/4](https://img.shields.io/badge/4%2F4-closed-2e7d32?style=flat-square) | — |
-| **Deliverables** | 5 pts + all | ![3/6](https://img.shields.io/badge/3%2F6-closed-d4a72c?style=flat-square) | [#33](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/33) [#36](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/36) [#37](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/37) |
+| **Deliverables** | 5 pts + all | ![5/6](https://img.shields.io/badge/5%2F6-closed-d4a72c?style=flat-square) | [#37](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/37) |
 
 <sub>⏳ = a pull request for it is open.</sub>
 
@@ -117,9 +117,9 @@ Find your name, open each issue card and follow the steps. Every card says what 
 | :---: | --- | :---: | :---: | :---: | --- |
 | <img src="https://github.com/peaElorm.png?size=60" width="28"> | **Perfect Elorm Avugla** · Data & features | 0 | 0 | 0 | [Perfect's issues](#peaelorm) |
 | <img src="https://github.com/henryhkb.png?size=60" width="28"> | **Henry Kofi Brandoh** · Classification & evaluation | 0 | 0 | 0 | [Henry's issues](#henryhkb) |
-| <img src="https://github.com/adjeibernardmarfo.png?size=60" width="28"> | **Bernard Marfo Adjei** · Regression, deployment & project lead | 3 | 1 | 0 | [Bernard's issues](#adjeibernardmarfo) |
-| <img src="https://github.com/eugene-sew.png?size=60" width="28"> | **Eugene** · Transfer & fairness | 3 | 0 | 1 | [Eugene's issues](#eugene-sew) |
-| 👥 | **Everyone** | 5 | 0 | 5 | [Shared issues](#everyone) |
+| <img src="https://github.com/adjeibernardmarfo.png?size=60" width="28"> | **Bernard Marfo Adjei** · Regression, deployment & project lead | 1 | 0 | 0 | [Bernard's issues](#adjeibernardmarfo) |
+| <img src="https://github.com/eugene-sew.png?size=60" width="28"> | **Eugene** · Transfer & fairness | 1 | 1 | 0 | [Eugene's issues](#eugene-sew) |
+| 👥 | **Everyone** | 3 | 0 | 3 | [Shared issues](#everyone) |
 
 ### How to pick up an issue
 
@@ -150,7 +150,7 @@ All of this person's issues are closed. ✅
 
 <h3 id="adjeibernardmarfo"><img src="https://github.com/adjeibernardmarfo.png?size=60" width="32" align="center"> Bernard Marfo Adjei</h3>
 
-Regression, deployment & project lead · [adjeibernardmarfo](https://github.com/adjeibernardmarfo) · **3 open** · [Bernard's assigned issues on GitHub](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3Aadjeibernardmarfo)
+Regression, deployment & project lead · [adjeibernardmarfo](https://github.com/adjeibernardmarfo) · **1 open** · [Bernard's assigned issues on GitHub](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3Aadjeibernardmarfo)
 
 <details>
 <summary><img alt="evidence exists, owner must finish" src="https://img.shields.io/badge/-partly_done-d4a72c?style=flat-square"> <b>#7 · Explore amounts, durations and the two leak suspects</b></summary>
@@ -174,58 +174,13 @@ Regression, deployment & project lead · [adjeibernardmarfo](https://github.com/
 
 </details>
 
-<details>
-<summary><img alt="evidence exists, owner must finish" src="https://img.shields.io/badge/-partly_done-d4a72c?style=flat-square"> <b>#22 · Interpretation: coefficients, importances or SHAP</b></summary>
-
-| | |
-| --- | --- |
-| **What it is** | Explain, in plain language, what drives the default model. |
-| **Why it matters** | Rubric B: interpretation; LO6: explanations |
-| **Already done** | Figures: `interp_coefficients.png` (logistic regression), `interp_shap_lightgbm.png`. Finding: the tree model's top drivers (lender share, month) mostly mark the period, not the borrower. |
-| **Where to work** | `docs/interpretation.md` (then the report's Part B) |
-| **How to run** | `make figures` |
-| **Done when** | The interpretation is written and matches the figures. |
-| **Automated check** | docs/interpretation.md explains the main drivers in plain language, using the coefficient and SHAP figures. Run `make acceptance ISSUE=22`; it also runs on every pull request that says `Closes #22` and when the issue is closed (a failing check reopens it). |
-
-**Steps**
-
-1. Write one page: top drivers, direction, and what they mean for a borrower.
-2. State the period-marker finding and what the ablation (#52) shows.
-
-[Open issue #22 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/22)
-
-</details>
-
-<details>
-<summary><img alt="a pull request for it is open" src="https://img.shields.io/badge/-in_review-1f4e79?style=flat-square"> <b>#52 · Ablation study: what each feature group adds</b></summary>
-
-| | |
-| --- | --- |
-| **What it is** | Retrain without each feature group to see what carries the signal. |
-| **Why it matters** | Optional; strengthens rubric B interpretation |
-| **Already done** | Nothing yet; the feature lists live in `src/config.py`. |
-| **Where to work** | a new ablation script in `scripts/`, table saved as `reports/tables/ablation.csv` |
-| **How to run** | — |
-| **Done when** | A table and figure show which groups matter. |
-| **Automated check** | An ablation table shows the effect of removing each feature group. Run `make acceptance ISSUE=52`; it also runs on every pull request that says `Closes #52` and when the issue is closed (a failing check reopens it). |
-| **Pull request** | [#74](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/pull/74) |
-
-**Steps**
-
-1. For each group (history, calendar, lender share, product, amount), retrain the chosen model without it on GroupKFold and temporal.
-2. Tabulate the PR-AUC change; save the table and a bar chart to `reports/`.
-
-[Open issue #52 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/52)
-
-</details>
-
 
 <h3 id="eugene-sew"><img src="https://github.com/eugene-sew.png?size=60" width="32" align="center"> Eugene</h3>
 
-Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **3 open** · [Eugene's assigned issues on GitHub](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3Aeugene-sew)
+Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **1 open** · [Eugene's assigned issues on GitHub](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3Aeugene-sew)
 
 <details>
-<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#27 · Regulatory mapping: BoG Digital Credit Directive, Act 843, Act 726</b></summary>
+<summary><img alt="a pull request for it is open" src="https://img.shields.io/badge/-in_review-1f4e79?style=flat-square"> <b>#27 · Regulatory mapping: BoG Digital Credit Directive, Act 843, Act 726</b></summary>
 
 | | |
 | --- | --- |
@@ -236,6 +191,7 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **3 open**
 | **How to run** | — |
 | **Done when** | A table of requirements, our response, and gaps. |
 | **Automated check** | docs/audit/regulatory_map.md maps the design to the BoG Directive, Act 843 and Act 726, with gaps. Run `make acceptance ISSUE=27`; it also runs on every pull request that says `Closes #27` and when the issue is closed (a failing check reopens it). |
+| **Pull request** | [#75](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/pull/75) |
 
 **Steps**
 
@@ -243,48 +199,6 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **3 open**
 2. List what we cannot satisfy yet.
 
 [Open issue #27 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/27)
-
-</details>
-
-<details>
-<summary><img alt="evidence exists, owner must finish" src="https://img.shields.io/badge/-partly_done-d4a72c?style=flat-square"> <b>#8 · Explore Ghana vs Kenya and the macro, Findex and inclusion files</b></summary>
-
-| | |
-| --- | --- |
-| **What it is** | Explore Ghana vs Kenya and the macro, Findex and inclusion files. |
-| **Why it matters** | Part A exploration (your slice) |
-| **Already done** | EDA §8–10 covers all of it with figures. |
-| **Where to work** | `reports/EDA_REPORT.md` |
-| **How to run** | `make eda` |
-| **Done when** | You agree with the sections; close. |
-| **Automated check** | Kenya vs Ghana, macro indicators and Findex are explored in the EDA report. Run `make acceptance ISSUE=8`; it also runs on every pull request that says `Closes #8` and when the issue is closed (a failing check reopens it). |
-
-**Steps**
-
-1. Read the sections, add anything you find missing, and use them in Parts C and D.
-
-[Open issue #8 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/8)
-
-</details>
-
-<details>
-<summary><img alt="models already ran, owner must review" src="https://img.shields.io/badge/-trained,_review-d4a72c?style=flat-square"> <b>#18 · Models: Random Forest and LightGBM</b></summary>
-
-| | |
-| --- | --- |
-| **What it is** | Random Forest and LightGBM for default prediction. |
-| **Why it matters** | Rubric B: your models |
-| **Already done** | Both trained on all schemes: Random Forest PR-AUC 0.204, LightGBM 0.195 by customer. |
-| **Where to work** | `src/models/ensembles.py`, `configs/models.yaml` |
-| **How to run** | `python -m scripts.train --task task2 --models random_forest lightgbm --schemes fold_group temporal` |
-| **Done when** | You can explain both; close. |
-| **Automated check** | Random Forest and LightGBM results are in the model summary. Run `make acceptance ISSUE=18`; it also runs on every pull request that says `Closes #18` and when the issue is closed (a failing check reopens it). |
-
-**Steps**
-
-1. Read their results and SHAP figure; be able to explain bagging vs boosting and their settings in `configs/models.yaml`.
-
-[Open issue #18 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/18)
 
 </details>
 
@@ -338,49 +252,6 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **3 open**
 </details>
 
 <details>
-<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#33 · All four notebooks run end to end from a clean clone</b></summary>
-
-| | |
-| --- | --- |
-| **What it is** | Each notebook reruns from a clean clone without errors. |
-| **Why it matters** | Rubric B: reproducible pipeline |
-| **Already done** | `make test-notebooks` runs all four. |
-| **Where to work** | — |
-| **How to run** | `make all && make test-notebooks` |
-| **Done when** | All four notebooks pass on a clean clone. |
-| **Automated check** | All four notebooks are saved fully executed with no error outputs. Run `make acceptance ISSUE=33`; it also runs on every pull request that says `Closes #33` and when the issue is closed (a failing check reopens it). |
-
-**Steps**
-
-1. Each reviewer clones fresh, follows Quick start, runs `make all` and `make test-notebooks`.
-
-[Open issue #33 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/33)
-
-</details>
-
-<details>
-<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#36 · Debrief slides and mock Q&A</b></summary>
-
-| | |
-| --- | --- |
-| **What it is** | Debrief slides and mock Q&A. |
-| **Why it matters** | Rubric E (15 pts): presentation and defence |
-| **Already done** | `reports/FIGURES.md` lists what each figure defends. |
-| **Where to work** | `slides/` |
-| **How to run** | — |
-| **Done when** | Slides ready and rehearsed. |
-| **Automated check** | Debrief slides are in slides/. Run `make acceptance ISSUE=36`; it also runs on every pull request that says `Closes #36` and when the issue is closed (a failing check reopens it). |
-
-**Steps**
-
-1. Each presents their part (about 3–4 minutes).
-2. Rehearse questions without notes; the AI policy requires explaining your work without AI.
-
-[Open issue #36 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/36)
-
-</details>
-
-<details>
 <summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#37 · Individual reflections</b></summary>
 
 | | |
@@ -401,8 +272,6 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **3 open**
 
 </details>
 
-
-**Open issues without a card yet** (add them to `docs/issue_cards.yaml`): [#65 Borrower-facing app over the scoring service](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/65)
 
 <!-- /status:people -->
 

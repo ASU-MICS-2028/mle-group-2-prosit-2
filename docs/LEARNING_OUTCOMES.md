@@ -67,7 +67,7 @@ At the debrief you must "explain, defend and reproduce your work without AI". If
 
 | ☐ | Work | Evidence | Owner |
 | --- | --- | --- | --- |
-| ☐ | 15-min debrief; each presents their part | `slides/` | all |
+| ✅ | 15-min debrief (10-slide deck + run-of-show & mock Q&A guide); each presents their part | `slides/NkwaPay_Prosit2_Debrief.pptx`, `slides/SPEAKER_NOTES.md` (#36) | all |
 | ✅ | Plain-language decline explanation | `docs/audit/decline_explanation.md` | Bernard / Eugene |
 | ☐ | Q&A rehearsal: ask each other the self-check questions, no notes | WORKLOG | all |
 | ☐ | One-page reflection each; AI-use declaration | `docs/reflections/` | each |

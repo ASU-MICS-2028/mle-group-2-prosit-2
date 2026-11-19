@@ -43,6 +43,13 @@ CASES = {
     "error_by_decile": lambda: V.plot_error_by_decile(rng.lognormal(4, 1, 300), rng.lognormal(4, 1, 300)),
     "coefficients": lambda: V.plot_coefficients(["num__a", "num__b", "cat__c"], [0.5, -0.2, 0.1]),
     "shap": lambda: V.plot_shap_importance(["num__a", "num__b"], rng.normal(size=(50, 2))),
+    "ablation": lambda: V.plot_ablation(pd.DataFrame({
+        "model": ["logreg"] * 4,
+        "scheme": ["fold_group", "fold_group", "temporal", "temporal"],
+        "variant": ["- calendar", "+ macro", "- calendar", "+ macro"],
+        "delta_pr_auc": [0.01, -0.01, 0.00, -0.02],
+        "delta_roc_auc": [-0.01, 0.00, 0.02, -0.01],
+    })),
     "group_selection": lambda: V.plot_group_selection_rates(GROUPS),
     "feature_shift": lambda: V.plot_feature_shift(SCORES.assign(x=rng.random(100)), "x"),
     "domain_scores": lambda: V.plot_domain_scores(rng.random(100), SCORES["country_id"].eq("Ghana"), 0.9),
