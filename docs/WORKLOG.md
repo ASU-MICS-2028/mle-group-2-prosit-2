@@ -9,6 +9,11 @@ Add an entry at the **top** at the end of each session, 5–10 lines. Link to no
 
 ---
 
+## 2026-11-19 (late night) · Bernard (P3) · `p3/7-confirm-leak-ruling` (#7)
+**Did:** Marked leak-suspect ruling **D-2** (`Total_Amount_to_Repay` and `Lender_portion_to_be_repaid` dropped via `config.LEAKY_COLUMNS`) as `decided, implemented` in `docs/DECISIONS.md`, backed by the amounts, durations, and leakage analysis already committed in `reports/EDA_REPORT.md` §4–6 (`eda_amount_raw_vs_log.png`, `eda_default_by_amount_decile.png`, `eda_leakage_univariate_auc.png`, `eda_markup_by_outcome.png`) and `docs/feature_audit.md`.
+**Found:** `make acceptance ISSUE=7` (`test_issue_7_leak_ruling`) now passes. All 16 models, scorer, and audits already drop both columns; the caveat that `VariableDefinitions.txt` labels them "expected" is documented in `docs/DECISIONS.md` and `docs/feature_audit.md`.
+**Next:** Remaining team-wide items: Part A session remaining drafts (#9), `main` branch protection (#56), and individual reflections (#37).
+
 ## 2026-11-19 (evening) · Eugene (P4) · `p4/65-app-inputs-cleanup`
 **Did:** Made the borrower app production-shaped and Ghana-only: the borrower types only their mobile-money number, amount and term; history, lender and product are looked up from NkwaPay's records by that number (demo: 8 real Ghanaian customers from `features.parquet` behind made-up numbers 024 000 0001–0008; unknown numbers are scored as new customers on Ghana's standard lender and product). The demo-controls panel is gone; the credit-team panel shows the records used. Removed the date picker (applications are scored today); amount slider range per market (GHS 50–10,000, KES 500–50,000, defaults near each median); lender and product dropdowns no longer accept free text.
 **Next:** Bernard reviews. **Watch out:** Ghanaian records have labelled history 0 (no outcomes yet), so the demo cannot show a missed repayment for a Ghanaian customer.
