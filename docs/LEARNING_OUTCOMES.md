@@ -6,9 +6,9 @@ At the debrief you must "explain, defend and reproduce your work without AI". If
 
 | ☐ | Work | Evidence | Owner |
 | --- | --- | --- | --- |
-| ☐ | Loan timeline; mark the decision moment and closest column (`disbursement_date`) | Report Part A | P1 |
-| ✅ | Label definition and time window | `02_classification` §0 (PR #60) | P2 |
-| 🟨 | Feature audit table for all 16 Train columns (draft; confirm in Part A session) | `docs/feature_audit.md` | P1 |
+| ✅ | Loan timeline; mark the decision moment and closest column (`disbursement_date`) | `docs/part_a.md`, `reports/figures/part_a_loan_timeline.png` (#9) | P1 |
+| ✅ | Label definition and time window | `02_classification` §0 (PR #60), `docs/part_a.md` (#9) | P2 |
+| ✅ | Feature audit table for all 16 Train columns (confirmed in Part A rulings) | `docs/feature_audit.md`, `docs/part_a.md` (#9) | P1 |
 | ✅ | Task 1 (amount) and Task 2 (default), business goal with threshold and approval floor | `02_classification` §0, D-22 (PR #60) | P2 |
 | ✅ | Cost matrix in money, with sensitivity at 2 other recovery rates: in cedis from Ghana's loans, p\* 0.029 / 0.036 / 0.047 (D-22) | `02_classification` §9b (PR #60) | P2 |
 

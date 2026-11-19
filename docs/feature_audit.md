@@ -1,6 +1,6 @@
 # Feature audit: every column in Train.csv
 
-**Decision moment:** NkwaPay decides when a borrower applies; the closest column is `disbursement_date` (money is sent right after approval). Anything recorded or derived **after** disbursement is invalid. Status: **draft**, to be confirmed in the Part A session ([agenda](PART_A_SESSION.md), D-2).
+**Decision moment:** NkwaPay decides when a borrower applies; the closest column is `disbursement_date` (money is sent right after approval). Anything recorded or derived **after** disbursement is invalid. Status: **decided** (confirmed in [part_a.md](part_a.md), #9; D-2 to D-6, D-13, D-14, D-18 decided in [DECISIONS.md](DECISIONS.md)).
 
 ![Timeline of one loan and what is known at the decision](../reports/figures/part_a_loan_timeline.png)
 
