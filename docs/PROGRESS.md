@@ -1,6 +1,6 @@
 # Progress dashboard
 
-**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-19 by Eugene (branch `p3/22-interpretation`).
+**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-19 by Eugene (branch `p4/65-app-inputs-cleanup`).
 
 Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 
@@ -48,6 +48,8 @@ Per-issue progress is on GitHub (Roadmap issue #1). Closed on 2026-11-17 with ev
 | 2026-11-17 | Bernard | Restructured `src/` into packages + `scripts/`, `configs/`, `reports/`; fixed scorer bugs (D-18, D-19); restored and completed Henry's `02` (§7–10); ran all 16 models | PR #47 |
 | 2026-11-16 | Bernard | Shared `src/` pipeline, `tests/` CI guardrails, `Makefile`, streamlined README | PR #46 |
 | 2026-11-10 | Henry | Logistic regression (raw + shared + Lightning) and MLP + temporal check | `notebooks/02_classification.ipynb`, `docs/learning/`, PRs #40, #41 |
+| 2026-11-19 | Bernard | Built 10-slide executive debrief deck (`slides/NkwaPay_Prosit2_Debrief.pptx`) + run-of-show & 12-question mock Q&A (`slides/SPEAKER_NOTES.md`), and upgraded interpretation charts with plain-English labels and non-overlapping legends (#36) | `slides/`, `src/visualization/interpretation.py`, `reports/figures/interp_*.png` |
+| 2026-11-19 | Bernard | Polished `03_regression.ipynb` narrative to match `01_eda.ipynb`'s plain-English question/`**Reading:**`/summary breakdown style and re-executed end-to-end (Refs #17) | `notebooks/03_regression.ipynb` |
 | 2026-11-19 | Bernard | Plain-language model interpretation (`docs/interpretation.md`): deployed LogReg coefficients, LightGBM SHAP, period-marker finding, #52 ablation synthesis, and reason-code mapping (#22) | `docs/interpretation.md` |
 | 2026-11-19 | Bernard | Feature-group ablation study (`logreg` + `lightgbm` across 7 subsets × 3 schemes): proves calendar only helps random/in-period folds (+0.020 LightGBM temporal ROC-AUC when removed), history/terms/product carry signal, macro hurts temporal (#52) | `src/evaluation/ablation.py`, `scripts/run_ablation.py`, `reports/tables/ablation.csv`, `reports/figures/interp_ablation*.png` |
 | 2026-11-19 | Bernard | Added Task 2 pruned `decision_tree` comparison & pruning settings (`max_depth=6`, `ccp_alpha=0.0001`) to `03_regression.ipynb`, updated to D-29/D-30 scorer, re-executed end-to-end (#17) | `notebooks/03_regression.ipynb` |

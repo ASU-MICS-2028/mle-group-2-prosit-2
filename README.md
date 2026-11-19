@@ -11,7 +11,7 @@
   <img alt="Tests" src="https://img.shields.io/badge/tests-163_passing-2e7d32?style=flat-square">
   <img alt="Models" src="https://img.shields.io/badge/models-16_trained-1f4e79?style=flat-square">
   <img alt="Figures" src="https://img.shields.io/badge/figures-47-1f4e79?style=flat-square">
-  <!-- status:badge --><img alt="Issues" src="https://img.shields.io/badge/issues-40_of_46_closed-d4a72c?style=flat-square"><!-- /status:badge -->
+  <!-- status:badge --><img alt="Issues" src="https://img.shields.io/badge/issues-41_of_46_closed-d4a72c?style=flat-square"><!-- /status:badge -->
   <img alt="Deadline" src="https://img.shields.io/badge/deadline-19_Nov_2026-b03a2e?style=flat-square">
 </p>
 
@@ -77,7 +77,7 @@ Generated from GitHub on **19 Nov 2026** by `scripts/update_readme.py` (the *REA
 | **C · Cross-market transfer** | in B, D | ![3/3](https://img.shields.io/badge/3%2F3-closed-2e7d32?style=flat-square) | — |
 | **D · Ethics & regulation** | 20 pts | ![6/7](https://img.shields.io/badge/6%2F7-closed-d4a72c?style=flat-square) | [#27](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/27) ⏳ |
 | **E · Deployment** | 15 pts | ![4/4](https://img.shields.io/badge/4%2F4-closed-2e7d32?style=flat-square) | — |
-| **Deliverables** | 5 pts + all | ![4/6](https://img.shields.io/badge/4%2F6-closed-d4a72c?style=flat-square) | [#36](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/36) [#37](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/37) |
+| **Deliverables** | 5 pts + all | ![5/6](https://img.shields.io/badge/5%2F6-closed-d4a72c?style=flat-square) | [#37](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/37) |
 
 <sub>⏳ = a pull request for it is open.</sub>
 
@@ -119,7 +119,7 @@ Find your name, open each issue card and follow the steps. Every card says what 
 | <img src="https://github.com/henryhkb.png?size=60" width="28"> | **Henry Kofi Brandoh** · Classification & evaluation | 0 | 0 | 0 | [Henry's issues](#henryhkb) |
 | <img src="https://github.com/adjeibernardmarfo.png?size=60" width="28"> | **Bernard Marfo Adjei** · Regression, deployment & project lead | 1 | 0 | 0 | [Bernard's issues](#adjeibernardmarfo) |
 | <img src="https://github.com/eugene-sew.png?size=60" width="28"> | **Eugene** · Transfer & fairness | 1 | 1 | 0 | [Eugene's issues](#eugene-sew) |
-| 👥 | **Everyone** | 4 | 0 | 4 | [Shared issues](#everyone) |
+| 👥 | **Everyone** | 3 | 0 | 3 | [Shared issues](#everyone) |
 
 ### How to pick up an issue
 
@@ -248,28 +248,6 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **1 open**
 2. Allow GitHub Actions to push to `main` (add it to the bypass list), or the *README status* Action cannot commit its updates.
 
 [Open issue #56 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/56)
-
-</details>
-
-<details>
-<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#36 · Debrief slides and mock Q&A</b></summary>
-
-| | |
-| --- | --- |
-| **What it is** | Debrief slides and mock Q&A. |
-| **Why it matters** | Rubric E (15 pts): presentation and defence |
-| **Already done** | `reports/FIGURES.md` lists what each figure defends. |
-| **Where to work** | `slides/` |
-| **How to run** | — |
-| **Done when** | Slides ready and rehearsed. |
-| **Automated check** | Debrief slides are in slides/. Run `make acceptance ISSUE=36`; it also runs on every pull request that says `Closes #36` and when the issue is closed (a failing check reopens it). |
-
-**Steps**
-
-1. Each presents their part (about 3–4 minutes).
-2. Rehearse questions without notes; the AI policy requires explaining your work without AI.
-
-[Open issue #36 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/36)
 
 </details>
 
