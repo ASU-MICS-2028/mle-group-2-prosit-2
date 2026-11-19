@@ -10,7 +10,7 @@ Owner: Eugene (P4). The evidence behind each point is in `notebooks/04_transfer_
   - 97% of Ghanaian rows come from lenders the model never saw, and 87% are for products it never saw.
 - **Reweighting cannot bridge it.** The importance weights have an effective sample share of 0.04, so a reweighted Kenyan estimate would rest on about 4% of Kenyan rows (D-27).
 - **One input is unknowable.** Label history (`n_past_labelled`, past defaults) is 0 for every Ghanaian row, because no Ghanaian loan has a label. Treating it as clean instead more than doubles the median predicted risk (0.011 → 0.028).
-- **The product already behaves oddly.** No Ghanaian is approved in full: 86% are limited to about 15% of the request, and every application is flagged `needs_review`.
+- **The product already behaves oddly.** Only 7% of Ghanaian applicants are approved in full; 79% are limited to a median 46% of the request, and every application is flagged `needs_review`.
 
 ## The evidence plan
 

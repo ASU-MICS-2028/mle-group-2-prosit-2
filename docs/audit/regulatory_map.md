@@ -6,7 +6,8 @@ Owner: Eugene (P4). Part D.3 of the brief. Status as of 2026-11-17.
 
 **Sources.**
 - **BoG Directive:** Bank of Ghana, *Directive for Digital Credit Services Providers in Ghana, 2025* (September 2025, in force **1 November 2025**), read in full from the PDF linked on bog.gov.gh. Paragraph numbers below are the Directive's own.
-- **Act 843 and Act 726:** the official texts could not be retrieved for this audit (GhaLII returned 403 to automated access, and the Data Protection Commission site blocked it). Their rows are written at the level of the Acts' principles, and **section numbers are left for a team member to confirm** against the text on GhaLII before submission.
+- **Act 843:** *Data Protection Act, 2012*, read from the official PDF published by the Data Protection Commission (dpc.gov.gh, `data-protection-act-2012-act-843.pdf`). Section numbers below are the Act's own.
+- **Act 726:** the official text could not be retrieved (GhaLII and ILO NATLEX refused automated access, and the Bank of Ghana site has no copy). Its rows are written at the level of principle, and **section numbers remain to be confirmed** against a printed copy. Act 843 s.36 confirms how the two Acts meet: a credit bureau answering a data subject's request must satisfy both.
 
 Status key: ✅ met by our design · 🟨 partly met, or met only in principle · ❌ not met; NkwaPay must act before launch.
 
@@ -38,17 +39,22 @@ Status key: ✅ met by our design · 🟨 partly met, or met only in principle �
 
 ## 2. Data Protection Act, 2012 (Act 843)
 
-Section numbers to be confirmed against the official text.
+Section numbers from the official text (see *Sources*).
 
-| Requirement (by principle) | How the tool relates | Status |
-| --- | --- | --- |
-| **Lawful processing and purpose specification:** collect personal data for a specific, lawful purpose | Purpose is creditworthiness assessment. Inputs are limited to the loan application and NkwaPay's own loan history | 🟨 (purpose must be stated in the privacy notice) |
-| **Minimality:** data adequate, relevant, not excessive | No contacts, SMS, location or device data. `customer_id` is used only to look up history and to group folds, never as a model feature | ✅ |
-| **Consent** | The app has no consent step yet | ❌ |
-| **Data subject access and correction** | A borrower can see their decision and reasons, but cannot yet view or correct the history the model used | 🟨 |
-| **Automated decision-taking:** a data subject's right concerning decisions based solely on automated processing | Every decision is automated. The app's "ask for a review, a person will look at it" route is the human-review safeguard; it needs a real, logged process behind it | 🟨 |
-| **Security safeguards** | Raw data is git-ignored and never committed. No production access controls exist yet (student project) | 🟨 |
-| **Registration** with the Data Protection Commission | NkwaPay's responsibility; also required by Directive 2.1(5)(d)(xi) | ❌ |
+| Section | Requirement | How the tool relates | Status |
+| --- | --- | --- | --- |
+| s.17 | Process data by eight principles: accountability, lawfulness, specification of purpose, compatibility of further processing, quality of information, openness, security safeguards, data subject participation | The rows below take them one by one | 🟨 |
+| s.18 | Personal data processed lawfully and reasonably, without infringing privacy | Inputs are the loan application and NkwaPay's own loan history; no third-party scraping | 🟨 (needs the privacy notice) |
+| s.18(2) | Data of **foreign** data subjects processed in line with their own country's data-protection law | All training data is Kenyan, so Kenya's Data Protection Act, 2019 also governs its use for training. Not assessed in this audit | ⬜ not assessed |
+| s.19 | **Minimality:** data adequate, relevant and not excessive for the purpose | No contacts, SMS, location or device data. `customer_id` is used only to look up history and to group folds, never as a model feature | ✅ |
+| s.20 | **Consent, justification and objection** | The app has no consent step yet | ❌ |
+| s.22, s.23 | Data collected for a **specific purpose**, and the data subject made **aware** of it | Purpose is creditworthiness assessment. The decline message says what data was used and what was not (`decline_explanation.md`); the app does not show it before applying | 🟨 |
+| s.25 | Further processing compatible with the purpose of collection | Training on past loan records to score new loans is arguably compatible; the data's original consent wording is undocumented (Datasheet) | 🟨 |
+| s.26 | **Quality of information:** complete, accurate, up to date | Label history is structurally 0 for Ghana, which is inaccurate as stated; the audit recommends encoding it as unknown | ❌ for Ghana |
+| s.27 | Data controller **registered** with the Commission | NkwaPay's responsibility; also required by Directive 2.1(5)(d)(xi) | ❌ |
+| s.28 | **Security measures** | Raw data is git-ignored and never committed. No production access controls exist yet (student project) | 🟨 |
+| s.32, s.33, s.35 | **Access** to personal information, **correction** of personal data, right of access | A borrower sees their decision and reasons but cannot yet view or correct the history the model used | 🟨 |
+| s.41 | **Automated decision-taking:** where a decision that significantly affects an individual is based solely on automatic processing, the controller must notify them, and they may require it to be **reconsidered** within 21 days; the controller replies within 21 days | Every decision is automated. The decline message and the app offer "ask for a review, a person will look at it". Note s.41(4)(a)–(b): the section does not apply to decisions taken in considering whether to enter a contract, which arguably covers a loan application. We keep the review route anyway: the BoG Directive (6(1)(e), 20 days) requires a complaints route, and it is the fair thing to do | 🟨 (needs a real, logged process) |
 
 ## 3. Credit Reporting Act, 2007 (Act 726) and Credit Reporting Regulations, 2020 (L.I. 2394)
 
@@ -64,10 +70,11 @@ Section numbers to be confirmed against the official text. L.I. 2394 is named in
 
 1. **Regulatory loan cap:** the limit model has no hard cap at the Bank's limit (3.5(5), 7.1(2)).
 2. **Pre-agreement and cost disclosure:** total cost of credit, fees, non-compounded interest, due date and default costs are not shown (6(1)(b)–(c), 7.1(3)).
-3. **DPIA, consent and DPC registration** (2.1(5)(d)(x)–(xi); Act 843).
+3. **DPIA, consent and DPC registration** (2.1(5)(d)(x)–(xi); Act 843 s.20, s.27).
 4. **Bureau reporting and bureau consent** (7.3; Act 726).
 5. **Decision logging for supervisors** (3.7).
-6. **A real human-review process** for automated declines, resolving complaints within 20 days (6(1)(e); Act 843 automated decisions).
+6. **A real human-review process** for automated declines, resolving complaints within 20 days (6(1)(e); Act 843 s.41, 21-day reconsideration).
 7. **Act 1052** (Borrowers and Lenders Act) was not assessed.
+8. **Kenya's Data Protection Act, 2019** (Act 843 s.18(2): the training data is Kenyan) was not assessed.
 
 Items 1, 5 and 6 are changes to our own code and app. The rest are business processes NkwaPay must put in place around the tool.

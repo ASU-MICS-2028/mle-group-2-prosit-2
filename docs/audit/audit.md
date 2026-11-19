@@ -42,7 +42,7 @@ Owner: Eugene (P4). This is the summary. The evidence is in the linked parts and
    - The borrower message rewords the lender reason, because borrowers do not choose their funding lender.
 6. **Ghana.**
    - The model has no Ghanaian labels. A domain classifier separates Ghana from Kenya with an AUC of 0.985 even after removing the label-history artefact.
-   - Through the scorer, no Ghanaian is approved in full: 86% are limited to about 15% of the request and 14% are declined.
+   - Through the scorer, only 7% of Ghanaians are approved in full: 79% are limited to a median 46% of the request and 14% are declined.
    - Treating the unknown history as clean more than doubles the median probability (0.011 to 0.028).
    - **We advise against automated lending in Ghana before a capped pilot** of about 3,500 loans over about 3 months, followed by recalibration on Ghanaian outcomes.
 7. **Regulation.** These items are not met yet:
@@ -57,6 +57,6 @@ Owner: Eugene (P4). This is the summary. The evidence is in the linked parts and
 
 ## Open items before submission
 
-- Confirm the section numbers for Act 843 and Act 726 on GhaLII. They are marked "to be confirmed" because automated access was blocked.
+- Act 843 section numbers are confirmed from the official DPC text. Act 726 section numbers still need a printed copy.
 - Replace the cost assumptions (recovery, collection cost, 3 lost loans) with pilot figures when they exist, then re-run `04`.
 - P3 review of the scorer changes (`decide`, `borrower_reasons`, starter loan) in this pull request.
