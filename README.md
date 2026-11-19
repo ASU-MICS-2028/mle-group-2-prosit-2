@@ -11,7 +11,7 @@
   <img alt="Tests" src="https://img.shields.io/badge/tests-163_passing-2e7d32?style=flat-square">
   <img alt="Models" src="https://img.shields.io/badge/models-16_trained-1f4e79?style=flat-square">
   <img alt="Figures" src="https://img.shields.io/badge/figures-47-1f4e79?style=flat-square">
-  <!-- status:badge --><img alt="Issues" src="https://img.shields.io/badge/issues-30_of_46_closed-d4a72c?style=flat-square"><!-- /status:badge -->
+  <!-- status:badge --><img alt="Issues" src="https://img.shields.io/badge/issues-29_of_46_closed-d4a72c?style=flat-square"><!-- /status:badge -->
   <img alt="Deadline" src="https://img.shields.io/badge/deadline-19_Nov_2026-b03a2e?style=flat-square">
 </p>
 
@@ -72,7 +72,7 @@ Generated from GitHub on **19 Nov 2026** by `scripts/update_readme.py` (the *REA
 | Part | Rubric | Closed | Still open |
 | --- | :---: | :---: | --- |
 | **Setup** | — | ![3/4](https://img.shields.io/badge/3%2F4-closed-d4a72c?style=flat-square) | [#56](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/56) |
-| **A · Frame the problem** | 10 pts | ![5/7](https://img.shields.io/badge/5%2F7-closed-d4a72c?style=flat-square) | [#7](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/7) [#8](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/8) |
+| **A · Frame the problem** | 10 pts | ![4/7](https://img.shields.io/badge/4%2F7-closed-d4a72c?style=flat-square) | [#7](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/7) [#8](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/8) [#9](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/9) |
 | **B · Build & evaluate** | 30 + 20 pts | ![10/14](https://img.shields.io/badge/10%2F14-closed-d4a72c?style=flat-square) | [#17](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/17) [#18](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/18) [#22](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/22) [#52](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/52) |
 | **C · Cross-market transfer** | in B, D | ![3/3](https://img.shields.io/badge/3%2F3-closed-2e7d32?style=flat-square) | — |
 | **D · Ethics & regulation** | 20 pts | ![6/7](https://img.shields.io/badge/6%2F7-closed-d4a72c?style=flat-square) | [#27](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/27) |
@@ -119,7 +119,7 @@ Find your name, open each issue card and follow the steps. Every card says what 
 | <img src="https://github.com/henryhkb.png?size=60" width="28"> | **Henry Kofi Brandoh** · Classification & evaluation | 1 | 0 | 1 | [Henry's issues](#henryhkb) |
 | <img src="https://github.com/adjeibernardmarfo.png?size=60" width="28"> | **Bernard Marfo Adjei** · Regression, deployment & project lead | 7 | 0 | 4 | [Bernard's issues](#adjeibernardmarfo) |
 | <img src="https://github.com/eugene-sew.png?size=60" width="28"> | **Eugene** · Transfer & fairness | 4 | 0 | 2 | [Eugene's issues](#eugene-sew) |
-| 👥 | **Everyone** | 5 | 0 | 5 | [Shared issues](#everyone) |
+| 👥 | **Everyone** | 6 | 0 | 6 | [Shared issues](#everyone) |
 
 ### How to pick up an issue
 
@@ -441,6 +441,30 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **4 open**
 
 
 <h3 id="everyone">👥 Everyone</h3>
+
+<details>
+<summary><img alt="start today" src="https://img.shields.io/badge/-start_now-b03a2e?style=flat-square"> <b>#9 · Part A session: loan timeline, label definition, feature audit, leakage rulings</b></summary>
+
+| | |
+| --- | --- |
+| **What it is** | Part A session: agree the loan timeline, the label, the feature audit and the leakage rulings. |
+| **Why it matters** | Rubric A (10 pts) |
+| **Already done** | Drafts: `docs/feature_audit.md`, `docs/DECISIONS.md` (D-2 to D-7, D-18 to D-20 are drafts). |
+| **Where to work** | `docs/part_a.md` (timeline, label, decision moment), `docs/DECISIONS.md` |
+| **How to run** | — |
+| **Done when** | All Part A decisions are marked decided. |
+| **Automated check** | Part A notes exist (timeline, label, decision moment) and decisions D-2 to D-7 are decided. Run `make acceptance ISSUE=9`; it also runs on every pull request that says `Closes #9` and when the issue is closed (a failing check reopens it). |
+
+**Steps**
+
+1. Meet (30–45 min).
+2. Draw the timeline: application → approval → disbursement → due date → repaid/defaulted; mark the decision moment (`disbursement_date`).
+3. Define the label (default = not repaid by the due date).
+4. Mark each draft decision decided or changed.
+
+[Open issue #9 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/9)
+
+</details>
 
 <details>
 <summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#56 · Protect main: require one approving review and passing CI</b></summary>
