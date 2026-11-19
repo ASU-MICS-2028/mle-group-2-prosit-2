@@ -58,7 +58,7 @@ At the debrief you must "explain, defend and reproduce your work without AI". If
 | ✅ | Datasheet and Model Card | `docs/audit/datasheet.md`, `docs/audit/model_card.md` | Eugene |
 | ✅ | PR-AUC, F1, selection rate by country, loan type, lender, tenure, size band (first-time borrowers 49% vs 98%) | `04_transfer_and_fairness` §3.1 | Eugene |
 | ✅ | Proxy analysis and one mitigation with before/after and its cost (25% starter loan, now in the scorer: 49% → 81%, GHS 18 per first-time applicant) | `04_transfer_and_fairness` §3.3–3.4 | Eugene |
-| ✅ | Regulatory map: BoG Directive, Act 843, Act 726; what we can't satisfy (Act section numbers to confirm) | `docs/audit/regulatory_map.md` | Eugene |
+| ✅ | Regulatory map: BoG Directive, Act 843, Act 726; what we can't satisfy (Act 843 sections confirmed from the official text; Act 726 to confirm) | `docs/audit/regulatory_map.md` | Eugene |
 | ✅ | Findex Ghana: who lacks credit; does the model narrow or widen the gap (widens, as shipped) | `04_transfer_and_fairness` §4 | Eugene |
 
 **Self-check:** Can a model be accurate and unfair? What is a proxy, with an example from this data? What must we tell a declined borrower?

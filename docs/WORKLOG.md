@@ -9,6 +9,11 @@ Add an entry at the **top** at the end of each session, 5–10 lines. Link to no
 
 ---
 
+## 2026-11-19 · Eugene (P4) · `p4/27-37-act843-and-reflection`
+**Did:** Read Act 843 from the Data Protection Commission's official PDF and put section numbers in `docs/audit/regulatory_map.md` (s.17–28, s.32–35, s.41), plus a new s.18(2) row (Kenyan training data → Kenya's DPA 2019, not assessed). Re-ran `04` after Bernard's D-30 limit cap and refreshed the Ghana figures in 04 and `docs/audit/`.
+**Found:** s.41 (automated decisions: notify, reconsider within 21 days) has a contract exemption (s.41(4)(a)–(b)) that arguably covers loan applications; we keep the review route because the BoG Directive requires one. After D-30, 7% of Ghanaians are approved in full and 79% limited to a median 46% of the request (was 0% and 15%).
+**Next:** My reflection is submitted separately, not in the repo. Act 726 section numbers need a printed copy (no official text reachable online).
+
 ## 2026-11-19 (late night) · Bernard (P3) · `p3/17-task2-decision-tree` (#17)
 **Did:** Added Section 4 to `notebooks/03_regression.ipynb` comparing the P3 Task 2 pruned `decision_tree` against all other Task 2 classifiers using `reports/tables/task2_model_summary.csv`, inspecting its pruning settings (`max_depth=6`, `ccp_alpha=0.0001` in `configs/models.yaml`), depth/leaves and top splits; updated Section 5 to fit/demo the D-29/D-30 scorer (`logreg` + `lightgbm_reg_q85`) and re-executed `03_regression.ipynb` top to bottom via `nbconvert --execute`.
 **Found:** `decision_tree` achieves `fold_group` ROC-AUC 0.849 / PR-AUC 0.157 (beating `knn` 0.155 and `svm_rbf` 0.073) but drops hardest on `temporal` (ROC-AUC 0.559, PR-AUC 0.113) because top splits track period-sensitive features. `test_issue_17_p3_models` passes and all 14 cells execute cleanly.

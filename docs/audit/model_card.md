@@ -81,7 +81,7 @@ Calibration error (ECE) falls from 0.304 to 0.002 after calibration. Raw class-w
 | Product Type_14 | 99 | 0% | 71.7% | 0.00 |
 
 **Ghana (Test, no labels), through the full scorer:**
-- No application is approved in full: 86% are limited, to a median 15% of the request, and 14% are declined.
+- Only 7% are approved in full: 79% are limited, to a median 46% of the request (66% in Kenya, under the D-30 quantile cap), and 14% are declined.
 - Mean probability is 0.081, against 0.017 in Kenya.
 - 100% are flagged `needs_review`.
 

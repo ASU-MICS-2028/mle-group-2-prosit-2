@@ -36,7 +36,7 @@ The three numbered reasons are the scorer's own wording for this applicant (`mak
 
 3. **Always offer a next step**, and prefer a starter loan to a flat decline. The scorer does this itself (D-26): a first-time borrower between the threshold (0.10) and 0.30 gets decision `starter` and an offer of 25% of the request (`recommended_limit`). A decline message is only sent above 0.30, or to repeat borrowers above the threshold; it should still suggest a smaller loan.
 4. **Always state the review route and the 20-day response time** (BoG Directive 6(1)(e)).
-5. **Say what data was used and what was not**, and that the borrower can ask to see or correct it (Act 843 principles; section numbers to be confirmed).
+5. **Say what data was used and what was not**, and that the borrower can ask to see or correct it (Act 843 s.22–23, s.32–33, s.35).
 
 ## In code
 
