@@ -9,6 +9,12 @@ Add an entry at the **top** at the end of each session, 5–10 lines. Link to no
 
 ---
 
+## 2026-11-19 (later) · Perfect (P1) · `p1/9-part-a-session-prep` (#9)
+**Did:** Drew the Part A loan timeline (`scripts/make_timeline_figure.py` → `reports/figures/part_a_loan_timeline.png`, linked from `docs/feature_audit.md`). Wrote `docs/PART_A_SESSION.md`: where each Part A item lives, and for the 8 open drafts (D-2, D-3, D-4, D-5, D-6, D-13, D-14, D-18) the question, evidence, recommendation and what changes if we disagree. Added a dated caveat to D-3's evidence and fixed D-5's path (`src/processing/preprocess.py`).
+**Found:** Issue #9's card is stale: it lists D-7, D-19 and D-20 as drafts, but D-7 and D-20 are decided and D-19 is superseded by D-28. The drafts really still open are the 8 above. The data has no application or approval date, so `disbursement_date` is the closest column to the decision moment.
+**Next:** hold the session (about 45 minutes), then mark the confirmed rows `decided` and close #9 and #7.
+**Watch out:** Nothing was changed in code the models use; no results were re-run. The session itself has not happened, so every Part A decision is still a draft.
+
 ## 2026-11-19 · Perfect (P1) · `p1/32-svm-derivation` (#32)
 **Did:** Wrote `docs/derivations/svm.md` (widest street, soft margin and hinge loss, class weights, Lagrangian, dual, KKT cases, RBF kernel, Platt scaling, why 12,000 rows) and `tests/test_svm_derivation.py`, 8 checks of each claim against scikit-learn `SVC` on 2-D toy data (margin = 2/‖w‖ by brute force, w = Σαyx, Σαy = 0, primal = dual, box constraint with class weights, RBF decision function rebuilt by hand).
 **Found:** SVM by customer ROC-AUC 0.805 (kNN 0.769; logistic 0.843; Random Forest 0.871) but PR-AUC 0.073, the weakest learner (kNN 0.155), see `reports/tables/task2_model_summary.csv`. By time ROC-AUC 0.570. The subsample leaves about 220 defaulters; that it explains the weak PR-AUC is a guess, not tested.

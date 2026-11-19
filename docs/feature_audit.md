@@ -1,6 +1,10 @@
 # Feature audit: every column in Train.csv
 
-**Decision moment:** NkwaPay decides when a borrower applies; the closest column is `disbursement_date` (money is sent right after approval). Anything recorded or derived **after** disbursement is invalid. Status: **draft**, to be confirmed in the Part A session (D-2).
+**Decision moment:** NkwaPay decides when a borrower applies; the closest column is `disbursement_date` (money is sent right after approval). Anything recorded or derived **after** disbursement is invalid. Status: **draft**, to be confirmed in the Part A session ([agenda](PART_A_SESSION.md), D-2).
+
+![Timeline of one loan and what is known at the decision](../reports/figures/part_a_loan_timeline.png)
+
+*Made by `python -m scripts.make_timeline_figure`. The data has no application or approval date, so `disbursement_date` is the closest column to the decision.*
 
 | # | Column | Available at decision time? | Role | Reason |
 | --- | --- | --- | --- | --- |
@@ -26,6 +30,8 @@
 **Caveat on #8 and #15.** The data owner's `VariableDefinitions.txt` calls `Total_Amount_to_Repay` the amount "expected" to be repaid, which would make it known at issuance. The data say otherwise (above). We cannot prove which is true, so we drop both; keeping them would inflate every score to near-perfect and teach nothing usable at decision time. Worth stating in the report as a limitation.
 
 ## Engineered features (built in `src/features.py`, all time-safe)
+
+**Which ones the models use:** the list in `src/config.py` (`NUM_FEATURES_T2`). Per D-18 the four macro columns and `log_amount_local` stay in `features.parquet` for the Ghana shift study but are not model inputs.
 
 | Feature | What it is | Why it is safe |
 | --- | --- | --- |
