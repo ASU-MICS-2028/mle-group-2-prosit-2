@@ -1,6 +1,6 @@
 # Progress dashboard
 
-**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-19 by Perfect (branch `p1/32-svm-derivation`, not yet merged).
+**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-19 by Perfect (branch `p1/9-part-a-session-prep`, not yet merged).
 
 Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 
@@ -14,7 +14,7 @@ Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 | A | Explore the target | Henry | ✅ `src/analysis/target_eda.py` + `python -m scripts.run_target_eda` (tables in `reports/tables/eda_target_*.csv`) |
 | A | Explore amounts/durations (P3 slice) | Bernard | 🟨 amounts, terms, leakage and history in `reports/EDA_REPORT.md` §4-6 (PR #57); leak-suspect ruling at Part A session |
 | A | Explore Ghana and context files (P4 slice) | Eugene | ✅ EDA §8-10 (PR #57), interpreted in `04` §2.1 and §4 |
-| A | Timeline, label, feature audit table | Perfect + Henry | 🟨 label, window and decision moment in `02_classification` §0 (PR #60); audit table drafted (`docs/feature_audit.md`); timeline drawing to do |
+| A | Timeline, label, feature audit table | Perfect + Henry | 🟨 timeline drawn (`reports/figures/part_a_loan_timeline.png`, PR pending); label, window and decision moment in `02_classification` §0 (PR #60); audit table drafted (`docs/feature_audit.md`). All three await confirmation at the Part A session: agenda in `docs/PART_A_SESSION.md` |
 | A | Two tasks + cost matrix in cedis/shillings | Henry | ✅ tasks and goal in `02` §0; cedis from Ghana's loans in §9b (D-22): p\* 0.036, approve 88.6%, −44% expected loss (PR #60). Team config still KES (D-19) |
 | B | Shared feature file and fold splits | Perfect | ✅ merged (#39); Henry's baseline already uses it |
 | B | Preprocessor for unseen lenders and loan types (D-5) | Perfect + Bernard | ✅ `src/processing/preprocess.py` (PR #46; target scaler clipped in PR #47) |
@@ -47,6 +47,7 @@ Per-issue progress is on GitHub (Roadmap issue #1). Closed on 2026-11-17 with ev
 | 2026-11-17 | Bernard | Restructured `src/` into packages + `scripts/`, `configs/`, `reports/`; fixed scorer bugs (D-18, D-19); restored and completed Henry's `02` (§7–10); ran all 16 models | PR #47 |
 | 2026-11-16 | Bernard | Shared `src/` pipeline, `tests/` CI guardrails, `Makefile`, streamlined README | PR #46 |
 | 2026-11-10 | Henry | Logistic regression (raw + shared + Lightning) and MLP + temporal check | `notebooks/02_classification.ipynb`, `docs/learning/`, PRs #40, #41 |
+| 2026-11-19 | Perfect | Part A prep (#9): loan timeline figure with a script, session agenda and decision sheet for the 8 open drafts, caveat on D-3's evidence, D-5 path fixed, feature audit links the figure | `docs/PART_A_SESSION.md`, `scripts/make_timeline_figure.py`, `reports/figures/part_a_loan_timeline.png`, branch `p1/9-part-a-session-prep` |
 | 2026-11-19 | Perfect | `01_eda` §6 (#48): report linked, numbers re-derived from raw data; found the report's "loans" columns count rows, and that two-lender loans' higher default rate is mostly a time effect; fixed the same claim in `01_eda` §1 | `notebooks/01_eda.ipynb`, branch `p1/32-svm-derivation` |
 | 2026-11-19 | Perfect | SVM derivation: margin, hinge loss, dual, kernel, Platt, with 8 tests against `SVC`; reads our SVM results (ROC-AUC 0.805, PR-AUC 0.073 by customer) | `docs/derivations/svm.md`, `tests/test_svm_derivation.py`, branch `p1/32-svm-derivation` |
 | 2026-11-18 | Eugene | `04` rebuilt on the shipped scorer; cedi cost matrix (D-28); starter loan and borrower reasons in the scorer (D-26); audit docs, boosting derivation, fairness/shift helpers + 18 tests; D-25 to D-28 | `04`, `docs/audit/`, `docs/derivations/boosting.md`; branch `p4/54-transfer-fairness-audit` |
@@ -70,7 +71,7 @@ Findings so far:
 
 ## What's left, in order
 
-1. **Part A session (all four):** confirm [DECISIONS](DECISIONS.md) D-2 to D-7, which are drafts that the code already relies on. Draw the loan timeline, define the label, write the cost matrix.
+1. **Part A session (all four):** follow the agenda in [PART_A_SESSION](PART_A_SESSION.md) and mark D-2 to D-6, D-13, D-14 and D-18 `decided` (drafts that the code already relies on). The timeline is drawn and the label and cost matrix are written; the session confirms them.
 2. **Henry:** personal reflection (#37); agree with Bernard and Eugene whether the team config switches to the D-22 cedi costs.
 3. **Perfect:** finish `01_eda`, the unseen-category preprocessor (D-5), baselines, kNN, SVM and the SVM derivation.
 4. **Bernard:** get PR #47 reviewed and merged; #7 amounts/leak-suspect EDA, Task 2 decision tree (#17), linear regression derivation, final scorer model.
