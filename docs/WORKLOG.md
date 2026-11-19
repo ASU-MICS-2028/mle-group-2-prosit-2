@@ -9,6 +9,13 @@ Add an entry at the **top** at the end of each session, 5–10 lines. Link to no
 
 ---
 
+## 2026-11-19 (night) · Perfect (P1) · `p1/34-report-data-section` (#34)
+**Did:** Drafted P1's section of the technical report, `docs/report/p1_data_section.md` (about 2 pages): data and the decision it supports, leakage audit, time-safe features, three validation schemes, baseline/kNN/SVM, limitations, with a sources list. Every number comes from committed tables or the EDA; none was newly estimated.
+**Found:** Random folds overstate LightGBM's PR-AUC by 55% (0.303 vs 0.195 by customer); logistic regression is barely affected (0.186 vs 0.175), so the inflation grows with model flexibility. By time every model's ROC-AUC is 0.56 to 0.65. Re-ran two deliberate bugs on the full feature build (exact-date matches allowed; outcomes counted before the due date): `validate()` caught both (`n_past_loans`, `n_past_labelled`).
+**Also did:** Added Perfect's four missing rows to `docs/AI_USE_LOG.md` (the log had one row since 7 Nov). Two columns are left as `_Perfect to fill in_` / `_Perfect to confirm_` on purpose: only Perfect can say what he ran himself and whether he understands it.
+**Next:** Bernard assembles the report (#34); someone reads this section against the others for overlap. My reflection (#37) is still to write, in my own words.
+**Watch out:** the report is a draft for review; the Ghana and fairness numbers belong to Eugene's and Henry's sections and are not repeated here.
+
 ## 2026-11-19 (later) · Perfect (P1) · `p1/9-part-a-session-prep` (#9)
 **Did:** Drew the Part A loan timeline (`scripts/make_timeline_figure.py` → `reports/figures/part_a_loan_timeline.png`, linked from `docs/feature_audit.md`). Wrote `docs/PART_A_SESSION.md`: where each Part A item lives, and for the 8 open drafts (D-2, D-3, D-4, D-5, D-6, D-13, D-14, D-18) the question, evidence, recommendation and what changes if we disagree. Added a dated caveat to D-3's evidence and fixed D-5's path (`src/processing/preprocess.py`).
 **Found:** Issue #9's card is stale: it lists D-7, D-19 and D-20 as drafts, but D-7 and D-20 are decided and D-19 is superseded by D-28. The drafts really still open are the 8 above. The data has no application or approval date, so `disbursement_date` is the closest column to the decision moment.
