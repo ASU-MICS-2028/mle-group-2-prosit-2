@@ -269,12 +269,12 @@ def main() -> None:
     summ.to_csv(C.TABLES / "product_decisions_by_country.csv", index=False)
     reg.add(plot_decision_mix(scores), "app_decision_mix", "8. The product in use",
             "Share of approve / limit / starter / decline on Test applications, by country.",
-            "What the deployed rule would do: in Ghana nothing is fully approved under the typical-amount limit, a sign the Kenyan model does not transfer.")
+            "With the 85th-quantile limit cap (D-30, #53), most Kenyan requests are approved in full (<=25% capped), while Ghana remains mostly capped and 100% flagged for review.")
     reg.add(plot_score_distribution(scores, thr), "app_score_distribution", "8. The product in use",
             "Calibrated P(default) on Test applications, by country, with the threshold.", "Ghana scores sit higher and wider than Kenya's.")
     reg.add(plot_limit_vs_request(scores), "app_limit_vs_request", "8. The product in use",
-            "Requested amount vs model limit (USD) for approved or limited applications.",
-            "The limit model predicts the typical amount, so about half of requests are cut; a cap should be a high quantile (#53).")
+            "Requested amount vs 85th-quantile model limit cap (USD) for approved or limited applications.",
+            "Using LightGBM quantile regression (alpha=0.85, D-30) acts as an upper cap so most good Kenyan borrowers stay under it while extreme requests are still bounded.")
     reasons = scores["top_3_reasons"].dropna().explode().value_counts()
     reg.add(plot_counts(reasons, "Reasons given (1,500 sampled Test applications)", "times given"), "app_reason_frequency",
             "8. The product in use", "How often each plain-language reason appears.",

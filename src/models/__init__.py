@@ -27,7 +27,7 @@ TASK2_MODELS = (
     "lit_logreg",
     "lit_mlp",
 )
-TASK1_MODELS = ("mean", "ols", "ridge", "lasso", "decision_tree_reg", "lightgbm_reg", "lit_linear")
+TASK1_MODELS = ("mean", "ols", "ridge", "lasso", "decision_tree_reg", "lightgbm_reg", "lightgbm_reg_q85", "lit_linear")
 LIGHTNING_MODELS = ("lit_logreg", "lit_mlp", "lit_linear")
 
 # name -> function(params, pos_weight) returning an unfitted estimator
@@ -47,6 +47,7 @@ _TASK1_BUILDERS = {
     "lasso": linear.lasso,
     "decision_tree_reg": trees.decision_tree_regressor,
     "lightgbm_reg": ensembles.lightgbm_regressor,
+    "lightgbm_reg_q85": ensembles.lightgbm_regressor,
 }
 
 

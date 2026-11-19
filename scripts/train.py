@@ -25,7 +25,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--predict-test", action="store_true", help="also fit on all of Train and predict Test")
     p.add_argument("--save-artifacts", action="store_true", help="save the calibrated scorer bundle")
     p.add_argument("--clf-artifact-model", default="logreg")
-    p.add_argument("--reg-artifact-model", default="lightgbm_reg")
+    p.add_argument("--reg-artifact-model", default="lightgbm_reg_q85")
     return p.parse_args()
 
 

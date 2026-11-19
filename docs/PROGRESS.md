@@ -1,6 +1,6 @@
 # Progress dashboard
 
-**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-19 by Bernard (branch `p3/51-choose-deployed-models`).
+**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-19 by Bernard (branch `p3/53-quantile-limit-rule`).
 
 Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 
@@ -29,7 +29,7 @@ Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 | B | Calibration over time (#55) | Henry | ✅ pre-2023 calibration under-predicts 2024 risk by half (LogReg 4.5% vs 8.7%); recalibrating on 2023 halves ECE but puts every 2024 applicant above break-even; recalibrate + monthly monitoring (D-24, PR #61) |
 | C | Kenya → Ghana transfer study | Eugene | 🟨 `04` §2 rebuilt (domain classifier in 5 variants, importance weights, scorer on Ghana, pilot plan); in review |
 | D | Model Card, Datasheet, fairness, regulation, Findex | Eugene | 🟨 `04` §3–4 and `docs/audit/` written; in review. Act 843/726 section numbers to confirm |
-| E | Scoring service, reason codes & deployed models (#30, #31, #51) | Bernard | ✅ D-29 decided (`logreg` + `lightgbm_reg`), refitted on D-28 cedi config + D-26 starter loan; latency median 24 ms, p95 35 ms; limit quantile cap next (#53) |
+| E | Scoring service, reason codes, deployed models & quantile cap (#30, #31, #51, #53) | Bernard | ✅ D-29 (`logreg`) + D-30 (`lightgbm_reg_q85` 85th-quantile cap): Kenya Test cut drops 48.9% → 14.6% (15.7% of repaid Train loans cut); latency median 21 ms, p95 26 ms |
 | E | Borrower app over the scorer | Eugene | 🟨 `app/streamlit_app.py` calls `score_application`; shows approve/limit/starter/decline, borrower reasons, credit-team panel (#65, branch `p4/65-borrower-app`, stacked on PR #64) |
 | Final | Report, audit, slides, reflections, AI declaration | all | ⬜ |
 
@@ -48,6 +48,7 @@ Per-issue progress is on GitHub (Roadmap issue #1). Closed on 2026-11-17 with ev
 | 2026-11-17 | Bernard | Restructured `src/` into packages + `scripts/`, `configs/`, `reports/`; fixed scorer bugs (D-18, D-19); restored and completed Henry's `02` (§7–10); ran all 16 models | PR #47 |
 | 2026-11-16 | Bernard | Shared `src/` pipeline, `tests/` CI guardrails, `Makefile`, streamlined README | PR #46 |
 | 2026-11-10 | Henry | Logistic regression (raw + shared + Lightning) and MLP + temporal check | `notebooks/02_classification.ipynb`, `docs/learning/`, PRs #40, #41 |
+| 2026-11-19 | Bernard | High-quantile limit cap (`lightgbm_reg_q85`, alpha=0.85, D-30): Kenya Test cut 48.9% → 14.6%, repaid Train cut 50.1% → 15.7%; tests, figures & latency (median 21 ms) updated (#53) | `configs/models.yaml`, `src/models/`, `src/training/artifacts.py`, `tests/`, `reports/` |
 | 2026-11-19 | Bernard | Deployed model decision (D-29: calibrated `logreg` + `lightgbm_reg`), refitted scorer on D-28 cedi config + D-26 starter loan, regenerated `eval`, 35 `figures`, `score` (median 24 ms, p95 35 ms) (#51) | `docs/DECISIONS.md`, `reports/`, `scripts/make_figures.py` |
 | 2026-11-19 | Bernard | Linear regression derivation (Gaussian MLE → normal equations → Ridge MAP) + 5 numerical tests vs scikit-learn & PyTorch (#32) | `docs/derivations/linear.md`, `tests/test_linear_derivation.py` |
 | 2026-11-19 | Perfect | Report section for #34: data, leakage audit, time-safe features, three validation schemes with the inflation numbers, baseline/kNN/SVM, limitations; two deliberate-bug runs re-confirm `validate()` fires | `docs/report/p1_data_section.md`, branch `p1/34-report-data-section` |

@@ -25,4 +25,5 @@ def lightgbm_classifier(params: dict[str, Any], pos_weight: float | None = None)
 
 
 def lightgbm_regressor(params: dict[str, Any], pos_weight: float | None = None) -> LGBMRegressor:
+    """LightGBM regressor for Task 1; supports quantile regression when `objective='quantile'` and `alpha` are set (D-30)."""
     return LGBMRegressor(random_state=C.SEED, verbose=-1, n_jobs=-1, **params)
