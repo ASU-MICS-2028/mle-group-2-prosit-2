@@ -1,6 +1,6 @@
 # Progress dashboard
 
-**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-19 by Bernard (branch `p3/17-task2-decision-tree`).
+**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-19 by Bernard (branch `p3/52-ablation-study`).
 
 Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 
@@ -48,6 +48,7 @@ Per-issue progress is on GitHub (Roadmap issue #1). Closed on 2026-11-17 with ev
 | 2026-11-17 | Bernard | Restructured `src/` into packages + `scripts/`, `configs/`, `reports/`; fixed scorer bugs (D-18, D-19); restored and completed Henry's `02` (§7–10); ran all 16 models | PR #47 |
 | 2026-11-16 | Bernard | Shared `src/` pipeline, `tests/` CI guardrails, `Makefile`, streamlined README | PR #46 |
 | 2026-11-10 | Henry | Logistic regression (raw + shared + Lightning) and MLP + temporal check | `notebooks/02_classification.ipynb`, `docs/learning/`, PRs #40, #41 |
+| 2026-11-19 | Bernard | Feature-group ablation study (`logreg` + `lightgbm` across 7 subsets × 3 schemes): proves calendar only helps random/in-period folds (+0.020 LightGBM temporal ROC-AUC when removed), history/terms/product carry signal, macro hurts temporal (#52) | `src/evaluation/ablation.py`, `scripts/run_ablation.py`, `reports/tables/ablation.csv`, `reports/figures/interp_ablation*.png` |
 | 2026-11-19 | Bernard | Added Task 2 pruned `decision_tree` comparison & pruning settings (`max_depth=6`, `ccp_alpha=0.0001`) to `03_regression.ipynb`, updated to D-29/D-30 scorer, re-executed end-to-end (#17) | `notebooks/03_regression.ipynb` |
 | 2026-11-19 | Bernard | High-quantile limit cap (`lightgbm_reg_q85`, alpha=0.85, D-30): Kenya Test cut 48.9% → 14.6%, repaid Train cut 50.1% → 15.7%; tests, figures & latency (median 21 ms) updated (#53) | `configs/models.yaml`, `src/models/`, `src/training/artifacts.py`, `tests/`, `reports/` |
 | 2026-11-19 | Bernard | Deployed model decision (D-29: calibrated `logreg` + `lightgbm_reg`), refitted scorer on D-28 cedi config + D-26 starter loan, regenerated `eval`, 35 `figures`, `score` (median 24 ms, p95 35 ms) (#51) | `docs/DECISIONS.md`, `reports/`, `scripts/make_figures.py` |

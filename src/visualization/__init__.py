@@ -60,7 +60,7 @@ from .classification import (  # noqa: E402
     plot_threshold_sweep,
 )
 from .fairness import plot_group_selection_rates  # noqa: E402
-from .interpretation import plot_coefficients, plot_shap_importance  # noqa: E402
+from .interpretation import plot_ablation, plot_coefficients, plot_shap_importance  # noqa: E402
 from .product import (  # noqa: E402
     plot_counts,
     plot_decision_mix,
@@ -77,6 +77,7 @@ from .regression import (  # noqa: E402
 from .transfer import plot_domain_scores, plot_feature_shift, plot_shift_drivers  # noqa: E402
 
 __all__ = [
+    "plot_ablation",
     "plot_amount_distribution",
     "plot_calibration_by_group",
     "plot_coefficients",

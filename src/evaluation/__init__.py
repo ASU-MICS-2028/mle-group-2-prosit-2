@@ -1,4 +1,5 @@
-"""Evaluation shared by the whole team: metrics, calibration, cost matrix, bootstrap, fairness and shift."""
+"""Evaluation shared by the whole team: metrics, calibration, cost matrix, bootstrap, fairness, shift and ablation."""
+from .ablation import ABLATION_GROUPS, run_ablation
 from .bootstrap import bootstrap_ci
 from .calibration import PlattCalibrator, calibrate_oof, make_calibrator
 from .cost_matrix import (
@@ -19,6 +20,7 @@ from .metrics import (
 from .shift import run_domain_classifier
 
 __all__ = [
+    "ABLATION_GROUPS",
     "PlattCalibrator",
     "add_loan_size_band",
     "bootstrap_ci",
@@ -35,6 +37,7 @@ __all__ = [
     "proxy_strength",
     "regression_metrics",
     "reliability_table",
+    "run_ablation",
     "run_domain_classifier",
     "summarize_predictions_dir",
     "sweep_thresholds",
