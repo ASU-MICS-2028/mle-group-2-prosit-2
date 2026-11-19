@@ -73,7 +73,7 @@ Generated from GitHub on **19 Nov 2026** by `scripts/update_readme.py` (the *REA
 | --- | :---: | :---: | --- |
 | **Setup** | — | ![3/4](https://img.shields.io/badge/3%2F4-closed-d4a72c?style=flat-square) | [#56](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/56) |
 | **A · Frame the problem** | 10 pts | ![5/7](https://img.shields.io/badge/5%2F7-closed-d4a72c?style=flat-square) | [#7](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/7) [#9](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/9) |
-| **B · Build & evaluate** | 30 + 20 pts | ![13/14](https://img.shields.io/badge/13%2F14-closed-d4a72c?style=flat-square) | [#22](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/22) |
+| **B · Build & evaluate** | 30 + 20 pts | ![13/14](https://img.shields.io/badge/13%2F14-closed-d4a72c?style=flat-square) | [#22](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/22) ⏳ |
 | **C · Cross-market transfer** | in B, D | ![3/3](https://img.shields.io/badge/3%2F3-closed-2e7d32?style=flat-square) | — |
 | **D · Ethics & regulation** | 20 pts | ![6/7](https://img.shields.io/badge/6%2F7-closed-d4a72c?style=flat-square) | [#27](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/27) ⏳ |
 | **E · Deployment** | 15 pts | ![4/4](https://img.shields.io/badge/4%2F4-closed-2e7d32?style=flat-square) | — |
@@ -117,7 +117,7 @@ Find your name, open each issue card and follow the steps. Every card says what 
 | :---: | --- | :---: | :---: | :---: | --- |
 | <img src="https://github.com/peaElorm.png?size=60" width="28"> | **Perfect Elorm Avugla** · Data & features | 0 | 0 | 0 | [Perfect's issues](#peaelorm) |
 | <img src="https://github.com/henryhkb.png?size=60" width="28"> | **Henry Kofi Brandoh** · Classification & evaluation | 0 | 0 | 0 | [Henry's issues](#henryhkb) |
-| <img src="https://github.com/adjeibernardmarfo.png?size=60" width="28"> | **Bernard Marfo Adjei** · Regression, deployment & project lead | 2 | 0 | 0 | [Bernard's issues](#adjeibernardmarfo) |
+| <img src="https://github.com/adjeibernardmarfo.png?size=60" width="28"> | **Bernard Marfo Adjei** · Regression, deployment & project lead | 2 | 1 | 0 | [Bernard's issues](#adjeibernardmarfo) |
 | <img src="https://github.com/eugene-sew.png?size=60" width="28"> | **Eugene** · Transfer & fairness | 1 | 1 | 0 | [Eugene's issues](#eugene-sew) |
 | 👥 | **Everyone** | 4 | 1 | 3 | [Shared issues](#everyone) |
 
@@ -175,7 +175,7 @@ Regression, deployment & project lead · [adjeibernardmarfo](https://github.com/
 </details>
 
 <details>
-<summary><img alt="evidence exists, owner must finish" src="https://img.shields.io/badge/-partly_done-d4a72c?style=flat-square"> <b>#22 · Interpretation: coefficients, importances or SHAP</b></summary>
+<summary><img alt="a pull request for it is open" src="https://img.shields.io/badge/-in_review-1f4e79?style=flat-square"> <b>#22 · Interpretation: coefficients, importances or SHAP</b></summary>
 
 | | |
 | --- | --- |
@@ -186,6 +186,7 @@ Regression, deployment & project lead · [adjeibernardmarfo](https://github.com/
 | **How to run** | `make figures` |
 | **Done when** | The interpretation is written and matches the figures. |
 | **Automated check** | docs/interpretation.md explains the main drivers in plain language, using the coefficient and SHAP figures. Run `make acceptance ISSUE=22`; it also runs on every pull request that says `Closes #22` and when the issue is closed (a failing check reopens it). |
+| **Pull request** | [#76](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/pull/76) |
 
 **Steps**
 
