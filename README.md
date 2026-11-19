@@ -11,7 +11,7 @@
   <img alt="Tests" src="https://img.shields.io/badge/tests-163_passing-2e7d32?style=flat-square">
   <img alt="Models" src="https://img.shields.io/badge/models-16_trained-1f4e79?style=flat-square">
   <img alt="Figures" src="https://img.shields.io/badge/figures-47-1f4e79?style=flat-square">
-  <!-- status:badge --><img alt="Issues" src="https://img.shields.io/badge/issues-31_of_46_closed-d4a72c?style=flat-square"><!-- /status:badge -->
+  <!-- status:badge --><img alt="Issues" src="https://img.shields.io/badge/issues-32_of_46_closed-d4a72c?style=flat-square"><!-- /status:badge -->
   <img alt="Deadline" src="https://img.shields.io/badge/deadline-19_Nov_2026-b03a2e?style=flat-square">
 </p>
 
@@ -76,7 +76,7 @@ Generated from GitHub on **19 Nov 2026** by `scripts/update_readme.py` (the *REA
 | **B · Build & evaluate** | 30 + 20 pts | ![10/14](https://img.shields.io/badge/10%2F14-closed-d4a72c?style=flat-square) | [#17](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/17) [#18](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/18) [#22](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/22) [#52](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/52) |
 | **C · Cross-market transfer** | in B, D | ![3/3](https://img.shields.io/badge/3%2F3-closed-2e7d32?style=flat-square) | — |
 | **D · Ethics & regulation** | 20 pts | ![6/7](https://img.shields.io/badge/6%2F7-closed-d4a72c?style=flat-square) | [#27](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/27) |
-| **E · Deployment** | 15 pts | ![2/4](https://img.shields.io/badge/2%2F4-closed-d4a72c?style=flat-square) | [#51](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/51) ⏳ [#53](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/53) |
+| **E · Deployment** | 15 pts | ![3/4](https://img.shields.io/badge/3%2F4-closed-d4a72c?style=flat-square) | [#53](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/53) |
 | **Deliverables** | 5 pts + all | ![3/6](https://img.shields.io/badge/3%2F6-closed-d4a72c?style=flat-square) | [#33](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/33) [#36](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/36) [#37](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/37) |
 
 <sub>⏳ = a pull request for it is open.</sub>
@@ -117,7 +117,7 @@ Find your name, open each issue card and follow the steps. Every card says what 
 | :---: | --- | :---: | :---: | :---: | --- |
 | <img src="https://github.com/peaElorm.png?size=60" width="28"> | **Perfect Elorm Avugla** · Data & features | 0 | 0 | 0 | [Perfect's issues](#peaelorm) |
 | <img src="https://github.com/henryhkb.png?size=60" width="28"> | **Henry Kofi Brandoh** · Classification & evaluation | 0 | 0 | 0 | [Henry's issues](#henryhkb) |
-| <img src="https://github.com/adjeibernardmarfo.png?size=60" width="28"> | **Bernard Marfo Adjei** · Regression, deployment & project lead | 6 | 1 | 2 | [Bernard's issues](#adjeibernardmarfo) |
+| <img src="https://github.com/adjeibernardmarfo.png?size=60" width="28"> | **Bernard Marfo Adjei** · Regression, deployment & project lead | 5 | 0 | 2 | [Bernard's issues](#adjeibernardmarfo) |
 | <img src="https://github.com/eugene-sew.png?size=60" width="28"> | **Eugene** · Transfer & fairness | 3 | 0 | 1 | [Eugene's issues](#eugene-sew) |
 | 👥 | **Everyone** | 5 | 0 | 5 | [Shared issues](#everyone) |
 
@@ -150,7 +150,7 @@ All of this person's issues are closed. ✅
 
 <h3 id="adjeibernardmarfo"><img src="https://github.com/adjeibernardmarfo.png?size=60" width="32" align="center"> Bernard Marfo Adjei</h3>
 
-Regression, deployment & project lead · [adjeibernardmarfo](https://github.com/adjeibernardmarfo) · **6 open** · [Bernard's assigned issues on GitHub](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3Aadjeibernardmarfo)
+Regression, deployment & project lead · [adjeibernardmarfo](https://github.com/adjeibernardmarfo) · **5 open** · [Bernard's assigned issues on GitHub](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3Aadjeibernardmarfo)
 
 <details>
 <summary><img alt="evidence exists, owner must finish" src="https://img.shields.io/badge/-partly_done-d4a72c?style=flat-square"> <b>#17 · Models: OLS, Ridge, Lasso and decision tree</b></summary>
@@ -171,30 +171,6 @@ Regression, deployment & project lead · [adjeibernardmarfo](https://github.com/
 2. Explain the pruning settings (`max_depth`, `ccp_alpha` in `configs/models.yaml`).
 
 [Open issue #17 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/17)
-
-</details>
-
-<details>
-<summary><img alt="a pull request for it is open" src="https://img.shields.io/badge/-in_review-1f4e79?style=flat-square"> <b>#51 · Choose the deployed models and refit the scoring service</b></summary>
-
-| | |
-| --- | --- |
-| **What it is** | Choose which classifier and limit model the scorer uses. |
-| **Why it matters** | Rubric E: the deployed model must be the justified choice |
-| **Already done** | The scorer uses calibrated logistic regression, which under-predicts new borrowers (2.2% vs 5.7% observed for one profile). MLP and Random Forest rank best, but their intervals overlap logistic regression. Evidence: `eval_model_intervals.png`, `eval_calibration_by_tenure.png`. |
-| **Where to work** | `src/training/artifacts.py`, `docs/DECISIONS.md` |
-| **How to run** | `python -m scripts.train --save-artifacts --clf-artifact-model random_forest` |
-| **Done when** | The decision is recorded and the scorer and figures use the chosen model. |
-| **Automated check** | The deployed classifier and limit model are chosen and recorded as a decided decision. Run `make acceptance ISSUE=51`; it also runs on every pull request that says `Closes #51` and when the issue is closed (a failing check reopens it). |
-| **Pull request** | [#71](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/pull/71) |
-
-**Steps**
-
-1. Compare the candidates on GroupKFold and temporal PR-AUC, calibration by tenure, and explainability (the committee prefers simple models).
-2. Refit: `python -m scripts.train --save-artifacts --clf-artifact-model <name>`.
-3. Record the choice and its reason in `docs/DECISIONS.md`; rerun `make figures score`.
-
-[Open issue #51 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/51)
 
 </details>
 
