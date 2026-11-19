@@ -19,7 +19,7 @@
 - [x] Train the pruned decision tree for Task 2 (`decision_tree`, the P3 classifier in the brief's model table) and compare it in `03_regression.ipynb` (#17).
 - [x] Run Task 1 models (`mean`, `ols`, `ridge`, `lasso`, `decision_tree_reg`, `lightgbm_reg`, `lit_linear`) via `python -m scripts.train` across `fold_group`, `fold_strat`, and `temporal`.
 - [x] Report RMSE and MAE on both log and original scales + residual-vs-fitted diagnostic plot in `03_regression.ipynb`.
-- [ ] Extract feature importances / coefficients / SHAP interpretation for loan limits.
+- [x] Extract feature importances / coefficients / SHAP interpretation (`docs/interpretation.md`, #22) and feature-group ablation study (`reports/tables/ablation.csv`, #52).
 
 **3 · Part E Scoring Service (#30, #31)**
 - [x] Implement `src/serving/` (`score_application`, `explain`, `benchmark_latency`, `REQUIRED_APPLICATION_FIELDS`).
