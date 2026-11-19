@@ -11,7 +11,7 @@
   <img alt="Tests" src="https://img.shields.io/badge/tests-163_passing-2e7d32?style=flat-square">
   <img alt="Models" src="https://img.shields.io/badge/models-16_trained-1f4e79?style=flat-square">
   <img alt="Figures" src="https://img.shields.io/badge/figures-47-1f4e79?style=flat-square">
-  <!-- status:badge --><img alt="Issues" src="https://img.shields.io/badge/issues-29_of_46_closed-d4a72c?style=flat-square"><!-- /status:badge -->
+  <!-- status:badge --><img alt="Issues" src="https://img.shields.io/badge/issues-30_of_46_closed-d4a72c?style=flat-square"><!-- /status:badge -->
   <img alt="Deadline" src="https://img.shields.io/badge/deadline-19_Nov_2026-b03a2e?style=flat-square">
 </p>
 
@@ -77,7 +77,7 @@ Generated from GitHub on **19 Nov 2026** by `scripts/update_readme.py` (the *REA
 | **C · Cross-market transfer** | in B, D | ![3/3](https://img.shields.io/badge/3%2F3-closed-2e7d32?style=flat-square) | — |
 | **D · Ethics & regulation** | 20 pts | ![6/7](https://img.shields.io/badge/6%2F7-closed-d4a72c?style=flat-square) | [#27](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/27) |
 | **E · Deployment** | 15 pts | ![2/4](https://img.shields.io/badge/2%2F4-closed-d4a72c?style=flat-square) | [#51](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/51) [#53](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/53) |
-| **Deliverables** | 5 pts + all | ![1/6](https://img.shields.io/badge/1%2F6-closed-d4a72c?style=flat-square) | [#32](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/32) [#33](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/33) [#34](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/34) [#36](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/36) [#37](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/37) |
+| **Deliverables** | 5 pts + all | ![2/6](https://img.shields.io/badge/2%2F6-closed-d4a72c?style=flat-square) | [#32](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/32) [#33](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/33) [#36](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/36) [#37](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/37) |
 
 <sub>⏳ = a pull request for it is open.</sub>
 
@@ -119,7 +119,7 @@ Find your name, open each issue card and follow the steps. Every card says what 
 | <img src="https://github.com/henryhkb.png?size=60" width="28"> | **Henry Kofi Brandoh** · Classification & evaluation | 1 | 0 | 1 | [Henry's issues](#henryhkb) |
 | <img src="https://github.com/adjeibernardmarfo.png?size=60" width="28"> | **Bernard Marfo Adjei** · Regression, deployment & project lead | 7 | 0 | 4 | [Bernard's issues](#adjeibernardmarfo) |
 | <img src="https://github.com/eugene-sew.png?size=60" width="28"> | **Eugene** · Transfer & fairness | 4 | 0 | 2 | [Eugene's issues](#eugene-sew) |
-| 👥 | **Everyone** | 6 | 0 | 6 | [Shared issues](#everyone) |
+| 👥 | **Everyone** | 5 | 0 | 5 | [Shared issues](#everyone) |
 
 ### How to pick up an issue
 
@@ -506,28 +506,6 @@ Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **4 open**
 1. Each reviewer clones fresh, follows Quick start, runs `make all` and `make test-notebooks`.
 
 [Open issue #33 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/33)
-
-</details>
-
-<details>
-<summary><img alt="not started" src="https://img.shields.io/badge/-to_do-9aa0a6?style=flat-square"> <b>#34 · Technical report (6–10 pages)</b></summary>
-
-| | |
-| --- | --- |
-| **What it is** | The 6–10 page technical report. |
-| **Why it matters** | All rubric parts |
-| **Already done** | Numbers and figures: `reports/EDA_REPORT.md`, `reports/FIGURES.md`, `reports/tables/`. |
-| **Where to work** | `docs/report/` |
-| **How to run** | — |
-| **Done when** | Submitted. |
-| **Automated check** | The technical report is in docs/report/. Run `make acceptance ISSUE=34`; it also runs on every pull request that says `Closes #34` and when the issue is closed (a failing check reopens it). |
-
-**Steps**
-
-1. Sections: framing and cost matrix, data, methods with derivations, results, diagnostics, transfer, limitations, reproducibility, AI-use declaration.
-2. Each owner writes their part; one person edits for one voice.
-
-[Open issue #34 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/34)
 
 </details>
 
