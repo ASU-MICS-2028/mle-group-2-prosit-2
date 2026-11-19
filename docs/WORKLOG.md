@@ -9,6 +9,11 @@ Add an entry at the **top** at the end of each session, 5–10 lines. Link to no
 
 ---
 
+## 2026-11-19 (late night) · Bernard (P3) · `p3/17-polish-03-regression-tone` (Refs #17)
+**Did:** Rewrote the narrative markdown cells of `notebooks/03_regression.ipynb` to match the plain-English, question-driven structure and `**Reading:**` breakdown style of `01_eda.ipynb` (opening questions list, plain-English intro before every code block explaining *why* and technical terms when needed, `**Reading:**` takeaways after every chart/table, and a closing `Findings for the report` summary table); re-executed all 17 cells end-to-end with zero errors.
+**Found:** `02_classification.ipynb` (Henry) and `04_transfer_and_fairness.ipynb` (Eugene) already follow the same `01_eda.ipynb` question-and-Reading tone and were left untouched in line with notebook ownership (D-20). `make acceptance ISSUE=17` and `ISSUE=33` both pass.
+**Next:** Part A session rulings (#7/#9), branch protection (#56), debrief slides (#36), and personal reflection (#37).
+
 ## 2026-11-19 (late night) · Bernard (P3) · `p3/22-interpretation` (#22)
 **Did:** Wrote `docs/interpretation.md` explaining in plain language what drives NkwaPay's default and loan-limit models: deployed logistic regression standardized weights (`interp_coefficients.png`), LightGBM mean |SHAP| values (`interp_shap_lightgbm.png`), the period-marker finding (`Lender_portion_Funded`, `disb_month`), the feature-group ablation evidence (`reports/tables/ablation.csv`, `interp_ablation*.png`, #52), and how `src/serving/reasons.py` filters non-actionable fields and produces borrower-facing reasons.
 **Found:** Tying coefficients, SHAP, and ablation together gives a cohesive defence narrative: borrower history, product type and loan terms carry real signal, while calendar features inflate LightGBM random-fold PR-AUC (+0.044) yet hurt 2023+ temporal accuracy (−0.020 ROC-AUC). `make acceptance ISSUE=22` passes.
