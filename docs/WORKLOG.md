@@ -10,7 +10,7 @@ Add an entry at the **top** at the end of each session, 5–10 lines. Link to no
 ---
 
 ## 2026-11-19 (evening) · Eugene (P4) · `p4/65-app-inputs-cleanup`
-**Did:** Trimmed the borrower app to exactly the scorer's model inputs: removed the phone field (`customer_id` is never a model input) and the date picker (applications are scored today); added *days since missed repayment* when missed > 0, so a past default is no longer scored as clean; amount slider range per market (GHS 50–10,000, KES 500–50,000, defaults near each median); lender and product dropdowns no longer accept free text.
+**Did:** Made the borrower app Ghana-only (NkwaPay's market): no market toggle, amounts in GHS, lender and product lists taken from Ghanaian loans (5 lenders, 3 products; most are unseen in training and stay tagged). Trimmed it to exactly the scorer's model inputs: removed the phone field (`customer_id` is never a model input) and the date picker (applications are scored today); added *days since missed repayment* when missed > 0, so a past default is no longer scored as clean; amount slider range per market (GHS 50–10,000, KES 500–50,000, defaults near each median); lender and product dropdowns no longer accept free text.
 **Next:** Bernard reviews. **Watch out:** history assumes every earlier loan has reached its due date (`n_past_labelled = n_past_loans`).
 
 ## 2026-11-19 (late night) · Bernard (P3) · `p3/22-interpretation` (#22)

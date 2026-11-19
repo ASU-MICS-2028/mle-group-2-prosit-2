@@ -6,7 +6,8 @@ The app never re-implements features, thresholds or the decision rule. It builds
 scorer documents (`src.serving.REQUIRED_APPLICATION_FIELDS`) and displays what comes back:
 decision (approve / limit / starter / decline), recommended_limit, currency, borrower_reasons (shown to the
 borrower), top_3_reasons and review_flags (credit team only).
-Inputs are exactly what the model uses: the borrower picks amount and term; NkwaPay-side fields (market, borrower
+Ghana only (NkwaPay's market): amounts in GHS; lender and product lists are those used by Ghanaian loans.
+Inputs are exactly what the model uses: the borrower picks amount and term; NkwaPay-side fields (borrower
 history, lender, product) sit in the demo-controls panel. The date is today; customer_id is an identifier only.
 """
 import base64
@@ -26,21 +27,25 @@ from src.training.artifacts import CLF_ARTIFACT, REG_ARTIFACT  # noqa: E402
 LIVE = (C.ARTIFACTS / CLF_ARTIFACT).exists() and (C.ARTIFACTS / REG_ARTIFACT).exists()
 
 
-FALLBACK = {"loan_type": ({"Type_1"}, {"Type_1", "Type_3", "Type_8"}), "lender_id": ({"267278"}, {"267278"})}
+COUNTRY, CUR = "Ghana", "GHS"
+AMOUNT = (50, 10_000, 50, 3_000)  # slider min, max, step, default (median Ghanaian loan is about GHS 3,000)
+# Used only if the data files are not downloaded: Ghana's values from Test.csv, most common first (EDA §8).
+FALLBACK = {"lender_id": (["296542", "297183", "296540", "297182", "245684"], {"296542", "297183", "296540", "297182"}),
+            "loan_type": (["Type_3", "Type_2", "Type_8"], {"Type_3", "Type_8"})}
 
 
 @st.cache_data
 def catalogue(col: str) -> tuple[list[str], set[str]]:
-    """Every value of `col` in Train + Test, and those the model never saw in training (Test-only, i.e. Ghana)."""
+    """Values of `col` used by Ghanaian loans (most common first), and those the model never saw in training."""
     import pandas as pd
 
     try:
         train = set(pd.read_csv(C.TRAIN_CSV, usecols=[col])[col].astype(str))
-        test = set(pd.read_csv(C.TEST_CSV, usecols=[col])[col].astype(str))
-    except FileNotFoundError:  # data not downloaded: fall back to what the EDA documented
-        train, test = FALLBACK[col]
-    every = sorted(train | test, key=lambda v: (len(v), v))
-    return every, test - train
+        test = pd.read_csv(C.TEST_CSV, usecols=[col, "country_id"]).astype(str)
+    except FileNotFoundError:
+        return FALLBACK[col]
+    ghana = test.loc[test["country_id"] == COUNTRY, col].value_counts().index.tolist()
+    return ghana, set(ghana) - train
 
 
 # Stylised Adinkra symbols for the page background (simplified line drawings, not exact reproductions):
@@ -67,8 +72,6 @@ PATTERN = f'url("data:image/svg+xml,{quote(TILE)}")'
 
 HERO_IMG = base64.b64encode((Path(__file__).parent / "assets" / "hero.png").read_bytes()).decode()
 
-# country, currency, amount slider (min, max, step, default ~ median loan in the data)
-MARKETS = {"🇬🇭 Ghana": ("Ghana", "GHS", (50, 10_000, 50, 3_000)), "🇰🇪 Kenya": ("Kenya", "KES", (500, 50_000, 500, 5_000))}
 
 st.set_page_config(page_title="NkwaPay · Quick loan", page_icon="💚", layout="wide")
 st.markdown(f"<style>.stApp {{background-color:#F4F7F5; background-image:{PATTERN};}}</style>",
@@ -99,12 +102,6 @@ st.markdown(
             color: #053B2D !important; -webkit-text-fill-color: #053B2D !important; font-weight: 600;}
       .st-key-controls [data-testid="stNumberInput"] button {background: #ECFDF5 !important;}
       .st-key-controls svg {fill: #047857 !important; color: #047857 !important;}
-      .st-key-controls [data-testid="stButtonGroup"] button {
-            background: rgba(255,255,255,.08); border: 1px solid rgba(167,243,208,.25); border-radius: 14px;
-            padding: .6rem 1.2rem; min-height: 46px; font-size: 1rem;}
-      .st-key-controls [data-testid="stButtonGroup"] {gap: .5rem;}
-      .st-key-controls [data-testid="stButtonGroup"] button[kind$="Active"] {
-            background: #10B981; border-color: #10B981;}
       .st-key-controls hr {border-color: rgba(167,243,208,.2);}
       .sb-brand {display:flex; align-items:center; gap:.6rem; margin:.2rem 0 .3rem;}
       .sb-logo {width:36px; height:36px; border-radius:11px; background:#10B981; display:flex; align-items:center;
@@ -182,10 +179,6 @@ with ctrl, st.container(key="controls"):
         <div class="sb-sub">In production these come from NkwaPay's records, not the borrower.</div>""",
         unsafe_allow_html=True,
     )
-    st.markdown('<div class="sb-section">Market</div>', unsafe_allow_html=True)
-    market = st.segmented_control("Market", list(MARKETS), default="🇬🇭 Ghana", label_visibility="collapsed") or "🇬🇭 Ghana"
-    country, cur, amount_range = MARKETS[market]
-
     st.markdown('<div class="sb-section">Borrower record</div>', unsafe_allow_html=True)
     first_time = st.toggle("First-time borrower", value=False)
     tenure = "New Loan" if first_time else "Repeat Loan"
@@ -204,8 +197,7 @@ with ctrl, st.container(key="controls"):
 
     st.markdown('<div class="sb-section">Loan setup</div>', unsafe_allow_html=True)
     lenders, unseen_lenders = catalogue("lender_id")
-    lender_id = st.selectbox("Funding lender", lenders,  # default: the main lender (94% of Train)
-                             index=lenders.index("267278") if "267278" in lenders else 0,
+    lender_id = st.selectbox("Funding lender", lenders,  # default: Ghana's most common lender
                              format_func=lambda v: f"{v} · unseen in training" if v in unseen_lenders else v)
     types, unseen = catalogue("loan_type")
     loan_type = st.selectbox("Product", types,
@@ -223,9 +215,8 @@ with ctrl, st.container(key="controls"):
 with left:
     with st.form("apply"):
         st.markdown('<div class="label">How much do you need?</div>', unsafe_allow_html=True)
-        lo, hi, step, default = amount_range
-        amount = st.slider("Amount", lo, hi, default, step=step, format=f"{cur} %d", label_visibility="collapsed",
-                           key=f"amount_{cur}")
+        lo, hi, step, default = AMOUNT
+        amount = st.slider("Amount", lo, hi, default, step=step, format=f"{CUR} %d", label_visibility="collapsed")
         st.markdown('<div class="label">Pay back in</div>', unsafe_allow_html=True)
         duration = st.segmented_control("Term", [7, 14, 30, 60, 90], default=7, format_func=lambda d: f"{d} days",
                                         label_visibility="collapsed")
@@ -243,7 +234,7 @@ with right:
     else:
         application = {
             "customer_id": "app",  # an identifier only; the model never sees it
-            "country_id": country,
+            "country_id": COUNTRY,
             "lender_id": str(lender_id).strip(),
             "loan_type": str(loan_type).strip(),
             "Total_Amount": float(amount),
