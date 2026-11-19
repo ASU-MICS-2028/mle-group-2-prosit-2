@@ -1,6 +1,6 @@
 # Progress dashboard
 
-**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-17 by Henry (PR #62).
+**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-18 by Eugene (PR #64, `p4/54-transfer-fairness-audit`).
 
 Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 
@@ -13,7 +13,7 @@ Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 | A | Explore Train/Test structure | Perfect | ✅ `notebooks/01_eda.ipynb` §1-5, merged (#38, #39) |
 | A | Explore the target | Henry | ✅ `src/analysis/target_eda.py` + `python -m scripts.run_target_eda` (tables in `reports/tables/eda_target_*.csv`) |
 | A | Explore amounts/durations (P3 slice) | Bernard | 🟨 amounts, terms, leakage and history in `reports/EDA_REPORT.md` §4-6 (PR #57); leak-suspect ruling at Part A session |
-| A | Explore Ghana and context files (P4 slice) | Eugene | 🟨 Kenya vs Ghana, macro and Findex in `reports/EDA_REPORT.md` §8-10 (PR #57); Eugene to interpret for Part C/D |
+| A | Explore Ghana and context files (P4 slice) | Eugene | ✅ EDA §8-10 (PR #57), interpreted in `04` §2.1 and §4 |
 | A | Timeline, label, feature audit table | Perfect + Henry | 🟨 label, window and decision moment in `02_classification` §0 (PR #60); audit table drafted (`docs/feature_audit.md`); timeline drawing to do |
 | A | Two tasks + cost matrix in cedis/shillings | Henry | ✅ tasks and goal in `02` §0; cedis from Ghana's loans in §9b (D-22): p\* 0.036, approve 88.6%, −44% expected loss (PR #60). Team config still KES (D-19) |
 | B | Shared feature file and fold splits | Perfect | ✅ merged (#39); Henry's baseline already uses it |
@@ -25,9 +25,10 @@ Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 | B | MLP | Henry | ✅ ROC-AUC 0.867, PR-AUC 0.209; by time 0.649 (was 0.48 with macro columns) |
 | B | Models, validation study, calibration, CIs | per [Team & Ownership](../README.md#team--ownership) | ✅ all 16 models run (`reports/tables/`); calibration (Platt, ECE 0.30 → 0.002) and customer-level CIs in `02_classification` §8–10 (added by Bernard) |
 | B | Calibration over time (#55) | Henry | ✅ pre-2023 calibration under-predicts 2024 risk by half (LogReg 4.5% vs 8.7%); recalibrating on 2023 halves ECE but puts every 2024 applicant above break-even; recalibrate + monthly monitoring (D-24, PR #61) |
-| C | Kenya → Ghana transfer study | Eugene | 🟥 `04` is an AI draft (PR #46) Eugene must own; helpers in `src/evaluation/shift.py` |
-| D | Model Card, Datasheet, fairness, regulation, Findex | Eugene | 🟥 not started by Eugene; helpers in `src/evaluation/fairness.py` |
+| C | Kenya → Ghana transfer study | Eugene | 🟨 `04` §2 rebuilt (domain classifier in 5 variants, importance weights, scorer on Ghana, pilot plan); in review |
+| D | Model Card, Datasheet, fairness, regulation, Findex | Eugene | 🟨 `04` §3–4 and `docs/audit/` written; in review. Act 843/726 section numbers to confirm |
 | E | Scoring service, reason codes | Bernard | 🟨 #30 bugs fixed in PR #47 (Ghana limit currency, 0% risk, false reasons, review flags); latency median 44 ms, p95 75 ms |
+| E | Borrower app over the scorer | Eugene | 🟨 `app/streamlit_app.py` calls `score_application`; shows approve/limit/starter/decline, borrower reasons, credit-team panel (#65, branch `p4/65-borrower-app`, stacked on PR #64) |
 | Final | Report, audit, slides, reflections, AI declaration | all | ⬜ |
 
 Per-issue progress is on GitHub (Roadmap issue #1). Closed on 2026-11-17 with evidence: #3, #4, #5, #12, #14. Reopened: #30 (scorer bugs, now fixed in PR #47).
@@ -45,6 +46,7 @@ Per-issue progress is on GitHub (Roadmap issue #1). Closed on 2026-11-17 with ev
 | 2026-11-17 | Bernard | Restructured `src/` into packages + `scripts/`, `configs/`, `reports/`; fixed scorer bugs (D-18, D-19); restored and completed Henry's `02` (§7–10); ran all 16 models | PR #47 |
 | 2026-11-16 | Bernard | Shared `src/` pipeline, `tests/` CI guardrails, `Makefile`, streamlined README | PR #46 |
 | 2026-11-10 | Henry | Logistic regression (raw + shared + Lightning) and MLP + temporal check | `notebooks/02_classification.ipynb`, `docs/learning/`, PRs #40, #41 |
+| 2026-11-18 | Eugene | `04` rebuilt on the shipped scorer; cedi cost matrix (D-28); starter loan and borrower reasons in the scorer (D-26); audit docs, boosting derivation, fairness/shift helpers + 18 tests; D-25 to D-28 | `04`, `docs/audit/`, `docs/derivations/boosting.md`; branch `p4/54-transfer-fairness-audit` |
 | 2026-11-17 | Henry | Problem framing, Ghana cost matrix in cedis, conclusions; verified calibration and CIs; D-7, D-22 | `02_classification` §0, §9b, §11; `src/evaluation/cost_matrix.py`; PR #60 |
 | 2026-11-17 | Henry | Calibration over time (#55): stale vs recalibrated Platt on 2023+ loans, quarterly monitoring, recommendation (D-24) | `02_classification` §11, PR #61 |
 | 2026-11-17 | Henry | Logistic regression derivation: log-odds → likelihood → BCE → gradient, `pos_weight`, convexity; 4 autograd tests | `docs/derivations/logistic.md`, `tests/test_logistic_derivation.py`, PR #62 |
@@ -57,9 +59,10 @@ Findings so far:
 - Defaulters get cut off (3.5% ever get another loan), so labels cover only approved borrowers.
 - Logistic regression on shared features: ROC-AUC 0.844, PR-AUC 0.180; MLP 0.867 / 0.209 (Henry, `02`, D-18 feature list).
 - Naive random folds inflate scores: LightGBM PR-AUC 0.303 random vs 0.195 by customer vs 0.148 by time (2023+). Best by customer: MLP 0.207, Random Forest 0.204. On 2023+ loans every model drops to ROC-AUC 0.56–0.65.
-- Draft cost matrix (D-19): declining a good borrower costs 88 KES, approving a default 4,449 KES, so the cost threshold is 0.019 and the MLP approves 79%; with 6 future loans lost per wrong decline the threshold is 0.106.
+- (Superseded by D-28.) Draft cost matrix (D-19): declining a good borrower costs 88 KES, approving a default 4,449 KES, so the cost threshold is 0.019 and the MLP approves 79%; with 6 future loans lost per wrong decline the threshold is 0.106.
 - Task 1 (USD): every model beats the mean on the log scale (LightGBM R² 0.21 by customer, 0.61 by time), but on dollars the linear models are worse than the mean; trees are best.
-- Kenya vs Ghana is almost perfectly separable (domain AUC 0.996) even on behaviour, mainly because no Ghana customer has labelled history (`n_past_labelled` is 0 for all of Ghana): a data artefact Eugene must report in Part C.
+- Kenya vs Ghana is almost perfectly separable (domain AUC 0.997). Without the label-history artefact (`n_past_labelled` is 0 for all of Ghana) it is still 0.985, so importance weighting is unusable (ESS share 0.04, D-27) (`04` §2.2).
+- Team cost matrix is now cedis with 3 future loans lost (D-28): threshold 0.10, 97.5% of Kenyan applicants approved. First-time borrowers 49% vs 98%; the scorer's 25% starter loan up to p 0.30 lifts them to 81% for GHS 18 per first-time applicant (D-26, `04` §3.4). No Ghanaian is approved in full (`04` §2.3).
 - The deployed calibrated logistic regression under-predicts new borrowers (2.2% for a profile whose real rate is 5.7%).
 
 ## What's left, in order
@@ -68,7 +71,7 @@ Findings so far:
 2. **Henry:** personal reflection (#37); agree with Bernard and Eugene whether the team config switches to the D-22 cedi costs.
 3. **Perfect:** finish `01_eda`, the unseen-category preprocessor (D-5), baselines, kNN, SVM and the SVM derivation.
 4. **Bernard:** get PR #47 reviewed and merged; #7 amounts/leak-suspect EDA, Task 2 decision tree (#17), linear regression derivation, final scorer model.
-   **Eugene:** take ownership of `04` (fix the 4 issues listed at its top), Model Card, Datasheet, regulatory map, proxy analysis, mitigation.
+   **Eugene:** get the `04` + audit PR reviewed (Bernard); confirm Act 843/726 section numbers; personal reflection.
 5. Report, audit, slides, reflections, AI-use declaration.
 6. **Deadline: 19 Nov 2026.**
 
@@ -77,7 +80,7 @@ Findings so far:
 | # | Severity | Item | Next step |
 | --- | --- | --- | --- |
 | 1 | 🟧 | **Deadline confirmed: 19 Nov 2026.** The brief's Nov 2–6 dates are superseded. Nine days left as of 2026-11-10 | Plan backwards from 19 Nov: models and results by about 15 Nov, report, audit and slides after |
-| 2 | 🟥 | **Eugene (P4) has no commits; all of Part C/D so far is an AI draft (PR #46).** Parts C and D are 20+ points | Eugene owns `04` and `docs/audit/` today; deadline 19 Nov |
+| 2 | 🟨 | Cost matrix switched to cedis, 3 lost loans (D-28); committed `reports/` tables and `02`/`03` outputs predate it | Re-run `make all`, `02` and `03` after the PR merges |
 | 2b | 🟧 | PR #46 was merged without review and rewrote Henry's notebook (since restored, D-20) | Branch protection on `main`; every PR reviewed by the rotation |
 | 3 | 🟨 | Review rotation: P1→P2→P3→P4→P1 (Perfect reviews Henry, Henry reviews Bernard, Bernard reviews Eugene, Eugene reviews Perfect) | Confirm everyone has repo access and is assigned issues |
 | 4 | 🟧 | D-2 to D-6 are drafts (D-7 decided in PR #60), yet results depend on them | Hold the Part A session; mark each decided or changed |
@@ -90,6 +93,8 @@ Findings so far:
 
 | Date | Who | Did | Next |
 | --- | --- | --- | --- |
+| 2026-11-18 | Eugene | Borrower app wired to the live scorer; app smoke test | Merge after PR #64 |
+| 2026-11-18 | Eugene | `04` rebuilt (#54); cedi cost matrix (D-28); starter loan + borrower reasons in the scorer (D-26); `docs/audit/`; boosting derivation; 18 tests | Bernard reviews; re-run `02`/`03`/`make all` on the cedi config |
 | 2026-11-17 | Henry | Logistic regression derivation with autograd check (`docs/derivations/logistic.md`, #32, PR #62) | Reflection (#37) |
 | 2026-11-17 | Henry | Calibration over time on 2023+ loans and recalibration plan, `02` §11 (#55, PR #61) | Derivation (#32); reflection |
 | 2026-11-17 | Bernard | Acceptance test per issue + Action that blocks unfinished closes (D-23) | Owners close issues whose checks pass |

@@ -14,7 +14,7 @@ from .. import config as C
 from ..processing import get_feature_lists
 from .reasons import explain
 from .schema import exchange_rate
-from .scorer import load_bundle
+from .scorer import decide, load_bundle
 
 
 def score_frame(
@@ -47,7 +47,8 @@ def score_frame(
     requested = np.expm1(features["log_amount_local"].to_numpy())
 
     threshold = float(clf["threshold"])
-    decision = np.where(prob > threshold, "decline", np.where(requested > limit_local, "limit", "approve"))
+    decision, offered = decide(prob, requested, limit_local, features["is_new_borrower"].to_numpy(), threshold,
+                               clf.get("starter_loan"))
 
     out = pd.DataFrame(
         {
@@ -58,6 +59,7 @@ def score_frame(
             "decision": decision,
             "requested_local": requested,
             "limit_local": np.where(decision == "decline", 0.0, limit_local),
+            "offered_local": offered,
             "limit_usd": limit_usd,
         },
         index=features.index,

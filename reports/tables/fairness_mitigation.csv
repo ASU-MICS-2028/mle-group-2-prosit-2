@@ -1,0 +1,5 @@
+stage,group,approval,pr_auc,f1,defaults_approved,expected_cost_per_applicant_GHS
+before,new,0.487,0.569,0.502,16,157.771
+before,repeat,0.979,0.127,0.177,912,37.148
+after,new,0.813,0.569,0.622,49,175.469
+after,repeat,0.979,0.127,0.177,912,37.148

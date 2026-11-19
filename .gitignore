@@ -19,3 +19,6 @@ __pycache__/
 .ruff_cache/
 .ipynb_checkpoints/
 .DS_Store
+
+# course brief (local only)
+Context.pdf

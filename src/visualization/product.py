@@ -7,16 +7,16 @@ import pandas as pd
 
 
 def plot_decision_mix(scores: pd.DataFrame, by: str = "country_id", ax=None):
-    """Share of approve / limit / decline per group."""
+    """Share of approve / limit / starter / decline per group."""
     if ax is None:
         fig, ax = plt.subplots(figsize=(6, 4))
     else:
         fig = ax.figure
-    t = pd.crosstab(scores[by], scores["decision"], normalize="index").reindex(columns=["approve", "limit", "decline"], fill_value=0)
+    t = pd.crosstab(scores[by], scores["decision"], normalize="index").reindex(columns=["approve", "limit", "starter", "decline"], fill_value=0)
     counts = scores[by].value_counts()
     labels = [f"{g}\n(n={counts[g]:,})" for g in t.index]
     bottom = np.zeros(len(t))
-    for col, color in zip(t.columns, ["#2e8b57", "#e0a224", "#c0392b"]):
+    for col, color in zip(t.columns, ["#2e8b57", "#e0a224", "#3a7bd5", "#c0392b"]):
         vals = t[col].to_numpy() * 100
         ax.bar(labels, vals, bottom=bottom, label=col, color=color, width=0.6)
         for x, (v, b) in enumerate(zip(vals, bottom)):

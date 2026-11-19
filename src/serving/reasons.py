@@ -62,6 +62,12 @@ REASON_TEMPLATES: dict[str, tuple[str, str]] = {
 NEVER_SHOWN = {"disb_month", "disb_dow", "disb_dom", "Lender_portion_Funded", "n_lenders_on_loan"}
 FALLBACK_REASON = "Your overall application profile"
 
+# Borrower-facing wording (docs/audit/decline_explanation.md): the borrower does not choose the funding lender,
+# so that reason is reworded as a product suggestion, and the filler reason is never shown to them.
+BORROWER_WORDING = {
+    REASON_TEMPLATES["lender_id"][0]: "This loan product carries more risk for us; a different product may suit you",
+}
+
 # A blank history field means "no such event yet", so credit its missing-indicator to the event itself:
 # no previous loan -> first-time borrower; no previous default -> no missed repayments.
 MISSING_MEANS = {
@@ -146,6 +152,16 @@ def top_reasons(
     while len(reasons) < top_k:
         reasons.append(FALLBACK_REASON)
     return reasons
+
+
+def borrower_reasons(reasons: list[str]) -> list[str]:
+    """The reasons as shown to the borrower: lender reasons reworded, filler dropped (may be fewer than 3)."""
+    out = []
+    for r in reasons:
+        text = BORROWER_WORDING.get(r, r)
+        if r != FALLBACK_REASON and text not in out:
+            out.append(text)
+    return out
 
 
 def explain(pipe: Any, X_row: pd.DataFrame, decision: str, top_k: int = 3, x_trans=None) -> list[str]:

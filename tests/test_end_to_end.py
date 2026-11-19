@@ -64,7 +64,7 @@ def test_scorer_artifacts_load_and_score_both_countries(trained, features) -> No
     ghana = score_application({**base, "country_id": "Ghana", "lender_id": "NEW", "loan_type": "Type_3", "Total_Amount": 500.0})
     for res in (kenya, ghana):
         assert 0 < res["probability_of_default"] < 1
-        assert res["decision"] in {"approve", "limit", "decline"}
+        assert res["decision"] in {"approve", "limit", "starter", "decline"}
         assert len(res["top_3_reasons"]) == 3
     assert not kenya["needs_review"] and ghana["needs_review"]
     assert (kenya["currency"], ghana["currency"]) == ("KES", "GHS")
