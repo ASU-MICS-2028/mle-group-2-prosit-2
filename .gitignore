@@ -22,3 +22,6 @@ __pycache__/
 
 # course brief (local only)
 Context.pdf
+
+# presentation slides (local only)
+slides/

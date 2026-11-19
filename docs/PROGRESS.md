@@ -14,7 +14,7 @@ Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 | A | Explore the target | Henry | ✅ `src/analysis/target_eda.py` + `python -m scripts.run_target_eda` (tables in `reports/tables/eda_target_*.csv`) |
 | A | Explore amounts/durations (P3 slice) | Bernard | ✅ amounts, terms, leakage and history in `reports/EDA_REPORT.md` §4–6 (PR #57); leak-suspect ruling D-2 decided (#7) |
 | A | Explore Ghana and context files (P4 slice) | Eugene | ✅ EDA §8-10 (PR #57), interpreted in `04` §2.1 and §4 |
-| A | Timeline, label, feature audit table | Perfect + Henry | 🟨 timeline drawn (`reports/figures/part_a_loan_timeline.png`, PR pending); label, window and decision moment in `02_classification` §0 (PR #60); audit table drafted (`docs/feature_audit.md`). All three await confirmation at the Part A session: agenda in `docs/PART_A_SESSION.md` |
+| A | Timeline, label, feature audit table | Perfect + Henry | ✅ timeline (`reports/figures/part_a_loan_timeline.png`), label (`02_classification` §0), feature audit (`docs/feature_audit.md`), and confirmed Part A rulings D-2..D-7, D-13, D-14, D-18 in `docs/part_a.md` (#9) |
 | A | Two tasks + cost matrix in cedis/shillings | Henry | ✅ tasks and goal in `02` §0; cedis from Ghana's loans in §9b (D-22): p\* 0.036, approve 88.6%, −44% expected loss (PR #60). Team config still KES (D-19) |
 | B | Shared feature file and fold splits | Perfect | ✅ merged (#39); Henry's baseline already uses it |
 | B | Preprocessor for unseen lenders and loan types (D-5) | Perfect + Bernard | ✅ `src/processing/preprocess.py` (PR #46; target scaler clipped in PR #47) |
@@ -48,7 +48,7 @@ Per-issue progress is on GitHub (Roadmap issue #1). Closed on 2026-11-17 with ev
 | 2026-11-17 | Bernard | Restructured `src/` into packages + `scripts/`, `configs/`, `reports/`; fixed scorer bugs (D-18, D-19); restored and completed Henry's `02` (§7–10); ran all 16 models | PR #47 |
 | 2026-11-16 | Bernard | Shared `src/` pipeline, `tests/` CI guardrails, `Makefile`, streamlined README | PR #46 |
 | 2026-11-10 | Henry | Logistic regression (raw + shared + Lightning) and MLP + temporal check | `notebooks/02_classification.ipynb`, `docs/learning/`, PRs #40, #41 |
-| 2026-11-19 | Bernard | Confirmed leak-suspect ruling D-2 (`decided, implemented`) in `docs/DECISIONS.md` backed by `reports/EDA_REPORT.md` §4–6 & `docs/feature_audit.md` (#7) | `docs/DECISIONS.md`, `reports/EDA_REPORT.md` |
+| 2026-11-19 | Bernard | Confirmed Part A rulings (D-2..D-6, D-13, D-14, D-18 marked `decided`), wrote consolidated `docs/part_a.md`, updated `docs/feature_audit.md` & `docs/LEARNING_OUTCOMES.md` (#7, #9) | `docs/part_a.md`, `docs/DECISIONS.md`, `docs/feature_audit.md`, `reports/EDA_REPORT.md` |
 | 2026-11-19 | Bernard | Built 10-slide executive debrief deck (`slides/NkwaPay_Prosit2_Debrief.pptx`) + run-of-show & 12-question mock Q&A (`slides/SPEAKER_NOTES.md`), and upgraded interpretation charts with plain-English labels and non-overlapping legends (#36) | `slides/`, `src/visualization/interpretation.py`, `reports/figures/interp_*.png` |
 | 2026-11-19 | Bernard | Polished `03_regression.ipynb` narrative to match `01_eda.ipynb`'s plain-English question/`**Reading:**`/summary breakdown style and re-executed end-to-end (Refs #17) | `notebooks/03_regression.ipynb` |
 | 2026-11-19 | Bernard | Plain-language model interpretation (`docs/interpretation.md`): deployed LogReg coefficients, LightGBM SHAP, period-marker finding, #52 ablation synthesis, and reason-code mapping (#22) | `docs/interpretation.md` |
@@ -98,7 +98,7 @@ Findings so far:
 | 2 | 🟨 | Cost matrix switched to cedis, 3 lost loans (D-28); committed `reports/` tables and `02`/`03` outputs predate it | Re-run `make all`, `02` and `03` after the PR merges |
 | 2b | 🟧 | PR #46 was merged without review and rewrote Henry's notebook (since restored, D-20) | Branch protection on `main`; every PR reviewed by the rotation |
 | 3 | 🟨 | Review rotation: P1→P2→P3→P4→P1 (Perfect reviews Henry, Henry reviews Bernard, Bernard reviews Eugene, Eugene reviews Perfect) | Confirm everyone has repo access and is assigned issues |
-| 4 | 🟧 | D-2 to D-6 are drafts (D-7 decided in PR #60), yet results depend on them | Hold the Part A session; mark each decided or changed |
+| 4 | ✅ | D-2 to D-6, D-13, D-14, D-18 confirmed `decided` in `docs/DECISIONS.md` and `docs/part_a.md` (#7, #9) | Complete |
 | 9 | 🟨 | `pytest tests/` segfaults on macOS (LightGBM/PyTorch OpenMP clash); Linux CI passes | Mac users run tests in CI or with Linux; fix the import order in `tests/` |
 | 5 | 🟧 | Raw data is git-ignored; each person downloads the zips | See Getting started |
 | 6 | 🟨 | Brief says key `TransactionId`; file uses `ID` | Use `ID`; note in report |
@@ -108,7 +108,7 @@ Findings so far:
 
 | Date | Who | Did | Next |
 | --- | --- | --- | --- |
-| 2026-11-19 | Bernard | Confirmed D-2 leak-suspect ruling (`decided, implemented`) to close #7 (`reports/EDA_REPORT.md` §4–6, `docs/DECISIONS.md`) | Part A session remaining drafts (#9), branch protection (#56), reflection (#37) |
+| 2026-11-19 | Bernard | Confirmed Part A rulings (D-2..D-6, D-13, D-14, D-18 `decided`) and wrote `docs/part_a.md` to close #7 and #9 | Branch protection (#56), individual reflections (#37) |
 | 2026-11-19 | Eugene | Borrower app production-shaped: number + amount + term; history, lender, product looked up from records; Ghana only (GHS) | Bernard reviews |
 | 2026-11-19 | Eugene | Act 843 section numbers in the regulatory map (incl. s.41 contract exemption, s.18(2) foreign data subjects); `04` re-run after D-30 | Reflection (submitted separately); Act 726 numbers |
 | 2026-11-18 | Eugene | Borrower app wired to the live scorer; app smoke test | Merge after PR #64 |
