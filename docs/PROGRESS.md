@@ -1,6 +1,6 @@
 # Progress dashboard
 
-**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-19 by Perfect (branch `p1/34-report-data-section`, not yet merged).
+**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-19 by Bernard (branch `p3/32-linear-derivation`).
 
 Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 
@@ -21,7 +21,7 @@ Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 | B | Finish `01_eda`: missing values, skew, cardinality | Perfect | 🟨 §6 added: links `reports/EDA_REPORT.md`, re-derives its headline numbers, records 2 corrections (branch `p1/32-svm-derivation`, awaiting review); issue #48 to close after review |
 | B | Perfect's models: baselines, kNN, SVM | Perfect | 🟨 trained in the full run (`reports/tables/task2_model_summary.csv`); explained in `docs/learning/P1_models_explained.md` (branch `p1/32-svm-derivation`, awaiting review); issue #15 to close after review |
 | Deliverable | Report: data, leakage, features and validation section (#34) | Perfect | 🟨 `docs/report/p1_data_section.md` drafted (branch `p1/34-report-data-section`); Bernard assembles the report |
-| B | SVM derivation (#32) | Perfect | 🟨 `docs/derivations/svm.md` + 8 passing tests on branch `p1/32-svm-derivation`; awaiting review. Issue stays open until all four derivations exist (linear regression missing) |
+| B | Four derivations (#32): SVM, logistic, linear, boosting | all | ✅ all four complete (`docs/derivations/{svm,logistic,linear,boosting}.md`) with numerical tests against scikit-learn / PyTorch (`tests/test_*_derivation.py`) |
 | B | Shared train/evaluate scripts, Lightning DataModule | Henry + Bernard | ✅ PR #46, restructured in PR #47: `src/models/`, `src/training/`, `src/evaluation/`, `scripts/`, 41 tests |
 | B | Logistic regression (scikit-learn + Lightning) | Henry | ✅ ROC-AUC 0.844, PR-AUC 0.180 on the D-18 feature list (was 0.845 / 0.170) |
 | B | MLP | Henry | ✅ ROC-AUC 0.867, PR-AUC 0.209; by time 0.649 (was 0.48 with macro columns) |
@@ -48,6 +48,7 @@ Per-issue progress is on GitHub (Roadmap issue #1). Closed on 2026-11-17 with ev
 | 2026-11-17 | Bernard | Restructured `src/` into packages + `scripts/`, `configs/`, `reports/`; fixed scorer bugs (D-18, D-19); restored and completed Henry's `02` (§7–10); ran all 16 models | PR #47 |
 | 2026-11-16 | Bernard | Shared `src/` pipeline, `tests/` CI guardrails, `Makefile`, streamlined README | PR #46 |
 | 2026-11-10 | Henry | Logistic regression (raw + shared + Lightning) and MLP + temporal check | `notebooks/02_classification.ipynb`, `docs/learning/`, PRs #40, #41 |
+| 2026-11-19 | Bernard | Linear regression derivation (Gaussian MLE → normal equations → Ridge MAP) + 5 numerical tests vs scikit-learn & PyTorch (#32) | `docs/derivations/linear.md`, `tests/test_linear_derivation.py` |
 | 2026-11-19 | Perfect | Report section for #34: data, leakage audit, time-safe features, three validation schemes with the inflation numbers, baseline/kNN/SVM, limitations; two deliberate-bug runs re-confirm `validate()` fires | `docs/report/p1_data_section.md`, branch `p1/34-report-data-section` |
 | 2026-11-19 | Perfect | Part A prep (#9): loan timeline figure with a script, session agenda and decision sheet for the 8 open drafts, caveat on D-3's evidence, D-5 path fixed, feature audit links the figure | `docs/PART_A_SESSION.md`, `scripts/make_timeline_figure.py`, `reports/figures/part_a_loan_timeline.png`, branch `p1/9-part-a-session-prep` |
 | 2026-11-19 | Perfect | `01_eda` §6 (#48): report linked, numbers re-derived from raw data; found the report's "loans" columns count rows, and that two-lender loans' higher default rate is mostly a time effect; fixed the same claim in `01_eda` §1 | `notebooks/01_eda.ipynb`, branch `p1/32-svm-derivation` |
