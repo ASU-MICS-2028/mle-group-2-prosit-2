@@ -11,7 +11,7 @@
   <img alt="Tests" src="https://img.shields.io/badge/tests-163_passing-2e7d32?style=flat-square">
   <img alt="Models" src="https://img.shields.io/badge/models-16_trained-1f4e79?style=flat-square">
   <img alt="Figures" src="https://img.shields.io/badge/figures-47-1f4e79?style=flat-square">
-  <!-- status:badge --><img alt="Issues" src="https://img.shields.io/badge/issues-42_of_46_closed-d4a72c?style=flat-square"><!-- /status:badge -->
+  <!-- status:badge --><img alt="Issues" src="https://img.shields.io/badge/issues-43_of_46_closed-d4a72c?style=flat-square"><!-- /status:badge -->
   <img alt="Deadline" src="https://img.shields.io/badge/deadline-19_Nov_2026-b03a2e?style=flat-square">
 </p>
 
@@ -72,7 +72,7 @@ Generated from GitHub on **19 Nov 2026** by `scripts/update_readme.py` (the *REA
 | Part | Rubric | Closed | Still open |
 | --- | :---: | :---: | --- |
 | **Setup** | — | ![3/4](https://img.shields.io/badge/3%2F4-closed-d4a72c?style=flat-square) | [#56](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/56) |
-| **A · Frame the problem** | 10 pts | ![5/7](https://img.shields.io/badge/5%2F7-closed-d4a72c?style=flat-square) | [#7](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/7) ⏳ [#9](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/9) |
+| **A · Frame the problem** | 10 pts | ![6/7](https://img.shields.io/badge/6%2F7-closed-d4a72c?style=flat-square) | [#9](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/9) |
 | **B · Build & evaluate** | 30 + 20 pts | ![14/14](https://img.shields.io/badge/14%2F14-closed-2e7d32?style=flat-square) | — |
 | **C · Cross-market transfer** | in B, D | ![3/3](https://img.shields.io/badge/3%2F3-closed-2e7d32?style=flat-square) | — |
 | **D · Ethics & regulation** | 20 pts | ![7/7](https://img.shields.io/badge/7%2F7-closed-2e7d32?style=flat-square) | — |
@@ -117,7 +117,7 @@ Find your name, open each issue card and follow the steps. Every card says what 
 | :---: | --- | :---: | :---: | :---: | --- |
 | <img src="https://github.com/peaElorm.png?size=60" width="28"> | **Perfect Elorm Avugla** · Data & features | 0 | 0 | 0 | [Perfect's issues](#peaelorm) |
 | <img src="https://github.com/henryhkb.png?size=60" width="28"> | **Henry Kofi Brandoh** · Classification & evaluation | 0 | 0 | 0 | [Henry's issues](#henryhkb) |
-| <img src="https://github.com/adjeibernardmarfo.png?size=60" width="28"> | **Bernard Marfo Adjei** · Regression, deployment & project lead | 1 | 1 | 0 | [Bernard's issues](#adjeibernardmarfo) |
+| <img src="https://github.com/adjeibernardmarfo.png?size=60" width="28"> | **Bernard Marfo Adjei** · Regression, deployment & project lead | 0 | 0 | 0 | [Bernard's issues](#adjeibernardmarfo) |
 | <img src="https://github.com/eugene-sew.png?size=60" width="28"> | **Eugene** · Transfer & fairness | 0 | 0 | 0 | [Eugene's issues](#eugene-sew) |
 | 👥 | **Everyone** | 3 | 1 | 2 | [Shared issues](#everyone) |
 
@@ -150,30 +150,9 @@ All of this person's issues are closed. ✅
 
 <h3 id="adjeibernardmarfo"><img src="https://github.com/adjeibernardmarfo.png?size=60" width="32" align="center"> Bernard Marfo Adjei</h3>
 
-Regression, deployment & project lead · [adjeibernardmarfo](https://github.com/adjeibernardmarfo) · **1 open** · [Bernard's assigned issues on GitHub](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3Aadjeibernardmarfo)
+Regression, deployment & project lead · [adjeibernardmarfo](https://github.com/adjeibernardmarfo) · **0 open** · [Bernard's assigned issues on GitHub](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3Aadjeibernardmarfo)
 
-<details>
-<summary><img alt="a pull request for it is open" src="https://img.shields.io/badge/-in_review-1f4e79?style=flat-square"> <b>#7 · Explore amounts, durations and the two leak suspects</b></summary>
-
-| | |
-| --- | --- |
-| **What it is** | Explore amounts and terms, and rule on the two repayment columns. |
-| **Why it matters** | Rubric A (10 pts): leakage correctly identified |
-| **Already done** | EDA §4–5: amounts are heavy-tailed (log needed); the markup separates defaulters at AUC 0.98, so both columns are dropped (D-2). |
-| **Where to work** | `docs/DECISIONS.md` |
-| **How to run** | `make eda` |
-| **Done when** | D-2 is decided at the session; close. |
-| **Automated check** | The leak-suspect ruling (D-2) is decided, backed by the leakage section of the EDA report. Run `make acceptance ISSUE=7`; it also runs on every pull request that says `Closes #7` and when the issue is closed (a failing check reopens it). |
-| **Pull request** | [#80](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/pull/80) |
-
-**Steps**
-
-1. Present the ruling at the Part A session (#9) using `eda_leakage_univariate_auc.png` and `eda_markup_by_outcome.png`.
-2. Mark D-2 decided in `docs/DECISIONS.md`.
-
-[Open issue #7 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/7)
-
-</details>
+All of this person's issues are closed. ✅
 
 
 <h3 id="eugene-sew"><img src="https://github.com/eugene-sew.png?size=60" width="32" align="center"> Eugene</h3>
