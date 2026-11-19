@@ -31,10 +31,10 @@ At the debrief you must "explain, defend and reproduce your work without AI". If
 | ☐ | Work | Evidence | Owner |
 | --- | --- | --- | --- |
 | ✅ | Logistic regression: log-odds → likelihood → BCE → gradient, plus `pos_weight` and convexity; gradient checked against PyTorch autograd (`tests/test_logistic_derivation.py`) | `docs/derivations/logistic.md` (PR #62) | Henry |
-| ☐ | Linear regression: Gaussian MLE → normal equations (Ridge as MAP) | `docs/derivations/linear.md` | Bernard |
-| ✅ | SVM: widest street → hinge loss → Lagrangian → dual → RBF kernel; each claim checked against scikit-learn `SVC` on toy data (`tests/test_svm_derivation.py`, 8 tests) | `docs/derivations/svm.md` (branch `p1/32-svm-derivation`, not yet merged) |
+| ✅ | Linear regression: Gaussian MLE → normal equations (Ridge as MAP), checked against `LinearRegression`, `Ridge(alpha=10)` and PyTorch autograd (`tests/test_linear_derivation.py`, 5 tests) | `docs/derivations/linear.md` (#32) | Bernard |
+| ✅ | SVM: widest street → hinge loss → Lagrangian → dual → RBF kernel; each claim checked against scikit-learn `SVC` on toy data (`tests/test_svm_derivation.py`, 8 tests) | `docs/derivations/svm.md` (PR #67) | Perfect |
 | ✅ | Gradient boosting: functional gradient, pseudo-residuals, Newton leaf values, shrinkage; worked example checked numerically | `docs/derivations/boosting.md` | Eugene |
-| ☐ | Check each against scikit-learn on a small example | derivation notebook | author |
+| ✅ | Check each against scikit-learn / PyTorch on a small example | `tests/test_{logistic,svm,linear}_derivation.py`, `docs/derivations/boosting.md` | all |
 
 **Self-check:** Show ∂BCE/∂w = Xᵀ(σ(Xw) − y). Why is minimising BCE maximum likelihood? Why do normal equations fail with collinear features? What does `pos_weight ≈ 53.6` do?
 

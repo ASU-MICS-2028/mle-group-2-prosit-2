@@ -28,6 +28,6 @@
 - [ ] Swap in the final winning Task 2 & Task 1 models once team model comparison finishes, and record final median / p95 latency over 1,000 calls in `03_regression.ipynb` & report.
 
 **4 · Write up & Derivation (#32, #33, #34)**
-- [ ] `docs/derivations/linear.md`: Gaussian MLE -> normal equations -> Ridge (MAP), checked against scikit-learn.
+- [x] `docs/derivations/linear.md`: Gaussian MLE -> normal equations -> Ridge (MAP), checked against scikit-learn (`tests/test_linear_derivation.py`).
 - [ ] `03_regression.ipynb` runs top to bottom from a fresh kernel.
 - [ ] Regression + Deployment sections in Technical Report + individual reflection.

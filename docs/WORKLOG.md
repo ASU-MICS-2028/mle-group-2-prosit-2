@@ -9,6 +9,11 @@ Add an entry at the **top** at the end of each session, 5–10 lines. Link to no
 
 ---
 
+## 2026-11-19 (late night) · Bernard (P3) · `p3/32-linear-derivation` (#32)
+**Did:** Wrote `docs/derivations/linear.md` (Gaussian likelihood → OLS/MSE → gradient & convexity → normal equations → Ridge as MAP with Gaussian prior → connection to Lasso/`LitLinear` → why linear models beat `mean` on log USD but lose on dollar RMSE) and `tests/test_linear_derivation.py` (5 numerical checks against scikit-learn `LinearRegression`, `Ridge(alpha=10.0)`, and PyTorch autograd, plus collinearity condition-number reduction and Jensen's inequality).
+**Found:** All four derivations (`svm.md`, `logistic.md`, `linear.md`, `boosting.md`) are now complete and pass `make acceptance ISSUE=32`. Ridge (`alpha=10`) cuts `fold_group` dollar RMSE from $2,089 (OLS) to $1,745 (−16%) at almost zero cost in log RMSE (1.1094 → 1.1115).
+**Next:** Choose deployed models (#51), switch limit rule to high quantile (#53), add Task 2 decision tree to `03_regression` (#17), ablation (#52), and interpretation (#22).
+
 ## 2026-11-19 (night) · Perfect (P1) · `p1/34-report-data-section` (#34)
 **Did:** Drafted P1's section of the technical report, `docs/report/p1_data_section.md` (about 2 pages): data and the decision it supports, leakage audit, time-safe features, three validation schemes, baseline/kNN/SVM, limitations, with a sources list. Every number comes from committed tables or the EDA; none was newly estimated.
 **Found:** Random folds overstate LightGBM's PR-AUC by 55% (0.303 vs 0.195 by customer); logistic regression is barely affected (0.186 vs 0.175), so the inflation grows with model flexibility. By time every model's ROC-AUC is 0.56 to 0.65. Re-ran two deliberate bugs on the full feature build (exact-date matches allowed; outcomes counted before the due date): `validate()` caught both (`n_past_loans`, `n_past_labelled`).
