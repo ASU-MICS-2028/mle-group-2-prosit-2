@@ -262,13 +262,14 @@ def main() -> None:
         mean_p_default=("probability_of_default", "mean"),
         approve=("decision", lambda s: (s == "approve").mean()),
         limit=("decision", lambda s: (s == "limit").mean()),
+        starter=("decision", lambda s: (s == "starter").mean()),
         decline=("decision", lambda s: (s == "decline").mean()),
         needs_review=("needs_review", "mean"),
     ).reset_index()
     summ.to_csv(C.TABLES / "product_decisions_by_country.csv", index=False)
     reg.add(plot_decision_mix(scores), "app_decision_mix", "8. The product in use",
-            "Share of approve / limit / decline on Test applications, by country.",
-            "What the deployed rule would do: in Ghana nothing is fully approved, a sign the Kenyan model does not transfer.")
+            "Share of approve / limit / starter / decline on Test applications, by country.",
+            "What the deployed rule would do: in Ghana nothing is fully approved under the typical-amount limit, a sign the Kenyan model does not transfer.")
     reg.add(plot_score_distribution(scores, thr), "app_score_distribution", "8. The product in use",
             "Calibrated P(default) on Test applications, by country, with the threshold.", "Ghana scores sit higher and wider than Kenya's.")
     reg.add(plot_limit_vs_request(scores), "app_limit_vs_request", "8. The product in use",

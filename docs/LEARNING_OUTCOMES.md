@@ -22,7 +22,7 @@ At the debrief you must "explain, defend and reproduce your work without AI". If
 | ✅ | Preprocessor fitted on training rows only, inside every fold | `src/processing/preprocess.py`, `src/training/cross_validation.py` | P1/P2/P3 |
 | ✅ | One train script and one evaluate script for all models (16 models, 50 prediction files) | `scripts/train.py`, `scripts/evaluate.py`, `reports/tables/` | P2/P3 |
 | ☐ | A teammate reproduces results from a fresh clone | PR reviews | all |
-| 🟨 | Scorer: probability, decision, limit, top-3 reasons, review flags, latency (median 44 ms, p95 75 ms); final model choice pending | `src/serving/` | Bernard |
+| ✅ | Scorer: probability, decision, limit, top-3 reasons, review flags, latency (median 24 ms, p95 35 ms); deployed models decided (D-29: calibrated `logreg` + `lightgbm_reg`) | `src/serving/`, `docs/DECISIONS.md` (#51) | Bernard |
 
 **Self-check:** Where does leakage enter if the scaler sees validation rows? Why does a backward `merge_asof` keep history safe? Why reuse the training preprocessor at inference?
 

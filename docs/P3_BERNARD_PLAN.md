@@ -24,8 +24,8 @@
 **3 · Part E Scoring Service (#30, #31)**
 - [x] Implement `src/serving/` (`score_application`, `explain`, `benchmark_latency`, `REQUIRED_APPLICATION_FIELDS`).
 - [x] Fix #30 bugs: limit in local currency via USD, no macro extrapolation for Ghana (D-18), Platt calibration (never 0%), reasons a borrower can act on and that never contradict their record, `needs_review` flags.
-- [ ] The calibrated logistic regression under-predicts new borrowers (2.2% for a profile whose real rate is 5.7%, n=264): compare LightGBM / MLP as the deployed classifier.
-- [ ] Swap in the final winning Task 2 & Task 1 models once team model comparison finishes, and record final median / p95 latency over 1,000 calls in `03_regression.ipynb` & report.
+- [x] Compared `logreg`, `random_forest`, `lightgbm`, `lit_mlp` on GroupKFold CIs, temporal ROC-AUC, calibration by tenure, and single-call explain latency; recorded D-29 (#51).
+- [x] Refitted deployed bundle (`logreg` + `lightgbm_reg`) on D-28 cedi cost matrix + D-26 starter loan; regenerated `eval`, `figures`, and latency (median 24 ms, p95 35 ms over 1,000 calls).
 
 **4 · Write up & Derivation (#32, #33, #34)**
 - [x] `docs/derivations/linear.md`: Gaussian MLE -> normal equations -> Ridge (MAP), checked against scikit-learn (`tests/test_linear_derivation.py`).

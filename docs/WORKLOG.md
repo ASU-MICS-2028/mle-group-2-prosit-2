@@ -9,6 +9,11 @@ Add an entry at the **top** at the end of each session, 5–10 lines. Link to no
 
 ---
 
+## 2026-11-19 (late night) · Bernard (P3) · `p3/51-choose-deployed-models` (#51)
+**Did:** Recorded **D-29** in `docs/DECISIONS.md` choosing **Platt-calibrated logistic regression (`logreg`)** for Task 2 and **LightGBM (`lightgbm_reg`)** for Task 1. Refitted the scoring bundle on the D-28 cedi cost matrix (threshold 0.1006) and D-26 starter loan (`python -m scripts.train --save-artifacts --clf-artifact-model logreg --reg-artifact-model lightgbm_reg`), updated `scripts/make_figures.py` to record `starter` in `product_decisions_by_country.csv`, and regenerated `make eval`, `make figures`, and `make score`.
+**Found:** `logreg` overlaps `random_forest` and `lightgbm` on GroupKFold PR-AUC 95% CIs (0.175 [0.154, 0.199] vs 0.203 / 0.194), beats both on temporal 2023+ ROC-AUC (0.633 vs 0.619 / 0.582), matches `random_forest` on new-borrower calibration (−2.4 pp gap; `lightgbm` is −6.3 pp), and runs ~31× faster with exact linear reason codes (median 24 ms, p95 35 ms over 1,000 calls vs ~289 ms for RF TreeSHAP). All `reports/tables/` and 35 figures now reflect the D-28 cedi cost matrix.
+**Next:** Upgrade the Task 1 limit rule to an 85th-quantile cap (#53), add Task 2 decision tree to `03_regression` (#17), run ablation (#52), and write interpretation (#22).
+
 ## 2026-11-19 (late night) · Bernard (P3) · `p3/32-linear-derivation` (#32)
 **Did:** Wrote `docs/derivations/linear.md` (Gaussian likelihood → OLS/MSE → gradient & convexity → normal equations → Ridge as MAP with Gaussian prior → connection to Lasso/`LitLinear` → why linear models beat `mean` on log USD but lose on dollar RMSE) and `tests/test_linear_derivation.py` (5 numerical checks against scikit-learn `LinearRegression`, `Ridge(alpha=10.0)`, and PyTorch autograd, plus collinearity condition-number reduction and Jensen's inequality).
 **Found:** All four derivations (`svm.md`, `logistic.md`, `linear.md`, `boosting.md`) are now complete and pass `make acceptance ISSUE=32`. Ridge (`alpha=10`) cuts `fold_group` dollar RMSE from $2,089 (OLS) to $1,745 (−16%) at almost zero cost in log RMSE (1.1094 → 1.1115).
