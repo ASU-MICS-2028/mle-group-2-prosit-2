@@ -9,6 +9,11 @@ Add an entry at the **top** at the end of each session, 5–10 lines. Link to no
 
 ---
 
+## 2026-11-18 (later) · Eugene (P4) · `p4/65-borrower-app` (#65, stacked on PR #64)
+**Did:** Borrower Streamlit app (`app/streamlit_app.py`) now calls `src.serving.score_application`: approve / limit / starter / decline cards, `borrower_reasons` for the borrower, model reasons + review flags in a credit-team panel. Demo controls gained a lender dropdown (default 267278) and repeat-borrower history inputs. `streamlit` added to `requirements.txt` and the lock (no existing pins changed). `tests/test_app.py` renders the app headless.
+**Found:** Ghana repeat borrower, GHS 500 / 7 days → limit GHS 327; first-time → starter GHS 125; Type_14 → decline (p 0.75).
+**Next:** merge PR #64 first, then this one. **Watch out:** run `make features artifacts` before `streamlit run app/streamlit_app.py`.
+
 ## 2026-11-18 · Eugene (P4) · `p4/54-transfer-fairness-audit`
 **Did:** Rebuilt `04_transfer_and_fairness` on the restructured pipeline and fixed its four known problems (#54). Switched the team cost matrix to **cedis with 3 future loans lost** (D-28, threshold 0.10) and put the **starter loan** in the scorer (D-26): `decide()` in `src/serving/scorer.py`, shared by `score_application` and `score_frame`, new decision `starter`, `offered_local` in batch output; `borrower_reasons` rewords the lender reason and drops filler. Added `decision_cost_by_group`, `proxy_strength`, `run_domain_classifier(drop_cols=...)`, `effective_sample_share`. Tests: `tests/test_fairness_and_shift.py` (12) + 6 serving/config tests. Wrote `docs/audit/` and `docs/derivations/boosting.md`. D-25 to D-28.
 **Found:** (1) First-time borrowers: 49% approved vs 98% repeat at 0.10 (0% under the old KES 0.019); the cost assumption drives it (12% → 70% across 1–6 lost loans). (2) Starter loan up to p 0.30 → 81% (ratio 0.83) for +GHS 10.0k on 567 applicants. (3) Ghana separable even without the label-history artefact (AUC 0.985); importance weights ESS share 0.04 (D-27). (4) No Ghanaian approved in full: 86% limited to ~15% of the request. (5) RF best by customer (PR-AUC 0.203), every model ≈ 0.6 ROC-AUC by time.

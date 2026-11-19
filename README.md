@@ -8,7 +8,7 @@
 
 <p align="center">
   <img alt="Python 3.12" src="https://img.shields.io/badge/python-3.12-1f4e79?style=flat-square">
-  <img alt="Tests" src="https://img.shields.io/badge/tests-161_passing-2e7d32?style=flat-square">
+  <img alt="Tests" src="https://img.shields.io/badge/tests-163_passing-2e7d32?style=flat-square">
   <img alt="Models" src="https://img.shields.io/badge/models-16_trained-1f4e79?style=flat-square">
   <img alt="Figures" src="https://img.shields.io/badge/figures-47-1f4e79?style=flat-square">
   <!-- status:badge --><img alt="Issues" src="https://img.shields.io/badge/issues-17_of_46_closed-d4a72c?style=flat-square"><!-- /status:badge -->
@@ -905,6 +905,7 @@ data/raw/financial-inclusion-in-africa/      Train.csv, ...                     
 | `make eda` | Data-science EDA report | `reports/EDA_REPORT.md` |
 | `make figures` | 35 defence figures and their catalogue | `reports/figures/`, `reports/FIGURES.md` |
 | `make score` | Sample decisions and 1,000-call latency | terminal, `reports/tables/scorer_latency.csv` |
+| `streamlit run app/streamlit_app.py` | Borrower app over the live scorer (needs `make artifacts`) | browser, http://localhost:8501 |
 | `make test` | 127 tests, including end-to-end on fake data | — |
 | `make test-notebooks` | Run all 4 notebooks top to bottom (real data, slow) | — |
 
