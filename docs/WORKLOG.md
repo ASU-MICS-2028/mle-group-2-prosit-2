@@ -9,6 +9,11 @@ Add an entry at the **top** at the end of each session, 5–10 lines. Link to no
 
 ---
 
+## 2026-11-19 (late night) · Bernard (P3) · `p3/36-slides-and-clear-figures` (#36)
+**Did:** Built the 10-slide executive debrief PowerPoint deck (`slides/NkwaPay_Prosit2_Debrief.pptx`) with embedded 200-dpi figures, per-slide presenter notes, and a run-of-show + 12-question mock Q&A guide (`slides/SPEAKER_NOTES.md`). Upgraded `src/visualization/interpretation.py` (`plot_coefficients`, `plot_shap_importance`, `plot_ablation`) with plain-English feature labels, a risk-direction legend, and non-overlapping legend placement, then regenerated `interp_coefficients.png`, `interp_shap_lightgbm.png`, and `interp_ablation*.png`.
+**Found:** Visual audit caught a legend overlap on the initial `interp_ablation.png`; moving the legend below the x-axes and using plain-English labels (`Without borrower history`, `Without calendar dates`, `Adding macro indicators`) makes every slide chart readable for non-technical committee members. `make acceptance ISSUE=36` passes.
+**Next:** Rehearse the 15-min presentation and mock Q&A without notes; complete Part A session rulings (#7/#9), branch protection (#56), and personal reflection (#37).
+
 ## 2026-11-19 (late night) · Bernard (P3) · `p3/17-polish-03-regression-tone` (Refs #17)
 **Did:** Rewrote the narrative markdown cells of `notebooks/03_regression.ipynb` to match the plain-English, question-driven structure and `**Reading:**` breakdown style of `01_eda.ipynb` (opening questions list, plain-English intro before every code block explaining *why* and technical terms when needed, `**Reading:**` takeaways after every chart/table, and a closing `Findings for the report` summary table); re-executed all 17 cells end-to-end with zero errors.
 **Found:** `02_classification.ipynb` (Henry) and `04_transfer_and_fairness.ipynb` (Eugene) already follow the same `01_eda.ipynb` question-and-Reading tone and were left untouched in line with notebook ownership (D-20). `make acceptance ISSUE=17` and `ISSUE=33` both pass.
