@@ -11,7 +11,7 @@
   <img alt="Tests" src="https://img.shields.io/badge/tests-163_passing-2e7d32?style=flat-square">
   <img alt="Models" src="https://img.shields.io/badge/models-16_trained-1f4e79?style=flat-square">
   <img alt="Figures" src="https://img.shields.io/badge/figures-47-1f4e79?style=flat-square">
-  <!-- status:badge --><img alt="Issues" src="https://img.shields.io/badge/issues-34_of_46_closed-d4a72c?style=flat-square"><!-- /status:badge -->
+  <!-- status:badge --><img alt="Issues" src="https://img.shields.io/badge/issues-35_of_46_closed-d4a72c?style=flat-square"><!-- /status:badge -->
   <img alt="Deadline" src="https://img.shields.io/badge/deadline-19_Nov_2026-b03a2e?style=flat-square">
 </p>
 
@@ -73,7 +73,7 @@ Generated from GitHub on **19 Nov 2026** by `scripts/update_readme.py` (the *REA
 | --- | :---: | :---: | --- |
 | **Setup** | — | ![3/4](https://img.shields.io/badge/3%2F4-closed-d4a72c?style=flat-square) | [#56](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/56) |
 | **A · Frame the problem** | 10 pts | ![4/7](https://img.shields.io/badge/4%2F7-closed-d4a72c?style=flat-square) | [#7](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/7) [#8](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/8) [#9](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/9) |
-| **B · Build & evaluate** | 30 + 20 pts | ![11/14](https://img.shields.io/badge/11%2F14-closed-d4a72c?style=flat-square) | [#18](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/18) [#22](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/22) [#52](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/52) ⏳ |
+| **B · Build & evaluate** | 30 + 20 pts | ![12/14](https://img.shields.io/badge/12%2F14-closed-d4a72c?style=flat-square) | [#18](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/18) [#22](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/22) |
 | **C · Cross-market transfer** | in B, D | ![3/3](https://img.shields.io/badge/3%2F3-closed-2e7d32?style=flat-square) | — |
 | **D · Ethics & regulation** | 20 pts | ![6/7](https://img.shields.io/badge/6%2F7-closed-d4a72c?style=flat-square) | [#27](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/27) |
 | **E · Deployment** | 15 pts | ![4/4](https://img.shields.io/badge/4%2F4-closed-2e7d32?style=flat-square) | — |
@@ -117,7 +117,7 @@ Find your name, open each issue card and follow the steps. Every card says what 
 | :---: | --- | :---: | :---: | :---: | --- |
 | <img src="https://github.com/peaElorm.png?size=60" width="28"> | **Perfect Elorm Avugla** · Data & features | 0 | 0 | 0 | [Perfect's issues](#peaelorm) |
 | <img src="https://github.com/henryhkb.png?size=60" width="28"> | **Henry Kofi Brandoh** · Classification & evaluation | 0 | 0 | 0 | [Henry's issues](#henryhkb) |
-| <img src="https://github.com/adjeibernardmarfo.png?size=60" width="28"> | **Bernard Marfo Adjei** · Regression, deployment & project lead | 3 | 1 | 0 | [Bernard's issues](#adjeibernardmarfo) |
+| <img src="https://github.com/adjeibernardmarfo.png?size=60" width="28"> | **Bernard Marfo Adjei** · Regression, deployment & project lead | 2 | 0 | 0 | [Bernard's issues](#adjeibernardmarfo) |
 | <img src="https://github.com/eugene-sew.png?size=60" width="28"> | **Eugene** · Transfer & fairness | 3 | 0 | 1 | [Eugene's issues](#eugene-sew) |
 | 👥 | **Everyone** | 5 | 0 | 5 | [Shared issues](#everyone) |
 
@@ -150,7 +150,7 @@ All of this person's issues are closed. ✅
 
 <h3 id="adjeibernardmarfo"><img src="https://github.com/adjeibernardmarfo.png?size=60" width="32" align="center"> Bernard Marfo Adjei</h3>
 
-Regression, deployment & project lead · [adjeibernardmarfo](https://github.com/adjeibernardmarfo) · **3 open** · [Bernard's assigned issues on GitHub](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3Aadjeibernardmarfo)
+Regression, deployment & project lead · [adjeibernardmarfo](https://github.com/adjeibernardmarfo) · **2 open** · [Bernard's assigned issues on GitHub](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3Aadjeibernardmarfo)
 
 <details>
 <summary><img alt="evidence exists, owner must finish" src="https://img.shields.io/badge/-partly_done-d4a72c?style=flat-square"> <b>#7 · Explore amounts, durations and the two leak suspects</b></summary>
@@ -193,29 +193,6 @@ Regression, deployment & project lead · [adjeibernardmarfo](https://github.com/
 2. State the period-marker finding and what the ablation (#52) shows.
 
 [Open issue #22 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/22)
-
-</details>
-
-<details>
-<summary><img alt="a pull request for it is open" src="https://img.shields.io/badge/-in_review-1f4e79?style=flat-square"> <b>#52 · Ablation study: what each feature group adds</b></summary>
-
-| | |
-| --- | --- |
-| **What it is** | Retrain without each feature group to see what carries the signal. |
-| **Why it matters** | Optional; strengthens rubric B interpretation |
-| **Already done** | Nothing yet; the feature lists live in `src/config.py`. |
-| **Where to work** | a new ablation script in `scripts/`, table saved as `reports/tables/ablation.csv` |
-| **How to run** | — |
-| **Done when** | A table and figure show which groups matter. |
-| **Automated check** | An ablation table shows the effect of removing each feature group. Run `make acceptance ISSUE=52`; it also runs on every pull request that says `Closes #52` and when the issue is closed (a failing check reopens it). |
-| **Pull request** | [#74](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/pull/74) |
-
-**Steps**
-
-1. For each group (history, calendar, lender share, product, amount), retrain the chosen model without it on GroupKFold and temporal.
-2. Tabulate the PR-AUC change; save the table and a bar chart to `reports/`.
-
-[Open issue #52 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/52)
 
 </details>
 
