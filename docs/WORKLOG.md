@@ -9,6 +9,10 @@ Add an entry at the **top** at the end of each session, 5–10 lines. Link to no
 
 ---
 
+## 2026-11-19 (evening) · Eugene (P4) · `p4/65-app-inputs-cleanup`
+**Did:** Trimmed the borrower app to exactly the scorer's model inputs: removed the phone field (`customer_id` is never a model input) and the date picker (applications are scored today); added *days since missed repayment* when missed > 0, so a past default is no longer scored as clean; amount slider range per market (GHS 50–10,000, KES 500–50,000, defaults near each median); lender and product dropdowns no longer accept free text.
+**Next:** Bernard reviews. **Watch out:** history assumes every earlier loan has reached its due date (`n_past_labelled = n_past_loans`).
+
 ## 2026-11-19 (late night) · Bernard (P3) · `p3/22-interpretation` (#22)
 **Did:** Wrote `docs/interpretation.md` explaining in plain language what drives NkwaPay's default and loan-limit models: deployed logistic regression standardized weights (`interp_coefficients.png`), LightGBM mean |SHAP| values (`interp_shap_lightgbm.png`), the period-marker finding (`Lender_portion_Funded`, `disb_month`), the feature-group ablation evidence (`reports/tables/ablation.csv`, `interp_ablation*.png`, #52), and how `src/serving/reasons.py` filters non-actionable fields and produces borrower-facing reasons.
 **Found:** Tying coefficients, SHAP, and ablation together gives a cohesive defence narrative: borrower history, product type and loan terms carry real signal, while calendar features inflate LightGBM random-fold PR-AUC (+0.044) yet hurt 2023+ temporal accuracy (−0.020 ROC-AUC). `make acceptance ISSUE=22` passes.

@@ -6,7 +6,8 @@ The app never re-implements features, thresholds or the decision rule. It builds
 scorer documents (`src.serving.REQUIRED_APPLICATION_FIELDS`) and displays what comes back:
 decision (approve / limit / starter / decline), recommended_limit, currency, borrower_reasons (shown to the
 borrower), top_3_reasons and review_flags (credit team only).
-Borrowers enter only what they know (phone, amount, term); NkwaPay-side fields sit in the demo-controls panel.
+Inputs are exactly what the model uses: the borrower picks amount and term; NkwaPay-side fields (market, borrower
+history, lender, product) sit in the demo-controls panel. The date is today; customer_id is an identifier only.
 """
 import base64
 import sys
@@ -66,7 +67,8 @@ PATTERN = f'url("data:image/svg+xml,{quote(TILE)}")'
 
 HERO_IMG = base64.b64encode((Path(__file__).parent / "assets" / "hero.png").read_bytes()).decode()
 
-MARKETS = {"🇬🇭 Ghana": ("Ghana", "GHS"), "🇰🇪 Kenya": ("Kenya", "KES")}
+# country, currency, amount slider (min, max, step, default ~ median loan in the data)
+MARKETS = {"🇬🇭 Ghana": ("Ghana", "GHS", (50, 10_000, 50, 3_000)), "🇰🇪 Kenya": ("Kenya", "KES", (500, 50_000, 500, 5_000))}
 
 st.set_page_config(page_title="NkwaPay · Quick loan", page_icon="💚", layout="wide")
 st.markdown(f"<style>.stApp {{background-color:#F4F7F5; background-image:{PATTERN};}}</style>",
@@ -96,7 +98,6 @@ st.markdown(
       .st-key-controls [data-testid="stNumberInput"] button {
             color: #053B2D !important; -webkit-text-fill-color: #053B2D !important; font-weight: 600;}
       .st-key-controls [data-testid="stNumberInput"] button {background: #ECFDF5 !important;}
-      .st-key-controls [data-testid="stDateInput"] [role="group"] *, .st-key-controls [data-testid="stDateInput"] input {color: #053B2D !important; -webkit-text-fill-color: #053B2D !important;}
       .st-key-controls svg {fill: #047857 !important; color: #047857 !important;}
       .st-key-controls [data-testid="stButtonGroup"] button {
             background: rgba(255,255,255,.08); border: 1px solid rgba(167,243,208,.25); border-radius: 14px;
@@ -129,15 +130,12 @@ st.markdown(
       .kente {position:absolute; left:0; right:0; bottom:0; height:7px; border-radius:0 0 24px 24px;
               background: repeating-linear-gradient(90deg, #F5B700 0 28px, #C8102E 28px 40px,
                           #F5B700 40px 52px, #0B0B0B 52px 60px, #047857 60px 88px, #F5B700 88px 96px);}
-      .chip {background:rgba(255,255,255,.16); color:#fff; border-radius:999px; padding:.3rem .9rem;
-             font-size:.8rem; font-weight:700; white-space:nowrap;
-             display:inline-block; margin-bottom:.8rem;}
       [data-testid="stForm"] {background:#fff; border:1px solid #E5E7EB !important; border-radius:22px;
              padding:1.8rem 1.9rem; box-shadow:0 8px 24px rgba(6,78,59,.06);}
       [data-testid="stForm"] [data-baseweb="input"] {min-height:52px; border-radius:14px !important;
              background:#F8FAF9; border:1px solid #E5E7EB !important;}
       [data-testid="stForm"] input {font-size:1.05rem !important;}
-      [data-testid="stForm"] [data-testid="stButtonGroup"] button {min-height:46px; padding:.6rem 1.1rem; font-size:.98rem;}
+      [data-testid="stForm"] [data-testid="stButtonGroup"] button {min-height:46px; padding:.6rem .75rem; font-size:.95rem;}
       [data-testid="stForm"] .label {margin: .4rem 0 .35rem;}
       .card {background:#fff; border:1px solid #E5E7EB; border-radius:20px; padding:1.2rem 1.4rem;
              box-shadow:0 8px 24px rgba(6,78,59,.06); margin-bottom:.9rem;}
@@ -186,29 +184,32 @@ with ctrl, st.container(key="controls"):
     )
     st.markdown('<div class="sb-section">Market</div>', unsafe_allow_html=True)
     market = st.segmented_control("Market", list(MARKETS), default="🇬🇭 Ghana", label_visibility="collapsed") or "🇬🇭 Ghana"
-    country, cur = MARKETS[market]
+    country, cur, amount_range = MARKETS[market]
 
     st.markdown('<div class="sb-section">Borrower record</div>', unsafe_allow_html=True)
     first_time = st.toggle("First-time borrower", value=False)
     tenure = "New Loan" if first_time else "Repeat Loan"
     history = {}
-    if not first_time:  # in production these come from NkwaPay's loan records
-        h1, h2, h3 = st.columns(3)
+    if not first_time:  # in production these come from NkwaPay's loan records, looked up by the borrower's number
+        h1, h2 = st.columns(2)
         n_past = h1.number_input("Earlier loans", 1, 300, 6)
-        n_missed = h2.number_input("Missed", 0, int(n_past), 0)
-        days_since = h3.number_input("Days since last", 0, 2000, 14)
+        days_since = h2.number_input("Days since last loan", 0, 2000, 14)
+        h3, h4 = st.columns(2)
+        n_missed = h3.number_input("Missed repayments", 0, int(n_past), 0)
+        # ponytail: assumes every earlier loan has reached its due date (n_past_labelled = n_past)
         history = {"n_past_loans": int(n_past), "n_past_labelled": int(n_past), "n_past_defaults": int(n_missed),
                    "days_since_last_loan": float(days_since)}
+        if n_missed:
+            history["days_since_last_default"] = float(h4.number_input("Days since missed", 0, 2000, 60))
 
     st.markdown('<div class="sb-section">Loan setup</div>', unsafe_allow_html=True)
     lenders, unseen_lenders = catalogue("lender_id")
-    lender_id = st.selectbox("Funding lender", lenders, accept_new_options=True,  # default: the main lender (94% of Train)
+    lender_id = st.selectbox("Funding lender", lenders,  # default: the main lender (94% of Train)
                              index=lenders.index("267278") if "267278" in lenders else 0,
                              format_func=lambda v: f"{v} · unseen in training" if v in unseen_lenders else v)
     types, unseen = catalogue("loan_type")
-    loan_type = st.selectbox("Product", types, accept_new_options=True,
+    loan_type = st.selectbox("Product", types,
                              format_func=lambda t: f"{t} · unseen in training" if t in unseen else t)
-    app_date = st.date_input("Application date", date.today())
 
     st.divider()
     st.markdown(
@@ -221,10 +222,10 @@ with ctrl, st.container(key="controls"):
 
 with left:
     with st.form("apply"):
-        st.markdown('<div class="label">Your mobile money number</div>', unsafe_allow_html=True)
-        customer_id = st.text_input("Mobile money number", placeholder="e.g. 024 123 4567", label_visibility="collapsed")
         st.markdown('<div class="label">How much do you need?</div>', unsafe_allow_html=True)
-        amount = st.slider("Amount", 50, 5000, 500, step=50, format=f"{cur} %d", label_visibility="collapsed")
+        lo, hi, step, default = amount_range
+        amount = st.slider("Amount", lo, hi, default, step=step, format=f"{cur} %d", label_visibility="collapsed",
+                           key=f"amount_{cur}")
         st.markdown('<div class="label">Pay back in</div>', unsafe_allow_html=True)
         duration = st.segmented_control("Term", [7, 14, 30, 60, 90], default=7, format_func=lambda d: f"{d} days",
                                         label_visibility="collapsed")
@@ -239,17 +240,15 @@ with right:
             <div class="muted">Fill in the form and press <b>Check my offer</b>.</div></div>""",
             unsafe_allow_html=True,
         )
-    elif not customer_id.strip():
-        st.error("Please enter your mobile money number.")
     else:
         application = {
-            "customer_id": customer_id.strip(),
+            "customer_id": "app",  # an identifier only; the model never sees it
             "country_id": country,
             "lender_id": str(lender_id).strip(),
             "loan_type": str(loan_type).strip(),
             "Total_Amount": float(amount),
             "duration": int(duration or 7),
-            "disbursement_date": app_date.isoformat(),
+            "disbursement_date": date.today().isoformat(),  # scored at the moment of applying
             "New_versus_Repeat": tenure,
             **history,
         }

@@ -1,6 +1,6 @@
 # Progress dashboard
 
-**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-19 by Bernard (branch `p3/22-interpretation`).
+**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-19 by Eugene (branch `p3/22-interpretation`).
 
 Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 
@@ -105,6 +105,7 @@ Findings so far:
 
 | Date | Who | Did | Next |
 | --- | --- | --- | --- |
+| 2026-11-19 | Eugene | Borrower app inputs trimmed to the model's inputs; missed-repayment recency added; per-market amount range | Bernard reviews |
 | 2026-11-18 | Eugene | Borrower app wired to the live scorer; app smoke test | Merge after PR #64 |
 | 2026-11-18 | Eugene | `04` rebuilt (#54); cedi cost matrix (D-28); starter loan + borrower reasons in the scorer (D-26); `docs/audit/`; boosting derivation; 18 tests | Bernard reviews; re-run `02`/`03`/`make all` on the cedi config |
 | 2026-11-17 | Henry | Logistic regression derivation with autograd check (`docs/derivations/logistic.md`, #32, PR #62) | Reflection (#37) |
