@@ -1,6 +1,6 @@
 # Progress dashboard
 
-**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-19 by Eugene (branch `p4/65-app-inputs-cleanup`).
+**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-19 by Bernard (branch `p3/7-confirm-leak-ruling`).
 
 Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 
@@ -12,7 +12,7 @@ Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 | Setup | Roles, docs, tracking | Perfect | ✅ pushed 2026-11-07 |
 | A | Explore Train/Test structure | Perfect | ✅ `notebooks/01_eda.ipynb` §1-5, merged (#38, #39) |
 | A | Explore the target | Henry | ✅ `src/analysis/target_eda.py` + `python -m scripts.run_target_eda` (tables in `reports/tables/eda_target_*.csv`) |
-| A | Explore amounts/durations (P3 slice) | Bernard | 🟨 amounts, terms, leakage and history in `reports/EDA_REPORT.md` §4-6 (PR #57); leak-suspect ruling at Part A session |
+| A | Explore amounts/durations (P3 slice) | Bernard | ✅ amounts, terms, leakage and history in `reports/EDA_REPORT.md` §4–6 (PR #57); leak-suspect ruling D-2 decided (#7) |
 | A | Explore Ghana and context files (P4 slice) | Eugene | ✅ EDA §8-10 (PR #57), interpreted in `04` §2.1 and §4 |
 | A | Timeline, label, feature audit table | Perfect + Henry | 🟨 timeline drawn (`reports/figures/part_a_loan_timeline.png`, PR pending); label, window and decision moment in `02_classification` §0 (PR #60); audit table drafted (`docs/feature_audit.md`). All three await confirmation at the Part A session: agenda in `docs/PART_A_SESSION.md` |
 | A | Two tasks + cost matrix in cedis/shillings | Henry | ✅ tasks and goal in `02` §0; cedis from Ghana's loans in §9b (D-22): p\* 0.036, approve 88.6%, −44% expected loss (PR #60). Team config still KES (D-19) |
@@ -48,6 +48,7 @@ Per-issue progress is on GitHub (Roadmap issue #1). Closed on 2026-11-17 with ev
 | 2026-11-17 | Bernard | Restructured `src/` into packages + `scripts/`, `configs/`, `reports/`; fixed scorer bugs (D-18, D-19); restored and completed Henry's `02` (§7–10); ran all 16 models | PR #47 |
 | 2026-11-16 | Bernard | Shared `src/` pipeline, `tests/` CI guardrails, `Makefile`, streamlined README | PR #46 |
 | 2026-11-10 | Henry | Logistic regression (raw + shared + Lightning) and MLP + temporal check | `notebooks/02_classification.ipynb`, `docs/learning/`, PRs #40, #41 |
+| 2026-11-19 | Bernard | Confirmed leak-suspect ruling D-2 (`decided, implemented`) in `docs/DECISIONS.md` backed by `reports/EDA_REPORT.md` §4–6 & `docs/feature_audit.md` (#7) | `docs/DECISIONS.md`, `reports/EDA_REPORT.md` |
 | 2026-11-19 | Bernard | Built 10-slide executive debrief deck (`slides/NkwaPay_Prosit2_Debrief.pptx`) + run-of-show & 12-question mock Q&A (`slides/SPEAKER_NOTES.md`), and upgraded interpretation charts with plain-English labels and non-overlapping legends (#36) | `slides/`, `src/visualization/interpretation.py`, `reports/figures/interp_*.png` |
 | 2026-11-19 | Bernard | Polished `03_regression.ipynb` narrative to match `01_eda.ipynb`'s plain-English question/`**Reading:**`/summary breakdown style and re-executed end-to-end (Refs #17) | `notebooks/03_regression.ipynb` |
 | 2026-11-19 | Bernard | Plain-language model interpretation (`docs/interpretation.md`): deployed LogReg coefficients, LightGBM SHAP, period-marker finding, #52 ablation synthesis, and reason-code mapping (#22) | `docs/interpretation.md` |
@@ -107,6 +108,7 @@ Findings so far:
 
 | Date | Who | Did | Next |
 | --- | --- | --- | --- |
+| 2026-11-19 | Bernard | Confirmed D-2 leak-suspect ruling (`decided, implemented`) to close #7 (`reports/EDA_REPORT.md` §4–6, `docs/DECISIONS.md`) | Part A session remaining drafts (#9), branch protection (#56), reflection (#37) |
 | 2026-11-19 | Eugene | Borrower app production-shaped: number + amount + term; history, lender, product looked up from records; Ghana only (GHS) | Bernard reviews |
 | 2026-11-19 | Eugene | Act 843 section numbers in the regulatory map (incl. s.41 contract exemption, s.18(2) foreign data subjects); `04` re-run after D-30 | Reflection (submitted separately); Act 726 numbers |
 | 2026-11-18 | Eugene | Borrower app wired to the live scorer; app smoke test | Merge after PR #64 |
