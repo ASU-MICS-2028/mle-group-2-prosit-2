@@ -11,7 +11,7 @@
   <img alt="Tests" src="https://img.shields.io/badge/tests-163_passing-2e7d32?style=flat-square">
   <img alt="Models" src="https://img.shields.io/badge/models-16_trained-1f4e79?style=flat-square">
   <img alt="Figures" src="https://img.shields.io/badge/figures-47-1f4e79?style=flat-square">
-  <!-- status:badge --><img alt="Issues" src="https://img.shields.io/badge/issues-41_of_46_closed-d4a72c?style=flat-square"><!-- /status:badge -->
+  <!-- status:badge --><img alt="Issues" src="https://img.shields.io/badge/issues-42_of_46_closed-d4a72c?style=flat-square"><!-- /status:badge -->
   <img alt="Deadline" src="https://img.shields.io/badge/deadline-19_Nov_2026-b03a2e?style=flat-square">
 </p>
 
@@ -75,7 +75,7 @@ Generated from GitHub on **19 Nov 2026** by `scripts/update_readme.py` (the *REA
 | **A · Frame the problem** | 10 pts | ![5/7](https://img.shields.io/badge/5%2F7-closed-d4a72c?style=flat-square) | [#7](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/7) [#9](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/9) |
 | **B · Build & evaluate** | 30 + 20 pts | ![14/14](https://img.shields.io/badge/14%2F14-closed-2e7d32?style=flat-square) | — |
 | **C · Cross-market transfer** | in B, D | ![3/3](https://img.shields.io/badge/3%2F3-closed-2e7d32?style=flat-square) | — |
-| **D · Ethics & regulation** | 20 pts | ![6/7](https://img.shields.io/badge/6%2F7-closed-d4a72c?style=flat-square) | [#27](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/27) ⏳ |
+| **D · Ethics & regulation** | 20 pts | ![7/7](https://img.shields.io/badge/7%2F7-closed-2e7d32?style=flat-square) | — |
 | **E · Deployment** | 15 pts | ![4/4](https://img.shields.io/badge/4%2F4-closed-2e7d32?style=flat-square) | — |
 | **Deliverables** | 5 pts + all | ![5/6](https://img.shields.io/badge/5%2F6-closed-d4a72c?style=flat-square) | [#37](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/37) |
 
@@ -118,7 +118,7 @@ Find your name, open each issue card and follow the steps. Every card says what 
 | <img src="https://github.com/peaElorm.png?size=60" width="28"> | **Perfect Elorm Avugla** · Data & features | 0 | 0 | 0 | [Perfect's issues](#peaelorm) |
 | <img src="https://github.com/henryhkb.png?size=60" width="28"> | **Henry Kofi Brandoh** · Classification & evaluation | 0 | 0 | 0 | [Henry's issues](#henryhkb) |
 | <img src="https://github.com/adjeibernardmarfo.png?size=60" width="28"> | **Bernard Marfo Adjei** · Regression, deployment & project lead | 1 | 0 | 0 | [Bernard's issues](#adjeibernardmarfo) |
-| <img src="https://github.com/eugene-sew.png?size=60" width="28"> | **Eugene** · Transfer & fairness | 1 | 1 | 0 | [Eugene's issues](#eugene-sew) |
+| <img src="https://github.com/eugene-sew.png?size=60" width="28"> | **Eugene** · Transfer & fairness | 0 | 0 | 0 | [Eugene's issues](#eugene-sew) |
 | 👥 | **Everyone** | 3 | 0 | 3 | [Shared issues](#everyone) |
 
 ### How to pick up an issue
@@ -177,30 +177,9 @@ Regression, deployment & project lead · [adjeibernardmarfo](https://github.com/
 
 <h3 id="eugene-sew"><img src="https://github.com/eugene-sew.png?size=60" width="32" align="center"> Eugene</h3>
 
-Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **1 open** · [Eugene's assigned issues on GitHub](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3Aeugene-sew)
+Transfer & fairness · [eugene-sew](https://github.com/eugene-sew) · **0 open** · [Eugene's assigned issues on GitHub](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues?q=is%3Aopen+assignee%3Aeugene-sew)
 
-<details>
-<summary><img alt="a pull request for it is open" src="https://img.shields.io/badge/-in_review-1f4e79?style=flat-square"> <b>#27 · Regulatory mapping: BoG Digital Credit Directive, Act 843, Act 726</b></summary>
-
-| | |
-| --- | --- |
-| **What it is** | Map our design to the Bank of Ghana Digital Credit Directive, the Data Protection Act 2012 (Act 843) and the Credit Reporting Act 2007 (Act 726). |
-| **Why it matters** | Rubric D: regulatory mapping |
-| **Already done** | Nothing yet. |
-| **Where to work** | `docs/audit/regulatory_map.md` |
-| **How to run** | — |
-| **Done when** | A table of requirements, our response, and gaps. |
-| **Automated check** | docs/audit/regulatory_map.md maps the design to the BoG Directive, Act 843 and Act 726, with gaps. Run `make acceptance ISSUE=27`; it also runs on every pull request that says `Closes #27` and when the issue is closed (a failing check reopens it). |
-| **Pull request** | [#75](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/pull/75) |
-
-**Steps**
-
-1. List each relevant requirement and how we meet it (reason codes, review flags, data minimisation).
-2. List what we cannot satisfy yet.
-
-[Open issue #27 on GitHub →](https://github.com/ASU-MICS-2028/mle-group-2-prosit-2/issues/27)
-
-</details>
+All of this person's issues are closed. ✅
 
 
 <h3 id="everyone">👥 Everyone</h3>

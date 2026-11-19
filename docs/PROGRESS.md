@@ -27,8 +27,8 @@ Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 | B | MLP | Henry | ✅ ROC-AUC 0.867, PR-AUC 0.209; by time 0.649 (was 0.48 with macro columns) |
 | B | Models, validation study, calibration, CIs | per [Team & Ownership](../README.md#team--ownership) | ✅ all 16 models run (`reports/tables/`); calibration (Platt, ECE 0.30 → 0.002) and customer-level CIs in `02_classification` §8–10 (added by Bernard) |
 | B | Calibration over time (#55) | Henry | ✅ pre-2023 calibration under-predicts 2024 risk by half (LogReg 4.5% vs 8.7%); recalibrating on 2023 halves ECE but puts every 2024 applicant above break-even; recalibrate + monthly monitoring (D-24, PR #61) |
-| C | Kenya → Ghana transfer study | Eugene | 🟨 `04` §2 rebuilt (domain classifier in 5 variants, importance weights, scorer on Ghana, pilot plan); in review |
-| D | Model Card, Datasheet, fairness, regulation, Findex | Eugene | 🟨 `04` §3–4 and `docs/audit/` written; in review. Act 843/726 section numbers to confirm |
+| C | Kenya → Ghana transfer study | Eugene | ✅ `04` §2 and `docs/audit/ghana_trust.md` (PR #64); Ghana figures refreshed after D-30 |
+| D | Model Card, Datasheet, fairness, regulation, Findex | Eugene | ✅ `04` §3–4 and `docs/audit/` (PR #64). Act 843 section numbers confirmed from the official DPC text; Act 726 numbers still need a printed copy |
 | E | Scoring service, reason codes, deployed models & quantile cap (#30, #31, #51, #53) | Bernard | ✅ D-29 (`logreg`) + D-30 (`lightgbm_reg_q85` 85th-quantile cap): Kenya Test cut drops 48.9% → 14.6% (15.7% of repaid Train loans cut); latency median 21 ms, p95 26 ms |
 | E | Borrower app over the scorer | Eugene | 🟨 `app/streamlit_app.py` calls `score_application`; shows approve/limit/starter/decline, borrower reasons, credit-team panel (#65, branch `p4/65-borrower-app`, stacked on PR #64) |
 | Final | Report, audit, slides, reflections, AI declaration | all | ⬜ |
@@ -76,7 +76,7 @@ Findings so far:
 - (Superseded by D-28.) Draft cost matrix (D-19): declining a good borrower costs 88 KES, approving a default 4,449 KES, so the cost threshold is 0.019 and the MLP approves 79%; with 6 future loans lost per wrong decline the threshold is 0.106.
 - Task 1 (USD): every model beats the mean on the log scale (LightGBM R² 0.21 by customer, 0.61 by time), but on dollars the linear models are worse than the mean; trees are best.
 - Kenya vs Ghana is almost perfectly separable (domain AUC 0.997). Without the label-history artefact (`n_past_labelled` is 0 for all of Ghana) it is still 0.985, so importance weighting is unusable (ESS share 0.04, D-27) (`04` §2.2).
-- Team cost matrix is now cedis with 3 future loans lost (D-28): threshold 0.10, 97.5% of Kenyan applicants approved. First-time borrowers 49% vs 98%; the scorer's 25% starter loan up to p 0.30 lifts them to 81% for GHS 18 per first-time applicant (D-26, `04` §3.4). No Ghanaian is approved in full (`04` §2.3).
+- Team cost matrix is now cedis with 3 future loans lost (D-28): threshold 0.10, 97.5% of Kenyan applicants approved. First-time borrowers 49% vs 98%; the scorer's 25% starter loan up to p 0.30 lifts them to 81% for GHS 18 per first-time applicant (D-26, `04` §3.4). Only 7% of Ghanaians are approved in full; 79% are limited to a median 46% of the request (`04` §2.3, after D-30).
 - The deployed calibrated logistic regression under-predicts new borrowers (2.2% for a profile whose real rate is 5.7%).
 
 ## What's left, in order
@@ -85,7 +85,7 @@ Findings so far:
 2. **Henry:** personal reflection (#37); agree with Bernard and Eugene whether the team config switches to the D-22 cedi costs.
 3. **Perfect:** finish `01_eda`, the unseen-category preprocessor (D-5), baselines, kNN, SVM and the SVM derivation.
 4. **Bernard:** get PR #47 reviewed and merged; #7 amounts/leak-suspect EDA, Task 2 decision tree (#17), linear regression derivation, final scorer model.
-   **Eugene:** get the `04` + audit PR reviewed (Bernard); confirm Act 843/726 section numbers; personal reflection.
+   **Eugene:** individual reflection (submitted separately, not in the repo); Act 726 section numbers from a printed copy.
 5. Report, audit, slides, reflections, AI-use declaration.
 6. **Deadline: 19 Nov 2026.**
 
@@ -108,6 +108,7 @@ Findings so far:
 | Date | Who | Did | Next |
 | --- | --- | --- | --- |
 | 2026-11-19 | Eugene | Borrower app production-shaped: number + amount + term; history, lender, product looked up from records; Ghana only (GHS) | Bernard reviews |
+| 2026-11-19 | Eugene | Act 843 section numbers in the regulatory map (incl. s.41 contract exemption, s.18(2) foreign data subjects); `04` re-run after D-30 | Reflection (submitted separately); Act 726 numbers |
 | 2026-11-18 | Eugene | Borrower app wired to the live scorer; app smoke test | Merge after PR #64 |
 | 2026-11-18 | Eugene | `04` rebuilt (#54); cedi cost matrix (D-28); starter loan + borrower reasons in the scorer (D-26); `docs/audit/`; boosting derivation; 18 tests | Bernard reviews; re-run `02`/`03`/`make all` on the cedi config |
 | 2026-11-17 | Henry | Logistic regression derivation with autograd check (`docs/derivations/logistic.md`, #32, PR #62) | Reflection (#37) |
