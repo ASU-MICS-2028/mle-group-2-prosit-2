@@ -34,6 +34,7 @@ EXPECTED = {
     ("task1", "lasso"): Lasso,
     ("task1", "decision_tree_reg"): DecisionTreeRegressor,
     ("task1", "lightgbm_reg"): LGBMRegressor,
+    ("task1", "lightgbm_reg_q85"): LGBMRegressor,
 }
 
 

@@ -20,6 +20,7 @@ task1:                       # loan-amount regression (target: log1p of amount i
   lasso:             {alpha: 0.01, max_iter: 2000}
   decision_tree_reg: {max_depth: 6, ccp_alpha: 0.0001}
   lightgbm_reg:      {n_estimators: 300, learning_rate: 0.05, num_leaves: 31}
+  lightgbm_reg_q85:  {objective: quantile, alpha: 0.85, n_estimators: 300, learning_rate: 0.05, num_leaves: 31}  # D-30 (#53) cap
   lit_linear:        {lr: 0.01, weight_decay: 0.0001}
 
 lightning:                   # shared training loop for every Lightning model

@@ -22,13 +22,15 @@ REG_ARTIFACT = "task1_reg.joblib"
 def fit_and_save_deployment_artifacts(
     df: pd.DataFrame,
     clf_model: str = "logreg",
-    reg_model: str = "lightgbm_reg",
+    reg_model: str = "lightgbm_reg_q85",
     threshold: float | None = None,
 ) -> dict[str, Path]:
-    """Save a calibrated Task 2 pipeline and a Task 1 pipeline (target in USD) as joblib bundles.
+    """Save a calibrated Task 2 pipeline and a Task 1 limit-cap pipeline (target in USD) as joblib bundles.
 
     Calibration: Platt scaling fitted on out-of-fold (GroupKFold) raw probabilities, so the
     calibrator never sees a score the model made on its own training rows.
+    Limit model: LightGBM 85th-quantile regressor (`lightgbm_reg_q85`, D-30 / #53) so most
+    repaid borrowers stay under the cap instead of cutting half of requests by construction.
     Threshold: from configs/cost_matrix.yaml unless given.
     """
     if clf_model in LIGHTNING_MODELS or reg_model in LIGHTNING_MODELS:

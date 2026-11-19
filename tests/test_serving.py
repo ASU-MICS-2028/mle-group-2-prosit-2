@@ -158,3 +158,26 @@ def test_borrower_reasons_reword_lender_and_drop_filler() -> None:
     shown = borrower_reasons([REASON_TEMPLATES["duration"][0], lender, FALLBACK_REASON])
     assert lender not in shown and FALLBACK_REASON not in shown
     assert len(shown) == 2 and "product" in shown[1]
+
+
+def test_quantile_limit_cap_exceeds_mean_limit_and_cuts_few_requests(synthetic_features) -> None:
+    """D-30 (#53): an 85th-quantile limit model acts as an upper cap, cutting <=25% of in-distribution requests."""
+    from src.models import build_estimator
+
+    df = synthetic_features
+    num1, cat1 = get_feature_lists("task1")
+    amount_usd = np.expm1(df["log_amount_usd"].to_numpy())
+    scaler = TargetLogScaler().fit(amount_usd)
+    z = scaler.transform(amount_usd)
+
+    mean_pipe = Pipeline([("pre", make_preprocessor("task1")), ("est", build_estimator("lightgbm_reg", "task1"))]).fit(
+        df[num1 + cat1], z
+    )
+    q85_pipe = Pipeline([("pre", make_preprocessor("task1")), ("est", build_estimator("lightgbm_reg_q85", "task1"))]).fit(
+        df[num1 + cat1], z
+    )
+    mean_lim = scaler.inverse_transform(mean_pipe.predict(df[num1 + cat1]))
+    q85_lim = scaler.inverse_transform(q85_pipe.predict(df[num1 + cat1]))
+
+    assert float(np.median(q85_lim)) > float(np.median(mean_lim))
+    assert float((amount_usd > q85_lim).mean()) <= 0.25

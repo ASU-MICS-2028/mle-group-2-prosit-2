@@ -9,6 +9,11 @@ Add an entry at the **top** at the end of each session, 5–10 lines. Link to no
 
 ---
 
+## 2026-11-19 (late night) · Bernard (P3) · `p3/53-quantile-limit-rule` (#53)
+**Did:** Registered `lightgbm_reg_q85` (`objective="quantile", alpha=0.85`) in `configs/models.yaml`, `src/models/__init__.py`, and `src/models/ensembles.py`; switched `fit_and_save_deployment_artifacts` (`src/training/artifacts.py`) and `scripts/train.py` to use it as the deployed limit cap (D-30); added unit tests in `tests/test_architecture.py` and `tests/test_serving.py`; refitted the bundle and regenerated `make figures` and `make score`.
+**Found:** On `fold_group` OOF, `lightgbm_reg_q85` cuts only **15.7%** of repaid Kenyan loans (vs 50.1% under mean regression, and 19.6% of defaulted loans). On Test (`reports/tables/product_decisions_by_country.csv`), Kenyan `"limit"` drops from **48.9% → 14.6%** (83.0% approved in full; ≤25% acceptance target met), Ghana gets 6.9% approved / 79.4% limited / 100% flagged for review, and 1,000-call latency is median 21 ms, p95 26 ms.
+**Next:** Add Task 2 pruned `decision_tree` section to `03_regression.ipynb` and re-execute (#17), run feature-group ablation (#52), and write plain-language interpretation (#22).
+
 ## 2026-11-19 (late night) · Bernard (P3) · `p3/51-choose-deployed-models` (#51)
 **Did:** Recorded **D-29** in `docs/DECISIONS.md` choosing **Platt-calibrated logistic regression (`logreg`)** for Task 2 and **LightGBM (`lightgbm_reg`)** for Task 1. Refitted the scoring bundle on the D-28 cedi cost matrix (threshold 0.1006) and D-26 starter loan (`python -m scripts.train --save-artifacts --clf-artifact-model logreg --reg-artifact-model lightgbm_reg`), updated `scripts/make_figures.py` to record `starter` in `product_decisions_by_country.csv`, and regenerated `make eval`, `make figures`, and `make score`.
 **Found:** `logreg` overlaps `random_forest` and `lightgbm` on GroupKFold PR-AUC 95% CIs (0.175 [0.154, 0.199] vs 0.203 / 0.194), beats both on temporal 2023+ ROC-AUC (0.633 vs 0.619 / 0.582), matches `random_forest` on new-borrower calibration (−2.4 pp gap; `lightgbm` is −6.3 pp), and runs ~31× faster with exact linear reason codes (median 24 ms, p95 35 ms over 1,000 calls vs ~289 ms for RF TreeSHAP). All `reports/tables/` and 35 figures now reflect the D-28 cedi cost matrix.
