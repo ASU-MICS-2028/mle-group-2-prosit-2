@@ -165,6 +165,7 @@ st.markdown(
       .rec td {padding:.15rem .8rem .15rem 0; font-size:.84rem; color:#374151;}
       div[data-testid="stFormSubmitButton"] > button {border-radius:999px; padding:.85rem 1rem; font-weight:700; font-size:1.05rem;
             background:#047857; border:none;}
+      div[role="dialog"] {max-width: 600px !important; border-radius: 20px !important;}
     </style>
     """,
     unsafe_allow_html=True,
@@ -203,36 +204,104 @@ with left:
                 f'<span class="dot" style="display:inline-block;background:{"#34D399" if LIVE else "#FBBF24"}"></span> '
                 f'{"Live model connected" if LIVE else "Model not built · run make artifacts"}</div>', unsafe_allow_html=True)
 
+def _fmt_record_value(v):
+    if v is None:
+        return "—"
+    if isinstance(v, float):
+        return f"{v:g}"
+    return v
+
+
+@st.dialog("For the credit team", width="small")
+def show_credit_team_dialog(state: dict) -> None:
+    r = state["r"]
+    record = state["record"]
+    found = state["found"]
+    decision, cur = r["decision"], r["currency"]
+    p, thr = r["probability_of_default"], r["threshold"]
+    fill = min(p / (2 * thr), 1.0) * 100 if thr else 0
+    color = {"approve": "#10B981", "limit": "#10B981", "starter": "#0EA5E9"}.get(decision, "#F59E0B")
+    flags = "".join(f"<li>{f}</li>" for f in r["review_flags"]) or "<li>None</li>"
+
+    st.markdown(
+        f"""<div class="muted">Decision <b>{decision}</b> · chance of default <b>{p:.1%}</b> ·
+        decline above <b>{thr:.1%}</b></div>
+        <div class="bar"><span style="width:{fill:.0f}%; background:{color}"></span><i style="left:50%"></i></div>
+        <div class="muted">Black line = decline threshold · scored in {r['latency_ms']:.1f} ms ·
+        recommended amount {cur} {r['recommended_limit']:,.0f}</div>
+        <div class="muted" style="margin-top:.6rem"><b>Model reasons:</b> {' · '.join(r['top_3_reasons'])}</div>
+        <div class="muted" style="margin-top:.4rem"><b>Review flags:</b><ul>{flags}</ul></div>""",
+        unsafe_allow_html=True,
+    )
+    shown_fields = ["customer_id", "New_versus_Repeat", "lender_id", "loan_type", *RECORD_FIELDS]
+    mid = (len(shown_fields) + 1) // 2
+    left_rows = "".join(
+        f"<tr><td>{k}</td><td><b>{_fmt_record_value(record.get(k))}</b></td></tr>"
+        for k in shown_fields[:mid]
+    )
+    right_rows = "".join(
+        f"<tr><td>{k}</td><td><b>{_fmt_record_value(record.get(k))}</b></td></tr>"
+        for k in shown_fields[mid:]
+    )
+    note = (
+        "Found in NkwaPay's records."
+        if found
+        else "No record for this number: scored as a new customer on NkwaPay's standard Ghana product."
+    )
+    st.markdown(
+        f"""<div class="muted" style="margin-top:.6rem"><b>Records used</b> · {note}
+        Labelled history is 0 for every Ghanaian customer (no repayment outcomes yet).</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:.5rem 1.2rem; margin-top:.4rem;">
+          <table class="rec" style="width:100%;">{left_rows}</table>
+          <table class="rec" style="width:100%;">{right_rows}</table>
+        </div>""",
+        unsafe_allow_html=True,
+    )
+
+
 with right:
-    if not submitted:
+    validation_error = None
+    if submitted:
+        if len(digits(phone)) < 9:
+            st.session_state.pop("last_offer", None)
+            validation_error = "Please enter your mobile money number."
+        else:
+            record, found = lookup(phone)  # NkwaPay's side: history, lender, product
+            application = {
+                **{k: v for k, v in record.items() if v is not None},
+                "country_id": COUNTRY,
+                "Total_Amount": float(amount),
+                "duration": int(duration or 7),
+                "disbursement_date": date.today().isoformat(),  # scored at the moment of applying
+            }
+            try:
+                r = score_application(application)
+            except Exception as e:  # show scorer errors plainly instead of a stack trace
+                st.error(f"We couldn't check this application right now: {e}")
+                st.stop()
+            st.session_state["last_offer"] = {
+                "r": r,
+                "amount": amount,
+                "days": application["duration"],
+                "record": record,
+                "found": found,
+            }
+
+    state = st.session_state.get("last_offer")
+    if validation_error:
+        st.error(validation_error)
+    elif not state:
         st.markdown(
             """<div class="card empty"><div class="icon">💚</div><b>Your offer will appear here.</b>
             <div class="muted">Fill in the form and press <b>Check my offer</b>.</div></div>""",
             unsafe_allow_html=True,
         )
-    elif len(digits(phone)) < 9:
-        st.error("Please enter your mobile money number.")
     else:
-        record, found = lookup(phone)  # NkwaPay's side: history, lender, product
-        application = {
-            **{k: v for k, v in record.items() if v is not None},
-            "country_id": COUNTRY,
-            "Total_Amount": float(amount),
-            "duration": int(duration or 7),
-            "disbursement_date": date.today().isoformat(),  # scored at the moment of applying
-        }
-        try:
-            r = score_application(application)
-        except Exception as e:  # show scorer errors plainly instead of a stack trace
-            st.error(f"We couldn't check this application right now: {e}")
-            st.stop()
-
+        r = state["r"]
+        req_amount = state["amount"]
+        days = state["days"]
         decision, cur = r["decision"], r["currency"]
-        offer = amount if decision == "approve" else r["recommended_limit"]
-        days = application["duration"]
-        p, thr = r["probability_of_default"], r["threshold"]
-        fill = min(p / (2 * thr), 1.0) * 100 if thr else 0
-        color = {"approve": "#10B981", "limit": "#10B981", "starter": "#0EA5E9"}.get(decision, "#F59E0B")
+        offer = req_amount if decision == "approve" else r["recommended_limit"]
         headline, sub = {
             "approve": ("You're approved.", f"<b>{cur} {offer:,.0f}</b> for {days} days, sent to your mobile money wallet."),
             "limit": ("Approved, for a smaller amount.",
@@ -249,7 +318,7 @@ with right:
             f"""<div class="card result-{decision}">
             <div class="label">Your decision</div><div class="big">{headline}</div><div class="muted">{sub}</div>
             <div class="stats">
-              <div class="stat"><span class="label">Requested</span><b>{cur} {amount:,.0f}</b></div>
+              <div class="stat"><span class="label">Requested</span><b>{cur} {req_amount:,.0f}</b></div>
               <div class="stat"><span class="label">Offered</span><b>{cur} {offer:,.0f}</b></div>
               <div class="stat"><span class="label">Term</span><b>{days} days</b></div>
             </div></div>""",
@@ -272,24 +341,5 @@ with right:
             c2.markdown(f'<div class="card"><div class="label">What you can do</div>{next_steps}</div>',
                         unsafe_allow_html=True)
 
-        with st.expander("For the credit team"):
-            flags = "".join(f"<li>{f}</li>" for f in r["review_flags"]) or "<li>None</li>"
-            st.markdown(
-                f"""<div class="muted">Decision <b>{decision}</b> · chance of default <b>{p:.1%}</b> ·
-                decline above <b>{thr:.1%}</b></div>
-                <div class="bar"><span style="width:{fill:.0f}%; background:{color}"></span><i style="left:50%"></i></div>
-                <div class="muted">Black line = decline threshold · scored in {r['latency_ms']:.1f} ms ·
-                recommended amount {cur} {r['recommended_limit']:,.0f}</div>
-                <div class="muted" style="margin-top:.6rem"><b>Model reasons:</b> {' · '.join(r['top_3_reasons'])}</div>
-                <div class="muted" style="margin-top:.4rem"><b>Review flags:</b><ul>{flags}</ul></div>""",
-                unsafe_allow_html=True,
-            )
-            shown_fields = ["customer_id", "New_versus_Repeat", "lender_id", "loan_type", *RECORD_FIELDS]
-            def fmt(v):
-                return "—" if v is None else f"{v:g}" if isinstance(v, float) else v
-            rows = "".join(f"<tr><td>{k}</td><td><b>{fmt(record.get(k))}</b></td></tr>" for k in shown_fields)
-            note = ("Found in NkwaPay's records." if found else
-                    "No record for this number: scored as a new customer on NkwaPay's standard Ghana product.")
-            st.markdown(f"""<div class="muted" style="margin-top:.6rem"><b>Records used</b> · {note}
-                Labelled history is 0 for every Ghanaian customer (no repayment outcomes yet).</div>
-                <table class="rec">{rows}</table>""", unsafe_allow_html=True)
+        if st.button("For the credit team", use_container_width=True):
+            show_credit_team_dialog(state)
