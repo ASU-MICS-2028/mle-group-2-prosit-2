@@ -9,6 +9,11 @@ Add an entry at the **top** at the end of each session, 5–10 lines. Link to no
 
 ---
 
+## 2026-11-20 · Bernard (P3) · `p3/36-track-slides` (#36)
+**Did:** Put `slides/` under version control: the final 11-slide debrief `slides/NkwaPay_Prosit2_Debrief.pptx`, told in pipeline order (data, preprocessing, training, evaluation, insight, Ghana and fairness, deployment). Every slide's notes give the presenter, why the slide is there, the key message, what to point at, the script and the handover. `slides/SPEAKER_NOTES.md` has the run of show and the mock Q&A. Removed `slides/` from `.gitignore`.
+**Found:** Slide 5's Task 1 line was corrected: LightGBM is best on future loans (RMSE USD 1,842 vs 2,242 for the mean); on unseen customers a single tree is lower (950 vs 1,114), per `reports/tables/task1_model_summary.csv`.
+**Next:** Rehearse with the run of show. **Watch out:** Presenters: Henry opens, presents insight and closes; Perfect data and preprocessing; Bernard training and evaluation; Eugene Ghana, fairness and deployment.
+
 ## 2026-11-19 (late night) · Bernard (P3) · `p3/7-confirm-leak-ruling` (#7, #9)
 **Did:** Consolidated Part A into `docs/part_a.md` (loan timeline `reports/figures/part_a_loan_timeline.png`, decision moment `disbursement_date`, label & window, feature audit, confirmed leakage rulings, two tasks, and cedi cost matrix) and updated `docs/DECISIONS.md` to mark **D-2, D-3, D-4, D-5, D-6, D-13, D-14, and D-18** as `decided` (with all caveats from `docs/PART_A_SESSION.md` preserved). Updated `docs/feature_audit.md` status to `decided` and ticked the LO1 Part A rows in `docs/LEARNING_OUTCOMES.md`.
 **Found:** Both `test_issue_7_leak_ruling` (#7) and `test_issue_9_part_a_session` (#9) pass.
