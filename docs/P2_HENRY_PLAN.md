@@ -38,7 +38,7 @@
 - [x] `02_classification` runs top to bottom from a fresh kernel (`nbconvert --execute`, macOS); conclusions in §12 (added in PR #60 as §11, renumbered when §11 calibration over time was added).
 - [x] Calibration over time (#55): pre-2023 Platt under-predicts 2023–24 risk; recalibrate on recent loans and monitor monthly (`02` §11, D-24, PR #61).
 - [x] Logistic regression derivation (`docs/derivations/logistic.md`, #32): log-odds → sigmoid → likelihood → BCE → gradient Xᵀ(σ(Xw) − y), weighted version, convexity; checked against autograd (PR #62).
-- [x] Personal reflection (#37): `docs/reflections/henry.md` and `henry.pdf` (one page).
+- [x] Personal reflection (#37): `docs/reflections/henry.md` and `Individual_Reflection.pdf` (one page).
 
 ## You understand it when you can answer
 - Why does minimising BCE equal maximum likelihood?

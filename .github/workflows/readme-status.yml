@@ -61,8 +61,22 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: python -m scripts.update_readme
 
+      # main is protected (pull request + approval + required checks, admins included, #85), so a
+      # direct push is always refused. On pull requests we only prove the generator still runs; on
+      # other triggers we try the push and, if main refuses it, warn instead of failing. A refused
+      # update is applied in a normal pull request with `make readme`.
+      - name: Report on pull requests (no push)
+        if: steps.guard.outputs.ready == 'true' && github.event_name == 'pull_request'
+        run: |
+          if git diff --quiet README.md; then
+            echo "README status is up to date."
+          else
+            echo "::notice::README status on main is behind GitHub; run 'make readme' in a pull request to refresh it."
+            git diff --stat README.md
+          fi
+
       - name: Commit if the status changed
-        if: steps.guard.outputs.ready == 'true'
+        if: steps.guard.outputs.ready == 'true' && github.event_name != 'pull_request'
         run: |
           if git diff --quiet README.md; then
             echo "README status unchanged."
@@ -72,4 +86,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -am "README status: sync with issues and pull requests [skip ci]"
           git pull --rebase origin main
-          git push origin HEAD:main
+          if ! git push origin HEAD:main; then
+            echo "::warning::main is protected, so the README status was not pushed. Run 'make readme' in a pull request to refresh it."
+            git show --stat HEAD
+          fi
