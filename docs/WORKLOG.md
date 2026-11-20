@@ -9,6 +9,11 @@ Add an entry at the **top** at the end of each session, 5–10 lines. Link to no
 
 ---
 
+## 2026-11-20 · Bernard (P3) · `p3/36-track-slides` (#36)
+**Did:** Put `slides/` under version control: the final 11-slide debrief `slides/NkwaPay_Prosit2_Debrief.pptx`, told in pipeline order (data, preprocessing, training, evaluation, insight, Ghana and fairness, deployment). Every slide's notes give the presenter, why the slide is there, the key message, what to point at, the script and the handover. `slides/SPEAKER_NOTES.md` has the run of show and the mock Q&A. Removed `slides/` from `.gitignore`.
+**Found:** Slide 5's Task 1 line was corrected: LightGBM is best on future loans (RMSE USD 1,842 vs 2,242 for the mean); on unseen customers a single tree is lower (950 vs 1,114), per `reports/tables/task1_model_summary.csv`.
+**Next:** Rehearse with the run of show. **Watch out:** Presenters: Henry opens, presents insight and closes; Perfect data and preprocessing; Bernard training and evaluation; Eugene Ghana, fairness and deployment.
+
 ## 2026-11-20 · Bernard (P3) · `p3/85-readme-action-protected` (#85)
 **Did:** Fixed the *README status* Action, which failed on every pull request since `main` became protected (#56): its direct push to `main` was rejected (GH006). On pull requests it now only checks that the generator runs; on other triggers it tries the push and warns instead of failing (D-31).
 **Found:** On #83 and #84 every required check (lint-and-test, docs-updated, check-issue-link) already passed; the red check was only this optional job.

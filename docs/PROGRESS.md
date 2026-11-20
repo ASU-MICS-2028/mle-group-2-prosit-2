@@ -1,6 +1,6 @@
 # Progress dashboard
 
-**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-20 by Bernard (PR for #85, README status Action under branch protection).
+**Read this first.** Update it at the end of every work session (2 minutes), then push. Last updated: 2026-11-20 by Bernard (PR for #36: slides tracked in git).
 
 Status: ⬜ not started · 🟨 in progress · ✅ done · 🟥 blocked
 
@@ -39,6 +39,7 @@ Per-issue progress is on GitHub (Roadmap issue #1). Closed on 2026-11-17 with ev
 
 | When | Who | What | Where |
 | --- | --- | --- | --- |
+| 2026-11-20 | Bernard | Final 11-slide debrief deck + run of show and mock Q&A, now tracked in git | `slides/`, refs #36 |
 | 2026-11-20 | Bernard | README status Action no longer fails on pull requests now that `main` is protected (D-31) | `.github/workflows/readme-status.yml`, #85 |
 | 2026-10-21 | Bernard | README: data profiling, framework, pipeline design, roles, rules | `main` |
 | 2026-11-01 | Henry | EDA: default rate, leak check, new vs repeat, rate by year | branch `explore/henry-eda`, `01_eda.ipynb` |
@@ -109,6 +110,7 @@ Findings so far:
 
 | Date | Who | Did | Next |
 | --- | --- | --- | --- |
+| 2026-11-20 | Bernard | Final 11-slide debrief deck and speaker guide now tracked in `slides/` (pipeline order, presenter notes per slide) | Rehearse |
 | 2026-11-20 | Bernard | Fixed the README status Action failing on every pull request after branch protection (#85, D-31) | Approve #84 (Henry); get a review on #83 |
 | 2026-11-19 | Bernard | Confirmed Part A rulings (D-2..D-6, D-13, D-14, D-18 `decided`) and wrote `docs/part_a.md` to close #7 and #9 | Branch protection (#56), individual reflections (#37) |
 | 2026-11-19 | Eugene | Borrower app production-shaped: number + amount + term; history, lender, product looked up from records; Ghana only (GHS) | Bernard reviews |
