@@ -9,6 +9,11 @@ Add an entry at the **top** at the end of each session, 5–10 lines. Link to no
 
 ---
 
+## 2026-11-20 · Bernard (P3) · `p3/85-readme-action-protected` (#85)
+**Did:** Fixed the *README status* Action, which failed on every pull request since `main` became protected (#56): its direct push to `main` was rejected (GH006). On pull requests it now only checks that the generator runs; on other triggers it tries the push and warns instead of failing (D-31).
+**Found:** On #83 and #84 every required check (lint-and-test, docs-updated, check-issue-link) already passed; the red check was only this optional job.
+**Next:** Refresh the README status with `make readme` inside a normal pull request when it falls behind. **Watch out:** #83 and #84 still need one approving review each before they can merge; an author cannot approve their own pull request.
+
 ## 2026-11-19 (late night) · Bernard (P3) · `p3/7-confirm-leak-ruling` (#7, #9)
 **Did:** Consolidated Part A into `docs/part_a.md` (loan timeline `reports/figures/part_a_loan_timeline.png`, decision moment `disbursement_date`, label & window, feature audit, confirmed leakage rulings, two tasks, and cedi cost matrix) and updated `docs/DECISIONS.md` to mark **D-2, D-3, D-4, D-5, D-6, D-13, D-14, and D-18** as `decided` (with all caveats from `docs/PART_A_SESSION.md` preserved). Updated `docs/feature_audit.md` status to `decided` and ticked the LO1 Part A rows in `docs/LEARNING_OUTCOMES.md`.
 **Found:** Both `test_issue_7_leak_ruling` (#7) and `test_issue_9_part_a_session` (#9) pass.
